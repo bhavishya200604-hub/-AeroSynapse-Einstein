@@ -14,6 +14,6 @@
 | KI-10 | optim | Gradient descent (fixed step) fails on Rosenbrock; Adam not converged in 3000 evaluations | method limitation | reported |
 | KI-11 | optim | Thermal and source demos have corner optima (bounds active); the robust and deterministic optima coincide | robust-optimisation demo uninformative | reported |
 | KI-12 | inverse | PINN α estimate 24 % off (adjoint LSQ accurate) | PINN inverse route not reliable at this budget | reported |
-| KI-13 | data | AirfRANS not downloaded (kaggle.com blocked by the environment network policy) | RANS-data surrogate and drag study not run | open — needs network access or a Kaggle/Colab run |
+| KI-13 | data | AirfRANS not downloaded (kaggle.com blocked by the environment network policy) | RANS-data surrogate and drag study not run | open — needs network access or a Kaggle/Colab run. 2026-11-02: retried from a new session: still blocked: curl `https://www.kaggle.com/api/v1/datasets/download/alexandrepers/airfrans` -> `curl: (56) CONNECT tunnel failed, response 403` (http_code 000); kagglehub -> `ProxyError: HTTPSConnectionPool(host='api.kaggle.com', port=443) ... Tunnel connection failed: 403 Forbidden` |
 | KI-14 | fluids | Cylinder uses a staircase immersed boundary (first-order geometry) | C_D error −2.1 % at h = 0.01 | documented |
 | KI-15 | fluids | Marching BL vs Blasius max error ≈ 1 %, not reduced by refining y (first-order x-marching dominates) | accuracy floor | documented |
