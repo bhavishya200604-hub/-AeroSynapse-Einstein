@@ -1,0 +1,198 @@
+{
+ "analytic": {
+  "couette": 4.1637993053456057e-10,
+  "poiseuille_rel_err_n8": 0.015873015865275605,
+  "poiseuille_rel_err_n16": 0.003921568620100814,
+  "poiseuille_rel_err_n32": 0.000977517102721352,
+  "poiseuille_order": [
+   2.0170735153594626,
+   2.004236995832114
+  ]
+ },
+ "cavity": {
+  "re100_n32": {
+   "rms_u": 0.0013047626026642385,
+   "max_u": 0.002056821220892957,
+   "rms_v": 0.0035793084076903743,
+   "max_v": 0.008406730574131549,
+   "u_min": -0.20892241913073056,
+   "converged": true,
+   "steps": 7150,
+   "wall_s": 2.3953739480002696,
+   "div_max": 5.35682609381638e-15
+  },
+  "re100_n64": {
+   "rms_u": 0.0018029056944462573,
+   "max_u": 0.0038020346989540155,
+   "rms_v": 0.004341063243249912,
+   "max_v": 0.008545348068754566,
+   "u_min": -0.21278389335032702,
+   "converged": true,
+   "steps": 7150,
+   "wall_s": 6.681128936999812,
+   "div_max": 4.919502305522627e-14
+  },
+  "re400_n32": {
+   "rms_u": 0.015430672016332407,
+   "max_u": 0.03143483641280709,
+   "rms_v": 0.020167570544077418,
+   "max_v": 0.031400487970719704,
+   "u_min": -0.2978755604810598,
+   "converged": true,
+   "steps": 67450,
+   "wall_s": 24.59652589399957,
+   "div_max": 2.942091015256665e-15
+  },
+  "re400_n64": {
+   "rms_u": 0.003577338517039464,
+   "max_u": 0.007334922023474744,
+   "rms_v": 0.004443206073026565,
+   "max_v": 0.007733898783707838,
+   "u_min": -0.3200855055757028,
+   "converged": true,
+   "steps": 66100,
+   "wall_s": 66.91980546399918,
+   "div_max": 1.5889199678209565e-14
+  }
+ },
+ "cylinder": {
+  "reference_CD": 5.57953523384,
+  "regime": "validated range: cylinder Re=20",
+  "h0.01": {
+   "nx": 220,
+   "ny": 41,
+   "C_D": 1.6532143381317619,
+   "rel_err": -0.7037003497881003,
+   "converged": true,
+   "t": 16.989841165158957,
+   "wall_s": 5.086060610000459,
+   "note": "staircase immersed boundary, first-order geometry representation"
+  }
+ },
+ "boundary_layer": {
+  "blasius_fpp0_computed": 0.3320573372037061,
+  "regime": "validated range: flat_plate Re=10000",
+  "ny50_max_err": 0.009760923759195572,
+  "ny100_max_err": 0.010158803843056896,
+  "ny200_max_err": 0.01027751077753547
+ },
+ "panel": {
+  "naca0012_n41_cl_alpha4": 0.4859810828356753,
+  "naca0012_n81_cl_alpha4": 0.48441191228321767,
+  "naca0012_n161_cl_alpha4": 0.48355470787786603,
+  "naca0012_lift_slope_per_rad": 6.931337993603971,
+  "thin_airfoil_2pi": 6.283185307179586,
+  "naca2412_alpha0": {
+   "cl": 0.2596494871644337,
+   "cm_c4": -0.05456814087134327
+  },
+  "limitations": "inviscid: zero profile drag, no stall; PG valid M < 0.7"
+ },
+ "aero_optimisation": {
+  "name": "airfoil_cl",
+  "objective": "max C_L at alpha = 4 deg (inviscid panel model)",
+  "constraints": [
+   "t/c >= 0.12",
+   "Cp_min >= -2.0 (suction-peak proxy, heuristic)",
+   "no surface crossing"
+  ],
+  "budget": 60,
+  "stopping": "budget (60 panel evaluations)",
+  "baseline": {
+   "design": {
+    "au0": 0.17,
+    "au1": 0.16,
+    "au2": 0.15,
+    "al0": -0.17,
+    "al1": -0.16,
+    "al2": -0.15
+   },
+   "f": [
+    -0.4851381659244259
+   ],
+   "g": [
+    -0.04892228360574302,
+    -0.27135598063237687,
+    -0.19110021143531453
+   ],
+   "h": [],
+   "feasible": true
+  },
+  "method": {
+   "name": "surrogate_tr",
+   "n_evals": 60,
+   "message": "budget exhausted",
+   "final": {
+    "design": {
+     "au0": 0.3,
+     "au1": 0.35,
+     "au2": 0.35,
+     "al0": -0.07404444310347191,
+     "al1": 0.10000000000000003,
+     "al2": 0.09726002204932993
+    },
+    "model_f": [
+     -1.3752087920320752
+    ],
+    "trusted_f": [
+     -1.3751946716404895
+    ],
+    "trusted_g": [
+     -0.0002468428620194807,
+     -0.1271466655546416,
+     -0.0005582957480557149
+    ],
+    "trusted_feasible": true,
+    "model_vs_trusted_abs_diff": 1.4120391585770165e-05,
+    "improvement_vs_baseline": 0.8900565057160637
+   }
+  },
+  "baseline_method": {
+   "name": "de",
+   "n_evals": 60,
+   "message": "budget exhausted",
+   "final": {
+    "design": {
+     "au0": 0.277148202790147,
+     "au1": 0.16982847150268307,
+     "au2": 0.2672608623195105,
+     "al0": -0.16919767375404335,
+     "al1": -0.1443375745690598,
+     "al2": 0.014863199398434557
+    },
+    "model_f": [
+     -0.8842381514925179
+    ],
+    "trusted_f": [
+     -0.8844030555666373
+    ],
+    "trusted_g": [
+     -0.20232816028247314,
+     -0.08884114241596319,
+     -0.00933863044072572
+    ],
+    "trusted_feasible": true,
+    "model_vs_trusted_abs_diff": 0.00016490407411939856,
+    "improvement_vs_baseline": 0.39926488964221146
+   }
+  },
+  "verdict": "ACCEPT",
+  "model_note": "C_L from an inviscid panel method; drag is not available, so C_L/C_D is NOT optimised. Cp_min is a heuristic proxy for adverse-pressure-gradient severity, not a stall model."
+ },
+ "cp_surrogate": {
+  "n_train": 300,
+  "n_test": 100,
+  "pod_rank": 8,
+  "pod_energy": 0.9999999973415756,
+  "data_gen_s": 16.639371354000104,
+  "rel_l2_median": 34.99619439043775,
+  "rel_l2_q90": 337.8776080863246,
+  "rel_l2_max": 6071.992522889054
+ },
+ "misc": {
+  "openfoam_preflight": {
+   "available": false,
+   "message": "OpenFOAM not available (missing ['blockMesh', 'icoFoam']); use built-in solvers or install OpenFOAM (optional, Mode D)"
+  }
+ }
+}

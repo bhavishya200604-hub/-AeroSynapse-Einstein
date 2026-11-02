@@ -26,7 +26,14 @@ def cosine_spacing(n: int) -> FloatArr:
 def naca4(code: str, n: int = 81, closed_te: bool = True) -> tuple[FloatArr, FloatArr]:
     if len(code) != 4 or not code.isdigit():
         raise ConfigurationError("NACA 4-digit code must have 4 digits, e.g. '2412'")
-    m, p, t = int(code[0]) / 100, int(code[1]) / 10, int(code[2:]) / 100
+    return naca4_params(int(code[0]), int(code[1]), int(code[2:]), n, closed_te)
+
+
+def naca4_params(
+    m_pct: float, p_tenths: float, t_pct: float, n: int = 81, closed_te: bool = True
+) -> tuple[FloatArr, FloatArr]:
+    """NACA 4-digit family with real-valued parameters (as used in AirfRANS file names)."""
+    m, p, t = m_pct / 100, p_tenths / 10, t_pct / 100
     x = cosine_spacing(n)
     a4 = 0.1036 if closed_te else 0.1015
     yt = 5 * t * (0.2969 * np.sqrt(x) - 0.1260 * x - 0.3516 * x**2 + 0.2843 * x**3 - a4 * x**4)

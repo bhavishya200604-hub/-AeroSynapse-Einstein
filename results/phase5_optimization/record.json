@@ -1,0 +1,55 @@
+{
+  "experiment_id": "phase5_optimization",
+  "research_question": "Does the optimisation engine find known optima, enforce constraints and budgets, and keep final candidates feasible under the trusted solver?",
+  "hypothesis": "H5.1 L-BFGS/SQP/DE reach Rosenbrock f < 1e-4 within budget. H5.2 SQP recovers the QP KKT point (mu = 1). H5.3 BO beats DE/GA on Branin at 40 evaluations. H5.4 every final candidate is feasible under the trusted solver. H5.5 the robust optimum satisfies the 95% chance constraint where the deterministic optimum may not. H5.6 adjoint LSQ recovers alpha within 2 standard errors; the PINN estimate is less accurate.",
+  "mathematical_formulation": "see aerosynapse.optim.demos and optim.inverse docstrings",
+  "seed": 0,
+  "model_configuration": {},
+  "solver_configuration": {},
+  "dataset_description": "synthetic observations for the inverse problem (noise sigma = 0.01)",
+  "hardware": {
+    "python": "3.13.18",
+    "platform": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 4,
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "mem_total_kb": 16477352,
+    "torch": "2.5.1+cu124",
+    "cuda_available": false,
+    "device": "cpu"
+  },
+  "training_configuration": {},
+  "optimization_configuration": {
+    "profile": "quick",
+    "seeds": 3
+  },
+  "evaluation_metrics": [
+    "best feasible objective",
+    "gap to known optimum",
+    "KKT residual",
+    "hypervolume",
+    "trusted re-evaluation",
+    "chance-constraint probability",
+    "alpha error"
+  ],
+  "results": {},
+  "limitations": [
+    "illustrative material values",
+    "1D thermal / conv-diff models",
+    "cost model P \u221d m\u00b2 assumed"
+  ],
+  "reproducibility": "python scripts/run_phase5.py --profile quick",
+  "git_commit": "cd3408a844499275bee0d6194ee865875bb6fb6f",
+  "software_versions": {
+    "aerosynapse": "0.1.0",
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "torch": "2.5.1+cu124"
+  },
+  "data_provenance": "",
+  "created_unix": 1793633871.1555588,
+  "status": "running"
+}
