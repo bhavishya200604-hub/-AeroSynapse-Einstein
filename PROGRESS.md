@@ -9,7 +9,7 @@ not unit tests.
 
 | Phase | Status | Gate evidence | Notes |
 |---|---|---|---|
-| 0 Planning + scaffold | PASSED | install, lint, types, tests; planning A–N | CI configured, not executed (KI-4) |
+| 0 Planning + scaffold | PASSED | install, lint, types, tests; planning A–N | GitHub Actions green on Ubuntu + Windows + docs (run 14) |
 | 1 Physics + classical solvers | PASSED | observed orders, MMS for every BC type, conservation, guards | Burgers pre-asymptotic (KI-1) |
 | 2 PINNs + validation core | PASSED | autograd/FD, exact residual ≈ 0, determinism, serialisation | annealing negative (KI-6) |
 | 3 Adaptive collocation study | PASSED WITH LIMITATIONS | 272 runs, stats, ablations, extras | core hypothesis not supported (KI-8, KI-9) |

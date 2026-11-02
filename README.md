@@ -1,5 +1,7 @@
 # AeroSynapse–Einstein
 
+[![CI](https://github.com/bhavishya200604-hub/-AeroSynapse-Einstein/actions/workflows/ci.yml/badge.svg?branch=claude/ecstatic-turing-b9c02v)](https://github.com/bhavishya200604-hub/-AeroSynapse-Einstein/actions/workflows/ci.yml)
+
 <!-- sources: phase1_verification, phase2_pinn_benchmarks, phase3_adaptive_collocation, phase4_operators_uq, phase5_optimization, phase6_fluids_aero, phase7_validation_engine -->
 
 **Physics-aware AI for computational engineering.** This is a Python research platform. It provides

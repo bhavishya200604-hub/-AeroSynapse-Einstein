@@ -35,7 +35,7 @@ Decision: `argparse` from the standard library (no extra dependency). `typer` wa
 ## ADR-0008 Python / CI version
 The recorded environment is Python 3.13, numpy 2.5, torch 2.5.1 (CPU wheel from PyPI;
 download.pytorch.org is blocked from the build container). CI targets Python 3.13 on Ubuntu and
-Windows with `constraints.txt`. CI was configured but not executed in this run.
+Windows with `constraints.txt`. CI executes on every push; the torch pin was later removed from CI constraints (no CPU wheel for every OS/Python) and run 14 passed on Ubuntu and Windows.
 
 ## ADR-0009 Phase 3 design choices
 Periodic embedding (exact periodic BC) with a soft IC; σ₀ = 0.1, T = 1; Pe ∈ {1, 10, 100, 1000}. The budget
