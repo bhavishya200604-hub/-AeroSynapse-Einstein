@@ -272,6 +272,9 @@ class NSSolver:
         if self.periodic:
             Un[0, 1:-1] -= dt * (P[0] - P[-1]) / h
             Un[-1] = Un[0]
+        # momentum removed by re-imposing zero velocity after the projection = pressure contribution
+        fx += float(np.sum(Un[:, 1:-1][self.su]) * h * h / dt)
+        fy += float(np.sum(Vn[1:-1][self.sv]) * h * h / dt)
         Un[:, 1:-1][self.su] = 0.0
         Vn[1:-1][self.sv] = 0.0
         self._apply_bc(Un, Vn)

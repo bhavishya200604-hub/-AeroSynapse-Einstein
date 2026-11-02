@@ -312,3 +312,15 @@ def classical_uq() -> dict[str, Any]:
             "coverage_2sigma": kf.coverage_2sigma,
         },
     }
+
+
+def generalisation_map(model: torch.nn.Module, n_per_cell: int = 12, seed: int = 500) -> dict[str, Any]:
+    """FNO error over (Pe, input bandwidth k_max); training region Pe in [5, 50], k_max = 4."""
+    pes = [1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0, 300.0, 1000.0, 3000.0]
+    ks = [2, 3, 4, 6, 8, 10]
+    E = np.zeros((len(pes), len(ks)))
+    for i, pe in enumerate(pes):
+        for j, k in enumerate(ks):
+            d = convdiff_operator_dataset(n_per_cell, n=64, pe_range=(pe, pe * 1.0001), k_max=k, seed=seed + 31 * i + j)
+            E[i, j] = float(np.median(per_sample_rel_l2(predict_operator(model, d.inputs), d.outputs)))
+    return {"pe": pes, "k_max": ks, "median_rel_l2": E.tolist(), "train_region": {"pe": [5, 50], "k_max": [1, 4]}}

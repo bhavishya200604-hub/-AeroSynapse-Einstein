@@ -10,7 +10,6 @@ from typing import Any
 
 import numpy as np
 
-from aerosynapse.ml.rom import PODRegressor
 from aerosynapse.numerics import verification as V
 from aerosynapse.numerics.boundary_layer import blasius, march_boundary_layer
 from aerosynapse.numerics.external import preflight
@@ -203,16 +202,22 @@ def aero_optimisation() -> dict[str, Any]:
 def cp_surrogate(n_train: int = 300, n_test: int = 100) -> dict[str, Any]:
     rng = np.random.default_rng(0)
     sp = airfoil_space()
-    Z = rng.random((n_train + n_test, sp.dim))
     t0 = time.perf_counter()
-    rows = []
-    for z in Z:
+    rows, Zs, rejected = [], [], 0
+    while len(rows) < n_train + n_test:
+        z = rng.random(sp.dim)
         d = sp.decode(z)
         X, Y = cst(np.array([d["au0"], d["au1"], d["au2"]]), np.array([d["al0"], d["al1"], d["al2"]]), 81)
+        m = (len(X) + 1) // 2
+        xs = np.linspace(0.02, 0.98, 50)
+        if np.min(np.interp(xs, X[m - 1 :], Y[m - 1 :]) - np.interp(xs, X[:m][::-1], Y[:m][::-1])) <= 0.0:
+            rejected += 1  # self-intersecting geometry: not a valid airfoil, excluded from the dataset
+            continue
         rows.append(solve_panel(X, Y, 4.0).cp)
+        Zs.append(z)
+    Z = np.array(Zs)
     t_data = time.perf_counter() - t0
     C = np.array(rows)
-    pod = PODRegressor(rank=12, poly_degree=2).fit(np.zeros((n_train, 1)), Z[:n_train], C[:n_train]) if False else None
     from aerosynapse.uq.gp import GaussianProcess
 
     # POD of Cp fields + GP regression of the coefficients on the 6 CST parameters
@@ -223,7 +228,6 @@ def cp_surrogate(n_train: int = 300, n_test: int = 100) -> dict[str, Any]:
     gps = [GaussianProcess(noise=1e-6, restarts=1).fit(Z[:n_train], coef[:, i]) for i in range(k)]
     pred = cm + np.column_stack([g.predict(Z[n_train:])[0] for g in gps]) @ Vt[:k]
     err = np.linalg.norm(pred - C[n_train:], axis=1) / np.linalg.norm(C[n_train:], axis=1)
-    _ = pod
     return {
         "n_train": n_train,
         "n_test": n_test,
