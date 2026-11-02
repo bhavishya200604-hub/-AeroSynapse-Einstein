@@ -199,9 +199,9 @@ def fig_f_airfoil() -> dict[str, Any]:
 
 
 def fig_g_generalisation() -> dict[str, Any]:
-    m = load("phase4_operators_uq")
-    if m is None or "generalisation_map" not in m:
-        return {"skipped": "phase4_operators_uq (generalisation_map) not run"}
+    m = load("phase4_generalisation_map")
+    if m is None:
+        return {"skipped": "phase4_generalisation_map not run"}
     import plotly.graph_objects as go
 
     g4 = m["generalisation_map"]

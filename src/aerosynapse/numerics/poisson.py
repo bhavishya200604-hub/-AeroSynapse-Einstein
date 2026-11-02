@@ -49,34 +49,46 @@ def solve_poisson_2d(problem: PDEProblem, n: int) -> tuple[FloatArr, FloatArr, F
     sides = {s: problem.bcs[s] for s in ("left", "right", "bottom", "top")}
     if all(b.kind == "neumann" for b in sides.values()):
         raise ConfigurationError("pure-Neumann 2D Poisson not supported here; fix one side as Dirichlet")
-    A = sp.lil_matrix((N, N))
-    rhs = F.ravel().copy()
     cx, cy = 1.0 / h**2, 1.0 / k**2
-    for j in range(n + 1):
-        for i in range(n + 1):
-            r = idx[j, i]
-            dside = None
-            for name, cond in (("left", i == 0), ("right", i == n), ("bottom", j == 0), ("top", j == n)):
-                if cond and sides[name].kind == "dirichlet":
-                    dside = name
-            if dside is not None:
-                s = Y[j, i] if dside in ("left", "right") else X[j, i]
-                A[r, r] = 1.0
-                rhs[r] = float(sides[dside].value(s))
-                continue
-            A[r, r] = 2 * cx + 2 * cy
-            for di, dj, c, name, cond in (
-                (-1, 0, cx, "left", i == 0),
-                (1, 0, cx, "right", i == n),
-                (0, -1, cy, "bottom", j == 0),
-                (0, 1, cy, "top", j == n),
-            ):
-                if cond:  # Neumann ghost: u_g = u_mirror + 2 h g (outward derivative g)
-                    s = Y[j, i] if name in ("left", "right") else X[j, i]
-                    hh = h if di else k
-                    A[r, idx[j - dj, i - di]] -= c
-                    rhs[r] += c * 2 * hh * float(sides[name].value(s))
-                else:
-                    A[r, idx[j + dj, i + di]] -= c
+    J, I = np.meshgrid(np.arange(n + 1), np.arange(n + 1), indexing="ij")  # J = row (y), I = column (x)
+    rhs = F.ravel().copy()
+    dmask = np.zeros((n + 1, n + 1), bool)
+    dval = np.zeros((n + 1, n + 1))
+    for name, sel, coord in (
+        ("left", (slice(None), 0), Y[:, 0]),
+        ("right", (slice(None), n), Y[:, n]),
+        ("bottom", (0, slice(None)), X[0, :]),
+        ("top", (n, slice(None)), X[n, :]),
+    ):
+        if sides[name].kind == "dirichlet":
+            dmask[sel] = True
+            dval[sel] = np.asarray(sides[name].value(coord), dtype=float) * np.ones(n + 1)
+    free = ~dmask
+    rows: list[np.ndarray] = [idx[free]]
+    cols: list[np.ndarray] = [idx[free]]
+    vals: list[np.ndarray] = [np.full(int(free.sum()), 2 * cx + 2 * cy)]
+    for di, dj, c, name in ((-1, 0, cx, "left"), (1, 0, cx, "right"), (0, -1, cy, "bottom"), (0, 1, cy, "top")):
+        Ii, Jj = I + di, J + dj
+        out = (Ii < 0) | (Ii > n) | (Jj < 0) | (Jj > n)
+        inside = free & ~out
+        rows.append(idx[inside])
+        cols.append(idx[Jj[inside], Ii[inside]])
+        vals.append(np.full(int(inside.sum()), -c))
+        ghost = free & out  # Neumann ghost: u_g = u_mirror + 2 h g (outward derivative g)
+        if ghost.any():
+            hh = h if di else k
+            Im, Jm = I - di, J - dj
+            rows.append(idx[ghost])
+            cols.append(idx[Jm[ghost], Im[ghost]])
+            vals.append(np.full(int(ghost.sum()), -c))
+            s_coord = Y[ghost] if name in ("left", "right") else X[ghost]
+            rhs[idx[ghost]] += (
+                c * 2 * hh * np.asarray(sides[name].value(s_coord), dtype=float) * np.ones(int(ghost.sum()))
+            )
+    rows.append(idx[dmask])
+    cols.append(idx[dmask])
+    vals.append(np.ones(int(dmask.sum())))
+    rhs[idx[dmask]] = dval[dmask]
+    A = sp.csr_matrix((np.concatenate(vals), (np.concatenate(rows), np.concatenate(cols))), shape=(N, N))
     U = spla.spsolve(A.tocsc(), rhs).reshape(n + 1, n + 1)
     return X, Y, U

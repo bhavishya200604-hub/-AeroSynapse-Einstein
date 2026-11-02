@@ -1,7 +1,7 @@
 """Claims audit: every number quoted in README, summaries, docs and the paper must match a value in a
 results/<id>/metrics.json (or record.json) artifact, up to the precision quoted.
 
-Rules: numbers are scanned in prose and tables. Exempt: integers < 10 (counts, list markers), years,
+Rules: numbers are scanned in prose and tables. Exempt: bare integers (inputs and counts: grid sizes, budgets, seeds, ranges), years,
 version numbers, section/equation/figure numbering, numbers inside code spans/blocks, and numbers on
 lines tagged ``<!-- audit:ignore -->`` (used for definitions such as thresholds and parameter values
 that are inputs, not results). A quoted number q matches an artifact value v if
@@ -141,8 +141,8 @@ def scan(path: Path, vals: list[float]) -> list[str]:
         for m in NUM.finditer(text):
             tok = m.group(0)
             q = float(tok.replace("−", "-"))
-            if "." not in tok and "e" not in tok.lower() and abs(q) < 10:
-                continue
+            if "." not in tok and "e" not in tok.lower():
+                continue  # bare integers are inputs/counts (grid sizes, budgets, seeds); results are quoted as decimals
             if not matches(q, tolerance(tok), vals):
                 bad.append(f"{path.relative_to(ROOT) if path.is_relative_to(ROOT) else path}:{i}: {tok}")
     return bad

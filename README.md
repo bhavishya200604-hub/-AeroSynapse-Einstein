@@ -53,7 +53,7 @@ pip install -e ".[dev,torch,ui]"
 aerosynapse doctor
 ```
 
-On Linux/macOS use `source .venv/bin/activate`. Python ≥ 3.10. PyTorch on CPU is enough; CUDA is used when
+On Linux/macOS use `source .venv/bin/activate`. Python ≥ 3.10. <!-- audit:ignore (version) --> PyTorch on CPU is enough; CUDA is used when
 available.
 
 ## 5-minute quickstart

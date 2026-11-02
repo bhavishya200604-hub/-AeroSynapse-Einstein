@@ -16,12 +16,16 @@ STEPS = [
     "run_phase1.py",
     "run_phase2.py",
     "run_phase3.py",
+    "postprocess_phase3.py",
+    "run_phase3_extras.py",
     "run_phase4.py",
+    "run_phase4_genmap.py",
     "run_phase5.py",
     "run_phase6.py",
     "run_phase7.py",
     "make_figures.py",
     "make_report.py",
+    "make_reproducibility.py",
     "audit_claims.py",
 ]
 
@@ -34,7 +38,9 @@ def main() -> int:
     times = {}
     for s in a.only or STEPS:
         t0 = time.perf_counter()
-        args = [sys.executable, str(ROOT / "scripts" / s)] + (["--profile", a.profile] if s.startswith("run_") else [])
+        args = [sys.executable, str(ROOT / "scripts" / s)] + (
+            ["--profile", a.profile] if s.startswith("run_phase") else []
+        )
         print(f"==> {s}", flush=True)
         rc = subprocess.call(args, cwd=ROOT)
         times[s] = time.perf_counter() - t0

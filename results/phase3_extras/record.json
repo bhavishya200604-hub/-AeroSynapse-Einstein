@@ -1,0 +1,52 @@
+{
+  "experiment_id": "phase3_extras",
+  "research_question": "How does PINN error depend jointly on Pe, collocation budget and sampler; what do the learned fields look like?",
+  "hypothesis": "H3.5 error decreases with budget for both samplers; the RAD advantage (if any) is largest at the smallest budget and highest Pe.",
+  "mathematical_formulation": "as phase3_adaptive_collocation",
+  "seed": 0,
+  "model_configuration": {},
+  "solver_configuration": {},
+  "dataset_description": "",
+  "hardware": {
+    "python": "3.13.18",
+    "platform": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 4,
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "mem_total_kb": 16477352,
+    "torch": "2.5.1+cu124",
+    "cuda_available": false,
+    "device": "cpu"
+  },
+  "training_configuration": {
+    "iters": 4000,
+    "budgets": [
+      500,
+      1000,
+      2000
+    ],
+    "seeds": 3
+  },
+  "optimization_configuration": {},
+  "evaluation_metrics": [
+    "rel_l2"
+  ],
+  "results": {},
+  "limitations": [
+    "fewer seeds than the main study"
+  ],
+  "reproducibility": "python scripts/run_phase3_extras.py --profile quick",
+  "git_commit": "04159ec757a2d1e5138a8d8c9a8e995afb374fe4",
+  "software_versions": {
+    "aerosynapse": "0.1.0",
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "torch": "2.5.1+cu124"
+  },
+  "data_provenance": "",
+  "created_unix": 1793636202.2565708,
+  "status": "running"
+}

@@ -1,0 +1,44 @@
+{
+  "experiment_id": "phase4_generalisation_map",
+  "research_question": "Where in (Pe, input bandwidth) does the FNO trained on Pe in [5, 50], k_max = 4 stay accurate?",
+  "hypothesis": "H4.8 error grows by more than 10x outside the training Pe range at fixed bandwidth, and grows with input bandwidth beyond k_max = 4.",
+  "mathematical_formulation": "median per-sample rel. L2 of the FNO on 12 fresh FV samples per (Pe, k_max) cell",
+  "seed": 500,
+  "model_configuration": {},
+  "solver_configuration": {},
+  "dataset_description": "",
+  "hardware": {
+    "python": "3.13.18",
+    "platform": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 4,
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "mem_total_kb": 16477352,
+    "torch": "2.5.1+cu124",
+    "cuda_available": false,
+    "device": "cpu"
+  },
+  "training_configuration": {},
+  "optimization_configuration": {},
+  "evaluation_metrics": [
+    "median rel. L2 per cell"
+  ],
+  "results": {},
+  "limitations": [
+    "12 samples per cell"
+  ],
+  "reproducibility": "python scripts/run_phase4_genmap.py --profile quick (after run_phase4.py)",
+  "git_commit": "04159ec757a2d1e5138a8d8c9a8e995afb374fe4",
+  "software_versions": {
+    "aerosynapse": "0.1.0",
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "torch": "2.5.1+cu124"
+  },
+  "data_provenance": "model fno.pt sha256=97efe9a07e589479ef1d3abd55e1f939f50bcafded5d4b9669819fcc4b0de99f",
+  "created_unix": 1793636244.0934627,
+  "status": "running"
+}

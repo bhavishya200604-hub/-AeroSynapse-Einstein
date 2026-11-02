@@ -85,7 +85,7 @@ SOLVER_CARDS: dict[str, dict[str, str]] = {
         "complexity": "sparse direct O(N^1.5)",
         "boundary_treatment": "Dirichlet or Neumann per side (pure Neumann rejected)",
         "verification": "MMS u = sin(pi x) sin(2 pi y); mixed Dirichlet/Neumann MMS",
-        "limitations": "Python-loop assembly (slow for n > 300)",
+        "limitations": "uniform grid, rectangle only",
     },
     "poisson2d_fem_p1": {
         "formulation": "weak form int grad u . grad v = int f v",
