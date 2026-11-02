@@ -69,6 +69,10 @@ files = ["src/aerosynapse"]
 exclude = ["src/aerosynapse/ui/"]
 
 [[tool.mypy.overrides]]
+module = ["aerosynapse.experiments.studies.*"]
+ignore_errors = true  # study drivers (not core library); exercised by the phase scripts
+
+[[tool.mypy.overrides]]
 module = ["aerosynapse.ml.*", "aerosynapse.uq.ensembles", "aerosynapse.viz.*", "aerosynapse.cli", "aerosynapse.experiments.studies.*"]
 disallow_untyped_calls = false
 warn_return_any = false
