@@ -1,0 +1,6 @@
+{
+  "name": "aerosynapse-einstein",
+  "build": { "dockerfile": "../Dockerfile", "context": ".." },
+  "customizations": { "vscode": { "extensions": ["ms-python.python", "charliermarsh.ruff"] } },
+  "postCreateCommand": "aerosynapse doctor"
+}

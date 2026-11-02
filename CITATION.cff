@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "AeroSynapse-Einstein: physics-aware AI for computational engineering"
+version: 0.1.0
+license: Apache-2.0
+type: software
+authors:
+  - name: "Bhavishya"
+repository-code: "https://github.com/bhavishya200604-hub/-AeroSynapse-Einstein"
+date-released: 2026-11-02

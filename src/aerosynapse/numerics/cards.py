@@ -1,0 +1,121 @@
+"""Solver cards: the eight attributes required by spec Section 4, Layer B."""
+
+from __future__ import annotations
+
+CARD_FIELDS = (
+    "formulation",
+    "discretisation",
+    "order",
+    "stability",
+    "complexity",
+    "boundary_treatment",
+    "verification",
+    "limitations",
+)
+
+SOLVER_CARDS: dict[str, dict[str, str]] = {
+    "heat1d_fd": {
+        "formulation": "T_t = alpha T_xx + s on [a, b]",
+        "discretisation": "node-centred 3-point FD in space, theta-method in time (0, 1/2, 1); optional "
+        "step-doubling adaptive dt",
+        "order": "O(h^2) space; O(dt^2) for CN, O(dt) otherwise",
+        "stability": "theta >= 1/2 unconditionally stable; theta < 1/2 needs r = alpha dt/h^2 <= 1/(2(1-2theta))",
+        "complexity": "O(N) per step (banded LU, factorised once per dt)",
+        "boundary_treatment": "Dirichlet nodal; Neumann/Robin by eliminated ghost node; periodic circulant",
+        "verification": "exact separable solution; MMS; observed order tests in tests/test_numerics_heat.py",
+        "limitations": "1D, constant alpha; CN can show non-damped oscillations for non-smooth data",
+    },
+    "heat2d_fd": {
+        "formulation": "T_t = alpha lap T + s on a rectangle",
+        "discretisation": "5-point Laplacian, theta-method, sparse LU",
+        "order": "O(h^2 + dt^2) (CN)",
+        "stability": "as heat1d with r = alpha dt (1/hx^2 + 1/hy^2)",
+        "complexity": "O(N^1.5) factorisation (nested-dissection sparse LU), O(N log N) per step",
+        "boundary_treatment": "Dirichlet g(x, y, t) only",
+        "verification": "exact separable solution; observed order test",
+        "limitations": "Dirichlet only; uniform grid; rectangle only",
+    },
+    "convdiff_fv": {
+        "formulation": "u_t + (v u)_x = (D u_x)_x + s, conservative form",
+        "discretisation": "cell-centred FV; upwind / central / QUICK / van Leer MUSCL faces; SSP-RK3 or theta",
+        "order": "upwind 1; central 2; QUICK 2 (point-value FV); van Leer 2 in smooth monotone regions, "
+        "degrades to 1 at extrema",
+        "stability": "RK3: |v| dt/h <= cfl, D dt/h^2 <= cfl/2 (checked, StabilityError otherwise); central/QUICK "
+        "oscillate for cell Pe > 2 (positivity not guaranteed)",
+        "complexity": "O(N) per stage",
+        "boundary_treatment": "periodic wrap; Dirichlet/Neumann with two mirrored ghost cells",
+        "verification": "Gaussian-pulse exact solution (method of images); mass conservation to round-off",
+        "limitations": "1D, constant v and D, uniform grid",
+    },
+    "burgers_fv": {
+        "formulation": "u_t + (u^2/2)_x = nu u_xx, periodic",
+        "discretisation": "FV, MUSCL-minmod reconstruction, Rusanov flux, central viscous flux, SSP-RK3",
+        "order": "2 in smooth regions (minmod clips to 1 at extrema)",
+        "stability": "adaptive dt = cfl min(h/max|u|, h^2/(2 nu))",
+        "complexity": "O(N) per stage",
+        "boundary_treatment": "periodic",
+        "verification": "Cole-Hopf exact solution; conservation",
+        "limitations": "periodic only; minmod is diffusive",
+    },
+    "wave_fd": {
+        "formulation": "u_tt = c^2 u_xx, fixed ends",
+        "discretisation": "leapfrog (central in space and time), Taylor start step",
+        "order": "O(h^2 + dt^2)",
+        "stability": "Courant c dt/h <= 1 (StabilityError otherwise)",
+        "complexity": "O(N) per step",
+        "boundary_treatment": "homogeneous Dirichlet",
+        "verification": "standing-wave exact solution; discrete energy drift",
+        "limitations": "1D, homogeneous Dirichlet only, dispersive phase error at coarse h",
+    },
+    "poisson1d_fd": {
+        "formulation": "-u'' = f",
+        "discretisation": "3-point FD; Lagrange-multiplier gauge for pure Neumann / periodic",
+        "order": "O(h^2)",
+        "stability": "n/a (elliptic); solvability condition checked",
+        "complexity": "O(N)",
+        "boundary_treatment": "Dirichlet, Neumann, Robin, periodic",
+        "verification": "MMS for each BC type",
+        "limitations": "1D",
+    },
+    "poisson2d_fd": {
+        "formulation": "-lap u = f on a rectangle",
+        "discretisation": "5-point FD, ghost-node Neumann",
+        "order": "O(h^2)",
+        "stability": "n/a",
+        "complexity": "sparse direct O(N^1.5)",
+        "boundary_treatment": "Dirichlet or Neumann per side (pure Neumann rejected)",
+        "verification": "MMS u = sin(pi x) sin(2 pi y); mixed Dirichlet/Neumann MMS",
+        "limitations": "Python-loop assembly (slow for n > 300)",
+    },
+    "poisson2d_fem_p1": {
+        "formulation": "weak form int grad u . grad v = int f v",
+        "discretisation": "P1 triangles on structured mesh, degree-2 quadrature",
+        "order": "L2 O(h^2), H1 O(h)",
+        "stability": "coercive (Lax-Milgram)",
+        "complexity": "sparse direct",
+        "boundary_treatment": "nodal Dirichlet",
+        "verification": "MMS, cross-check vs FD",
+        "limitations": "unit square, Dirichlet only",
+    },
+    "ns2d_projection": {
+        "formulation": "incompressible Navier-Stokes, u_t + (u.grad)u = -grad p + (1/Re) lap u, div u = 0",
+        "discretisation": "MAC staggered grid, Chorin projection, explicit advection (central) + diffusion",
+        "order": "O(h^2) space, O(dt) time (first-order projection)",
+        "stability": "dt <= min(0.25 Re h^2, h/|u|max) checked",
+        "complexity": "O(N) per step + Poisson solve (sparse LU factorised once)",
+        "boundary_treatment": "no-slip, moving lid, slip, inlet velocity, outlet pressure, symmetry, periodic",
+        "verification": "Poiseuille/Couette analytical; cavity vs Ghia et al. (1982) tables",
+        "limitations": "laminar only, uniform grid, steady state reached by time marching",
+    },
+    "panel_vortex": {
+        "formulation": "2D inviscid incompressible potential flow, linear-strength vortex panels, Kutta condition",
+        "discretisation": "N panels, cosine spacing, collocation at panel midpoints",
+        "order": "O(1/N^2) for Cp on smooth parts (observed in tests)",
+        "stability": "dense linear system, well conditioned for N <= 400",
+        "complexity": "O(N^3) solve",
+        "boundary_treatment": "flow tangency on body, Kutta at trailing edge, uniform far field",
+        "verification": "thin-airfoil lift slope ~2 pi; symmetric airfoil zero lift at alpha = 0",
+        "limitations": "no viscosity: no profile drag, no stall; incompressible (Prandtl-Glauert correction "
+        "only valid for M < ~0.7 subcritical)",
+    },
+}
