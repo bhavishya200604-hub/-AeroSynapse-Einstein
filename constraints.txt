@@ -1,10 +1,10 @@
 # Versions used to produce the recorded results (pip install -c constraints.txt ...).
+# torch is not pinned here (CPU wheels differ per OS/Python); the version used for every result is in results/*/record.json.
 numpy==2.5.3
 scipy==1.18.1
 pydantic==2.13.5
 PyYAML==6.0.3
 matplotlib==3.11.2
-torch==2.5.1
 pytest==9.2.0
 pytest-cov==7.1.0
 hypothesis==6.170.14
