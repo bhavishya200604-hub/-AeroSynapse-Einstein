@@ -1,0 +1,52 @@
+{
+  "experiment_id": "phase6_fluids_aero",
+  "research_question": "Does the MAC projection solver reproduce analytic flows and published laminar benchmarks, and does the panel method support a legitimate aerodynamic optimisation?",
+  "hypothesis": "H6.1 analytic channel flows reproduced with O(h^2) error. H6.2 cavity centre-line RMS vs Ghia < 0.02 at Re=100 and 400 on 64^2. H6.3 cylinder C_D (DFG 2D-1) within 10% with the staircase boundary. H6.4 marching BL matches Blasius within 1%. H6.5 the optimised airfoil remains feasible at higher panel resolution.",
+  "mathematical_formulation": "incompressible NS (MAC, Chorin projection); Prandtl BL equations; Hess-Smith panels",
+  "seed": 0,
+  "model_configuration": {},
+  "solver_configuration": {
+    "profile": "quick"
+  },
+  "dataset_description": "Ghia et al. 1982 tables and DFG 2D-1 reference values (fetched; src/aerosynapse/data)",
+  "hardware": {
+    "python": "3.13.18",
+    "platform": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 4,
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "mem_total_kb": 16477352,
+    "torch": "2.5.1+cu124",
+    "cuda_available": false,
+    "device": "cpu"
+  },
+  "training_configuration": {},
+  "optimization_configuration": {},
+  "evaluation_metrics": [
+    "RMS vs benchmark",
+    "C_D error",
+    "observed order",
+    "C_L slope",
+    "trusted feasibility"
+  ],
+  "results": {},
+  "limitations": [
+    "laminar only",
+    "staircase immersed boundary",
+    "inviscid airfoil model (no drag)"
+  ],
+  "reproducibility": "python scripts/run_phase6.py --profile quick",
+  "git_commit": "79ee506a5765e2dae889fb83b80403ae8b976d67",
+  "software_versions": {
+    "aerosynapse": "0.1.0",
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "torch": "2.5.1+cu124"
+  },
+  "data_provenance": "",
+  "created_unix": 1793632350.3575046,
+  "status": "running"
+}

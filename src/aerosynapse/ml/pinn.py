@@ -189,3 +189,44 @@ def train_pinn(
     return PINNResult(
         model, hist, time.perf_counter() - t0, res_evals + smp.extra_evals, X, dict(anneal.w) if anneal else {}
     )
+
+
+def train_pinn_checkpointed(
+    problem: PINNProblem,
+    model: torch.nn.Module,
+    iterations: int,
+    n_collocation: int,
+    ckpt_path: str,
+    ckpt_every: int,
+    resume: bool = False,
+    seed: int = 0,
+    lr: float = 1e-3,
+    stop_at: int | None = None,
+) -> int:
+    """Fixed-collocation Adam training with checkpoint/resume (used to test interrupt-and-resume).
+
+    ``stop_at`` simulates an interruption: training stops after that step (after checkpointing).
+    Returns the last completed step.
+    """
+    from pathlib import Path
+
+    from aerosynapse.ml.io import load_checkpoint, save_checkpoint
+
+    torch.manual_seed(seed)
+    rng = np.random.default_rng(seed)
+    lo, hi = np.array(problem.lo), np.array(problem.hi)
+    X = problem.tensor(lo + rng.random((n_collocation, len(lo))) * (hi - lo)).requires_grad_(True)
+    opt = torch.optim.Adam(model.parameters(), lr=lr)
+    start = 0
+    if resume and Path(ckpt_path).exists():
+        start = load_checkpoint(ckpt_path, model, opt)
+    for it in range(start, iterations):
+        loss = problem.residual(model, X).pow(2).mean() + sum(problem.constraint_losses(model).values())
+        opt.zero_grad()
+        loss.backward()
+        opt.step()
+        if (it + 1) % ckpt_every == 0:
+            save_checkpoint(ckpt_path, model, opt, it + 1)
+        if stop_at is not None and it + 1 >= stop_at:
+            return it + 1
+    return iterations
