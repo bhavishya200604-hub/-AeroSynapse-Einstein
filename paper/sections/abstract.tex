@@ -1,0 +1,11 @@
+% sources: phase3_adaptive_collocation
+We test whether residual-based adaptive collocation (RAR, RAD, R3) improves physics-informed neural networks
+for transient convection--diffusion as the P\'eclet number grows from 1 to 1000. The reference solution is
+exact, the collocation budget and iterations are equal across seven samplers, and the eight seeds are paired.
+The PINN error is U-shaped in Pe: median relative $L_2$ errors are 0.1503, 0.0180, 0.0504 and 0.1793 at
+Pe = 1, 10, 100 and 1000 with uniform sampling. After Holm correction no adaptive sampler improves on uniform
+sampling at Pe $\ge$ 100. At Pe = 1 adaptive samplers are statistically detectably but negligibly worse.
+Causal weighting (0.1134) and a hard initial condition (0.0706) reduce the Pe = 1000 error, whereas untuned
+Fourier features increase it (0.7894). The Pe = 1 failure is an initial diffusion layer that no sampler
+resolves. We report these negative results inside an open platform whose classical solvers are verified,
+and we discuss what further work a publishable contribution would require.

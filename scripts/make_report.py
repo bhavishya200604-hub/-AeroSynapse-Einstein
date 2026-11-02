@@ -30,7 +30,11 @@ def tex_table(name: str, caption: str, header: list[str], rows: list[list[str]])
         f"\\begin{{table}}[t]\\centering\\small\\caption{{{caption}}}\\label{{tab:{name}}}\n"
         f"\\begin{{tabular}}{{{cols}}}\\toprule\n{' & '.join(header)} \\\\ \\midrule\n{body}\n\\bottomrule\\end{{tabular}}\\end{{table}}\n"
     )
-    (TAB / f"{name}.tex").write_text(t.replace("_", r"\_").replace(r"\_{", "_{"), encoding="utf-8")
+    src = {"phase1": "phase1_verification", "phase2": "phase2_pinn_benchmarks", "phase4": "phase4_operators_uq",
+           "phase5": "phase5_optimization"}.get(name, "phase3_adaptive_collocation" if name.startswith("phase3")
+                                                else "phase6_fluids_aero")
+    (TAB / f"{name}.tex").write_text(f"% sources: {src}\n" + t.replace("_", r"\_").replace(r"\_{", "_{"),
+                                     encoding="utf-8")
     md = [f"### {caption}", "", "| " + " | ".join(header) + " |", "|" + "---|" * len(header)]
     md += ["| " + " | ".join(r) + " |" for r in rows]
     return "\n".join(md) + "\n"

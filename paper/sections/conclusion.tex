@@ -1,0 +1,7 @@
+% sources: phase3_adaptive_collocation
+Under an equal budget and with an exact reference, residual-based adaptive collocation did not improve PINN
+accuracy for a transported Gaussian pulse at high P\'eclet number. Architectural and training-order choices
+(hard initial conditions, causal weighting) mattered more. The diffusion-dominated end failed for a different
+reason (an initial layer) that sampling did not fix. For this family, classical finite-volume solvers are both
+more accurate and much faster. The result is a reproducible benchmark observation, not a methodological
+advance; \texttt{paper/PAPER\_READINESS.md} lists what a publishable follow-up requires.

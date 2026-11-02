@@ -61,3 +61,10 @@ by more than 2× OOD-Pe (FNO 55×). H4.3 supported. H4.4 supported.
 FNO query 0.00168 s vs FV solve 0.0598 s, i.e. speed-up 35.6. Including FNO training (28.5 s) and data
 generation (27.0 s), the surrogate pays off after **955 queries**, and only for in-distribution queries:
 OOD-Pe errors are about 55× larger.
+
+## Generalisation map (Fig. G; `results/phase4_generalisation_map`)
+The trained FNO was evaluated on fresh samples over Pe ∈ [1, 3000] × input bandwidth k_max ∈ [2, 10] (training:
+Pe ∈ [5, 50], k_max = 4). Median errors inside the training Pe range are 0.0011–0.0067. They rise to 0.3247–0.444
+at Pe = 1 and to 0.1113–0.1351 at Pe = 3000. At fixed Pe the error barely depends on bandwidth (e.g. Pe = 10:
+0.0011–0.0016 for k_max from 2 to 10), because diffusion damps the high-k modes before T = 0.5. **H4.8 half
+supported:** extrapolation in Pe fails in both directions; extrapolation in bandwidth is benign for this operator.

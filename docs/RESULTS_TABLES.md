@@ -85,6 +85,17 @@
 | hard_ic/1.0/uniform | 0.239 | 0.150 | 0.023 | 0.270 | 0.538 |
 | hard_ic/1000.0/uniform | 0.071 | 0.179 | 0.016 | 0.011 | 0.133 |
 
+### Operator learning: per-sample rel. L2 (median, worst case) by split
+
+| model | ID median | ID max | OOD-Pe median | OOD-input median |
+|---|---|---|---|---|
+| fno | 0.00163 | 0.035 | 0.088 | 0.00449 |
+| fno_mass_conserving | 0.000495 | 0.00389 | 0.093 | 0.00161 |
+| deeponet | 0.00927 | 0.080 | 0.233 | 0.066 |
+| cnn | 0.015 | 0.113 | 0.258 | 0.429 |
+| mlp | 0.00359 | 0.033 | 0.149 | 0.013 |
+| pod | 0.000537 | 0.00484 | 0.731 | 0.000916 |
+
 ### Engineering optimisation under the 12-step protocol (trusted re-evaluation)
 
 | problem | verdict | method f (trusted) | baseline optimiser f | baseline design f |
