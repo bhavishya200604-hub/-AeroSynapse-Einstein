@@ -85,8 +85,10 @@ def main() -> None:
             np.pi * np.cos(np.pi * x) * np.sin(2 * np.pi * y),
             2 * np.pi * np.sin(np.pi * x) * np.cos(2 * np.pi * y),
         )
-        errs = [fem.fem_errors(*fem.solve_poisson_fem(n, pp.source, lambda x, y: 0 * x), pp.exact, grad)
-                for n in (8, 16, 32, 64)]
+        errs = [
+            fem.fem_errors(*fem.solve_poisson_fem(n, pp.source, lambda x, y: 0 * x), pp.exact, grad)
+            for n in (8, 16, 32, 64)
+        ]
         hs = [1 / 8, 1 / 16, 1 / 32, 1 / 64]
         R["poisson2d_fem_L2"] = V.observed_order(hs, [e[0] for e in errs]).as_dict()
         R["poisson2d_fem_H1"] = V.observed_order(hs, [e[1] for e in errs]).as_dict()
@@ -105,7 +107,9 @@ def main() -> None:
             R[f"poisson1d_{name}"] = V.convergence_study(e1, [16, 32, 64, 128]).as_dict()
 
         def e_per(n: int) -> float:
-            x, u = poisson.solve_poisson_1d(0, 1, n, lambda x: 4 * np.pi**2 * np.cos(2 * np.pi * x), Periodic(), Periodic())
+            x, u = poisson.solve_poisson_1d(
+                0, 1, n, lambda x: 4 * np.pi**2 * np.cos(2 * np.pi * x), Periodic(), Periodic()
+            )
             return float(np.abs(u - np.cos(2 * np.pi * x)).max())
 
         R["poisson1d_PP"] = V.convergence_study(e_per, [16, 32, 64, 128]).as_dict()
@@ -113,8 +117,12 @@ def main() -> None:
         x, u, hist = amr.adaptive_solve(1.0, 0.01, max_nodes=80)
         xu = np.linspace(0, 1, x.size)
         uu = amr.solve_nonuniform(xu, 1.0, 0.01, 0.0, 1.0)
-        R["amr_pe100"] = {"nodes": int(x.size), "err_amr": float(np.abs(u - s.exact(x)).max()),
-                          "err_uniform_same_nodes": float(np.abs(uu - s.exact(xu)).max()), "history": hist}
+        R["amr_pe100"] = {
+            "nodes": int(x.size),
+            "err_amr": float(np.abs(u - s.exact(x)).max()),
+            "err_uniform_same_nodes": float(np.abs(uu - s.exact(xu)).max()),
+            "history": hist,
+        }
         R["wall_clock_s"] = time.perf_counter() - t0
         run.record.results.update(R)
     for k, v in R.items():

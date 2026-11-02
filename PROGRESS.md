@@ -4,8 +4,8 @@
 |---|---|---|---|---|
 | 0 Planning + scaffold | PASSED | 2026-11-02 | 48 passed (cumulative) | ruff ✓, mypy strict ✓, pytest ✓ |
 | 1 Physics + classical solvers | PASSED | 2026-11-02 | 48 passed | orders within ±0.15 (Burgers: asymptotic trend, KI-1) |
-| 2 PINNs + validation core | NOT STARTED | | | |
-| 3 Adaptive collocation study | NOT STARTED | | | |
+| 2 PINNs + validation core | PASSED | 2026-11-02 | 64 passed | autograd/FD ✓, exact residual ≈ 0 ✓, determinism ✓; failures documented |
+| 3 Adaptive collocation study | IN PROGRESS | 2026-11-02 | | study running |
 | 4 Operators, hybrids, UQ | NOT STARTED | | | |
 | 5 Optimisation + inverse | NOT STARTED | | | |
 | 6 Fluids + aerospace | NOT STARTED | | | |

@@ -1,0 +1,76 @@
+{
+  "experiment_id": "phase3_adaptive_collocation",
+  "research_question": "Does residual-based adaptive collocation improve PINN accuracy for transient convection-diffusion across P\u00e9clet numbers under an equal compute budget?",
+  "hypothesis": "Pre-registered before execution (2026-11-02). Primary metric: relative L2 error on a 201x201 space-time grid vs the exact solution. H3.1: PINN error depends non-monotonically on Pe (U-shape): larger at Pe=1 (stiff initial diffusion layer) and at Pe=1000 (sharp transported pulse) than at Pe=10. H3.2: at equal collocation budget and iterations, residual-based adaptive samplers (RAD, R3) reduce rel. L2 vs fixed uniform sampling at Pe>=100; tested with paired two-sided Wilcoxon signed-rank tests over seeds, Holm-corrected within each Pe (6 comparisons vs uniform), alpha=0.05. H3.3: at Pe<=10 no sampler differs significantly from uniform. H3.4 (ablation): Fourier features reduce error at Pe=1000; causal weighting reduces early-time error at Pe=1.",
+  "mathematical_formulation": "u_t + u_x = Pe^-1 u_xx on periodic [0,1) x [0,1], u0 = Gaussian(x0=0.25, sigma0=0.1); exact solution by the method of images (physics.library.convdiff_exact)",
+  "seed": 0,
+  "model_configuration": {
+    "arch": "MLP 3x32 tanh, periodic embedding of x (hard periodic BC), soft IC",
+    "dtype": "float32"
+  },
+  "solver_configuration": {},
+  "dataset_description": "no data; exact reference solution (zero discretisation error up to image truncation < 1e-12)",
+  "hardware": {
+    "python": "3.13.18",
+    "platform": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 4,
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "mem_total_kb": 16477352,
+    "torch": "2.5.1+cu124",
+    "cuda_available": false,
+    "device": "cpu"
+  },
+  "training_configuration": {
+    "profile": "quick",
+    "iters": 4000,
+    "n": 2000,
+    "resample_every": 250,
+    "optimizer": "Adam lr 1e-3, decay 0.9 per 1000 it",
+    "methods": [
+      "uniform",
+      "uniform_resample",
+      "lhs",
+      "sobol",
+      "rar",
+      "rad",
+      "r3"
+    ],
+    "pes": [
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "seeds": 8
+  },
+  "optimization_configuration": {},
+  "evaluation_metrics": [
+    "rel_l2",
+    "linf",
+    "error quantiles",
+    "early/late-time rel_l2",
+    "wall_s",
+    "residual_evals"
+  ],
+  "results": {},
+  "limitations": [
+    "single architecture and optimiser",
+    "budget equalised by points and iterations, not wall time; adaptive samplers spend extra residual evaluations (recorded)",
+    "float32"
+  ],
+  "reproducibility": "python scripts/run_phase3.py --profile quick",
+  "git_commit": "36dd9a1be6756aeb9dd49802a74d4e636d8ba2b8",
+  "software_versions": {
+    "aerosynapse": "0.1.0",
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "torch": "2.5.1+cu124"
+  },
+  "data_provenance": "",
+  "created_unix": 1793630744.1668136,
+  "status": "running"
+}
