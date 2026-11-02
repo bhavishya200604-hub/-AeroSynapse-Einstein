@@ -9,3 +9,11 @@
 | KI-5 | data | Ghia et al. (1982) values come from a fetched third-party transcription, not checked against the original PDF | validation reference uncertainty | documented |
 | KI-6 | ml | Learning-rate annealing (α=0.9) diverges for penalty-BC Poisson (rel. L2 0.97); final weights 4.15e8–2.03e9 | adaptive weighting not recommended without capping | negative result, fix proposed |
 | KI-7 | ml | conv-diff PINNs with a sharp initial pulse are inaccurate at low Pe (rel. L2 0.33 at Pe=2, σ0=0.05) | see Phase 3 | studied |
+| KI-8 | study | Adaptive samplers (RAR/RAD/R3) give no significant gain at equal budget for Pe ≥ 100; slightly worse at Pe = 1 | negative result for the core hypothesis | reported |
+| KI-9 | ml | PINN fails at Pe = 1 (initial diffusion layer, early-time rel. L2 ≈ 0.54) for every sampler | stiffness failure | diagnosed; remedy proposed, not run |
+| KI-10 | optim | Gradient descent (fixed step) fails on Rosenbrock; Adam not converged in 3000 evaluations | method limitation | reported |
+| KI-11 | optim | Thermal and source demos have corner optima (bounds active); the robust and deterministic optima coincide | robust-optimisation demo uninformative | reported |
+| KI-12 | inverse | PINN α estimate 24 % off (adjoint LSQ accurate) | PINN inverse route not reliable at this budget | reported |
+| KI-13 | data | AirfRANS not downloaded (kaggle.com blocked by the environment network policy) | RANS-data surrogate and drag study not run | open — needs network access or a Kaggle/Colab run |
+| KI-14 | fluids | Cylinder uses a staircase immersed boundary (first-order geometry) | C_D error −2.1 % at h = 0.01 | documented |
+| KI-15 | fluids | Marching BL vs Blasius max error ≈ 1 %, not reduced by refining y (first-order x-marching dominates) | accuracy floor | documented |

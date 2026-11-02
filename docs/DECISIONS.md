@@ -36,3 +36,37 @@ Decision: `argparse` from the standard library (no extra dependency). `typer` wa
 The recorded environment is Python 3.13, numpy 2.5, torch 2.5.1 (CPU wheel from PyPI;
 download.pytorch.org is blocked from the build container). CI targets Python 3.13 on Ubuntu and
 Windows with `constraints.txt`. CI was configured but not executed in this run.
+
+## ADR-0009 Phase 3 design choices
+Periodic embedding (exact periodic BC) with a soft IC; σ₀ = 0.1, T = 1; Pe ∈ {1, 10, 100, 1000}. The budget
+is equalised by collocation points and iterations, not wall time, because machine load varied. 8 seeds were
+used, since that is the minimum for which a Holm-corrected Wilcoxon test can reach α = 0.05 with 6 comparisons.
+
+## ADR-0010 Learning-rate annealing α
+The first implementation used α = 0.1. The paper (fetched) recommends α = 0.9, so the default was changed
+and Phase 2 was rerun. Both settings diverged; the reported numbers use α = 0.9.
+
+## ADR-0011 GNN deferred
+No problem in scope lives on an unstructured graph; a GNN would be added only for fashion (rule 12). The
+interface (`registry.MODELS`) exists. Status DEFERRED, P3.
+
+## ADR-0012 Cylinder force accounting
+Direct-forcing momentum removal must be counted both after the predictor and after the projection, otherwise
+pressure drag is lost (C_D was −70 % before the fix, −2.1 % after). The fix was found while validating against
+DFG 2D-1; the earlier Phase 6 run is superseded.
+
+## ADR-0013 Invalid geometries in surrogate datasets
+Random CST parameters can produce self-intersecting airfoils whose panel solution is meaningless (|C_p| up to
+1.7e5). They are rejected and counted, not learned.
+
+## ADR-0014 AirfRANS
+The user asked to download AirfRANS with kagglehub. www.kaggle.com, the official mirror and Hugging Face are
+all denied by the environment's network policy. The raw data (many GB) cannot be stored in GitHub anyway (100 MB
+file limit). Implemented instead: loader, derived-coefficient table writer (ODbL-1.0 attribution), surrogate
+with an explicit convergence criterion, panel-vs-RANS discrepancy, and a Kaggle/Colab notebook that downloads the
+data with kagglehub. **Not run**; no AirfRANS numbers are reported.
+
+## ADR-0015 Claims audit scoping
+A global audit against all ~1.3e5 artifact values matched almost any number by chance. Documents now declare
+`<!-- sources: ... -->`, raw arrays (> 64 elements) are excluded, and a negative-control test proves fabricated
+numbers are caught.
