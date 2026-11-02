@@ -166,14 +166,12 @@ def airfoil_model(
 ) -> EvalResult:
     X, Y = cst(np.array([d["au0"], d["au1"], d["au2"]]), np.array([d["al0"], d["al1"], d["al2"]]), n)
     m = (len(X) + 1) // 2
-    gap = np.interp(np.linspace(0.02, 0.98, 50), X[m - 1 :], Y[m - 1 :]) - np.interp(
-        np.linspace(0.02, 0.98, 50), X[:m][::-1], Y[:m][::-1]
-    )
+    gap = (Y[m - 1 :] - Y[:m][::-1])[1:-1]  # thickness at every interior node (same x-nodes)
     r = solve_panel(X, Y, alpha)
     t = max_thickness(X, Y)
     return EvalResult(
         f=[-r.cl],
-        g=[1 - t / t_min, float(cp_min_lim - r.cp.min()) / abs(cp_min_lim), float(0.005 - gap.min()) / 0.005],
+        g=[1 - t / t_min, float(cp_min_lim - r.cp.min()) / abs(cp_min_lim), float(-gap.min()) / 0.005],
         info={"cl": r.cl, "t": t, "cp_min": float(r.cp.min())},
     )
 
@@ -209,8 +207,8 @@ def cp_surrogate(n_train: int = 300, n_test: int = 100) -> dict[str, Any]:
         d = sp.decode(z)
         X, Y = cst(np.array([d["au0"], d["au1"], d["au2"]]), np.array([d["al0"], d["al1"], d["al2"]]), 81)
         m = (len(X) + 1) // 2
-        xs = np.linspace(0.02, 0.98, 50)
-        if np.min(np.interp(xs, X[m - 1 :], Y[m - 1 :]) - np.interp(xs, X[:m][::-1], Y[:m][::-1])) <= 0.0:
+        # CST uses the same x-nodes on both surfaces: thickness at every interior node must be positive
+        if np.min((Y[m - 1 :] - Y[:m][::-1])[1:-1]) <= 0.0:
             rejected += 1  # self-intersecting geometry: not a valid airfoil, excluded from the dataset
             continue
         rows.append(solve_panel(X, Y, 4.0).cp)

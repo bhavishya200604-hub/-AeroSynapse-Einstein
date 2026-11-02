@@ -57,7 +57,7 @@ def test_trust_policy_and_fallback(tmp_path):
 def test_resource_estimator_and_memory():
     cal = calibrate(quick=True)
     assert cal.c_pinn > 0 and cal.c_fv > 0 and "PINN" in cal.basis
-    assert estimate_pinn_seconds(cal, 10, 10, 10) == pytest.approx(cal.c_pinn * 1000)
+    assert estimate_pinn_seconds(cal, 10, 10, 10) == pytest.approx(10 * (cal.c0_pinn + cal.c_pinn * 100))
     assert estimate_fv_seconds(cal, 10, 10) == pytest.approx(cal.c_fv * 100)
     assert array_memory_mb(1024, 128) == pytest.approx(1.0)
 

@@ -8,13 +8,28 @@
   ]
  },
  "fig_c_spacetime": {
-  "skipped": "phase3_extras not run"
+  "paths": [
+   "paper/figures/fig_c_spacetime_surfaces.pdf",
+   "paper/figures/fig_c_spacetime_surfaces.svg",
+   "paper/figures/fig_c_spacetime_surfaces.png",
+   "paper/figures/fig_c_spacetime_surfaces.html"
+  ]
  },
  "fig_d_performance": {
-  "skipped": "phase3_extras not run"
+  "paths": [
+   "paper/figures/fig_d_performance_surface.pdf",
+   "paper/figures/fig_d_performance_surface.svg",
+   "paper/figures/fig_d_performance_surface.png",
+   "paper/figures/fig_d_performance_surface.html"
+  ]
  },
  "fig_e_pareto": {
-  "skipped": "phase5_optimization not run"
+  "paths": [
+   "paper/figures/fig_e_pareto_3d.pdf",
+   "paper/figures/fig_e_pareto_3d.svg",
+   "paper/figures/fig_e_pareto_3d.png",
+   "paper/figures/fig_e_pareto_3d.html"
+  ]
  },
  "fig_f_airfoil": {
   "paths": [
@@ -25,7 +40,12 @@
   ]
  },
  "fig_g_generalisation": {
-  "skipped": "phase4_operators_uq (generalisation_map) not run"
+  "paths": [
+   "paper/figures/fig_g_generalisation_map.pdf",
+   "paper/figures/fig_g_generalisation_map.svg",
+   "paper/figures/fig_g_generalisation_map.png",
+   "paper/figures/fig_g_generalisation_map.html"
+  ]
  },
  "fig_convergence": {
   "paths": [
@@ -42,6 +62,10 @@
   ]
  },
  "fig_phase3_bars": {
-  "skipped": "phase3 not run"
+  "paths": [
+   "paper/figures/fig_phase3_samplers.pdf",
+   "paper/figures/fig_phase3_samplers.svg",
+   "paper/figures/fig_phase3_samplers.png"
+  ]
  }
 }

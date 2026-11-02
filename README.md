@@ -83,7 +83,25 @@ in [`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md); full-profile Colab/Kagg
 
 ## Result snapshots (all from `results/`, checked by `scripts/audit_claims.py`)
 
-RESULTS_SNAPSHOT
+| Result | Value | Artifact |
+|---|---|---|
+| Observed order, conv-diff FV van Leer (theory 2) | 1.996 | `results/phase1_verification` |
+| Lid-driven cavity Re = 400 (64²) vs Ghia et al. (1982), RMS u / v | 0.0036 / 0.0044 | `results/phase6_fluids_aero` |
+| DFG 2D-1 cylinder drag C_D (reference 5.5795) | 5.4636 | `results/phase6_fluids_aero` |
+| PINN median rel. L2 at Pe = 10 / 1000 (uniform sampling, 8 seeds) | 0.0180 / 0.1793 | `results/phase3_adaptive_collocation` |
+| Best adaptive sampler at Pe = 1000 (no significant difference) | 0.1658 | `results/phase3_adaptive_collocation` |
+| FNO median error in-distribution / out-of-range Pe | 0.0016 / 0.0885 | `results/phase4_operators_uq` |
+| FNO speed-up per query vs FV solver; break-even queries | 35.6×; 955 | `results/phase4_operators_uq` |
+| Adjoint identification of α (true 0.1) | 0.1004 ± 0.00083 | `results/phase5_optimization` |
+| Fallback rate on out-of-range queries; guarded worst-case error | 1.0; 0.00101 | `results/phase7_validation_engine` |
+
+<p float="left">
+  <img src="docs/screenshots/workbench_optimization.png" width="49%" alt="Optimization workspace"/>
+  <img src="docs/screenshots/workbench_simulation.png" width="49%" alt="Simulation workspace"/>
+</p>
+
+![Cavity vs Ghia](paper/figures/fig_cavity_vs_ghia.png)
+![PINN space-time solutions](paper/figures/fig_c_spacetime_surfaces.png)
 
 ## Repository map
 

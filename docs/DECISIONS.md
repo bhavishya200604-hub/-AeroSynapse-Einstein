@@ -52,12 +52,11 @@ interface (`registry.MODELS`) exists. Status DEFERRED, P3.
 
 ## ADR-0012 Cylinder force accounting
 Direct-forcing momentum removal must be counted both after the predictor and after the projection, otherwise
-pressure drag is lost (C_D was −70 % before the fix, −2.1 % after). The fix was found while validating against
+pressure drag is lost (C_D far too low in the superseded run; current error in the Phase 6 summary). The fix was found while validating against
 DFG 2D-1; the earlier Phase 6 run is superseded.
 
 ## ADR-0013 Invalid geometries in surrogate datasets
-Random CST parameters can produce self-intersecting airfoils whose panel solution is meaningless (|C_p| up to
-1.7e5). They are rejected and counted, not learned.
+Random CST parameters can produce self-intersecting airfoils whose panel solution is meaningless (|C_p| orders of magnitude too large). They are rejected and counted, not learned.
 
 ## ADR-0014 AirfRANS
 The user asked to download AirfRANS with kagglehub. www.kaggle.com, the official mirror and Hugging Face are
@@ -70,3 +69,14 @@ data with kagglehub. **Not run**; no AirfRANS numbers are reported.
 A global audit against all ~1.3e5 artifact values matched almost any number by chance. Documents now declare
 `<!-- sources: ... -->`, raw arrays (> 64 elements) are excluded, and a negative-control test proves fabricated
 numbers are caught.
+
+## ADR-0016 Resource-estimator model
+A single calibration point with time ∝ iterations × points × parameters over-predicted the PINN run several-fold in a superseded run (it
+ignored the fixed per-iteration overhead that dominates small networks on CPU). Replaced by an affine model
+fitted from two calibration sizes; the measured error is now +6 %.
+
+## ADR-0017 Airfoil validity constraint
+"No surface crossing" is thickness > 0 at every interior node (CST uses identical x-nodes on both surfaces).
+A first version demanding thickness ≥ 0.005 at every node was infeasible near the closed trailing edge; the
+12-step protocol correctly returned REJECT, and the constraint was corrected. The sampled-x check used before
+missed crossings near the leading edge and let a degenerate geometry (|C_p| orders of magnitude above physical values) into the C_p dataset.

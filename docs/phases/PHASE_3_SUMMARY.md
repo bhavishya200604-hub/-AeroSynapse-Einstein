@@ -1,5 +1,5 @@
 # Phase 3 summary — adaptive collocation across Péclet numbers (core study)
-<!-- sources: phase3_adaptive_collocation -->
+<!-- sources: phase3_adaptive_collocation, phase3_extras -->
 
 Source: `results/phase3_adaptive_collocation/` (`python scripts/run_phase3.py --profile quick`; post-hoc
 analysis by `scripts/postprocess_phase3.py`). Total wall clock 4836 s on 4 CPU cores (shared with other runs).
@@ -63,3 +63,19 @@ These are proposed, not run.
 ## Novelty consequence
 See `docs/LITERATURE_AND_NOVELTY.md`. The equal-budget negative result for RAD/RAR/R3 on this family is
 informative, but it is a benchmark finding, not a new method.
+
+## Extras: budget sweep and field snapshots (`results/phase3_extras`, 3 seeds; Figs. C and D)
+Median rel. L2 with uniform / RAD at 500, 1000 and 2000 collocation points:
+
+| Pe | 500 | 1000 | 2000 |
+|---|---|---|---|
+| 1 | 0.1503 / 0.151 | 0.1499 / 0.1508 | 0.15 / 0.1509 |
+| 10 | 0.0145 / 0.0129 | 0.0195 / 0.0158 | 0.0116 / 0.0147 |
+| 100 | 0.039 / 0.0372 | 0.0395 / 0.0408 | 0.0333 / 0.0374 |
+| 1000 | 0.1443 / 0.1446 | 0.1219 / 0.1351 | 0.1308 / 0.124 |
+
+**H3.5 not supported.** A fourfold increase of the collocation budget barely changes the error, and RAD has no
+consistent advantage even at the smallest budget. The errors are limited by optimisation and approximation
+(network and iterations), not by the number or placement of collocation points. This explains why the
+sampler choice does not matter in the main study. Single-seed field snapshots with RAD (Fig. C): rel. L2 0.1767
+(Pe = 1), 0.0341 (Pe = 100), 0.0786 (Pe = 1000).
