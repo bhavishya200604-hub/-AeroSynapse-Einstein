@@ -39,10 +39,11 @@ def fig_a_architecture() -> dict[str, Any]:
         if i < len(layers) - 1:
             ax.quiver(1.0, 1.25, z + 0.08, 0, 0, 0.8, color="#333333", arrow_length_ratio=0.25, lw=0.8)
     ax.quiver(3.0, 1.25, 3.9, 0, 0, -3.7, color=OKABE[3], arrow_length_ratio=0.08, lw=1.0)
-    ax.text(3.1, 1.25, 2.1, "validation gate\n(trust / fallback)", fontsize=6, color=OKABE[3])
+    ax.text(0.5, 0.0, -0.9, "orange arrow: validation gate (trust / fallback)", fontsize=6, color=OKABE[3])
     pipeline = ["Mathematics", "Physics", "Simulation", "Sci-ML", "Optimisation", "Engineering\ndecision"]
     for i, s in enumerate(pipeline):
-        ax.text(-2.6, 0, i * 1.0, s, fontsize=6, color="#555555")
+        ax.text(-1.2, 0, i * 1.0, s, fontsize=6, color="#555555", ha="right")
+    ax.set_xlim(-3.5, 6.5)
     ax.set_axis_off()
     ax.view_init(elev=18, azim=-60)
     ax.set_title("Schematic (not data): layered architecture and research pipeline", fontsize=8)

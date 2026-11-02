@@ -1,4 +1,4 @@
-r"""AirfRANS integration (Bonnet et al., NeurIPS 2022 Datasets & Benchmarks; data licence ODbL-1.0).
+r"""AirfRANS integration (NeurIPS 2022 Datasets & Benchmarks, OpenReview Zp8YmiQ_bDC; data licence ODbL-1.0).
 
 The raw dataset (RANS fields over NACA 4/5-digit airfoils) is far larger than GitHub allows and is
 **not** stored in the repository. This module:
@@ -29,7 +29,7 @@ import torch
 from torch import nn
 
 LICENCE_NOTE = (
-    "Derived from AirfRANS (Bonnet, Mazari, Cinnella, Gallinari; NeurIPS 2022 Datasets and Benchmarks), "
+    "Derived from AirfRANS (NeurIPS 2022 Datasets and Benchmarks, OpenReview Zp8YmiQ_bDC), "
     "https://github.com/Extrality/airfrans_lib, licensed under ODbL-1.0. This derived table is shared "
     "under ODbL-1.0."
 )

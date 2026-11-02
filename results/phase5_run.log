@@ -1,0 +1,265 @@
+{
+ "benchmarks": {
+  "rosenbrock": {
+   "gd": {
+    "budget": 3000,
+    "best_f": [
+     100.99679202881586,
+     100.99679202881586,
+     100.99679202881586
+    ],
+    "median": 100.99679202881586,
+    "known_min": 0.0
+   },
+   "adam": {
+    "budget": 3000,
+    "best_f": [
+     0.031462417560187195,
+     0.031462417560187195,
+     0.031462417560187195
+    ],
+    "median": 0.031462417560187195,
+    "known_min": 0.0
+   },
+   "lbfgs": {
+    "budget": 400,
+    "best_f": [
+     1.4143315478869608e-10,
+     1.4143315478869608e-10,
+     1.4143315478869608e-10
+    ],
+    "median": 1.4143315478869608e-10,
+    "known_min": 0.0
+   },
+   "sqp": {
+    "budget": 400,
+    "best_f": [
+     2.7748124379112777e-10,
+     2.7748124379112777e-10,
+     2.7748124379112777e-10
+    ],
+    "median": 2.7748124379112777e-10,
+    "known_min": 0.0
+   },
+   "de": {
+    "budget": 3000,
+    "best_f": [
+     5.419622829865803e-19,
+     1.0526132348442565e-18,
+     9.533136608864665e-19
+    ],
+    "median": 9.533136608864665e-19,
+    "known_min": 0.0
+   },
+   "ga": {
+    "budget": 3000,
+    "best_f": [
+     0.08373097108963927,
+     0.001184237298157755,
+     0.00019853802014856291
+    ],
+    "median": 0.001184237298157755,
+    "known_min": 0.0
+   }
+  },
+  "qp": {
+   "sqp": {
+    "budget": 400,
+    "best_f": 0.5,
+    "known_min": 0.5,
+    "design": {
+     "x1": 0.5,
+     "x2": 0.5
+    },
+    "kkt_stationarity": 0.0,
+    "kkt_ok": true,
+    "mu": [
+     1.0
+    ],
+    "known_mu": 1.0
+   },
+   "de": {
+    "budget": 2000,
+    "best_f": 0.5000000000000369,
+    "known_min": 0.5,
+    "design": {
+     "x1": 0.4999998886048904,
+     "x2": 0.5000001113951216
+    },
+    "kkt_stationarity": 3.1503905183489946e-07,
+    "kkt_ok": true,
+    "mu": [
+     1.0
+    ],
+    "known_mu": 1.0
+   },
+   "ga": {
+    "budget": 2000,
+    "best_f": 0.5002306870443327,
+    "known_min": 0.5,
+    "design": {
+     "x1": 0.5090992535859589,
+     "x2": 0.490967042725428
+    },
+    "kkt_stationarity": 1.4145397655268506,
+    "kkt_ok": false,
+    "mu": [
+     0.0
+    ],
+    "known_mu": 1.0
+   },
+   "cbo": {
+    "budget": 40,
+    "best_f": 0.5001890600980151,
+    "known_min": 0.5,
+    "design": {
+     "x1": 0.4946527433928636,
+     "x2": 0.5054777181557353
+    },
+    "kkt_stationarity": 1.4144809084736372,
+    "kkt_ok": false,
+    "mu": [
+     0.0
+    ],
+    "known_mu": 1.0
+   },
+   "lbfgs": {
+    "budget": 400,
+    "best_f": 0.5027708184697842,
+    "known_min": 0.5,
+    "design": {
+     "x1": 0.5013834951759901,
+     "x2": 0.5013834951759901
+    },
+    "kkt_stationarity": 1.4181266777064998,
+    "kkt_ok": false,
+    "mu": [
+     0.0
+    ],
+    "known_mu": 1.0
+   }
+  },
+  "branin": {
+   "bo": {
+    "budget": 40,
+    "best_f": [
+     0.40230894133229356,
+     0.39841409898675373,
+     0.4002981683007363
+    ],
+    "median_gap": 0.002410810570998123
+   },
+   "de": {
+    "budget": 40,
+    "best_f": [
+     2.3991016553624744,
+     2.182820790897635,
+     2.423708308527857
+    ],
+    "median_gap": 2.0012142976327363
+   },
+   "ga": {
+    "budget": 40,
+    "best_f": [
+     0.4822844305067111,
+     2.097228220037441,
+     0.6527226396614587
+    ],
+    "median_gap": 0.25483528193172056
+   },
+   "global_min_computed": 0.39788735772973816
+  },
+  "zdt1": {
+   "nsga2": {
+    "budget": 4000,
+    "hv": 0.8755051480078536,
+    "true_hv": 0.87666666434347,
+    "n_pareto": 1129
+   },
+   "ehvi": {
+    "budget": 40,
+    "hv": 0.6878221631582119,
+    "true_hv": 0.87666666434347,
+    "n_pareto": 10
+   },
+   "nsga2_small": {
+    "budget": 40,
+    "hv": 0.264018865651427,
+    "true_hv": 0.87666666434347,
+    "n_pareto": 11
+   }
+  }
+ },
+ "surrogate_vs_direct": {
+  "budget_trusted_evals": 40,
+  "f_reverified": {
+   "surrogate_tr": [
+    0.6411629356751417,
+    0.6411629356751417,
+    0.6411629356751417
+   ],
+   "de": [
+    0.6688371764759141,
+    0.6897152581303004,
+    0.6866096690182981
+   ],
+   "cbo": [
+    0.6421939656355073,
+    0.6420798348636996,
+    0.6457119269302475
+   ]
+  },
+  "median": {
+   "surrogate_tr": 0.6411629356751417,
+   "de": 0.6866096690182981,
+   "cbo": 0.6421939656355073
+  },
+  "reverification": [
+   {
+    "method": "surrogate_tr",
+    "seed": 0,
+    "feasible_fine": true,
+    "f_fine": 0.6411629356751417,
+    "f_model": 0.6411829871896261
+   },
+   {
+    "method": "de",
+    "seed": 0,
+    "feasible_fine": true,
+    "f_fine": 0.6688371764759141,
+    "f_model": 0.6688253609055818
+   },
+   {
+    "method": "cbo",
+    "seed": 0,
+    "feasible_fine": true,
+    "f_fine": 0.6421939656355073,
+    "f_model": 0.642214134613116
+   },
+   {
+    "method": "surrogate_tr",
+    "seed": 1,
+    "feasible_fine": true,
+    "f_fine": 0.6411629356751417,
+    "f_model": 0.6411829871896261
+   },
+   {
+    "method": "de",
+    "seed": 1,
+    "feasible_fine": true,
+    "f_fine": 0.6897152581303004,
+    "f_model": 0.6897333997019162
+   },
+   {
+    "method": "cbo",
+    "seed": 1,
+    "feasible_fine": true,
+    "f_fine": 0.6420798348636996,
+    "f_model": 0.6421000047069694
+   },
+   {
+    "method": "surrogate_tr
+thermal ACCEPT {'method': {'design': {'m': 4.0, 'x_s': 0.1, 'material': 'copper'}, 'model_f': [0.6411829871896261], 'trusted_f': [0.6411629356751417], 'trusted_g': [-0.8459029329063749], 'trusted_feasible': True, 'model_vs_trusted_abs_diff': 2.005151448436493e-05, 'improvement_vs_baseline': 5.702638187621102}, 'baseline_method': {'design': {'m': 4.0, 'x_s': 0.1, 'material': 'copper'}, 'model_f': [0.6411829871896261], 'trusted_f': [0.6411629356751417], 'trusted_g': [-0.8459029329063749], 'trusted_feasible': True, 'model_vs_trusted_abs_diff': 2.005151448436493e-05, 'improvement_vs_baseline': 5.702638187621102}}
+source ACCEPT {'method': {'design': {'s': 0.05, 'q': 0.1}, 'model_f': [0.574814826851589], 'trusted_f': [0.5747883531377337], 'trusted_g': [-0.14672757768391365], 'trusted_feasible': True, 'model_vs_trusted_abs_diff': 2.6473713855335035e-05, 'improvement_vs_baseline': 9.420731795137604}, 'baseline_method': {'design': {'s': 0.05, 'q': 0.1}, 'model_f': [0.574814826851589], 'trusted_f': [0.5747883531377337], 'trusted_g': [-0.14672757768391365], 'trusted_feasible': True, 'model_vs_trusted_abs_diff': 2.6473713855335035e-05, 'improvement_vs_baseline': 9.420731795137604}}
+beam ACCEPT {'method': {'design': {'b': 0.01, 't': 0.1796402431315127, 'material': 'aluminium'}, 'model_f': [4.850286564550843], 'trusted_f': [4.850286564550843], 'trusted_g': [-0.41897609123226953, -4.493370786562423e-09], 'trusted_feasible': True, 'model_vs_trusted_abs_diff': 0.0, 'improvement_vs_baseline': 54.02471343544916}, 'baseline_method': {'design': {'b': 0.01, 't': 0.17965726805447926, 'material': 'aluminium'}, 'model_f': [4.85074623747094], 'trusted_f': [4.85074623747094], 'trusted_g': [-0.41908620554828324, -0.000284267575852315], 'trusted_feasible': True, 'model_vs_trusted_abs_diff': 0.0, 'improvement_vs_baseline': 54.02425376252906}}
+{'beam_pareto_size': 1229, 'beam_hv': 2301967.329222985, 'beam_ref': [100.0, 50.0, 500.0], 'thermal2_hv_ehvi_40': 25.458164107140455, 'thermal2_hv_nsga2_40': 6.112402853497235}

@@ -1,0 +1,20 @@
+\begin{table}[t]\centering\small\caption{PINN and supervised-baseline relative L2 error vs exact solutions}\label{tab:phase2}
+\begin{tabular}{llll}\toprule
+case/hard BC & mean & sd & seeds \\ \midrule
+heat1d/False & 0.000822 & 9.56e-05 & 3 \\
+heat1d/True & 0.000316 & 0.000115 & 3 \\
+poisson2d/False & 0.203 & 0.028 & 3 \\
+poisson2d/True & 0.018 & 0.00162 & 3 \\
+burgers1d/False & 0.020 & 0.014 & 3 \\
+convdiff\_pe2/False & 0.332 & 0.00385 & 3 \\
+convdiff\_pe10/False & 0.158 & 0.056 & 3 \\
+bl\_pe20/False & 0.497 & 0.848 & 3 \\
+bl\_pe20/True & 0.000614 & 0.000165 & 3 \\
+disk/False & 0.00226 & 0.000146 & 3 \\
+disk/True & 0.000405 & 0.000222 & 3 \\
+poisson2d/False/annealing & 0.973 & 0.024 & 3 \\
+supervised/heat1d & 0.00382 & 0.0019 & 3 \\
+supervised/poisson2d & 0.026 & 0.013 & 3 \\
+supervised/burgers1d & 0.012 & 0.00141 & 3 \\
+supervised/convdiff\_pe10 & 0.068 & 0.022 & 3 \\
+\bottomrule\end{tabular}\end{table}
