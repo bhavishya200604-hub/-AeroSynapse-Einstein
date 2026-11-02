@@ -1,4 +1,5 @@
 # Phase 1 summary — classical solvers and verification
+<!-- sources: phase1_verification -->
 
 **Built:** a problem-definition API and a BC framework; seven solvers (FD heat 1D/2D, FV conv-diff
 with four face schemes, FV Burgers, FD wave, FD Poisson 1D/2D, P1 FEM Poisson); adaptive time

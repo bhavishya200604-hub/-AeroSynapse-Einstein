@@ -1,4 +1,5 @@
 # Phase 8 summary — research workbench
+<!-- sources: phase8 -->
 
 **Built:** a Streamlit app (`src/aerosynapse/ui/app.py`) with the five workspaces of spec Section 14:
 

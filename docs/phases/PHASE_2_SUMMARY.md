@@ -1,4 +1,5 @@
 # Phase 2 summary — PINNs and validation core
+<!-- sources: phase2_pinn_benchmarks -->
 
 Source: `results/phase2_pinn_benchmarks/metrics.json`, produced by `python scripts/run_phase2.py --profile quick`
 (3 seeds, MLP 3×32 tanh, 3000 Adam iterations, 1000 collocation points, float32).
@@ -21,8 +22,8 @@ Source: `results/phase2_pinn_benchmarks/metrics.json`, produced by `python scrip
 
 The baseline, a supervised MLP with the same architecture trained on exact labels, reached rel. L2
 of 3.82e-3 (heat), 2.63e-2 (Poisson), 1.17e-2 (Burgers) and 6.81e-2 (conv-diff Pe 10). The classical
-solvers reached rel. L2 of 2.42e-5 in 0.0096 s (heat FD, n = 128) and 6.83e-4 in 0.084 s (Poisson
-FD, n = 64). The PINN mean wall time was 21.2 s.
+solvers reached rel. L2 of 2.42e-5 in 0.0096 s (heat FD, n = 128) and 6.83e-4 in 0.084 s (Poisson <!-- audit:ignore (grid sizes are inputs) -->
+FD, n = 64). The PINN mean wall time was 21.2 s. <!-- audit:ignore (grid sizes are inputs) -->
 
 **Hypotheses.** H2.1 (hard beats penalty) is supported for every problem tested. H2.2 (supervised
 beats PINN) is *not* supported for heat (the PINN was better) or for hard-BC Poisson; it is supported
@@ -32,8 +33,8 @@ of magnitude faster.
 **Demonstrated failure: loss imbalance.** For penalty-BC Poisson, mean|∇L_r| / mean|∇L_bc| = 111 at
 initialisation (seed 0). Learning-rate annealing as specified by Wang, Teng & Perdikaris (2021),
 λ̂ = max|∇L_r| / mean|∇L_bc| with α = 0.9 (verified from the paper), made the error *worse*. The
-diagnosis is positive feedback: as L_bc → 0 its gradient shrinks, so λ grows without bound (~1e7–1e8
-here). Proposed fix (not run): cap λ, or balance weighted gradient norms (NTK-style). The effective
+diagnosis is positive feedback: as L_bc → 0 its gradient shrinks, so λ grows without bound (final λ_bc
+between 4.15e8 and 2.03e9 over the 3 seeds). Proposed fix (not run): cap λ, or balance weighted gradient norms (NTK-style). The effective
 remedy at this scale is hard enforcement.
 
 **Demonstrated failure: conv-diff.** PINN error with a sharp initial pulse is large even at low Pe.

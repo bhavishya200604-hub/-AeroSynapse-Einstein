@@ -33,11 +33,48 @@ DOCS = [
     "docs/phases/PHASE_8_SUMMARY.md",
     "paper/main.tex",
     "paper/PAPER_READINESS.md",
+    *[
+        f"paper/sections/{s}.tex"
+        for s in (
+            "abstract",
+            "introduction",
+            "gap",
+            "design",
+            "results",
+            "error",
+            "ablation",
+            "limitations",
+            "conclusion",
+        )
+    ],
 ]
 NUM = re.compile(r"(?<![\w.])[-−]?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?(?![\w])")
 
 
-def collect_values() -> list[float]:
+RAW_KEYS = {
+    "history",
+    "trace",
+    "profile",
+    "field",
+    "beam_points",
+    "beam_pareto",
+    "naca2412_cp",
+    "naca2412_cp_alpha4",
+    "hardware",
+    "pit_histogram",
+    "dt_history",
+    "mass_history",
+    "reverification",
+    "dd_interface_jumps",
+    "values",
+    "dataset_card",
+    "software_versions",
+}
+SOURCES = re.compile(r"(?:<!--|%)\s*sources:\s*([\w,\s./-]+?)\s*(?:-->|$)")
+
+
+def collect_values(experiments: list[str] | None = None) -> list[float]:
+    """Scalar values from results/<exp>/{metrics,record}.json, excluding raw arrays/histories and lists > 64."""
     vals: list[float] = []
 
     def walk(o: object) -> None:
@@ -46,14 +83,19 @@ def collect_values() -> list[float]:
         if isinstance(o, int | float):
             vals.append(float(o))
         elif isinstance(o, dict):
-            for v in o.values():
-                walk(v)
-        elif isinstance(o, list):
+            for k, v in o.items():
+                if k not in RAW_KEYS:
+                    walk(v)
+        elif isinstance(o, list) and len(o) <= 64:
             for v in o:
                 walk(v)
 
-    for f in list(ROOT.glob("results/*/metrics.json")) + list(ROOT.glob("results/*/record.json")):
-        walk(json.loads(f.read_text()))
+    dirs = [ROOT / "results" / e for e in experiments] if experiments else list((ROOT / "results").glob("*"))
+    for d in dirs:
+        for name in ("metrics.json", "record.json"):
+            f = d / name
+            if f.exists():
+                walk(json.loads(f.read_text()))
     for f in ROOT.glob("src/aerosynapse/data/*.json"):
         walk(json.loads(f.read_text()))
     return vals
@@ -102,20 +144,26 @@ def scan(path: Path, vals: list[float]) -> list[str]:
             if "." not in tok and "e" not in tok.lower() and abs(q) < 10:
                 continue
             if not matches(q, tolerance(tok), vals):
-                bad.append(f"{path.relative_to(ROOT)}:{i}: {tok}")
+                bad.append(f"{path.relative_to(ROOT) if path.is_relative_to(ROOT) else path}:{i}: {tok}")
+    return bad
+
+
+def doc_sources(p: Path) -> list[str] | None:
+    m = SOURCES.search(p.read_text(encoding="utf-8"))
+    return [x.strip() for x in m.group(1).split(",") if x.strip()] if m else None
+
+
+def audit(paths: list[Path]) -> list[str]:
+    bad: list[str] = []
+    for p in paths:
+        bad += scan(p, collect_values(doc_sources(p)))
     return bad
 
 
 def main() -> int:
-    vals = collect_values()
-    bad: list[str] = []
-    checked = 0
-    for d in DOCS:
-        p = ROOT / d
-        if p.exists():
-            checked += 1
-            bad += scan(p, vals)
-    print(f"audited {checked} documents against {len(vals)} artifact values")
+    paths = [ROOT / d for d in DOCS if (ROOT / d).exists()]
+    bad = audit(paths)
+    print(f"audited {len(paths)} documents (each against its declared result sources)")
     for b in bad:
         print("UNMATCHED", b)
     print(f"unmatched claims: {len(bad)}")

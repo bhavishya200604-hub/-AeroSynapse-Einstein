@@ -1,4 +1,5 @@
 # Phase 5 summary — optimisation engine and inverse problems
+<!-- sources: phase5_optimization -->
 
 Source: `results/phase5_optimization/metrics.json` (`python scripts/run_phase5.py --profile quick`, 3 seeds).
 

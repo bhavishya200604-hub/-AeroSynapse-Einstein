@@ -1,0 +1,10 @@
+\begin{table}[t]\centering\small\caption{Ablations (paired vs the same sampler without the component)}\label{tab:phase3\_ablation}
+\begin{tabular}{llllll}\toprule
+ablation/Pe/sampler & median & baseline median & p & early-t median & baseline early-t \\ \midrule
+causal/1.0/uniform & 0.150 & 0.150 & 0.00781 & 0.536 & 0.538 \\
+causal/1000.0/uniform & 0.113 & 0.179 & 0.00781 & 0.087 & 0.133 \\
+fourier/1000.0/rad & 0.791 & 0.189 & 0.00781 & 0.793 & 0.153 \\
+fourier/1000.0/uniform & 0.789 & 0.179 & 0.00781 & 0.779 & 0.133 \\
+hard\_ic/1.0/uniform & 0.239 & 0.150 & 0.023 & 0.270 & 0.538 \\
+hard\_ic/1000.0/uniform & 0.071 & 0.179 & 0.016 & 0.011 & 0.133 \\
+\bottomrule\end{tabular}\end{table}
