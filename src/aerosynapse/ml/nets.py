@@ -32,6 +32,8 @@ class Sin(nn.Module):
 class FourierFeatures(nn.Module):
     r""":math:`\gamma(x) = [\cos(2\pi Bx), \sin(2\pi Bx)]`, :math:`B_{ij}\sim N(0,\sigma^2)` (fixed)."""
 
+    B: torch.Tensor
+
     def __init__(self, in_dim: int, n_features: int, scale: float, seed: int = 0) -> None:
         super().__init__()
         g = torch.Generator().manual_seed(seed)
@@ -54,6 +56,9 @@ class MLP(nn.Module):
         Input indices embedded as (cos 2πx/L, sin 2πx/L) — enforces periodicity of u and all its
         derivatives exactly (hard periodic BC).
     """
+
+    lo: torch.Tensor
+    hi: torch.Tensor
 
     def __init__(
         self,

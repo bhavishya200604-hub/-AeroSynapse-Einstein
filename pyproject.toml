@@ -73,7 +73,7 @@ module = ["aerosynapse.experiments.studies.*"]
 ignore_errors = true  # study drivers (not core library); exercised by the phase scripts
 
 [[tool.mypy.overrides]]
-module = ["aerosynapse.ml.*", "aerosynapse.uq.ensembles", "aerosynapse.viz.*", "aerosynapse.cli", "aerosynapse.experiments.studies.*"]
+module = ["aerosynapse.ml.*", "aerosynapse.optim.inverse", "aerosynapse.uq.ensembles", "aerosynapse.viz.*", "aerosynapse.cli", "aerosynapse.experiments.studies.*"]
 disallow_untyped_calls = false
 warn_return_any = false
 
