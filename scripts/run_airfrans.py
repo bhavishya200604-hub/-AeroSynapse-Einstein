@@ -20,6 +20,12 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", required=True, help="AirfRANS Dataset directory (contains manifest.json)")
     ap.add_argument("--profile", default="quick")
+    ap.add_argument(
+        "--max-sims",
+        type=int,
+        default=None,
+        help="deterministic subsample per manifest split (fast first run); omit for all simulations",
+    )
     a = ap.parse_args()
     table = ROOT / "data_derived" / "airfrans_coefficients.csv"
     table.parent.mkdir(exist_ok=True)
@@ -38,7 +44,12 @@ def main() -> None:
         limitations=["scalar coefficients only (fields not modelled)", "RANS reference has its own model error"],
     )
     with ExperimentRun(rec, RESULTS) as run:
-        rows = A.extract_table(a.root, out_csv=table)
+        names = None
+        if a.max_sims:
+            man_all = json.loads((Path(a.root) / "manifest.json").read_text(encoding="utf-8"))
+            names = sorted({n for v in man_all.values() for n in sorted(v)[: a.max_sims]})
+            run.record.results["max_sims_per_split"] = a.max_sims
+        rows = A.extract_table(a.root, names=names, out_csv=table)
         man = f"{a.root}/manifest.json"
         res = {"n_simulations": len(rows), "table": str(table.relative_to(ROOT)), "splits": {}}
         keys = json.loads(Path(man).read_text(encoding="utf-8"))

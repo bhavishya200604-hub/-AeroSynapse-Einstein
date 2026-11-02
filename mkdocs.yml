@@ -14,7 +14,10 @@ nav:
   - Executive summary: EXECUTIVE_SUMMARY.md
   - Project summary: PROJECT_SUMMARY.md
   - Planning document: 00_PLANNING_DOCUMENT.md
-  - Architecture: guides/architecture.md
+  - Architecture: ARCHITECTURE.md
+  - Architecture guide: guides/architecture.md
+  - Training left for later: TRAINING_LATER.md
+  - Results tables: RESULTS_TABLES.md
   - Theory:
       - Numerics: theory/numerics.md
       - Scientific ML: theory/sciml.md

@@ -26,6 +26,7 @@ STEPS = [
     "make_figures.py",
     "make_report.py",
     "make_reproducibility.py",
+    "make_architecture.py",
     "run_quality_gate.py",
     "audit_claims.py",
 ]

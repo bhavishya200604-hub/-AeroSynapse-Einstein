@@ -38,7 +38,9 @@ replaces the solver.
 ![Layered architecture (schematic)](paper/figures/fig_a_architecture.png)
 
 Layers: **A** physics definition → **B** classical solvers → **C** scientific ML → **D** optimisation →
-**E** validation engine → **F** workbench. See [`docs/guides/architecture.md`](docs/guides/architecture.md).
+**E** validation engine → **F** workbench. Full architecture with every module and public API:
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Runs left for later (AirfRANS training, full-profile GPU runs,
+OpenFOAM): [`docs/TRAINING_LATER.md`](docs/TRAINING_LATER.md).
 
 ## Install (Windows 11 first)
 
