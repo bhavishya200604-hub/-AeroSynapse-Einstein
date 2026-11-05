@@ -17,3 +17,5 @@ site/
 results/_scratch/
 paper/build/
 .ipynb_checkpoints/
+media/_cache/
+media/clips/
