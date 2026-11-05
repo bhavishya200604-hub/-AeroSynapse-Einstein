@@ -38,20 +38,21 @@ const CURSOR = `
   };
   const ws = async (name) => { await click(pg.locator('[data-testid="stSidebar"] label').filter({ hasText: new RegExp('^' + name + '$') })); await idle(); await pg.mouse.wheel(0, -3000); };
   const pick = async (label, option) => {
-    const box = pg.locator('[data-testid="stSelectbox"]').filter({ hasText: label }).first();
-    await click(box.locator('div[data-baseweb="select"]'));
+    await click(pg.getByRole('combobox', { name: label }).first());
     await sleep(500);
-    await click(pg.locator('li[role="option"]').filter({ hasText: new RegExp('^' + option.replace(/[()]/g, '\\$&') + '$') }).first());
+    await click(pg.getByRole('option', { name: option, exact: true }).first());
     await idle(800);
   };
   const slide = async (label, steps) => {
-    const s = pg.locator('[data-testid="stSlider"]').filter({ hasText: label }).first().locator('[role="slider"]');
-    await click(s);
-    for (let i = 0; i < Math.abs(steps); i++) { await pg.keyboard.press(steps > 0 ? 'ArrowRight' : 'ArrowLeft'); await sleep(40); }
+    const box = pg.locator('[data-testid="stSlider"]').filter({ hasText: label }).first();
+    await move(box.locator('[data-testid="stSliderThumbValue"]').first());
+    const inp = box.locator('input[type="range"]').first();
+    await inp.focus();
+    for (let i = 0; i < Math.abs(steps); i++) { await pg.keyboard.press(steps > 0 ? 'ArrowRight' : 'ArrowLeft'); await sleep(60); }
     await idle(600);
   };
   const slideTo = async (label, frac) => {
-    const tr = pg.locator('[data-testid="stSlider"]').filter({ hasText: label }).first().locator('div[data-baseweb="slider"]').first();
+    const tr = pg.locator('[data-testid="stSlider"]').filter({ hasText: label }).first().locator('[role="group"] > div').first();
     await tr.scrollIntoViewIfNeeded();
     const bb = await tr.boundingBox();
     if (bb) { const x = bb.x + frac * bb.width, y = bb.y + bb.height / 2; await pg.mouse.move(x, y, { steps: 20 }); await pg.mouse.click(x, y); }

@@ -79,7 +79,10 @@ def concat(parts: list[Path], out: Path, music: bool = True) -> None:
 def main() -> None:
     clips = sorted(p for p in CLIPS.glob("*.mp4"))
     norm = {p.stem: normalise(p) for p in clips}
+    vids = sorted((MEDIA / "_cache" / "uivid_final").glob("*.webm"), key=lambda q: q.stat().st_size)
     ui = MEDIA / "_cache" / "ui_raw.webm"
+    if vids and vids[-1].stat().st_size > 0:
+        vids[-1].replace(ui)
     if ui.exists():
         norm["41_ui"] = normalise(ui)  # -> media/_cache/norm/ui_raw.mp4
     order = sorted(norm)
