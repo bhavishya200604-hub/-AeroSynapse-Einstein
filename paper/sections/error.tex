@@ -1,0 +1,6 @@
+% sources: phase3_adaptive_collocation
+Errors are dominated by optimisation and approximation, not by the reference (exact). At Pe = 1 all seeds and
+samplers land between 0.1500 and 0.1516, and the early-time ($t\le0.05$) median error is 0.5384, against 0.0
+reference error: the network systematically misses the initial diffusion layer. At Pe = 1000 the
+seed-to-seed spread is large (95\% interval of the uniform median 0.1308 to 0.2825), which indicates
+sensitivity to initialisation rather than to point placement.

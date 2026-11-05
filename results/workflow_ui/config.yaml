@@ -1,0 +1,38 @@
+experiment_id: workflow_ui
+research_question: "Does the define\u2192simulate\u2192train\u2192validate\u2192optimise\u2192\
+  report workflow run end to end?"
+hypothesis: Every stage completes on a laptop CPU and writes its evidence to results/workflow_quick/.
+profile: quick
+seed: 0
+problem:
+  name: convdiff1d
+  pe: 10.0
+solver:
+  name: convdiff_fv
+  nx: 128
+  nt: null
+  scheme: vanleer
+  time_integrator: crank_nicolson
+  cfl: 0.5
+model:
+  name: pinn
+  width: 32
+  depth: 3
+  activation: tanh
+  fourier_features: 0
+  fourier_scale: 1.0
+training:
+  optimizer: adam
+  lr: 0.001
+  iterations: 600
+  n_collocation: 1000
+  sampler: rad
+  resample_every: 200
+  lbfgs_iterations: 0
+optimization:
+  method: de
+  baseline: ga
+  budget: 200
+metrics:
+- rel_l2
+- linf

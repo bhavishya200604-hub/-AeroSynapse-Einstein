@@ -1,0 +1,67 @@
+{
+  "experiment_id": "quality_gate",
+  "research_question": "Do tests, lint and type-check pass, and is coverage on target?",
+  "hypothesis": "all tests pass; ruff and mypy clean; core coverage >= 90 %, overall >= 80 %",
+  "mathematical_formulation": "n/a (software quality)",
+  "seed": 0,
+  "model_configuration": {},
+  "solver_configuration": {},
+  "dataset_description": "",
+  "hardware": {
+    "python": "3.13.18",
+    "platform": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 4,
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "mem_total_kb": 16477352,
+    "torch": "2.5.1+cu124",
+    "cuda_available": false,
+    "device": "cpu"
+  },
+  "training_configuration": {},
+  "optimization_configuration": {},
+  "evaluation_metrics": [
+    "tests passed/failed",
+    "coverage",
+    "ruff",
+    "mypy"
+  ],
+  "results": {
+    "pytest_exit_code": 0,
+    "tests_total": 117,
+    "tests_passed": 117,
+    "tests_failed": 0,
+    "tests_skipped": 0,
+    "coverage_total_percent": 82.66240681576144,
+    "coverage_by_package_percent": {
+      "top-level": 92.62672811059907,
+      "experiments": 26.909920182440136,
+      "ml": 94.22894985808892,
+      "numerics": 96.76573426573427,
+      "optim": 93.50490196078431,
+      "physics": 98.88475836431226,
+      "plugins": 100.0,
+      "uq": 98.57142857142857,
+      "validation": 99.31506849315069
+    },
+    "ruff_clean": true,
+    "mypy_clean": true,
+    "mypy_summary": "Success: no issues found in 86 source files",
+    "wall_clock_s": 182.71087038800033
+  },
+  "limitations": [],
+  "reproducibility": "python scripts/run_quality_gate.py",
+  "git_commit": "10d666cdd1139612381ceb31e8654408de5ad8ff",
+  "software_versions": {
+    "aerosynapse": "0.1.0",
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "torch": "2.5.1+cu124"
+  },
+  "data_provenance": "",
+  "created_unix": 1793638305.1215794,
+  "status": "completed"
+}

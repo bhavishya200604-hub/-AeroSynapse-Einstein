@@ -1,0 +1,71 @@
+{
+ "fig_a_architecture": {
+  "paths": [
+   "paper/figures/fig_a_architecture.pdf",
+   "paper/figures/fig_a_architecture.svg",
+   "paper/figures/fig_a_architecture.png",
+   "paper/figures/fig_a_architecture.html"
+  ]
+ },
+ "fig_c_spacetime": {
+  "paths": [
+   "paper/figures/fig_c_spacetime_surfaces.pdf",
+   "paper/figures/fig_c_spacetime_surfaces.svg",
+   "paper/figures/fig_c_spacetime_surfaces.png",
+   "paper/figures/fig_c_spacetime_surfaces.html"
+  ]
+ },
+ "fig_d_performance": {
+  "paths": [
+   "paper/figures/fig_d_performance_surface.pdf",
+   "paper/figures/fig_d_performance_surface.svg",
+   "paper/figures/fig_d_performance_surface.png",
+   "paper/figures/fig_d_performance_surface.html"
+  ]
+ },
+ "fig_e_pareto": {
+  "paths": [
+   "paper/figures/fig_e_pareto_3d.pdf",
+   "paper/figures/fig_e_pareto_3d.svg",
+   "paper/figures/fig_e_pareto_3d.png",
+   "paper/figures/fig_e_pareto_3d.html"
+  ]
+ },
+ "fig_f_airfoil": {
+  "paths": [
+   "paper/figures/fig_f_airfoil_cp_3d.pdf",
+   "paper/figures/fig_f_airfoil_cp_3d.svg",
+   "paper/figures/fig_f_airfoil_cp_3d.png",
+   "paper/figures/fig_f_airfoil_cp_3d.html"
+  ]
+ },
+ "fig_g_generalisation": {
+  "paths": [
+   "paper/figures/fig_g_generalisation_map.pdf",
+   "paper/figures/fig_g_generalisation_map.svg",
+   "paper/figures/fig_g_generalisation_map.png",
+   "paper/figures/fig_g_generalisation_map.html"
+  ]
+ },
+ "fig_convergence": {
+  "paths": [
+   "paper/figures/fig_convergence_phase1.pdf",
+   "paper/figures/fig_convergence_phase1.svg",
+   "paper/figures/fig_convergence_phase1.png"
+  ]
+ },
+ "fig_cavity": {
+  "paths": [
+   "paper/figures/fig_cavity_vs_ghia.pdf",
+   "paper/figures/fig_cavity_vs_ghia.svg",
+   "paper/figures/fig_cavity_vs_ghia.png"
+  ]
+ },
+ "fig_phase3_bars": {
+  "paths": [
+   "paper/figures/fig_phase3_samplers.pdf",
+   "paper/figures/fig_phase3_samplers.svg",
+   "paper/figures/fig_phase3_samplers.png"
+  ]
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "_note": "Public datasets checked by web search on 2026-11-02. Not downloaded or used in any reported result (all results use self-generated synthetic data). Licences as stated by the source pages; verify before use.",
+ "PDEBench": {
+  "source": "https://doi.org/10.18419/darus-2986 (DaRUS, University of Stuttgart); code https://github.com/pdebench/PDEBench",
+  "licence": "data CC BY 4.0 (DaRUS page); code MIT (GitHub README)",
+  "physical_system": "1D/2D/3D PDE benchmarks (advection, Burgers, diffusion-reaction, Darcy, compressible/incompressible NS, shallow water)",
+  "format": "HDF5", "units": "non-dimensional (per PDE definition)",
+  "split": "provided train/test splits per PDE", "leakage_risks": "same initial-condition generator across splits",
+  "limitations": "large files; parameter grids fixed by authors", "access": "pyDaRUS or direct download from DaRUS",
+  "verification_status": "VERIFIED (DaRUS page and GitHub README fetched)"
+ },
+ "AirfRANS": {
+  "source": "https://github.com/Extrality/airfrans_lib ; NeurIPS 2022 Datasets & Benchmarks (OpenReview Zp8YmiQ_bDC)",
+  "licence": "ODbL-1.0 (GitHub, OpenReview, PyG docs). A Kaggle mirror lists Apache-2.0 — inconsistent; treat ODbL-1.0 as authoritative",
+  "physical_system": "1000 incompressible RANS simulations over NACA 4/5-digit airfoils, subsonic",
+  "format": "VTK/VTP via airfrans library", "units": "SI (m, m/s, Pa)",
+  "split": "tasks (full, scarce, Reynolds, AoA) defined by the authors", "leakage_risks": "geometry families shared across splits",
+  "limitations": "RANS turbulence model; 2D only", "access": "pip install airfrans; airfrans.dataset.download(...)",
+  "verification_status": "VERIFIED (GitHub, OpenReview and PyG pages fetched)"
+ },
+ "The_Well": {
+  "source": "https://polymathic-ai.org/the_well/ ; arXiv:2412.00568 ; Hugging Face polymathic-ai",
+  "licence": "NOT VERIFIED in this run (check the repository LICENSE before use)",
+  "physical_system": "16 datasets, 15 TB: fluid dynamics, MHD, acoustics, biological systems",
+  "format": "HDF5 (streamable from Hugging Face)", "units": "dataset-specific",
+  "split": "train/valid/test provided", "leakage_risks": "temporal correlation within trajectories",
+  "limitations": "6.9 GB to 5.1 TB per dataset — beyond a laptop", "access": "the_well Python package / HF streaming",
+  "verification_status": "PARTIAL (existence and access verified; licence not verified)"
+ }
+}

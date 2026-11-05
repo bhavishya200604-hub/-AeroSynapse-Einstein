@@ -1,0 +1,93 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aerosynapse-einstein"
+version = "0.1.0"
+description = "Physics-aware AI for computational engineering: verified PDE solvers, PINNs, neural operators, UQ and constrained design optimisation (research use only)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Bhavishya" }]
+keywords = ["PINN", "scientific machine learning", "CFD", "neural operator", "optimization", "verification"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "pydantic>=2.5",
+  "pyyaml>=6.0",
+  "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+torch = ["torch>=2.1"]
+ui = ["streamlit>=1.30", "plotly>=5.15"]
+bo = []
+cfd = []
+docs = ["mkdocs-material>=9.4", "mkdocstrings[python]>=0.24"]
+dev = [
+  "pytest>=7.4", "pytest-cov>=4.1", "hypothesis>=6.80", "ruff>=0.4", "mypy>=1.8",
+  "types-PyYAML", "plotly>=5.15", "build", "twine", "nox",
+]
+
+[project.scripts]
+aerosynapse = "aerosynapse.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+aerosynapse = ["py.typed", "data/*.json"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "N", "SIM", "NPY"]
+ignore = ["N803", "N806", "N802", "N812", "N818", "E741", "B008", "UP007", "E501"]  # E501: formatter owns line length
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E731", "NPY002"]
+"scripts/*" = ["E731"]
+"paper/*" = ["E731"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+plugins = ["pydantic.mypy"]
+ignore_missing_imports = true
+files = ["src/aerosynapse"]
+exclude = ["src/aerosynapse/ui/"]
+
+[[tool.mypy.overrides]]
+module = ["aerosynapse.experiments.studies.*"]
+ignore_errors = true  # study drivers (not core library); exercised by the phase scripts
+
+[[tool.mypy.overrides]]
+module = ["aerosynapse.ml.*", "aerosynapse.optim.inverse", "aerosynapse.uq.ensembles", "aerosynapse.viz.*", "aerosynapse.cli", "aerosynapse.experiments.studies.*"]
+disallow_untyped_calls = false
+warn_return_any = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+  "unit: fast unit tests",
+  "verification: numerical verification (convergence, MMS)",
+  "validation: comparison against benchmarks / unseen data",
+  "slow: longer-running tests",
+  "gpu: requires CUDA",
+]
+
+[tool.coverage.run]
+source = ["aerosynapse"]
+omit = ["*/ui/*"]

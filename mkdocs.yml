@@ -1,0 +1,34 @@
+site_name: AeroSynapse–Einstein
+repo_url: https://github.com/bhavishya200604-hub/-AeroSynapse-Einstein
+theme:
+  name: material
+  palette: {scheme: default, primary: indigo}
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+nav:
+  - Home: index.md
+  - Executive summary: EXECUTIVE_SUMMARY.md
+  - Project summary: PROJECT_SUMMARY.md
+  - Planning document: 00_PLANNING_DOCUMENT.md
+  - Architecture: ARCHITECTURE.md
+  - Architecture guide: guides/architecture.md
+  - Training left for later: TRAINING_LATER.md
+  - Results tables: RESULTS_TABLES.md
+  - Theory:
+      - Numerics: theory/numerics.md
+      - Scientific ML: theory/sciml.md
+      - Optimisation: theory/optimisation.md
+  - How-to:
+      - Add a physics module: guides/adding_a_physics_module.md
+      - Reproduce results: REPRODUCIBILITY.md
+  - Tutorials: tutorials/quickstart.md
+  - V&V report: VV_REPORT.md
+  - Literature and novelty: LITERATURE_AND_NOVELTY.md
+  - Traceability matrix: TRACEABILITY_MATRIX.md
+  - Known issues: KNOWN_ISSUES.md
+  - Decisions: DECISIONS.md
+  - API reference: api/index.md

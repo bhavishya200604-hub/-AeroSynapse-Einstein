@@ -1,0 +1,86 @@
+{
+  "define": {
+    "name": "convdiff1d",
+    "equation": "u_t + v u_x = D u_xx + s",
+    "domain": "((0.0, 1.0),)",
+    "t_final": "0.5",
+    "parameters": "{'v': (1.0, 'm/s'), 'D': (0.1, 'm^2/s')}",
+    "bcs": "{'left': 'periodic', 'right': 'periodic'}",
+    "dimensionless": "{'Pe': 10.0, 'Fo': 0.05}"
+  },
+  "simulate": {
+    "rel_l2_vs_exact": 0.00011925136655642044,
+    "mass_drift": 1.4765966227514582e-14,
+    "time_s": 0.2609949449997657
+  },
+  "validate": {
+    "rel_l2": 0.4698174481276683,
+    "abs_l2_rms": 0.0738467934400495,
+    "linf": 0.7998796552419662,
+    "mae": 0.048858990026600164,
+    "rmse": 0.0738467934400495,
+    "q50": 0.03336334069390867,
+    "q90": 0.09432392693051825,
+    "q99": 0.2788986263208815,
+    "q100": 0.7998796552419662,
+    "decision": "fallback to classical solver"
+  },
+  "optimise": {
+    "verdict": "ACCEPT",
+    "final": {
+      "design": {
+        "m": 4.0,
+        "x_s": 0.1,
+        "material": "copper"
+      },
+      "model_f": [
+        0.6411829871896261
+      ],
+      "trusted_f": [
+        0.6411629356751417
+      ],
+      "trusted_g": [
+        -0.8459029329063749
+      ],
+      "trusted_feasible": true,
+      "model_vs_trusted_abs_diff": 2.005151448436493e-05,
+      "improvement_vs_baseline": 5.702638187621102
+    },
+    "baseline_method_final": {
+      "design": {
+        "m": 3.2498980760006884,
+        "x_s": 0.1,
+        "material": "copper"
+      },
+      "model_f": [
+        0.6633444178118038
+      ],
+      "trusted_f": [
+        0.6633249514907207
+      ],
+      "trusted_g": [
+        -0.6931869623866647
+      ],
+      "trusted_feasible": true,
+      "model_vs_trusted_abs_diff": 1.9466321083072557e-05,
+      "improvement_vs_baseline": 5.680476171805523
+    },
+    "baseline": {
+      "design": {
+        "m": 1.0,
+        "x_s": 0.8,
+        "material": "aluminium"
+      },
+      "f": [
+        6.3438011232962435
+      ],
+      "g": [
+        26.259222712830365
+      ],
+      "h": [],
+      "feasible": false
+    }
+  },
+  "report_html": "/home/user/-aerosynapse-einstein/results/workflow_ui/report.html",
+  "wall_clock_s": 8.674033783999676
+}
