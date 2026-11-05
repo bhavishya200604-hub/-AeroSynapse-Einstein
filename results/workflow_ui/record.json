@@ -65,7 +65,7 @@
     "simulate": {
       "rel_l2_vs_exact": 0.00011925136655642044,
       "mass_drift": 1.4765966227514582e-14,
-      "time_s": 0.24372564500004046
+      "time_s": 0.2609949449997657
     },
     "validate": {
       "rel_l2": 0.4698174481276683,
@@ -136,13 +136,13 @@
       }
     },
     "report_html": "/home/user/-aerosynapse-einstein/results/workflow_ui/report.html",
-    "wall_clock_s": 11.394041023
+    "wall_clock_s": 8.674033783999676
   },
   "limitations": [
     "quick profile budgets"
   ],
   "reproducibility": "aerosynapse run <config> --profile quick",
-  "git_commit": "2b160d21679a5dd217b568c0dfb6d22850d0f6cd",
+  "git_commit": "6457f2546360f693df99721cf2df2bcc7fed8a70",
   "software_versions": {
     "aerosynapse": "0.1.0",
     "python": "3.13.18",
@@ -151,6 +151,6 @@
     "torch": "2.5.1+cu124"
   },
   "data_provenance": "",
-  "created_unix": 1793884448.169099,
+  "created_unix": 1793884845.8461413,
   "status": "completed"
 }

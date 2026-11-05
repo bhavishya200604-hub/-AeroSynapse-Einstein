@@ -33,6 +33,11 @@ replaces the solver.
 | Streamlit workbench | ✓ | AppTest smoke tests | |
 | OpenFOAM adapter, Level-4 plugins, AirfRANS loader | ✓ | | not run (external tools / data) |
 
+## Videos
+
+Animated showcase (simulations, animated result graphs, PINN training, workbench walkthrough):
+[`media/AeroSynapse_Einstein_showcase.mp4`](media/AeroSynapse_Einstein_showcase.mp4) — details in [`media/README.md`](media/README.md).
+
 ## Architecture
 
 ![Layered architecture (schematic)](paper/figures/fig_a_architecture.png)

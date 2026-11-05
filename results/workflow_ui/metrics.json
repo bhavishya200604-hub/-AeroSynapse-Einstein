@@ -11,7 +11,7 @@
   "simulate": {
     "rel_l2_vs_exact": 0.00011925136655642044,
     "mass_drift": 1.4765966227514582e-14,
-    "time_s": 0.24372564500004046
+    "time_s": 0.2609949449997657
   },
   "validate": {
     "rel_l2": 0.4698174481276683,
@@ -82,5 +82,5 @@
     }
   },
   "report_html": "/home/user/-aerosynapse-einstein/results/workflow_ui/report.html",
-  "wall_clock_s": 11.394041023
+  "wall_clock_s": 8.674033783999676
 }
