@@ -10,10 +10,11 @@ import numpy as np
 import streamlit as st
 
 from aerosynapse.safety import DISCLAIMER
+from aerosynapse.viz import neon as _neon  # noqa: F401  (dark neon matplotlib style for all workbench plots)
 
 ROOT = Path(__file__).resolve().parents[3]
 RESULTS = ROOT / "results"
-CB = ["#0072B2", "#E69F00", "#009E73", "#D55E00", "#CC79A7", "#56B4E9", "#F0E442"]  # Okabe-Ito
+CB = _neon.NEON  # neon palette on the dark theme
 
 
 def _plot(xs: list[np.ndarray], ys: list[np.ndarray], labels: list[str], xlabel: str, ylabel: str) -> None:
@@ -34,7 +35,7 @@ def _field(Z: np.ndarray, title: str, extent: tuple[float, float, float, float],
     import matplotlib.pyplot as plt
 
     fig, ax = plt.subplots(figsize=(4.6, 3.6))
-    im = ax.imshow(Z.T, origin="lower", extent=extent, cmap="viridis", aspect="auto")
+    im = ax.imshow(Z.T, origin="lower", extent=extent, cmap=_neon.AURORA, aspect="auto")
     fig.colorbar(im, ax=ax, label=label)
     ax.set_title(title)
     st.pyplot(fig)

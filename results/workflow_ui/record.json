@@ -1,0 +1,156 @@
+{
+  "experiment_id": "workflow_ui",
+  "research_question": "Does the define\u2192simulate\u2192train\u2192validate\u2192optimise\u2192report workflow run end to end?",
+  "hypothesis": "Every stage completes on a laptop CPU and writes its evidence to results/workflow_quick/.",
+  "mathematical_formulation": "u_t + u_x = u_xx / 10.0 (periodic); thermal rod design (optim.demos)",
+  "seed": 0,
+  "model_configuration": {
+    "name": "pinn",
+    "width": 32,
+    "depth": 3,
+    "activation": "tanh",
+    "fourier_features": 0,
+    "fourier_scale": 1.0
+  },
+  "solver_configuration": {
+    "name": "convdiff_fv",
+    "nx": 128,
+    "nt": null,
+    "scheme": "vanleer",
+    "time_integrator": "crank_nicolson",
+    "cfl": 0.5
+  },
+  "dataset_description": "synthetic",
+  "hardware": {
+    "python": "3.13.18",
+    "platform": "Linux-6.18.44-fc-v236-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 4,
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "mem_total_kb": 16472088,
+    "torch": "2.5.1+cu124",
+    "cuda_available": false,
+    "device": "cpu"
+  },
+  "training_configuration": {
+    "optimizer": "adam",
+    "lr": 0.001,
+    "iterations": 600,
+    "n_collocation": 1000,
+    "sampler": "rad",
+    "resample_every": 200,
+    "lbfgs_iterations": 0
+  },
+  "optimization_configuration": {
+    "method": "de",
+    "baseline": "ga",
+    "budget": 200
+  },
+  "evaluation_metrics": [
+    "rel_l2",
+    "linf"
+  ],
+  "results": {
+    "define": {
+      "name": "convdiff1d",
+      "equation": "u_t + v u_x = D u_xx + s",
+      "domain": "((0.0, 1.0),)",
+      "t_final": "0.5",
+      "parameters": "{'v': (1.0, 'm/s'), 'D': (0.1, 'm^2/s')}",
+      "bcs": "{'left': 'periodic', 'right': 'periodic'}",
+      "dimensionless": "{'Pe': 10.0, 'Fo': 0.05}"
+    },
+    "simulate": {
+      "rel_l2_vs_exact": 0.00011925136655642044,
+      "mass_drift": 1.4765966227514582e-14,
+      "time_s": 0.24372564500004046
+    },
+    "validate": {
+      "rel_l2": 0.4698174481276683,
+      "abs_l2_rms": 0.0738467934400495,
+      "linf": 0.7998796552419662,
+      "mae": 0.048858990026600164,
+      "rmse": 0.0738467934400495,
+      "q50": 0.03336334069390867,
+      "q90": 0.09432392693051825,
+      "q99": 0.2788986263208815,
+      "q100": 0.7998796552419662,
+      "decision": "fallback to classical solver"
+    },
+    "optimise": {
+      "verdict": "ACCEPT",
+      "final": {
+        "design": {
+          "m": 4.0,
+          "x_s": 0.1,
+          "material": "copper"
+        },
+        "model_f": [
+          0.6411829871896261
+        ],
+        "trusted_f": [
+          0.6411629356751417
+        ],
+        "trusted_g": [
+          -0.8459029329063749
+        ],
+        "trusted_feasible": true,
+        "model_vs_trusted_abs_diff": 2.005151448436493e-05,
+        "improvement_vs_baseline": 5.702638187621102
+      },
+      "baseline_method_final": {
+        "design": {
+          "m": 3.2498980760006884,
+          "x_s": 0.1,
+          "material": "copper"
+        },
+        "model_f": [
+          0.6633444178118038
+        ],
+        "trusted_f": [
+          0.6633249514907207
+        ],
+        "trusted_g": [
+          -0.6931869623866647
+        ],
+        "trusted_feasible": true,
+        "model_vs_trusted_abs_diff": 1.9466321083072557e-05,
+        "improvement_vs_baseline": 5.680476171805523
+      },
+      "baseline": {
+        "design": {
+          "m": 1.0,
+          "x_s": 0.8,
+          "material": "aluminium"
+        },
+        "f": [
+          6.3438011232962435
+        ],
+        "g": [
+          26.259222712830365
+        ],
+        "h": [],
+        "feasible": false
+      }
+    },
+    "report_html": "/home/user/-aerosynapse-einstein/results/workflow_ui/report.html",
+    "wall_clock_s": 11.394041023
+  },
+  "limitations": [
+    "quick profile budgets"
+  ],
+  "reproducibility": "aerosynapse run <config> --profile quick",
+  "git_commit": "2b160d21679a5dd217b568c0dfb6d22850d0f6cd",
+  "software_versions": {
+    "aerosynapse": "0.1.0",
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "torch": "2.5.1+cu124"
+  },
+  "data_provenance": "",
+  "created_unix": 1793884448.169099,
+  "status": "completed"
+}
