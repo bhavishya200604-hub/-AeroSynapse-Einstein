@@ -1,0 +1,258 @@
+{
+ "name": "optimised conventional",
+ "units": "m",
+ "variables": {
+  "length": 16.5069,
+  "width": 0.87982,
+  "height": 0.81546,
+  "nose_frac": 0.25371,
+  "max_frac": 0.49013,
+  "tail_frac": 0.71775,
+  "squareness": 2.05328,
+  "camber_line": -0.06968,
+  "w_area": 33.08559,
+  "w_ar": 3.16927,
+  "w_taper": 0.11608,
+  "w_sweep": 48.42752,
+  "w_tc": 0.04602,
+  "w_twist": -3.34254,
+  "w_camber": 0.02071,
+  "w_x": 0.45194,
+  "w_z": -0.25264,
+  "w_dihedral": 5.09149,
+  "tw": 1.01095,
+  "c_size": 0.0,
+  "c_sweep": 35.0,
+  "c_x": 0.16,
+  "s_size": 0.01398,
+  "s_sweep": 76.73976,
+  "h_size": 0.13696,
+  "h_sweep": 37.35327,
+  "v_size": 0.20679,
+  "v_cant": 0.0,
+  "v_sweep": 35.74464,
+  "vf_size": 0.02282,
+  "b_count": 0.0,
+  "b_height": 0.1,
+  "n_depth": 0.0,
+  "n_eta": 0.3,
+  "d_radius": 0.36362,
+  "d_inlet": 0.28649,
+  "bay_volume": 0.81485
+ },
+ "features": [
+  {
+   "id": "body",
+   "type": "fuselage",
+   "op": "add",
+   "stations": [
+    [
+     0.0,
+     0.02,
+     0.02,
+     -0.06968,
+     2.0
+    ],
+    [
+     1.46577,
+     0.39592,
+     0.40773,
+     -0.04181,
+     2.0
+    ],
+    [
+     4.18793,
+     0.70386,
+     0.69314,
+     -0.01394,
+     2.02664
+    ],
+    [
+     8.09048,
+     0.87982,
+     0.81546,
+     0.0,
+     2.05328
+    ],
+    [
+     12.29869,
+     0.75566,
+     0.70038,
+     0.0,
+     2.05328
+    ],
+    [
+     16.5069,
+     0.63149,
+     0.5853,
+     0.0,
+     2.02664
+    ]
+   ]
+  },
+  {
+   "id": "canopy",
+   "type": "ellipsoid",
+   "op": "add",
+   "radii": [
+    1.2,
+    0.42,
+    0.45
+   ],
+   "translate": [
+    3.80617,
+    0.0,
+    0.58713
+   ],
+   "blend": 0.25
+  },
+  {
+   "id": "wing",
+   "type": "wing",
+   "op": "add",
+   "span": 4.63609,
+   "root_chord": 5.78993,
+   "taper": 0.11608,
+   "sweep": 48.42752,
+   "dihedral": 5.09149,
+   "twist": -3.34254,
+   "tc": 0.04602,
+   "tip_tc": 0.03682,
+   "camber": 0.02071,
+   "camber_pos": 0.35,
+   "profile": "naca",
+   "translate": [
+    7.46005,
+    0.4839,
+    -0.20602
+   ],
+   "mirror": true,
+   "blend": 0.12
+  },
+  {
+   "id": "strake",
+   "type": "strake",
+   "op": "add",
+   "span": 0.18697,
+   "root_chord": 4.94729,
+   "taper": 0.03,
+   "sweep": 76.73976,
+   "dihedral": 0.0,
+   "tc": 0.025,
+   "profile": "diamond",
+   "translate": [
+    3.96024,
+    0.65987,
+    -0.20602
+   ],
+   "mirror": true,
+   "blend": 0.08
+  },
+  {
+   "id": "htail",
+   "type": "tail",
+   "op": "add",
+   "span": 1.84349,
+   "root_chord": 1.82073,
+   "taper": 0.35,
+   "sweep": 37.35327,
+   "dihedral": -2.0,
+   "tc": 0.04,
+   "profile": "biconvex",
+   "translate": [
+    14.13995,
+    0.61575,
+    -0.40988
+   ],
+   "mirror": true,
+   "blend": 0.05
+  },
+  {
+   "id": "fins",
+   "type": "fin",
+   "op": "add",
+   "span": 3.09488,
+   "root_chord": 3.40097,
+   "taper": 0.3,
+   "sweep": 35.74464,
+   "dihedral": 90.0,
+   "tc": 0.045,
+   "profile": "biconvex",
+   "translate": [
+    11.88959,
+    0.0,
+    0.48927
+   ],
+   "mirror": false,
+   "blend": 0.06
+  },
+  {
+   "id": "ventral",
+   "type": "fin",
+   "op": "add",
+   "span": 0.67312,
+   "root_chord": 0.80134,
+   "taper": 0.4,
+   "sweep": 45.0,
+   "dihedral": -70.0,
+   "tc": 0.04,
+   "profile": "diamond",
+   "translate": [
+    13.20552,
+    0.39592,
+    -0.48927
+   ],
+   "mirror": true
+  },
+  {
+   "id": "inlet_duct",
+   "type": "duct",
+   "op": "cut",
+   "path": [
+    [
+     4.12914,
+     0.83583,
+     -0.20386
+    ],
+    [
+     6.22914,
+     0.52789,
+     -0.16309
+    ],
+    [
+     11.0069,
+     0.21996,
+     0.0
+    ],
+    [
+     16.8069,
+     0.15787,
+     0.0
+    ]
+   ],
+   "radius": [
+    0.36362,
+    0.34543,
+    0.32725,
+    0.32725
+   ],
+   "mirror": true
+  },
+  {
+   "id": "bay",
+   "type": "box",
+   "op": "cut",
+   "size": [
+    4.2,
+    0.43114,
+    0.45
+   ],
+   "round": 0.05,
+   "translate": [
+    8.25345,
+    0.0,
+    -0.36696
+   ]
+  }
+ ]
+}

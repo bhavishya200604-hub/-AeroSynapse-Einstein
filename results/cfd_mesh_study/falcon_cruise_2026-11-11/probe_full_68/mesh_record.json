@@ -1,0 +1,28 @@
+{
+ "name": "probe_full_68",
+ "model": "full",
+ "cells_per_length": 68.0,
+ "cells": 685440,
+ "fluid_cells": 683307,
+ "wall_cells": 1472,
+ "thin_surface_cells": 627,
+ "steps": 60,
+ "stop_reason": "steps",
+ "forces_from": "last step",
+ "CL": 0.1185380826,
+ "CD": 0.02231771528,
+ "CD_friction": 0.008846791987,
+ "Cm": -0.06538978861,
+ "solver_seconds": 113.210263,
+ "wall_seconds": 117.59503817558289,
+ "peak_working_set_MB": 235.1875,
+ "peak_private_MB": 232.48046875,
+ "grid": [
+  119,
+  90,
+  64
+ ],
+ "half_model": false,
+ "seconds_per_step": 1.8868377166666666,
+ "us_per_cell_step": 2.7527394325785868
+}

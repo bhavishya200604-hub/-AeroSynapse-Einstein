@@ -1,0 +1,10 @@
+3D flow analysis: high_alpha
+============================
+
+Full-3D flow around the whole aircraft: 48024 cells, full model, 36 s
+freestream Mach 0.300; highest Mach in the field 0.327; lowest Cp -0.658
+392 streamlines from a rake upstream and rings around the wing tips
+vortex cores (Q = 17.7 (U/L)^2): 104 faces; sonic surface: none (subsonic flow)
+forces settled: CL changed by 0.846 % over the last 10 % of the steps
+forces: CL 1.10864, CD 0.50974, CY -0.00296, Cl 0.00130, Cm 0.22443, Cn -0.00551, CD_friction 0.00328
+converged to the residual target: False; separated wall area 0.0 %, hottest wall 255 K

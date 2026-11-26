@@ -1,0 +1,160 @@
+{
+  "experiment_id": "phase4_generalisation_map",
+  "research_question": "Where in (Pe, input bandwidth) does the FNO trained on Pe in [5, 50], k_max = 4 stay accurate?",
+  "hypothesis": "H4.8 error grows by more than 10x outside the training Pe range at fixed bandwidth, and grows with input bandwidth beyond k_max = 4.",
+  "mathematical_formulation": "median per-sample rel. L2 of the FNO on 12 fresh FV samples per (Pe, k_max) cell",
+  "seed": 500,
+  "model_configuration": {},
+  "solver_configuration": {},
+  "dataset_description": "",
+  "hardware": {
+    "python": "3.13.18",
+    "platform": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "cpu_count": 4,
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "mem_total_kb": 16477352,
+    "torch": "2.5.1+cu124",
+    "cuda_available": false,
+    "device": "cpu"
+  },
+  "training_configuration": {},
+  "optimization_configuration": {},
+  "evaluation_metrics": [
+    "median rel. L2 per cell"
+  ],
+  "results": {
+    "generalisation_map": {
+      "pe": [
+        1.0,
+        2.0,
+        5.0,
+        10.0,
+        20.0,
+        50.0,
+        100.0,
+        300.0,
+        1000.0,
+        3000.0
+      ],
+      "k_max": [
+        2,
+        3,
+        4,
+        6,
+        8,
+        10
+      ],
+      "median_rel_l2": [
+        [
+          0.4440282491487018,
+          0.4072650576318801,
+          0.3246685150880171,
+          0.36397359711578564,
+          0.44191822041008544,
+          0.3484212946052716
+        ],
+        [
+          0.165988667221331,
+          0.11731476134404607,
+          0.1495971732751155,
+          0.14200035957033108,
+          0.17011675673355559,
+          0.11537347885807449
+        ],
+        [
+          0.004815131874849357,
+          0.005370332386016259,
+          0.005557028321099787,
+          0.005445313085740173,
+          0.005083185097643022,
+          0.005185001637284546
+        ],
+        [
+          0.0013633640440091559,
+          0.0015981918212246097,
+          0.0014312360641038548,
+          0.0012065545614189854,
+          0.0011458555546814348,
+          0.001390509674414942
+        ],
+        [
+          0.0011844418533071646,
+          0.0012525501146181455,
+          0.0016822341383008158,
+          0.0017096011054385215,
+          0.0015841377520252405,
+          0.0017768800486606695
+        ],
+        [
+          0.005428993973455517,
+          0.005185228165432487,
+          0.0057436850250412175,
+          0.00671941854094581,
+          0.005836374042215896,
+          0.005318919103367735
+        ],
+        [
+          0.021445954131132067,
+          0.029428930682693654,
+          0.02892315295847432,
+          0.028126491070963995,
+          0.026176711404383275,
+          0.029093260615005268
+        ],
+        [
+          0.056187010863564604,
+          0.06979059167006978,
+          0.07036149837718556,
+          0.07070054264031508,
+          0.06607937486957184,
+          0.06339570729145988
+        ],
+        [
+          0.09080116058911832,
+          0.09551896323054318,
+          0.12002973425535077,
+          0.10080197066598076,
+          0.11624380025700048,
+          0.11433644920818276
+        ],
+        [
+          0.11132553707800488,
+          0.12191452610235985,
+          0.13204512690843967,
+          0.13506487279688068,
+          0.1281339875523573,
+          0.13080551676992733
+        ]
+      ],
+      "train_region": {
+        "pe": [
+          5,
+          50
+        ],
+        "k_max": [
+          1,
+          4
+        ]
+      }
+    },
+    "wall_clock_s": 126.4779404990004
+  },
+  "limitations": [
+    "12 samples per cell"
+  ],
+  "reproducibility": "python scripts/run_phase4_genmap.py --profile quick (after run_phase4.py)",
+  "git_commit": "04159ec757a2d1e5138a8d8c9a8e995afb374fe4",
+  "software_versions": {
+    "aerosynapse": "0.1.0",
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "torch": "2.5.1+cu124"
+  },
+  "data_provenance": "model fno.pt sha256=97efe9a07e589479ef1d3abd55e1f939f50bcafded5d4b9669819fcc4b0de99f",
+  "created_unix": 1793636244.0934627,
+  "status": "completed"
+}

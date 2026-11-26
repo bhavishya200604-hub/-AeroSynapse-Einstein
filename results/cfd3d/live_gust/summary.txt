@@ -1,0 +1,11 @@
+3D flow analysis: gust
+======================
+
+Full-3D flow around the whole aircraft: 48024 cells, full model, 38 s
+freestream Mach 0.702; highest Mach in the field 0.763; lowest Cp -0.307
+392 streamlines from a rake upstream and rings around the wing tips
+vortex cores (Q = 13.0 (U/L)^2): 80 faces; sonic surface: none (subsonic flow)
+time-accurate run: forces averaged over 131 samples; CL 0.06384 +/- 0.00387 r.m.s., CD -0.00489 +/- 0.00048
+WARNING: coarse grid: only 52 cells touch the aircraft, so the wings are thinner than a cell. The flow pattern is indicative; forces are not reliable here (drag can even come out negative). Use standard or fine quality for numbers.
+forces: CL 0.06384, CD -0.00489, CY -0.00390, Cl 0.00023, Cm 0.01755, Cn -0.00418, CD_friction 0.00377
+converged to the residual target: False; separated wall area 0.0 %, hottest wall 293 K

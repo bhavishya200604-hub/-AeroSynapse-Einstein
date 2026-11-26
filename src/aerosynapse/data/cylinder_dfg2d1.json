@@ -1,0 +1,10 @@
+{
+ "reference": "Schäfer, M., Turek, S. (1996). Benchmark computations of laminar flow around a cylinder. In: Flow Simulation with High-Performance Computers II, Notes on Numerical Fluid Mechanics 52, 547-566, Vieweg.",
+ "retrieved_from": "https://www.mathematik.tu-dortmund.de/~featflow/en/benchmarks/cfdbenchmarking/flow/dfg_benchmark1_re20.html",
+ "retrieved_on": "2026-11-02",
+ "status": "VERIFIED (fetched reference values)",
+ "case": "2D-1 steady, channel 2.2 x 0.41, cylinder D = 0.1 centred at (0.2, 0.2), parabolic inflow Um = 0.3, nu = 1e-3, Re = U_mean D / nu = 20, U_mean = 2 Um / 3",
+ "C_D": 5.57953523384,
+ "C_L": 0.010618948146,
+ "delta_p": 0.11752016697
+}

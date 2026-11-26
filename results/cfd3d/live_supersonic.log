@@ -1,0 +1,14 @@
+==============================================================================
+RESEARCH USE ONLY. AeroSynapse-Einstein results are not certified for aircraft, pressure vessels, industrial machinery or any safety-critical decision. Platform validation tier: 1/5 (Research simulation: exploratory, no accuracy guarantee.) Classical solvers: tier 3 (code-verified). ML surrogates: tier 1.
+==============================================================================
+3D flow analysis: supersonic
+============================
+
+Full-3D flow around the whole aircraft: 22770 cells, full model, 15 s
+freestream Mach 1.600; highest Mach in the field 1.698; lowest Cp -0.181
+393 streamlines from a rake upstream and rings around the wing tips
+vortex cores (Q = 8.1 (U/L)^2): 64 faces; sonic surface: 1470 faces
+forces settled: CL changed by 0.038 % over the last 10 % of the steps
+forces: CL -0.01328, CD -0.01454, CY -0.00261, Cl -0.00000, Cm -0.00504, Cn -0.00396, CD_friction 0.00309
+converged to the residual target: False; separated wall area 0.0 %, hottest wall 328 K
+

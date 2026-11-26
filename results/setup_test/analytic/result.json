@@ -1,0 +1,84 @@
+{
+ "figures": [
+  "1_panel_method.png",
+  "2_lifting_line.png",
+  "3_area_rule.png",
+  "4_skin_heating_exact.png"
+ ],
+ "setup": {
+  "alpha_min": -4.0,
+  "alpha_max": 10.0,
+  "alpha_step": 2.0,
+  "ll_alpha": 6.0,
+  "nose_mach": 1.6,
+  "ackeret_mach": 1.8,
+  "dash_mach": 2.0,
+  "dash_altitude": 12000.0,
+  "dash_seconds": 300.0,
+  "skin_start_offset": 5.0
+ },
+ "panel": {
+  "lift_slope_per_rad": 6.501925319307298,
+  "thin_airfoil": 6.283185307179586,
+  "alpha_deg": 3.0,
+  "cl": 0.39092477267623477,
+  "cm_c4": -0.011120867068718954
+ },
+ "lifting_line": {
+  "CL_alpha_per_rad": 3.888315729084933,
+  "span_efficiency": 0.9791358073565962,
+  "aspect_ratio": 3.1388139999908775,
+  "alpha_deg": 6.0,
+  "CL": 0.3572839235849975,
+  "CDi": 0.0132211296242049
+ },
+ "area_rule": {
+  "volume_m3": 20.08805206594568,
+  "length_m": 15.158882768,
+  "D_over_q_design_m2": 0.634158496885696,
+  "D_over_q_sears_haack_m2": 0.31136297652839234,
+  "D_over_q_sears_haack_numeric_m2": 0.3157042144771932
+ },
+ "nose_cone": {
+  "half_angle_deg": 14.981874193180746,
+  "shock_deg": 41.95773638603095,
+  "cp": 0.22884446662304547,
+  "surface_mach": 1.3609682187530732
+ },
+ "normal_shock": {
+  "M2": 0.6684373647831918,
+  "p2_p1": 2.8200000000000007,
+  "rho2_rho1": 2.031746031746032,
+  "T2_T1": 1.3879687500000002,
+  "p02_p01": 0.8952002604653366
+ },
+ "ackeret": {
+  "normal_mach": 1.509398413093651,
+  "cl_alpha_per_rad": 3.5379067998595377,
+  "cd_thickness": 0.014532771604280436,
+  "cd_camber": 0.0007989977966837153
+ },
+ "skin_heating": {
+  "fwd_fuselage": {
+   "material": "Carbon/bismaleimide (BMI)",
+   "thickness_mm": 2.445,
+   "Bi": 0.08749767236082652,
+   "T_max_K": 371.27075918128156,
+   "dT_max_K": 5.0481557891920374
+  },
+  "wing_box": {
+   "material": "Carbon/bismaleimide (BMI)",
+   "thickness_mm": 6.268,
+   "Bi": 0.24843705601542312,
+   "T_max_K": 370.8348489032945,
+   "dT_max_K": 15.6652497518119
+  },
+  "aft_fuselage": {
+   "material": "Ceramic matrix composite C/SiC",
+   "thickness_mm": 2.628,
+   "Bi": 0.02290727846279005,
+   "T_max_K": 370.85504632703544,
+   "dT_max_K": 1.542335262765448
+  }
+ }
+}

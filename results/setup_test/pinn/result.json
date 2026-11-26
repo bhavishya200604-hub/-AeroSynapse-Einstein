@@ -1,0 +1,153 @@
+{
+ "network": "E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\results\\thermal_skin\\skin_pinn.pt",
+ "figures": [
+  "1_pinn_vs_exact_vs_fd.png",
+  "2_pinn_field.png",
+  "3_design_zones.png"
+ ],
+ "errors": {
+  "Bi=0.3": {
+   "pinn_max_abs": 0.11127714970734137,
+   "fd_max_abs": 4.252655959591234e-05
+  },
+  "Bi=2.0": {
+   "pinn_max_abs": 0.0402297112810841,
+   "fd_max_abs": 0.0002113378093003826
+  },
+  "Bi=10.0": {
+   "pinn_max_abs": 0.04514078491079365,
+   "fd_max_abs": 0.0009441731092140193
+  }
+ },
+ "query_seconds": {
+  "pinn": 0.001972175999544561,
+  "exact_series": 0.5407543399953283,
+  "finite_differences": 2.2243553000153042
+ },
+ "zones": {
+  "radome": {
+   "material": "Carbon/bismaleimide (BMI)",
+   "thickness_mm": 3.0,
+   "state": "max_q",
+   "Bi": 0.231911582124942,
+   "dT_max_K": 3.841838337557931,
+   "thermal_stress_MPa": 0.9970789866557809,
+   "allowable_MPa": 286.03941179275654,
+   "stress_ratio": 0.0034858098064409117,
+   "T_max_K": 398.23919999999896,
+   "source": {
+    "initial": 4,
+    "analytic": 91,
+    "pinn": 1
+   }
+  },
+  "fwd_fuselage": {
+   "material": "Carbon/bismaleimide (BMI)",
+   "thickness_mm": 2.445,
+   "state": "max_q",
+   "Bi": 0.22241332429629113,
+   "dT_max_K": 3.979023916075903,
+   "thermal_stress_MPa": 1.0355741154152387,
+   "allowable_MPa": 287.68009772280413,
+   "stress_ratio": 0.0035997419481311227,
+   "T_max_K": 381.3451263819854,
+   "source": {
+    "initial": 4,
+    "analytic": 92
+   }
+  },
+  "centre_fuselage": {
+   "material": "Carbon/bismaleimide (BMI)",
+   "thickness_mm": 4.076,
+   "state": "max_q",
+   "Bi": 0.30177586742216544,
+   "dT_max_K": 6.246903843398343,
+   "thermal_stress_MPa": 1.625856194607707,
+   "allowable_MPa": 287.697245452564,
+   "stress_ratio": 0.00565127480470014,
+   "T_max_K": 381.34467252151615,
+   "source": {
+    "initial": 4,
+    "analytic": 91,
+    "pinn": 1
+   }
+  },
+  "wing_box": {
+   "material": "Titanium Ti-6Al-4V (annealed)",
+   "thickness_mm": 4.0,
+   "state": "max_q",
+   "Bi": 0.3007508619852142,
+   "dT_max_K": 6.512662616713612,
+   "thermal_stress_MPa": 8.86975648692118,
+   "allowable_MPa": 814.918910148003,
+   "stress_ratio": 0.010884219738268539,
+   "T_max_K": 381.3436223941413,
+   "source": {
+    "initial": 4,
+    "analytic": 90,
+    "pinn": 2
+   }
+  },
+  "wing_le": {
+   "material": "Carbon/bismaleimide (BMI)",
+   "thickness_mm": 1.6,
+   "state": "max_q",
+   "Bi": 0.3193563361288939,
+   "dT_max_K": 1.6533405935253995,
+   "thermal_stress_MPa": 0.4290935833624691,
+   "allowable_MPa": 286.03835076923076,
+   "stress_ratio": 0.0015001260572525537,
+   "T_max_K": 398.23920000000004,
+   "source": {
+    "initial": 4,
+    "analytic": 92
+   }
+  },
+  "control": {
+   "material": "Carbon/bismaleimide (BMI)",
+   "thickness_mm": 2.507,
+   "state": "max_q",
+   "Bi": 0.2739203346364275,
+   "dT_max_K": 4.418269745413738,
+   "thermal_stress_MPa": 1.1498914773798037,
+   "allowable_MPa": 287.68008566380064,
+   "stress_ratio": 0.003997118795089739,
+   "T_max_K": 381.34512638266,
+   "source": {
+    "initial": 4,
+    "analytic": 92
+   }
+  },
+  "aft_fuselage": {
+   "material": "Ceramic matrix composite C/SiC",
+   "thickness_mm": 2.628,
+   "state": "max_q",
+   "Bi": 0.05822879416128324,
+   "dT_max_K": 2.120221896882299,
+   "thermal_stress_MPa": 0.813899552297609,
+   "allowable_MPa": 200.0,
+   "stress_ratio": 0.004069497761488045,
+   "T_max_K": 408.34205627759803,
+   "source": {
+    "initial": 4,
+    "analytic": 92
+   }
+  },
+  "nozzle": {
+   "material": "Ceramic matrix composite C/SiC",
+   "thickness_mm": 1.2,
+   "state": "max_q",
+   "Bi": 0.025781270988571407,
+   "dT_max_K": 1.225329799285987,
+   "thermal_stress_MPa": 0.46866696929217483,
+   "allowable_MPa": 200.0,
+   "stress_ratio": 0.0023433348464608744,
+   "T_max_K": 478.845126362467,
+   "source": {
+    "initial": 4,
+    "analytic": 92
+   }
+  }
+ },
+ "answer_share_pinn": 0.005434782608695652
+}

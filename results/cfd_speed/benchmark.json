@@ -1,0 +1,70 @@
+{
+ "quality": "draft",
+ "band_percent": 0.5,
+ "reference": "all_steps",
+ "runs": {
+  "all_steps": {
+   "wall_seconds": 882.0,
+   "solver_seconds": 878.791365,
+   "steps": 2400,
+   "stop_reason": "steps",
+   "CL": 0.0435104532,
+   "CD": 0.01071840907,
+   "cells": 132600,
+   "forces_from": "last step",
+   "sequencing": {
+    "start": "free stream",
+    "fine_seconds": 878.791365,
+    "fine_steps": 2400,
+    "stop_reason": "steps",
+    "sequenced": false
+   },
+   "speedup": 1.0,
+   "CL_error_percent": 0.0,
+   "CD_error_percent": 0.0
+  },
+  "stop_on_forces": {
+   "wall_seconds": 477.2,
+   "solver_seconds": 474.220424,
+   "steps": 1420,
+   "stop_reason": "forces",
+   "CL": 0.04347857369,
+   "CD": 0.01072890641,
+   "cells": 132600,
+   "forces_from": "mean of the last window",
+   "sequencing": {
+    "start": "free stream",
+    "fine_seconds": 474.220424,
+    "fine_steps": 1420,
+    "stop_reason": "forces",
+    "sequenced": false
+   },
+   "speedup": 1.848281642917016,
+   "CL_error_percent": -0.07326862318225431,
+   "CD_error_percent": 0.09793748243273862
+  },
+  "sequenced": {
+   "wall_seconds": 859.1,
+   "solver_seconds": 678.171999,
+   "steps": 1370,
+   "stop_reason": "forces",
+   "CL": 0.04352141763,
+   "CD": 0.01072822828,
+   "cells": 132600,
+   "forces_from": "mean of the last window",
+   "sequencing": {
+    "start": "coarse pass first",
+    "coarse_seconds": 179.94647002220154,
+    "coarse_steps": 800,
+    "coarse_cells": 44660,
+    "fine_seconds": 678.171999,
+    "fine_steps": 1370,
+    "stop_reason": "forces",
+    "sequenced": true
+   },
+   "speedup": 1.0266558025840997,
+   "CL_error_percent": 0.025199530672788024,
+   "CD_error_percent": 0.09161070393816832
+  }
+ }
+}

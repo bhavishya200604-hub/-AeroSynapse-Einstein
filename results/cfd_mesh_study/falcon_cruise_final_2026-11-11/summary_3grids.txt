@@ -1,0 +1,10 @@
+CFD mesh study: Falcon cruise, Mach 0.85, alpha 2 deg, 11 km
+============================================================
+
+model   cpl     cells  wall  thin  steps    stop        CL        CD  s/step  peak MB
+half     34     86688    46    69   1430  forces   0.14031   0.01870    0.38       35
+half     48    173628   286    89   1820  forces   0.14397   0.01905    0.80       65
+half     68    342720   736   153   1640  forces   0.14250   0.01686    0.85      122
+
+half CL: oscillatory; three-grid band 0.14031 to 0.14397
+half CD: oscillatory; three-grid band 0.01686 to 0.01905

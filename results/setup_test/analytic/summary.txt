@@ -1,0 +1,42 @@
+Analytic simulation
+===================
+
+Setup:
+  Panel method:
+    Angle from: -4 deg
+    Angle to: 10 deg
+    Angle step: 2 deg
+  Lifting line:
+    Lifting-line angle: 6 deg
+  Shocks:
+    Nose and inlet Mach: 1.6
+    Section theory Mach: 1.8
+  Skin heating:
+    Dash Mach: 2
+    Dash altitude: 12000 m
+    Dash duration: 300 s
+    Skin start above ambient: 5 K
+
+1. Panel method (Hess-Smith) on the wing's own section
+   lift slope 6.502 per rad against 2 pi = 6.283 from thin-airfoil theory (+3.5 %, the thickness effect)
+   at 3 deg: cl 0.3909, cm about the quarter chord -0.0111
+
+2. Prandtl lifting line (Glauert series) on the main wing planform
+   aspect ratio 3.14, CL_alpha 3.888 per rad (Helmbold-style finite-wing value), span efficiency 0.979
+   at 6 deg: CL 0.3573, induced drag CDi 0.01322
+
+3. Sears-Haack area rule
+   volume 20.09 m3, length 15.16 m: ideal body D/q = 128 V^2/(pi L^4) = 0.3114 m2 (the code's slender-body sum gives 0.3157)
+   the design's area distribution: D/q 0.6342 m2 = 2.04 x the ideal
+
+4. Nose cone and inlet at Mach 1.6
+   nose half-angle 15.0 deg (Taylor-Maccoll): shock 42.0 deg, surface Cp 0.2288, surface Mach 1.361
+   pitot inlet normal shock: M2 0.668, p2/p1 2.820, T2/T1 1.388, total-pressure recovery 0.8952
+
+5. Ackeret supersonic section theory at Mach 1.8 (normal Mach 1.509 across the 33 deg sweep)
+   cl_alpha 3.538 per rad, wave drag from thickness 0.01453, from camber 0.00080
+
+6. Exact transient skin heating (eigen-series), Mach 2 dash at 12 km for 300 s
+   fwd_fuselage: Carbon/bismaleimide (BMI) 2.4 mm, Bi 0.087, peak 371 K, through-thickness difference 5.0 K
+   wing_box: Carbon/bismaleimide (BMI) 6.3 mm, Bi 0.248, peak 371 K, through-thickness difference 15.7 K
+   aft_fuselage: Ceramic matrix composite C/SiC 2.6 mm, Bi 0.023, peak 371 K, through-thickness difference 1.5 K

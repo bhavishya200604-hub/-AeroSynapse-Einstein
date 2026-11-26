@@ -1,0 +1,54 @@
+{
+ "exe": "C:/Users/HP/AppData/Local/Temp/claude/d5f3e531d43ada1e/8aa43fdb-79d4-4da6-bd1e-67d3bbbc1305/scratchpad/flowdev/aeroflow_seal.exe",
+ "cpc": 24.0,
+ "mach": 0.5,
+ "alpha": 4.0,
+ "rows": [
+  {
+   "tc": 0.02,
+   "thickness_cells": 0.48,
+   "CL": 0.3030934513,
+   "CD": 0.02119435877,
+   "CL_lattice": 0.3280757438777232,
+   "CL_lattice_thick": 0.3333249557797668,
+   "ratio": 0.923852058422721,
+   "cells": 168504,
+   "wall_cells": 0,
+   "thin_surface_cells": 1825,
+   "steps": 1940,
+   "stop": "forces",
+   "seconds": 601.5400218963623
+  },
+  {
+   "tc": 0.1,
+   "thickness_cells": 2.4000000000000004,
+   "CL": 0.3567427352,
+   "CD": 0.007807238508,
+   "CL_lattice": 0.3280757438777232,
+   "CL_lattice_thick": 0.35432180338794106,
+   "ratio": 1.087379185621724,
+   "cells": 188328,
+   "wall_cells": 2774,
+   "thin_surface_cells": 438,
+   "steps": 1770,
+   "stop": "forces",
+   "seconds": 650.6802797317505
+  },
+  {
+   "tc": 0.15,
+   "thickness_cells": 3.5999999999999996,
+   "CL": 0.3650494485,
+   "CD": 0.02172736469,
+   "CL_lattice": 0.3280757438777232,
+   "CL_lattice_thick": 0.36744483314305004,
+   "ratio": 1.1126986841064885,
+   "cells": 203196,
+   "wall_cells": 3945,
+   "thin_surface_cells": 508,
+   "steps": 1770,
+   "stop": "forces",
+   "seconds": 659.6909523010254
+  }
+ ],
+ "date": "2026-11-11 16:27"
+}

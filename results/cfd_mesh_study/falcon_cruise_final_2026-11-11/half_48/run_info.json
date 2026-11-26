@@ -1,0 +1,73 @@
+{
+ "case": "cruise",
+ "quality": "custom",
+ "flight": {
+  "mach": 0.85,
+  "alpha": 2.0,
+  "beta": 0.0,
+  "altitude": 11000.0,
+  "delta_T": 0.0,
+  "turbulence_intensity": 0.0,
+  "turbulence_length": 3.0,
+  "gust_amplitude": 0.0,
+  "gust_wavelength": 30.0
+ },
+ "reference": {
+  "length": 15.16088277,
+  "area": 28.452237067968834,
+  "chord": 3.1420810855033428,
+  "span": 9.450199999999999,
+  "moment_point": [
+   8.185267783779622,
+   0.0,
+   0.0
+  ]
+ },
+ "setup": {
+  "preset": "cruise",
+  "mach": 0.85,
+  "alpha": 2.0,
+  "beta": 0.0,
+  "altitude": 11000.0,
+  "delta_T": 0.0,
+  "turbulence_intensity": 0.0,
+  "turbulence_length": 3.0,
+  "gust_amplitude": 0.0,
+  "gust_wavelength": 30.0,
+  "viscous": true,
+  "wall_model": true,
+  "sgs": "wale",
+  "low_mach_fix": "auto",
+  "thin_surfaces": true,
+  "quality": "custom",
+  "cells_per_length": 48.0,
+  "steps": 6000,
+  "full_model": false,
+  "unsteady": "off",
+  "average_from": 50.0,
+  "cfl": 1.2,
+  "residual_drop": 1e-05,
+  "max_cells": 2500000.0,
+  "stretch": 1.15,
+  "domain_up": 0.0,
+  "domain_down": 0.0,
+  "domain_side": 0.0,
+  "domain_vert": 0.0,
+  "start": "free stream",
+  "start_folder": "",
+  "force_band": 0.5,
+  "save_volume": true,
+  "flow_pictures": "none",
+  "flow_section_span": 55.0,
+  "probe_1": "",
+  "probe_2": "",
+  "probe_3": ""
+ },
+ "sequencing": {
+  "start": "free stream",
+  "fine_seconds": 1453.220223,
+  "fine_steps": 1820,
+  "stop_reason": "forces",
+  "sequenced": false
+ }
+}

@@ -1,0 +1,13 @@
+{
+  "note": "Public reference values gathered from web search. Quality is stated per entry. Weak entries are sanity ranges, not validation data. Upload real data through the data slots.",
+  "entries": [
+    {"item": "Narrow-body zero-lift drag coefficient, 737-800 class", "value": "0.018 to 0.021", "quality": "weak", "source": "flight-simulator model data and a forum thread, not a manufacturer", "url": "https://devsupport.flightsimulator.com/t/is-drag-coef-zero-lift-the-same-thing-as-cd0-how-do-i-match/5804"},
+    {"item": "Blended wing body versus tube and wing, cruise L/D", "value": "+15 to 20 %", "quality": "good", "source": "peer-reviewed 2025 comparison, The Aeronautical Journal", "url": "https://core-prod.cambridgecore.org/core/services/aop-cambridge-core/content/view/6989929571DB0085B678B315268D7675/S0001924025000089a.pdf/comparison-of-blended-wing-body-and-tube-and-wing-performance-characteristics.pdf"},
+    {"item": "Blended wing body versus tube and wing, design mission fuel", "value": "-24 %, or -20 % against an advanced tube and wing", "quality": "good", "source": "peer-reviewed 2025 comparison, The Aeronautical Journal", "url": "https://core-prod.cambridgecore.org/core/services/aop-cambridge-core/content/view/6989929571DB0085B678B315268D7675/S0001924025000089a.pdf/comparison-of-blended-wing-body-and-tube-and-wing-performance-characteristics.pdf"},
+    {"item": "Concorde temperature limit at Mach 2", "value": "127 C", "quality": "good", "source": "several sources agree; the aluminium structure set the limit", "url": "https://www.gracesguide.co.uk/Concorde"},
+    {"item": "Sears-Haack wave drag", "value": "D/q = 9 pi A^2 / (2 L^2) = 128 V^2 / (pi L^4)", "quality": "exact theory", "source": "slender-body theory", "url": "https://en.wikipedia.org/wiki/Sears%E2%80%93Haack_body"},
+    {"item": "Square-sided fuselage drag", "value": "30 to 40 % above the round-body form factor", "quality": "moderate", "source": "summary of Raymer's method", "url": "https://www.cliffsnotes.com/study-notes/3594485"},
+    {"item": "NACA 0012 force data at Re = 6 million", "value": "see naca0012_ladson.json", "quality": "good", "source": "Ladson, NASA TM 4074", "url": "https://tmbwg.github.io/turbmodels/NACA0012_validation/CLCD_Ladson_expdata.dat"}
+  ],
+  "missing": ["Manufacturer drag polars", "Engine decks", "Certified structural allowables", "Whole-aircraft CFD or wind tunnel pressures", "Measured skin temperatures for supersonic cruise"]
+}

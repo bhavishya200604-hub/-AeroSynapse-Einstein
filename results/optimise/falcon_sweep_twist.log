@@ -1,0 +1,22 @@
+==============================================================================
+RESEARCH USE ONLY. AeroSynapse-Einstein results are not certified for aircraft, pressure vessels, industrial machinery or any safety-critical decision. Platform validation tier: 1/5 (Research simulation: exploratory, no accuracy guarantee.) Classical solvers: tier 3 (code-verified). ML surrogates: tier 1.
+==============================================================================
+run  0 (baseline): sweep 33, twist -1.99 -> CL 0.0681 CD 0.02962 L/D 2.30  (347 s)
+run  1 (space-filling): sweep 40.4, twist -1.75 -> CL 0.0698 CD 0.02968 L/D 2.35  (343 s)
+run  2 (space-filling): sweep 32.6, twist -3.42 -> CL 0.0637 CD 0.02931 L/D 2.17  (306 s)
+run  3 (space-filling): sweep 28.4, twist -0.961 -> CL 0.0842 CD 0.03032 L/D 2.78  (246 s)
+run  4 (expected improvement): sweep 25, twist -0.484 -> CL 0.0805 CD 0.03017 L/D 2.67  (278 s)
+run  5 (expected improvement): sweep 45, twist -0.836 -> CL 0.0677 CD 0.02958 L/D 2.29  (279 s)
+run  6 (expected improvement): sweep 28.2, twist 0 -> CL 0.0852 CD 0.03025 L/D 2.82  (276 s)
+run  7 (expected improvement): sweep 25, twist -5 -> CL 0.0577 CD 0.02887 L/D 2.00  (272 s)
+CFD design optimisation (Bayesian, Gaussian process)
+====================================================
+
+Objective: max L/D; Mach 0.85, alpha 2.0 deg, altitude 11000.0 m
+8 CFD runs (draft grid, each stopped when its mean forces settled within 0.5 %), 39.5 min in all
+baseline: CL 0.0681, CD 0.02962, L/D 2.30
+best (run 6): CL 0.0852, CD 0.03025, L/D 2.82  (+22.6 % L/D)
+best wing: leading-edge sweep 28.2 deg, tip twist 0 deg
+variable weights from the surrogate (1 / length scale): sweep 65 %, twist 35 %
+Read with care: forces from the chosen grid carry its discretisation error; confirm the best wing with a standard or fine run (Studio: open best_design.json and run CFD).
+

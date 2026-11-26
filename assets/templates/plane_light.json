@@ -1,0 +1,131 @@
+{
+ "name": "light airplane",
+ "units": "m",
+ "features": [
+  {
+   "id": "body",
+   "type": "fuselage",
+   "op": "add",
+   "stations": [
+    [
+     0,
+     0.02,
+     0.02,
+     0.0,
+     2
+    ],
+    [
+     0.656,
+     0.33,
+     0.396,
+     0.0,
+     2
+    ],
+    [
+     1.64,
+     0.552,
+     0.6624,
+     0.0,
+     2.0
+    ],
+    [
+     3.69,
+     0.6,
+     0.72,
+     0.0,
+     2.0
+    ],
+    [
+     6.15,
+     0.45,
+     0.576,
+     0.036,
+     2.0
+    ],
+    [
+     8.2,
+     0.108,
+     0.1296,
+     0.216,
+     2
+    ]
+   ]
+  },
+  {
+   "id": "spinner",
+   "type": "cone",
+   "op": "add",
+   "r1": 0.05,
+   "r2": 0.32,
+   "length": 0.55,
+   "translate": [
+    -0.45,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "wing",
+   "type": "wing",
+   "op": "add",
+   "span": 5.0,
+   "root_chord": 1.6,
+   "taper": 0.7,
+   "sweep": 2.0,
+   "dihedral": 2.0,
+   "twist": -2.0,
+   "tc": 0.15,
+   "camber": 0.02,
+   "camber_pos": 0.4,
+   "profile": "naca",
+   "translate": [
+    2.4,
+    0.35,
+    0.55
+   ],
+   "mirror": true
+  },
+  {
+   "id": "tail",
+   "type": "tail",
+   "op": "add",
+   "span": 1.6,
+   "root_chord": 0.9,
+   "taper": 0.6,
+   "sweep": 8.0,
+   "dihedral": 0.0,
+   "twist": 0.0,
+   "tc": 0.1,
+   "camber": 0.0,
+   "camber_pos": 0.4,
+   "profile": "naca",
+   "translate": [
+    7.0,
+    0.15,
+    0.25
+   ],
+   "mirror": true
+  },
+  {
+   "id": "fin",
+   "type": "fin",
+   "op": "add",
+   "span": 1.4,
+   "root_chord": 1.1,
+   "taper": 0.5,
+   "sweep": 30.0,
+   "dihedral": 90,
+   "twist": 0.0,
+   "tc": 0.1,
+   "camber": 0.0,
+   "camber_pos": 0.4,
+   "profile": "naca",
+   "translate": [
+    6.8,
+    0.0,
+    0.4
+   ],
+   "mirror": false
+  }
+ ]
+}

@@ -1,0 +1,273 @@
+<title>__NAME__ Redesign Study</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column of drawings and data tables, like a test report with its figures in line. */
+:root{--bg:#f3f5f6;--panel:#ffffff;--ink:#131c24;--ink2:#4d5a66;--ink3:#6c7883;--rule:#d6dde2;--grid:#e6ebee;--base:#eb6834;--opt:#2a78d6;--fill-base:#eb683426;--fill-opt:#2a78d626;
+--display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;--body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11171c;--panel:#182027;--ink:#eef2f4;--ink2:#b9c3cb;--ink3:#93a0ab;--rule:#2d3842;--grid:#232d35;--base:#d95926;--opt:#3987e5;--fill-base:#d9592633;--fill-opt:#3987e533;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11171c;--panel:#182027;--ink:#eef2f4;--ink2:#b9c3cb;--ink3:#93a0ab;--rule:#2d3842;--grid:#232d35;--base:#d95926;--opt:#3987e5;--fill-base:#d9592633;--fill-opt:#3987e533;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 72px}
+main{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+section{display:flex;flex-direction:column;gap:16px;min-width:0}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:.005em}
+h1{font-size:clamp(38px,6.4vw,60px)}h2{font-size:30px;border-top:2px solid var(--ink);padding-top:12px}h3{font-size:21px;font-weight:500;margin-top:8px}
+p{margin:0;max-width:68ch}.lede{font-size:18px;color:var(--ink)}.note{color:var(--ink2);font-size:14px;max-width:72ch}
+.eyebrow{font:500 13px/1.3 var(--mono);color:var(--ink2);letter-spacing:.04em}
+.fig{background:var(--panel);border:1px solid var(--rule);padding:14px;min-width:0}
+.cap{font-size:13.5px;color:var(--ink2);margin-top:8px;max-width:76ch}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:16px}
+.grid2>*{min-width:0}
+.tw{overflow-x:auto;background:var(--panel);border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th{font:500 12.5px/1.25 var(--mono);text-align:right;color:var(--ink2);padding:9px 12px;border-bottom:1px solid var(--ink3);white-space:nowrap}
+td{padding:7px 12px;border-bottom:1px solid var(--grid);text-align:right;font-family:var(--mono);font-size:13.5px;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+th:first-child,td:first-child{text-align:left;font-family:var(--body);font-size:14px;color:var(--ink);white-space:normal;min-width:170px}
+th:first-child{font:500 12.5px/1.25 var(--mono);color:var(--ink2)}
+td.sub{display:block;border:0;padding:0;color:var(--ink3);font-size:12.5px}
+.good{color:var(--opt);font-weight:500}.bad{color:var(--base);font-weight:500}
+.bar{display:inline-grid;grid-template-columns:70px 70px;width:140px;height:12px;vertical-align:middle}
+.bar i{display:block;height:12px}.bar .l{justify-self:end;background:var(--opt);border-radius:3px 0 0 3px}.bar .r{background:var(--base);border-radius:0 3px 3px 0}
+.bar .ax{grid-column:1/3}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+@media (max-width:640px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--panel);padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.kpi b{font:600 34px/1.05 var(--display)}.kpi span{font-size:13.5px;color:var(--ink2)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink2);margin-bottom:6px}
+.legend i{display:inline-block;width:14px;height:3px;margin-right:6px;vertical-align:middle;border-radius:2px}
+.chart{position:relative;min-width:0}.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{font:400 12px var(--mono);fill:var(--ink2)}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font:400 12px/1.4 var(--mono);padding:5px 8px;border-radius:3px;white-space:nowrap;z-index:5;transform:translate(-50%,-110%)}
+canvas{display:block;width:100%;height:auto;image-rendering:pixelated;background:var(--panel)}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(46%,140px),1fr));gap:10px}
+.strip figure{margin:0;min-width:0}.strip figcaption{font:400 12px var(--mono);color:var(--ink2);margin-top:4px}
+ul{margin:0;padding-left:20px;max-width:72ch;display:flex;flex-direction:column;gap:6px}
+code{font:400 .9em var(--mono)}
+.file{font-family:var(--mono);font-size:13.5px}
+</style>
+
+<main>
+<header style="display:flex;flex-direction:column;gap:14px">
+  <div class="eyebrow">AeroSynapse shape study · research use only · validation tier 1</div>
+  <h1>__NAME__ redesign study</h1>
+  <p class="lede" id="lede"></p>
+  <div class="kpis" id="kpis"></div>
+</header>
+
+<section id="shape"><h2>The shape: before and after</h2>
+  <p id="shape-p"></p>
+  <div class="fig"><div class="chart" id="c-section"></div><div class="cap" id="cap-section"></div></div>
+  <div class="fig"><div class="chart" id="c-plan"></div><div class="cap">Top view of the whole wing, to scale, with the leading edge at the top. Dimensions are in metres. Span, area, taper and twist all moved in one search with the section.</div></div>
+  <div class="tw"><table id="t-geom"></table></div>
+</section>
+
+<section id="regimes"><h2>Every flow regime</h2>
+  <p id="reg-p"></p>
+  <div class="tw"><table id="t-named"></table></div>
+  <p class="note">Section drag at the same lift, from the largest NeuralFoil network. A blue bar to the left means the new section has less drag. An orange bar to the right means more. “Short” marks a state where the section could not reach the requested lift.</p>
+</section>
+
+<section id="unseen"><h2>States the optimiser never saw</h2>
+  <p id="uns-p"></p>
+  <div class="fig"><div class="chart" id="c-scatter"></div><div class="cap">Each dot is one random flow state, section only. Below the line, the new section has less drag at the same lift.</div></div>
+</section>
+
+<section id="wingsec"><h2>The whole wing</h2>
+  <p id="wing-p"></p>
+  <div class="grid2">
+    <div class="fig"><div class="chart" id="c-load"></div><div class="cap">Local section lift along the span in cruise. Washout unloads the tip.</div></div>
+    <div class="fig"><div class="chart" id="c-drag"></div><div class="cap">Total aircraft drag in each named flight state, including a fixed non-wing drag.</div></div>
+  </div>
+  <div class="tw"><table id="t-wing"></table></div>
+</section>
+
+<section id="judges"><h2>Checks by solvers that took no part in the search</h2>
+  <p id="jud-p"></p>
+  <h3>Independent boundary-layer solver</h3>
+  <div class="tw"><table id="t-vii"></table></div>
+  <div class="grid2">
+    <div class="fig"><div class="chart" id="c-vii-cl"></div><div class="cap">Lift curves at Re = 6 million, independent solver. This solver predicts stall, which NeuralFoil does not.</div></div>
+    <div class="fig"><div class="chart" id="c-nf-cl"></div><div class="cap">The same section from NeuralFoil at Re = 3 million. It keeps rising through stall, so its right-hand end should not be trusted.</div></div>
+  </div>
+  <h3>XFOIL</h3>
+  <p id="xf-p"></p>
+  <div class="tw"><table id="t-xf"></table></div>
+  <div class="fig"><div class="chart" id="c-xf"></div><div class="cap" id="cap-xf"></div></div>
+  <h3>Unsteady Navier-Stokes</h3>
+  <p id="ns-p"></p>
+  <div class="tw"><table id="t-ns"></table></div>
+  <div class="grid2" id="vort"></div>
+</section>
+
+<section id="insta"><h2>Instabilities</h2>
+  <p id="ins-p"></p>
+  <div class="grid2">
+    <div class="fig"><div class="chart" id="c-dyn"></div><div class="cap">Lift through a pitch oscillation of 12° ± 8° at reduced frequency 0.1. Thin lines are static curves. The time constants are typical values, so compare the two loops and do not read the absolute numbers as predictions.</div></div>
+    <div class="fig"><div class="chart" id="c-shed"></div><div class="cap" id="cap-shed"></div></div>
+  </div>
+  <div class="tw"><table id="t-ins"></table></div>
+</section>
+
+<section id="topo"><h2>Topology optimisation</h2>
+  <p id="top-p"></p>
+  <h3>Starting from a square</h3><div class="fig"><div class="strip" id="s-shape"></div></div>
+  <h3>Starting from a blank field</h3><div class="fig"><div class="strip" id="s-grey"></div></div>
+  <div class="tw"><table id="t-topo"></table></div>
+  <p class="note" id="top-note"></p>
+</section>
+
+<section id="added"><h2>Added shapes: slat and flap</h2>
+  <p id="hl-p"></p>
+  <div class="grid2" id="hl-figs"></div>
+  <div class="tw"><table id="t-hl"></table></div>
+</section>
+
+<section id="conv"><h2>Did the search converge?</h2>
+  <p id="cv-p"></p>
+  <div class="fig"><div class="chart" id="c-conv"></div><div class="cap">Score on the hold-out states after each round. 1.0 is the baseline. Lower is better.</div></div>
+</section>
+
+<section id="trust"><h2>How far to trust this</h2>
+  <p>This is a research result, not a cleared design. Nothing here replaces a wind-tunnel test, a stress analysis or flutter clearance.</p>
+  <ul id="limits"></ul>
+  <h3>Problems found and fixed while building this</h3>
+  <ul id="fixes"></ul>
+  <h3>Files</h3>
+  <ul id="files"></ul>
+</section>
+</main>
+
+<script>
+const D=/*__DATA__*/null;
+const $=i=>document.getElementById(i), css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const f=(x,n=3)=>(x==null||!isFinite(x))?"–":Number(x).toFixed(n), pc=(a,b)=>100*(a/b-1), sg=(x,n=1)=>(x>0?"+":"")+f(x,n)+" %";
+const el=(t,a={},...c)=>{const e=document.createElementNS("http://www.w3.org/2000/svg",t);for(const k in a)e.setAttribute(k,a[k]);c.forEach(q=>e.append(q));return e};
+const NICE=[1,2,2.5,5,10];
+function ticks(a,b,n=5){const s=(b-a)/n,m=10**Math.floor(Math.log10(s||1));const st=NICE.map(q=>q*m).find(q=>q>=s)||10*m;const o=[];for(let v=Math.ceil(a/st)*st;v<=b+st*1e-6;v+=st)o.push(+v.toFixed(10));return o}
+function chart(id,o){const host=$(id);host.innerHTML="";const W=o.w||620,H=o.h||330,L=58,R=14,T=12,B=44;
+ const S=o.series,allx=S.flatMap(s=>s.pts.map(p=>p[0])),ally=S.flatMap(s=>s.pts.map(p=>p[1])).filter(isFinite);
+ const lg=!!o.logx,tx=v=>lg?Math.log10(v):v;
+ let x0=o.xmin??Math.min(...allx),x1=o.xmax??Math.max(...allx),y0=o.ymin??Math.min(...ally),y1=o.ymax??Math.max(...ally);
+ if(o.ymin==null||o.ymax==null){const p=(y1-y0)*.06||.1;if(o.ymin==null)y0-=p;if(o.ymax==null)y1+=p}
+ const X=v=>L+(tx(v)-tx(x0))/(tx(x1)-tx(x0))*(W-L-R),Y=v=>H-B-(v-y0)/(y1-y0)*(H-T-B);
+ const svg=el("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":o.alt||""});
+ const xt=lg?[...Array(9).keys()].map(i=>10**i).filter(v=>v>=x0&&v<=x1):ticks(x0,x1,o.xn||6);
+ ticks(y0,y1,o.yn||5).forEach(v=>{svg.append(el("line",{x1:L,x2:W-R,y1:Y(v),y2:Y(v),stroke:"var(--grid)"}));const t=el("text",{x:L-8,y:Y(v)+4,"text-anchor":"end"});t.textContent=o.yfmt?o.yfmt(v):+v.toFixed(4);svg.append(t)});
+ xt.forEach(v=>{svg.append(el("line",{x1:X(v),x2:X(v),y1:H-B,y2:H-B+4,stroke:"var(--ink3)"}));const t=el("text",{x:X(v),y:H-B+18,"text-anchor":"middle"});t.textContent=o.xfmt?o.xfmt(v):(lg?"1e"+Math.round(Math.log10(v)):+v.toFixed(3));svg.append(t)});
+ svg.append(el("line",{x1:L,x2:W-R,y1:H-B,y2:H-B,stroke:"var(--ink3)"}));
+ const xl=el("text",{x:(L+W-R)/2,y:H-6,"text-anchor":"middle"});xl.textContent=o.xlab||"";svg.append(xl);
+ const yl=el("text",{x:13,y:(T+H-B)/2,"text-anchor":"middle",transform:`rotate(-90 13 ${(T+H-B)/2})`});yl.textContent=o.ylab||"";svg.append(yl);
+ if(o.hline!=null)svg.append(el("line",{x1:L,x2:W-R,y1:Y(o.hline),y2:Y(o.hline),stroke:"var(--ink2)","stroke-dasharray":"4 4"}));
+ S.forEach(s=>{if(s.dots){s.pts.forEach(p=>svg.append(el("circle",{cx:X(p[0]),cy:Y(p[1]),r:s.r||3,fill:s.color,"fill-opacity":.72})))}
+  else{const P=s.pts.filter(p=>isFinite(p[1])&&p[0]>=x0&&p[0]<=x1);svg.append(el("path",{d:"M"+P.map(p=>X(p[0]).toFixed(1)+" "+Y(Math.max(y0,Math.min(y1,p[1]))).toFixed(1)).join("L"),fill:"none",stroke:s.color,"stroke-width":s.w||2,"stroke-linejoin":"round","stroke-dasharray":s.dash||"","stroke-opacity":s.op||1}));
+   if(s.mark)P.forEach(p=>svg.append(el("circle",{cx:X(p[0]),cy:Y(p[1]),r:4,fill:s.color,stroke:"var(--panel)","stroke-width":2})))}});
+ if(S.filter(s=>s.name).length>1){const g=document.createElement("div");g.className="legend";S.filter(s=>s.name).forEach(s=>{const i=document.createElement("span");i.innerHTML=`<i style="background:${s.color}"></i>${s.name}`;g.append(i)});host.append(g)}
+ host.append(svg);
+ const tip=document.createElement("div");tip.className="tip";tip.hidden=true;host.append(tip);
+ const dot=el("circle",{r:5,fill:"none",stroke:"var(--ink)","stroke-width":2,visibility:"hidden"});svg.append(dot);
+ svg.addEventListener("pointermove",e=>{const r=svg.getBoundingClientRect(),k=W/r.width,mx=(e.clientX-r.left)*k,my=(e.clientY-r.top)*k;let b=null,bd=1e9;
+  S.forEach(s=>s.pts.forEach((p,i)=>{if(!isFinite(p[1]))return;const d=Math.hypot(X(p[0])-mx,Y(p[1])-my);if(d<bd){bd=d;b={s,p,i}}}));
+  if(!b||bd>44){tip.hidden=true;dot.setAttribute("visibility","hidden");return}
+  dot.setAttribute("cx",X(b.p[0]));dot.setAttribute("cy",Y(b.p[1]));dot.setAttribute("visibility","visible");
+  tip.hidden=false;tip.textContent=o.tip?o.tip(b):`${b.s.name?b.s.name+": ":""}${+b.p[0].toFixed(3)}, ${+b.p[1].toFixed(4)}`;tip.style.left=Math.min(r.width-70,Math.max(70,X(b.p[0])/k))+"px";tip.style.top=(Y(b.p[1])/k+(host.querySelector(".legend")?.offsetHeight||0))+"px"});
+ svg.addEventListener("pointerleave",()=>{tip.hidden=true;dot.setAttribute("visibility","hidden")})}
+function shapes(id,o){const host=$(id),W=o.w||900,sc=(W-30)/(o.x1-o.x0),H=(o.y1-o.y0)*sc+(o.pad||10);const X=x=>15+(x-o.x0)*sc,Y=y=>H-(o.pad||10)/2-(y-o.y0)*sc;
+ const svg=el("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":o.alt||""});
+ o.items.forEach(s=>svg.append(el("path",{d:"M"+s.pts.map(p=>X(p[0]).toFixed(1)+" "+Y(p[1]).toFixed(1)).join("L")+(s.open?"":"Z"),fill:s.fill||"none",stroke:s.color,"stroke-width":s.w||2,"stroke-linejoin":"round","stroke-dasharray":s.dash||""})));
+ (o.labels||[]).forEach(l=>{const t=el("text",{x:X(l[0]),y:Y(l[1]),"text-anchor":l[3]||"middle"});t.textContent=l[2];svg.append(t)});
+ host.innerHTML="";if(o.legend){const g=document.createElement("div");g.className="legend";o.legend.forEach(s=>{const i=document.createElement("span");i.innerHTML=`<i style="background:${s[1]}"></i>${s[0]}`;g.append(i)});host.append(g)}host.append(svg)}
+const dec=b=>Uint8Array.from(atob(b),c=>c.charCodeAt(0));
+const rgb=c=>{const d=document.createElement("div");d.style.color=c;document.body.append(d);const m=getComputedStyle(d).color.match(/[\d.]+/g).map(Number);d.remove();return m};
+function density(cv,b,nx,ny){const v=dec(b),S=4;cv.width=nx*S;cv.height=ny*S;const c=cv.getContext("2d"),ink=rgb("var(--ink)"),bg=rgb("var(--panel)");
+ for(let i=0;i<nx;i++)for(let j=0;j<ny;j++){const t=v[i*ny+j]/255;c.fillStyle=`rgb(${bg.map((q,k)=>Math.round(q+(ink[k]-q)*t)).slice(0,3)})`;c.fillRect(i*S,(ny-1-j)*S,S,S)}}
+function vort(cv,F){const w=dec(F.w),s=dec(F.s),{nx,ny}=F,S=3;cv.width=nx*S;cv.height=ny*S;const c=cv.getContext("2d"),pos=rgb("var(--base)"),neg=rgb("var(--opt)"),bg=rgb("var(--panel)"),ink=rgb("var(--ink)");
+ for(let i=0;i<nx;i++)for(let j=0;j<ny;j++){const q=i*ny+j;let col;if(s[q])col=ink;else{const t=Math.min(1,Math.abs(w[q]/127.5-1)*1.6),e=w[q]>127.5?pos:neg;col=bg.map((b,k)=>Math.round(b+(e[k]-b)*t))}c.fillStyle=`rgb(${col.slice(0,3)})`;c.fillRect(i*S,(ny-1-j)*S,S,S)}}
+const row=(...c)=>"<tr>"+c.map(x=>`<td>${x}</td>`).join("")+"</tr>", head=(...c)=>"<tr>"+c.map(x=>`<th>${x}</th>`).join("")+"</tr>";
+const delta=(n,o,dig=1,lowerBetter=true)=>{const p=pc(n,o);if(!isFinite(p))return"–";const good=lowerBetter?p<0:p>0;return `<span class="${Math.abs(p)<.05?"":good?"good":"bad"}">${sg(p,dig)}</span>`};
+const bar=p=>{const w=Math.min(70,Math.abs(p)*1.75);return `<span class="bar"><span>${p<0?`<i class="l" style="width:${w}px;margin-left:${70-w}px"></i>`:""}</span><span>${p>0?`<i class="r" style="width:${w}px"></i>`:""}</span></span>`};
+function render(){
+ const B="var(--base)",O="var(--opt)",w0=D.wing.base,w1=D.wing.opt,hd=D.holdout,rb=D.robust,N=D.named;
+ const pctd=N.map(s=>pc(s.cd_opt,s.cd_base)),nb=pctd.filter(p=>p<0).length;
+ const cruiseI=D.names.indexOf("cruise");
+ const dragC=pc(w1.drag[cruiseI],w0.drag[cruiseI]);
+ // __TEXT_START__
+ $("lede").textContent=`The search changed the section, span, taper, twist and winglet together. Drag fell in ${nb} of ${N.length} named flow regimes and in ${f(rb.frac_better*100,0)} % of ${rb.n_states} random states it had never seen. XFOIL, run on those same unseen states, confirms the gain: ${f((1-D.xf.mean)*100,0)} % less drag on average, better in ${f(D.xf.better*100,0)} % of them. The design gives up some performance in quiet, low-lift laminar flow to get there.`;
+ $("kpis").innerHTML=[[sg(dragC,1),"cruise drag, whole aircraft"],[sg(pc(hd.J3,1),1),"robust wing score on unseen states"],[sg(pc(hd.J2,1),1),"robust section score on unseen states"],[`${nb} of ${N.length}`,"named section regimes improved"]].map(k=>`<div class="kpi"><b>${k[0]}</b><span>${k[1]}</span></div>`).join("");
+ // __TEXT_END__
+ $("shape-p").textContent=`Thickness is held at ${f(D.m0.t*100,1)} % of chord or more. Maximum thickness moved from ${f(D.m0.x_t*100,0)} % to ${f(D.mb.x_t*100,0)} % of chord.`;
+ shapes("c-section",{x0:-.02,x1:1.02,y0:-.09,y1:.13,alt:"Baseline and optimised section outlines",items:[{pts:D.xy0,color:B,fill:"var(--fill-base)"},{pts:D.xyb,color:O,fill:"var(--fill-opt)"}],legend:[[`${D.name} baseline`,B],["Optimised",O]]});
+ $("cap-section").textContent=`Section outlines to scale, chord from left to right. Coordinates are in optimised_section.dat.`;
+ const pl=p=>{const b=Math.sqrt(p.area_m2*p.aspect_ratio),cr=2*p.area_m2/(b*(1+p.taper)),ct=cr*p.taper;return[[-b/2,-.25*ct],[0,-.25*cr],[b/2,-.25*ct],[b/2,.75*ct],[0,.75*cr],[-b/2,.75*ct]].map(q=>[q[0],-q[1]])};
+ const hb=Math.max(w0.span,w1.span)/2+.4;
+ shapes("c-plan",{x0:-hb,x1:hb,y0:-1.9,y1:1.1,alt:"Wing planforms from above",items:[{pts:pl(w0.plan),color:B,fill:"var(--fill-base)"},{pts:pl(w1.plan),color:O,fill:"var(--fill-opt)"}],legend:[[`Baseline, span ${f(w0.span,2)} m`,B],[`Optimised, span ${f(w1.span,2)} m`,O]]});
+ const P0=w0.plan,P1=w1.plan,gr=(n,a,b,d=2)=>row(n,f(a,d),f(b,d),isFinite(pc(b,a))&&a!=0?sg(pc(b,a),1):"–");
+ $("t-geom").innerHTML=head("Dimension","Baseline","Optimised","Change")+gr("Span, m",w0.span,w1.span)+gr("Wing area, m²",P0.area_m2,P1.area_m2)+gr("Aspect ratio",P0.aspect_ratio,P1.aspect_ratio)+gr("Taper ratio",P0.taper,P1.taper)+gr("Tip twist, degrees",P0.tip_twist_deg,P1.tip_twist_deg)+gr("Winglet height, % semi-span",P0.winglet_height*100,P1.winglet_height*100,1)+gr("Max thickness, % chord",D.m0.t*100,D.mb.t*100)+gr("Thickness position, % chord",D.m0.x_t*100,D.mb.x_t*100,1)+gr("Section area, chord²",D.m0.area,D.mb.area,4);
+ $("reg-p").textContent=`${nb} of ${N.length} regimes have less drag at the same lift. Largest gain ${sg(Math.min(...pctd),1)}, largest loss ${sg(Math.max(...pctd),1)}.`;
+ $("t-named").innerHTML=head("Flow state","Re","Mach","c<sub>l</sub>","c<sub>d</sub> before","c<sub>d</sub> after","Change","")+N.map((s,i)=>row(`${s.name.replaceAll("_"," ")}<span class="sub" style="display:block;color:var(--ink3);font-size:12.5px">${s.regime}${s.short_opt>0.001||s.short_base>0.001?" · short of lift":""}</span>`,Number(s.Re).toExponential(0).replace("e+","e"),f(s.mach,2),f(s.cl,2),f(s.cd_base,5),f(s.cd_opt,5),delta(s.cd_opt,s.cd_base),bar(pctd[i]))).join("");
+ const cf=D.confidence;
+ $("uns-p").textContent=`${rb.n_states} states the search was never scored on. The new section is better in ${f(rb.frac_better*100,0)} % of them. Mean drag ratio ${f(rb.mean)}, median ${f(rb.median)}, mean of the worst 10 % ${f(rb.cvar90)}, single worst ${f(rb.worst)}. The worst cases are all quiet, low-lift, low-Reynolds-number states: that is the trade this design made. `+(cf?`NeuralFoil's confidence fell below its 0.70 limit in ${cf.below_070_opt} state (lowest ${f(cf.min_opt,2)}), so one constraint is not met on the hold-out set. The low-confidence states are all tripped layers at low incidence, where the gain is only 1 to 2 %, and removing them leaves the mean unchanged.`:"");
+ chart("c-scatter",{series:[{dots:1,color:O,pts:rb.Re.map((r,i)=>[r,rb.ratio[i]])}],logx:1,xlab:"Reynolds number",ylab:"drag ratio, new / old",hline:1,alt:"Drag ratio against Reynolds number",tip:b=>`Re ${Number(b.p[0]).toExponential(1)}, M ${f(rb.mach[b.i],2)}, ratio ${f(b.p[1])}`});
+ $("wing-p").textContent=`Span went from ${f(w0.span,1)} m to ${f(w1.span,1)} m. The wing grew ${f(w1.wing_mass-w0.wing_mass,0)} kg heavier and the sizing model charged that mass back into required lift. Cruise drag changed by ${sg(dragC,1)}. Aspect ratio stopped at its upper limit of 16, which is motor-glider territory, so the limit is doing real work here and the structure model deserves a harder look before this is believed.`;
+ chart("c-load",{series:[{name:"Baseline",color:B,pts:w0.y.map((y,i)=>[y/(w0.span/2),w0.cl_section[i]])},{name:"Optimised",color:O,pts:w1.y.map((y,i)=>[y/(w1.span/2),w1.cl_section[i]])}],xlab:"span station, root to tip",ylab:"section lift coefficient",xmin:0,xmax:1,ymin:0,h:300,alt:"Spanwise lift distribution"});
+ const nn=D.names.slice(0,7);
+ chart("c-drag",{series:[{name:"Baseline",color:B,mark:1,pts:nn.map((n,i)=>[i,w0.drag[i]])},{name:"Optimised",color:O,mark:1,pts:nn.map((n,i)=>[i,w1.drag[i]])}],xlab:"flight state, hover for names",ylab:"drag, N",xn:6,xfmt:v=>Number.isInteger(v)?v+1:"",ymin:0,h:300,tip:b=>`${nn[b.p[0]].replaceAll("_"," ")}: ${f(b.p[1],0)} N`,alt:"Drag by flight state"});
+ const wr=(n,a,b,d,lb)=>row(n,f(a,d),f(b,d),delta(b,a,1,lb));
+ $("t-wing").innerHTML=head("Quantity","Baseline","Optimised","Change")+nn.map((n,i)=>wr(`Drag, ${n.replaceAll("_"," ")}, N`,w0.drag[i],w1.drag[i],0,true)).join("")+wr("Wing mass, kg",w0.wing_mass,w1.wing_mass,0,true)+wr("Take-off mass, kg",w0.takeoff_mass,w1.takeoff_mass,0,true)+wr("Stall speed, m/s",w0.v_stall,w1.v_stall,1,true)+wr("Wing C<sub>L,max</sub>",w0.cl_max_wing,w1.cl_max_wing,3,false)+wr("Root bending at design load, kN·m",w0.root_bending/1e3,w1.root_bending/1e3,1,true)+row("First stall station, fraction of semi-span",f(w0.eta_stall,2),f(w1.eta_stall,2),"limit 0.60");
+ const K=Object.keys(D.vii),lab={turbulent_Re6e6:"Turbulent, Re 6e6",transitional_Re6e5:"Transitional, Re 6e5",laminar_Re2e5:"Laminar, Re 2e5",high_Tu_Re2e6:"High turbulence, Re 2e6",contaminated_Re3e6:"Contaminated, Re 3e6"};
+ const vm=K.flatMap(k=>D.vii[k].matched.filter(m=>[.5,.8].includes(m.cl)).map(m=>({k,...m})));
+ const vok=vm.filter(m=>isFinite(m.cd_opt)&&isFinite(m.cd_base)),vb=vok.filter(m=>m.cd_opt<m.cd_base).length;
+ $("jud-p").textContent=`NeuralFoil chose this design, so it cannot be its only judge. An optimiser seeks out a surrogate's errors, so the first question is whether the gain survives outside it. Two solvers that took no part in the search say it does. The boundary-layer solver below shares no code or data with NeuralFoil and finds less drag in ${vb} of ${vok.length} matched-lift comparisons, with smaller gains. XFOIL confirms the size of the gain.`;
+ $("t-vii").innerHTML=head("Condition","c<sub>d</sub> before, c<sub>l</sub> 0.5","after","Change","c<sub>d</sub> before, c<sub>l</sub> 0.8","after","Change","c<sub>l,max</sub> before","after")+K.map(k=>{const c=D.vii[k],a=c.matched.find(m=>m.cl==.5),b=c.matched.find(m=>m.cl==.8);return row(lab[k]||k,f(a.cd_base,5),f(a.cd_opt,5),delta(a.cd_opt,a.cd_base),f(b.cd_base,5),f(b.cd_opt,5),delta(b.cd_opt,b.cd_base),f(c.clmax_base,3),f(c.clmax_opt,3))}).join("");
+ const X=D.xf;
+ $("xf-p").textContent=`XFOIL 6.99 on ${X.n} of the ${X.total} unseen states: mean drag ratio ${f(X.mean)}, median ${f(X.median)}, better in ${f(X.better*100,0)} %, worst ${f(X.worst)}. NeuralFoil predicted ${f(X.nf_mean)} on the same states, and the two correlate at ${f(X.corr,2)}, so the surrogate stayed accurate at the design it chose. NeuralFoil was trained on XFOIL, so this tests the surrogate and not the underlying physics. ${X.skipped} states above Mach 0.6 and ${X.failed} that did not converge are left out. ${X.failed_opt} of those ${X.failed} failed on the optimised section only, mostly tripped layers at low incidence, the same corner where NeuralFoil's confidence is lowest. The design is harder to analyse there, and leaving those states out may flatter it slightly. XFOIL matched NASA's NACA 0012 data to ${f(X.nasa.mean_cd_err*100,1)} % on drag, but stopped converging at ${f(X.nasa.alpha_last,1)}°, below the real stall, so it says nothing about stall and its maximum lift values are not used.`;
+ $("t-xf").innerHTML=head("Flow state","c<sub>d</sub> before","after","XFOIL change","NeuralFoil change")+X.named.map(q=>q.skipped?row(q.name.replaceAll("_"," "),"–","–","above Mach limit",sg(100*(q.nf_ratio-1),1)):row(q.name.replaceAll("_"," "),f(q.cd_base,5),f(q.cd_opt,5),delta(q.cd_opt,q.cd_base),sg(100*(q.nf_ratio-1),1))).join("");
+ const xin=X.pts.filter(q=>q[1]>=.7&&q[1]<=1.2&&q[0]>=.7&&q[0]<=1.2);
+ chart("c-xf",{series:[{dots:1,color:O,pts:xin},{color:"var(--ink3)",w:1,pts:[[.7,.7],[1.2,1.2]]}],xmin:.7,xmax:1.2,ymin:.7,ymax:1.2,xlab:"NeuralFoil drag ratio, new / old",ylab:"XFOIL drag ratio, new / old",h:360,alt:"XFOIL against NeuralFoil drag ratio",tip:b=>`NeuralFoil ${f(b.p[0])}, XFOIL ${f(b.p[1])}`});
+ $("cap-xf").textContent=`Each dot is one unseen state. Points on the diagonal mean the two agree, and points below 1.0 mean the new section has less drag. ${X.pts.length-xin.length} states lie outside this view. The most extreme are high-lift, low-Reynolds-number states where the baseline is close to stall. ${X.far} states differ by more than 0.1, and leaving them out gives a mean of ${f(X.mean_near)}.`;
+ const vt=D.vii.turbulent_Re6e6;
+ chart("c-vii-cl",{series:[{name:"Baseline",color:B,pts:vt.alpha.map((a,i)=>[a,vt.base.CL[i]])},{name:"Optimised",color:O,pts:vt.alpha.map((a,i)=>[a,vt.opt.CL[i]])}],xlab:"angle of attack, degrees",ylab:"lift coefficient",h:280,alt:"Lift curves from the independent solver"});
+ const pp=D.polars.Re3e6;
+ chart("c-nf-cl",{series:[{name:"Baseline",color:B,pts:pp.base.alpha.map((a,i)=>[a,pp.base.CL[i]])},{name:"Optimised",color:O,pts:pp.opt.alpha.map((a,i)=>[a,pp.opt.CL[i]])}],xlab:"angle of attack, degrees",ylab:"lift coefficient",h:280,xmin:-10,xmax:24,alt:"Lift curves from NeuralFoil"});
+ const ns=Object.fromEntries(D.ns.map(c=>[c.name,c]));
+ if(D.ns.length){
+  const cy=ns.cylinder_Re100;
+  $("ns-p").textContent=cy?`Full time-dependent equations at Re = 500, with no turbulence or transition model. These are laminar 2D runs on a grid of 32 cells per chord, so they say nothing about turbulent flow. The two sections differ by less than one grid cell, and the 2 % camber itself is under one cell, so differences of a few percent here are not meaningful. This check can see large effects such as stall and vortex shedding, not fine shape changes. As a solver check, a cylinder at Re = 100 gave C_D ${f(cy.cd_mean,3)} and Strouhal number ${f(cy.strouhal,3)}, against published values near 1.33 and 0.164. Both read high on this coarse grid, so use these runs for comparison rather than absolute values.`:"";
+  const al=[0,8,18].filter(a=>ns[`airfoil_base_a${a}`]&&ns[`airfoil_opt_a${a}`]);
+  $("t-ns").innerHTML=head("Case","C<sub>D</sub> before","after","Change","C<sub>L</sub> before","after","L/D before","after","C<sub>L</sub> fluctuation before","after")+al.map(a=>{const p=ns[`airfoil_base_a${a}`],q=ns[`airfoil_opt_a${a}`];return row(`Section at ${a}°, Re 500`,f(p.cd_mean,4),f(q.cd_mean,4),delta(q.cd_mean,p.cd_mean),f(p.cl_mean,3),f(q.cl_mean,3),f(p.cl_mean/p.cd_mean,2),f(q.cl_mean/q.cd_mean,2),f(p.cl_rms,4),f(q.cl_rms,4))}).join("");
+  const V=$("vort");V.innerHTML="";[["airfoil_base_a18","Baseline at 18°, Re 500"],["airfoil_opt_a18","Optimised at 18°, Re 500"]].forEach(([k,t])=>{if(!D.fields[k])return;const d=document.createElement("div");d.className="fig";const c=document.createElement("canvas");d.append(c);const p=document.createElement("div");p.className="cap";p.textContent=t+". Vorticity at the end of the run; flow is left to right.";d.append(p);V.append(d);vort(c,D.fields[k])});
+ } else {$("ns-p").textContent="Navier-Stokes results are not available yet.";}
+ const dy=D.dyn,sq=[["base",B,"Baseline"],["opt",O,"Optimised"]];
+ chart("c-dyn",{series:[...sq.map(([k,c,n])=>({color:c,w:1,op:.5,pts:dy[k].alpha_st.map((a,i)=>[a,dy[k].cl_st[i]])})),...sq.map(([k,c,n])=>({name:n,color:c,pts:dy[k].alpha.map((a,i)=>[a,dy[k].cl[i]])}))],xmin:2,xmax:22,xlab:"angle of attack, degrees",ylab:"lift coefficient",h:300,alt:"Dynamic stall loops"});
+ const fa=D.fields.airfoil_base_a18,fb=D.fields.airfoil_opt_a18;
+ if(fa&&fb){chart("c-shed",{series:[{name:"Baseline",color:B,pts:fa.t.map((t,i)=>[t,fa.cl[i]])},{name:"Optimised",color:O,pts:fb.t.map((t,i)=>[t,fb.cl[i]])}],xlab:"time, chord lengths travelled",ylab:"lift coefficient",h:300,alt:"Unsteady lift from vortex shedding"});$("cap-shed").textContent="Lift against time at 18°, Re 500, from the Navier-Stokes runs. The wiggle is vortex shedding."}else{$("c-shed").textContent="Waiting for Navier-Stokes results.";}
+ const p18=ns.airfoil_base_a18,q18=ns.airfoil_opt_a18;
+ $("t-ins").innerHTML=head("Instability","Baseline","Optimised","Requirement")+row("Flutter speed, m/s",f(w0.v_flutter,0),f(w1.v_flutter,0),`above ${f(1.2*D.v_dive,0)}`)+row("Divergence speed, m/s",f(w0.v_divergence,0),f(w1.v_divergence,0),`above ${f(1.2*D.v_dive,0)}`)+row("Gust load factor",f(w0.n_gust,2),f(w1.n_gust,2),"sets sizing load")+row("Dynamic stall peak c<sub>l</sub>",f(dy.base.cl_peak,3),f(dy.opt.cl_peak,3),"compare only")+row("Dynamic stall loop area",f(Math.abs(dy.base.loop_area),2),f(Math.abs(dy.opt.loop_area),2),"smaller is calmer")+(p18?row("Lift fluctuation at 18° (rms)",f(p18.cl_rms,4),f(q18.cl_rms,4),"Re 500, smaller is calmer")+row("Mean lift at 18°",f(p18.cl_mean,3),f(q18.cl_mean,3),"the cost of the calmer wake"):"");
+ $("ins-p").textContent=`Flutter margin fell from ${f(w0.v_flutter/D.v_dive,2)} to ${f(w1.v_flutter/D.v_dive,2)} times dive speed, because a longer wing is less stiff. The requirement is 1.2.`+(p18?` At 18° the new section sheds a much calmer wake: lift fluctuation falls ${f(-pc(q18.cl_rms,p18.cl_rms),0)} %, at the cost of ${f(-pc(q18.cl_mean,p18.cl_mean),0)} % less mean lift.`:"");
+ const tp=D.topo;
+ if(tp.square_shape){const a=tp.square_shape,b=tp.square_grey;
+  $("top-p").textContent=`Every cell in a design box could be solid or fluid, so holes, splits and new bodies were all possible. Solid area was fixed. Both runs ended with ${a.bodies} body and ${a.holes} holes: at these conditions, one streamlined body beats any split. The two runs started from different places and ended ${f(tp.iou*100,1)} % identical by overlap, which suggests a real optimum rather than an accident of the start.`;
+  [["s-shape",a],["s-grey",b]].forEach(([id,t])=>{const S=$(id);S.innerHTML="";t.frames.forEach((fr,i)=>{const g=document.createElement("figure"),c=document.createElement("canvas"),q=document.createElement("figcaption");q.textContent=i==t.frames.length-1?"final":`iteration ${t.iters[i]}`;g.append(c,q);S.append(g);density(c,fr,t.nx,t.ny)})});
+  const st={Re100_a0:"Re 100, 0°","Re40_a+10":"Re 40, +10°","Re40_a-10":"Re 40, −10°"};
+  const T0=ns.topo_baseline_Re100,T1=ns.topo_square_shape_Re100,U0=ns.topo_baseline_Re40,U1=ns.topo_square_shape_Re40;
+  $("t-topo").innerHTML=head("Case","Square C<sub>D</sub>","Optimised","Change","Square lift fluctuation","Optimised","Solver")+a.states.slice(0,2).map((s,i)=>row(st[s]||s,f(a.cd_base[i],3),f(a.cd_final[i],3),delta(a.cd_final[i],a.cd_base[i]),"–","–","Optimiser’s own, steady")).join("")+(U0&&U1?row("Re 40, 0°",f(U0.cd_mean,3),f(U1.cd_mean,3),delta(U1.cd_mean,U0.cd_mean),f(U0.cl_rms,3),f(U1.cl_rms,3),"Independent, unsteady"):"")+(T0&&T1?row("Re 100, 0°",f(T0.cd_mean,3),f(T1.cd_mean,3),delta(T1.cd_mean,T0.cd_mean),f(T0.cl_rms,3),f(T1.cl_rms,3),"Independent, unsteady"):"");
+  if(T0&&T1)$("top-p").textContent+=` On the independent unsteady solver at Re 100 the square sheds vortices and the optimised body does not, even after a deliberate disturbance. Drag falls ${f(-pc(T1.cd_mean,T0.cd_mean),0)} %.`;
+  $("top-note").textContent=`Low-Re laminar result. The grid gives the body only about 8 cells of height, so the outline is coarse. Thresholded area came out at ${f(a.area_final,3)} and ${f(b.area_final,3)} against a target of ${f(a.area,3)}. A shape that is best at Re 100 is not the best shape at Re 1,000,000.`;
+ }
+ const H=D.hl;
+ $("hl-p").textContent=`A single body cannot gain much more lift, so slats and flaps were added to the optimised section. Layouts were searched for each option. Clean-section reference c_l,max is ${f(H.clean,2)}. This is inviscid flow with a calibrated stall rule, so treat gaps and overlaps as trends. The flap gains land close to typical values. The slat gain is about twice the typical value, so the slat figure is optimistic.`;
+ const hf=$("hl-figs");hf.innerHTML="";H.options.forEach((o,i)=>{const d=document.createElement("div");d.className="fig";const c=document.createElement("div");c.className="chart";c.id="hl"+i;d.append(c);const p=document.createElement("div");p.className="cap";p.textContent=`${o.name}: c_l,max ${f(o.cl_max,2)}`;d.append(p);hf.append(d);const xs=o.elements.flat(),x0=Math.min(...xs.map(q=>q[0])),x1=Math.max(...xs.map(q=>q[0])),y0=Math.min(...xs.map(q=>q[1])),y1=Math.max(...xs.map(q=>q[1]));shapes("hl"+i,{x0:x0-.02,x1:x1+.02,y0:y0-.02,y1:y1+.02,w:560,alt:o.name,items:o.elements.map(e=>({pts:e,color:O,fill:"var(--fill-opt)"}))})});
+ const typ={"slat":"about +0.4 c′/c","slotted flap":"about +1.3","slat + slotted flap":"about +1.7"};
+ $("t-hl").innerHTML=head("Option","c<sub>l,max</sub>","Gain","Typical gain","Incidence, °","Smallest gap, % chord")+row("Clean section",f(H.clean,2),"–","–","–","–")+H.options.map(o=>row(o.name,f(o.cl_max,2),"+"+f(o.gain,2),typ[o.name]||"–",f(o.alpha,1),f(o.clearance*100,1))).join("");
+ const cs=["var(--opt)","var(--base)","#1baf7a"];
+ $("cv-p").textContent=`Each CMA-ES seed ran until two rounds passed without a real gain on the hold-out states. Final hold-out scores: ${D.seeds.map(s=>`${s.method==="cma-es"?"seed "+s.seed:"differential evolution"} ${f(s.holdout_J,4)}`).join(", ")}. A different algorithm on the same budget landing close by suggests the optimum is not an artefact of one method.`;
+ chart("c-conv",{series:D.trace.map((t,i)=>({name:t.label,color:cs[i%3],mark:1,pts:t.evals.map((e,k)=>[e,t.J[k]])})),xlab:"designs evaluated",ylab:"hold-out score",hline:1,ymax:1.01,h:280,xfmt:v=>(v/1000)+"k",alt:"Hold-out score by round"});
+ $("limits").innerHTML=["<b>No RANS or LES was run.</b> Turbulent results come from NeuralFoil and integral boundary-layer methods. Nothing here resolves turbulence.","<b>XFOIL is not fully independent.</b> NeuralFoil was trained on it, so agreement shows the surrogate held up, not that the physics is right. The boundary-layer solver and Navier-Stokes runs are the independent checks.","<b>NeuralFoil misses abrupt stall.</b> On NACA 0012 it keeps rising past the real stall near 18°. Its c<sub>l,max</sub> gains were capped at 5 % in the search.","<b>The independent solver is approximate.</b> It reads about 7 % high on lift before stall and stalls about 2° early against NASA data.","<b>One hold-out constraint is not met.</b> NeuralFoil's confidence drops to 0.66 in one unseen state, against a limit of 0.70.","<b>Mach effects are an estimate.</b> There is no transonic solver.","<b>The wing model is comparative.</b> It is unswept, with one section and no fuselage. Structural mass is scaled to an assumed baseline fraction, and flutter comes from a strip-theory section.","<b>Navier-Stokes runs are laminar 2D</b> at Re in the hundreds, on a staircase grid."].map(x=>`<li>${x}</li>`).join("");
+ $("fixes").innerHTML=["<b>Discarded search.</b> Random flight states included impossible points such as 2.4 g at 38 m/s. Those pushed the design towards oversized wings, so the run was thrown away and the states now respect the flight envelope.","<b>Discarded topology runs.</b> The first version made the body vanish to reach zero drag, by spreading material below the solid threshold. The area limit now acts on the physical shape, and vanished bodies are rejected.","<b>Stall rule for slats and flaps.</b> Early results rewarded stalled layouts. The rule now ignores cut-corner spikes and treats a stalled layout as zero lift.","<b>Coordinate order.</b> NeuralFoil and the panel code use opposite orders, and mixing them gives wrong numbers without an error. The code now converts explicitly.","<b>Vortex shedding hidden.</b> Symmetric bodies first stayed on the steady solution with no shedding at all, which a cylinder check exposed. Each run now starts with a brief disturbance, and the affected cases were rerun.","<b>Lost run.</b> A process pool hung with a finished search in memory. Jobs now run as separate processes and write results to disk, and the rerun reproduced the same scores to four digits."].map(x=>`<li>${x}</li>`).join("");
+ $("files").innerHTML=["optimised_section.dat: section coordinates, Selig format","optimised_wing.stl: 3D wing surface, in metres","optimised_design.json: every design variable","verify.json and ns.json: all numbers on this page"].map(x=>`<li class="file">${x}</li>`).join("");
+}
+render();
+matchMedia("(prefers-color-scheme:dark)").addEventListener("change",render);
+new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+</script>

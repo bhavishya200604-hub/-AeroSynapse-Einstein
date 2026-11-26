@@ -1,0 +1,8 @@
+[seed 2] round 0: train 0.9359 holdout 0.9307 evals 2400 t 933s
+[seed 1] round 0: train 0.9428 holdout 0.9337 evals 2400 t 933s
+[seed 0] round 0: train 0.9138 holdout 0.9417 evals 2400 t 956s
+[seed 2] round 1: train 0.9167 holdout 0.9306 evals 4800 t 1807s
+[seed 1] round 1: train 2.9242 holdout 0.9250 evals 4800 t 1851s
+[seed 0] round 1: train 2.9133 holdout 0.9274 evals 4800 t 1868s
+Traceback (most recent call last):
+  File "E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\scripts\shapeopt_search.py", line 58, in <module>

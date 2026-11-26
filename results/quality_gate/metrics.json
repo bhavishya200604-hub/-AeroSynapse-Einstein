@@ -1,0 +1,23 @@
+{
+  "pytest_exit_code": 0,
+  "tests_total": 117,
+  "tests_passed": 117,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "coverage_total_percent": 82.66240681576144,
+  "coverage_by_package_percent": {
+    "top-level": 92.62672811059907,
+    "experiments": 26.909920182440136,
+    "ml": 94.22894985808892,
+    "numerics": 96.76573426573427,
+    "optim": 93.50490196078431,
+    "physics": 98.88475836431226,
+    "plugins": 100.0,
+    "uq": 98.57142857142857,
+    "validation": 99.31506849315069
+  },
+  "ruff_clean": true,
+  "mypy_clean": true,
+  "mypy_summary": "Success: no issues found in 86 source files",
+  "wall_clock_s": 182.71087038800033
+}

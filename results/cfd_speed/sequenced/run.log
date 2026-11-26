@@ -1,0 +1,15 @@
+initialised 132346 of 132346 fluid cells from E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\results\cfd_speed\sequenced\coarse_pass
+case body  grid 65 x 51 x 40 = 132600 cells, fluid 132346, wall cells 124, thin-surface cells 130, Re 9.73e+007, threads 4
+step 100  residual 7.068e-002  time 0  63 s
+step 200  residual 3.484e-002  time 0  114 s
+step 300  residual 2.155e-002  time 0  161 s
+step 400  residual 1.451e-002  time 0  206 s
+step 500  residual 9.780e-003  time 0  257 s
+step 600  residual 9.416e-003  time 0  310 s
+step 700  residual 7.515e-003  time 0  357 s
+step 800  residual 4.768e-003  time 0  408 s
+step 900  residual 4.260e-003  time 0  456 s
+step 1000  residual 2.811e-003  time 0  503 s
+step 1100  residual 2.422e-003  time 0  551 s
+step 1200  residual 2.185e-003  time 0  599 s
+step 1300  residual 1.939e-003  time 0  646 s

@@ -1,0 +1,983 @@
+{
+ "groups": [
+  {
+   "title": "Aircraft design",
+   "items": [
+    {
+     "label": "Whole design workflow (8 stages)",
+     "args": "-m aerosynapse.cli workflow run falcon --profile quick",
+     "icon": "wf_window",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Whole-aircraft study (airliner, SST)",
+     "args": "-m aerosynapse.cli aircraft --profile quick",
+     "icon": "opt_aircraft",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Fighter study (five families)",
+     "args": "-m aerosynapse.cli fighter --profile quick",
+     "icon": "opt_fighter",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Quick aerodynamics of this design",
+     "args": "-m aerosynapse.cli cad-analyse {design}",
+     "icon": "quick_aero",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Surrogate: train from the data store",
+     "args": "-m aerosynapse.cli surrogate --profile quick",
+     "icon": "opt_surrogate",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Surrogate: predict this design",
+     "args": "-m aerosynapse.cli surrogate-predict {design}",
+     "icon": "opt_surrogate",
+     "about": "",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Aerodynamics and CFD",
+   "items": [
+    {
+     "label": "3D flow of this design",
+     "args": "-m aerosynapse.cli cfd {design} --cells 30 --steps 2400 --save-volume --out results/studio/cfd_app",
+     "icon": "cfd_cruise",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "3D flow verification suite",
+     "args": "-m aerosynapse.cli cfd-verify --profile quick",
+     "icon": "verify",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Turbulence and instability of this design",
+     "args": "-m aerosynapse.cli simulate turbulence {design} --out results/studio/turbulence_app",
+     "icon": "turbulence",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Analytic solutions of this design",
+     "args": "-m aerosynapse.cli simulate analytic {design} --out results/studio/analytic_app",
+     "icon": "analytic",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "cfd mesh study",
+     "args": "scripts/cfd_mesh_study.py",
+     "icon": "cfd_cruise",
+     "about": "R-3: mesh independence of the 3D CFD forces, and agreement of half and full models (KI-68).",
+     "web": false
+    },
+    {
+     "label": "cfd speed benchmark",
+     "args": "scripts/cfd_speed_benchmark.py",
+     "icon": "cfd_cruise",
+     "about": "How much faster are the CFD speed options? The same cruise case on the same grid, run",
+     "web": false
+    },
+    {
+     "label": "cfd verify",
+     "args": "scripts/cfd_verify.py --profile quick",
+     "icon": "cfd_cruise",
+     "about": "Verify and validate the 3D solver (aeroflow) against exact solutions and published theory.",
+     "web": false
+    },
+    {
+     "label": "fighter cfd",
+     "args": "scripts/fighter_cfd.py --profile quick",
+     "icon": "cfd_cruise",
+     "about": "3D flow simulation of the reference and the optimised fighters, and a check of the fast model against it.",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Shape and wing optimisation",
+   "items": [
+    {
+     "label": "Wing optimisation with CFD (Bayesian)",
+     "args": "-m aerosynapse.cli simulate optimise {design} --out results/optimise/studio_app",
+     "icon": "optimise",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Airfoil and wing shape (CMA-ES, quick)",
+     "args": "-m aerosynapse.cli shapeopt --shape naca2412 --profile quick",
+     "icon": "opt_airfoil",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Airfoil and wing shape (CMA-ES, standard)",
+     "args": "-m aerosynapse.cli shapeopt --shape naca2412 --profile standard",
+     "icon": "opt_airfoil",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Topology optimisation of a 2D body",
+     "args": "-m aerosynapse.cli topology --shape square --profile quick",
+     "icon": "opt_topology",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "XFOIL check of the optimised airfoil",
+     "args": "-m aerosynapse.cli xfoil --shape naca2412",
+     "icon": "opt_xfoil",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "shapeopt rerun ns",
+     "args": "scripts/shapeopt_rerun_ns.py",
+     "icon": "opt_airfoil",
+     "about": "Rerun named Navier-Stokes cases from their saved job files and rebuild ns.json.",
+     "web": false
+    },
+    {
+     "label": "shapeopt search",
+     "args": "scripts/shapeopt_search.py --profile quick",
+     "icon": "opt_airfoil",
+     "about": "Stage 1: whole-design search (see aerosynapse.shapeopt.search). Usually run via run_shapeopt.py.",
+     "web": false
+    },
+    {
+     "label": "shapeopt topology",
+     "args": "scripts/shapeopt_topology.py --profile quick",
+     "icon": "opt_airfoil",
+     "about": "Stage 3: density topology optimisation of a body (see aerosynapse.shapeopt.topology).",
+     "web": false
+    },
+    {
+     "label": "shapeopt trust split",
+     "args": "scripts/shapeopt_trust_split.py --profile quick",
+     "icon": "opt_airfoil",
+     "about": "How much of a shape-optimisation gain lies where the surrogate is trusted?",
+     "web": false
+    },
+    {
+     "label": "shapeopt verify",
+     "args": "scripts/shapeopt_verify.py --profile quick",
+     "icon": "opt_airfoil",
+     "about": "Stages 2 and 4: high-lift topology, then independent verification of the optimised design.",
+     "web": false
+    },
+    {
+     "label": "shapeopt xfoil",
+     "args": "scripts/shapeopt_xfoil.py",
+     "icon": "opt_airfoil",
+     "about": "XFOIL judgement of the optimised section: NASA check, named regimes and every hold-out state.",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Structures",
+   "items": [
+    {
+     "label": "Wing box sizing and design codes",
+     "args": "-m aerosynapse.cli structure {design} --W0 12000 --code mil_fighter --material al7075 --vd 400",
+     "icon": "opt_structure",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Structure simulation (FEM, flutter)",
+     "args": "-m aerosynapse.cli simulate structure {design} --out results/studio/structure_app",
+     "icon": "structure",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Composite laminate",
+     "args": "-m aerosynapse.cli engineer composites {design} --out results/studio/laminate_app",
+     "icon": "laminate",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Clash analysis",
+     "args": "-m aerosynapse.cli engineer clash {design} --out results/studio/clash_app",
+     "icon": "clash",
+     "about": "",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Thermal and PINN",
+   "items": [
+    {
+     "label": "Skin heating with the PINN (aircraft)",
+     "args": "-m aerosynapse.cli thermal --profile quick",
+     "icon": "pinn",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "PINN simulation of this design",
+     "args": "-m aerosynapse.cli simulate pinn {design} --out results/studio/pinn_app",
+     "icon": "pinn",
+     "about": "",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Local apps",
+   "items": [
+    {
+     "label": "Aircraft Designer (browser)",
+     "args": "-m aerosynapse.cli designer",
+     "icon": "opt_centre",
+     "about": "Editor, studies, 3D flow, materials, skin heating, data store and the optimisation centre, in the browser.",
+     "web": true
+    },
+    {
+     "label": "THERMAL LAB (browser)",
+     "args": "-m aerosynapse.thermal.web.server --port 8766",
+     "icon": "pinn_lab",
+     "about": "The whole convection-diffusion PINN project: verified solvers, parametric PINNs, inverse identification, real data.",
+     "web": true
+    },
+    {
+     "label": "Thermal results app (browser)",
+     "args": "-m streamlit run src/aerosynapse/thermal/app/main.py --server.headless true --browser.gatherUsageStats false",
+     "icon": "results",
+     "about": "Saved PINN ensembles against the verified solvers, inverse identification, grid convergence, uncertainty and export.",
+     "web": true
+    }
+   ]
+  },
+  {
+   "title": "Thermal PINN research: phase 1",
+   "items": [
+    {
+     "label": "p1_1_physics (verified solvers)",
+     "args": "-m aerosynapse.thermal.experiments.p1_1_physics",
+     "icon": "pinn_2d",
+     "about": "Step 1.1 experiment: sanity metrics for nondimensionalisation, analytic solutions and MMS. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p1_2_fd1d (verified solvers)",
+     "args": "-m aerosynapse.thermal.experiments.p1_2_fd1d",
+     "icon": "pinn_2d",
+     "about": "Step 1.2: 1D FD verification \u2014 spatial order of every convection scheme, temporal order of every integrator, all BC types, Case B (Robin + source + fin) against the eigen-series solution. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p1_3_stability (verified solvers)",
+     "args": "-m aerosynapse.thermal.experiments.p1_3_stability",
+     "icon": "pinn_2d",
+     "about": "Step 1.3: stability & accuracy analysis. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p1_4_spectral (verified solvers)",
+     "args": "-m aerosynapse.thermal.experiments.p1_4_spectral",
+     "icon": "pinn_2d",
+     "about": "Step 1.4: Chebyshev spectral collocation (exponential convergence, Robin via row replacement) and an independent SciPy method-of-lines (BDF/Radau) cross-check of the FD solver and time integrators. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p1_5_fvm2d (verified solvers)",
+     "args": "-m aerosynapse.thermal.experiments.p1_5_fvm2d",
+     "icon": "pinn_2d",
+     "about": "Step 1.5: 2D finite-volume energy solver verification and solver performance. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p1_6_ns (verified solvers)",
+     "args": "-m aerosynapse.thermal.experiments.p1_6_ns",
+     "icon": "pinn_2d",
+     "about": "Step 1.6: 2D incompressible Navier\u2013Stokes on a MAC grid (projection method) \u2014 verification + demos. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p1_7_benchmarks (verified solvers)",
+     "args": "-m aerosynapse.thermal.experiments.p1_7_benchmarks",
+     "icon": "pinn_2d",
+     "about": "Step 1.7: validation benchmarks + three-grid GCI (Celik procedure, Fs = 1.25). Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p1_7_verification (verified solvers)",
+     "args": "-m aerosynapse.thermal.experiments.p1_7_verification",
+     "icon": "pinn_2d",
+     "about": "Step 1.7: verification summary and Phase-1 gate table. Runs with its own fixed settings.",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Thermal PINN research: phase 2",
+   "items": [
+    {
+     "label": "p2_data (data)",
+     "args": "-m aerosynapse.thermal.experiments.p2_data --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Phase 2: generate datasets from USER-DEFINABLE conditions (defaults in configs/data/defaults.yaml).",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Thermal PINN research: phase 3",
+   "items": [
+    {
+     "label": "p3_pinn1d (1D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p3_pinn1d --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Phase 3 (Step 3.4): baseline 1D PINN validation on Cases A and B across user-defined parameter grids.",
+     "web": false
+    },
+    {
+     "label": "p3_report (1D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p3_report",
+     "icon": "pinn_2d",
+     "about": "Failure-mode table for Phase 3. Every claim is a measurement; diagnosis wording depends on what was measured. Runs with its own fixed settings.",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Thermal PINN research: phase 4",
+   "items": [
+    {
+     "label": "p4_1_architectures (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_1_architectures --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 4.1: architecture comparison for the 1D PINN (plain MLP, Fourier features with tuned sigma, modified MLP, residual blocks, random weight factorisation, SIREN) on user-defined (problem, parameter) cases.",
+     "web": false
+    },
+    {
+     "label": "p4_2_diagnostics (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_2_diagnostics",
+     "icon": "pinn_2d",
+     "about": "Step 4.2 diagnostics (saved metrics for two observations of the formulation study). Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p4_2_formulations (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_2_formulations --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 4.2: 2D formulations - primitive (u,v,p,theta) vs stream function (psi,p,theta), hard-constraint BCs, pressure gauge and residual normalisation - on a manufactured solution (exact truth) and the heated lid-driven cavity (truth: steady Newton FV reference on two grids).",
+     "web": false
+    },
+    {
+     "label": "p4_3_balancing (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_3_balancing --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 4.3: loss-balancing suite - fixed, learning-rate annealing, GradNorm, NTK-trace, SoftAdapt, ReLoBRaLo, uncertainty weighting and self-adaptive weights - on 1D (analytic truth) and 2D (exact MMS / Newton FV truth) cases.",
+     "web": false
+    },
+    {
+     "label": "p4_4_strategies (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_4_strategies --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 4.4: sampling and training strategies - Sobol / random / LHS collocation, random resampling, residual-based adaptive sampling (RAD, RAR-D), causal temporal weighting, time-marching, curriculum in Pe/Re, and optimiser strategies (Adam schedule, gradient clipping, with/without L-BFGS) - on 1D and 2D cases.",
+     "web": false
+    },
+    {
+     "label": "p4_5_parametric (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_5_parametric --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 4.5a: parametric 2D training on Case C - ONE network with (x, y, log Re, log Pr, log Bi [, Ri]) inputs over the Phase 2 Case C parameter range, evaluated on the Phase 2 interpolation and extrapolation test points against steady FV references (Phase 1 solver), compared with one non-parametric network per test point.",
+     "web": false
+    },
+    {
+     "label": "p4_5b_channel (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_5b_channel --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 4.5b: parametric 2D training on Case D - the thermally developing channel (Graetz, Robin walls) and the channel with a heated square cylinder - with (x, y, log Re, log Pr, log Bi) inputs; one parametric network per case vs one network per test point; test points from a parameter design (interp inside, extrap outside the training box); references = Phase 1 steady solver on two grids.",
+     "web": false
+    },
+    {
+     "label": "p4_5b_diagnostics (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_5b_diagnostics",
+     "icon": "pinn_2d",
+     "about": "Step 4.5b diagnostics: mass conservation of the trained channel PINNs. Reloads the final networks saved by a p4_5b_channel run (runs/*/checkpoint.pt, phase 'done') with the run's own config and design, and evaluates the PINN flow rate Q = int u dy at the inlet and outlet at every design point (aerosynapse.thermal.pinn.channel2d.flow_rates). The exact flow conserves mass, so Q_out / Q_in = 1; a rat Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p4_6_hybrid (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_6_hybrid --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 4.6: hybrid data + physics vs data-free vs data-only on the Case D channels; how little data suffices.",
+     "web": false
+    },
+    {
+     "label": "p4_7_ablation (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_7_ablation --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 4.7: ablation of the Phase 4 recipe \u2014 leave-one-out and add-one-in, >= 3 seeds, mean +- std, training time vs accuracy.",
+     "web": false
+    },
+    {
+     "label": "p4_gate (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_gate --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Phase 4 gate: (G1) 2D PINN results vs the Phase 1 solver on the interpolation-test parameters (compiled from the saved Phase 4 study runs), (G2) the ablation table (Step 4.7), (G3) benchmark comparison with new physics-only PINN runs: Ghia et al. cavity centreline profiles (Re 100, uniform lid), the Graetz constant-wall-temperature Nusselt number (parallel plates, with axial conduction) and the de",
+     "web": false
+    },
+    {
+     "label": "p4_report (2D PINN)",
+     "args": "-m aerosynapse.thermal.experiments.p4_report",
+     "icon": "pinn_2d",
+     "about": "Step 4.1 report: architecture comparison table. All statements are measurements; wording depends on the evidence. Runs with its own fixed settings.",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Thermal PINN research: phase 5",
+   "items": [
+    {
+     "label": "p5_1_identifiability (inverse problems)",
+     "args": "-m aerosynapse.thermal.experiments.p5_1_identifiability",
+     "icon": "pinn_2d",
+     "about": "Step 5.1: identifiability of (alpha, k, h) BEFORE any training \u2014 sensitivity Jacobian, Fisher information, SVD / condition number, Cramer-Rao lower bounds \u2014 for the dimensional 1D body (slab / cylinder / sphere) of configs/inverse/defaults.yaml. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p5_2_diagnostics (inverse problems)",
+     "args": "-m aerosynapse.thermal.experiments.p5_2_diagnostics",
+     "icon": "pinn_2d",
+     "about": "Step 5.2 diagnostics: why the inverse PINNs miss the parameters. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p5_2_pinn_inverse (inverse problems)",
+     "args": "-m aerosynapse.thermal.experiments.p5_2_pinn_inverse",
+     "icon": "pinn_2d",
+     "about": "Step 5.2: PINN inverse identification of (alpha, k, h) \u2014 log-parameters, joint vs two-stage training, data vs physics loss weighting \u2014 on the 1D body of configs/inverse/defaults.yaml (slab by default; cylinder / sphere selectable). Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p5_3_classical (inverse problems)",
+     "args": "-m aerosynapse.thermal.experiments.p5_3_classical",
+     "icon": "pinn_2d",
+     "about": "Step 5.3: classical baseline \u2014 weighted least squares (SciPy) with the FDM forward solver, for (alpha, k, h). Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p5_4_robustness (inverse problems)",
+     "args": "-m aerosynapse.thermal.experiments.p5_4_robustness",
+     "icon": "pinn_2d",
+     "about": "Step 5.4: noise robustness (sigma = 0, 1, 2, 5, 10 %), sensor number and sensor placement. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p5_5_uq (inverse problems)",
+     "args": "-m aerosynapse.thermal.experiments.p5_5_uq",
+     "icon": "pinn_2d",
+     "about": "Step 5.5: parameter uncertainty quantification. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p5_6_confounding (inverse problems)",
+     "args": "-m aerosynapse.thermal.experiments.p5_6_confounding",
+     "icon": "pinn_2d",
+     "about": "Step 5.6: confounding cases \u2014 when k and h are separable, when they are not, and what helps; reported honestly. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p5_gate (inverse problems)",
+     "args": "-m aerosynapse.thermal.experiments.p5_gate",
+     "icon": "pinn_2d",
+     "about": "Phase 5 gate: recovered parameters with % error and confidence bands vs the Cramer-Rao bound and vs the classical baseline; parameter-convergence plots. Aggregates the SAVED metrics of Steps 5.1-5.6 (no new training or fitting): Runs with its own fixed settings.",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Thermal PINN research: phases 6 to 10",
+   "items": [
+    {
+     "label": "p6_1_scaling (analysis)",
+     "args": "-m aerosynapse.thermal.experiments.p6_1_scaling --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 6.1: convergence / scaling of the PINN \u2014 error vs width, depth, collocation points and training epochs; fitted power laws; PINN vs mesh solvers (FD, Chebyshev) at equal error.",
+     "web": false
+    },
+    {
+     "label": "p6_2_uq (analysis)",
+     "args": "-m aerosynapse.thermal.experiments.p6_2_uq --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 6.2: predictive uncertainty of parametric 1D PINNs \u2014 deep ensembles, MC-dropout, calibration, conformal.",
+     "web": false
+    },
+    {
+     "label": "p6_3_extrapolation (analysis)",
+     "args": "-m aerosynapse.thermal.experiments.p6_3_extrapolation --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 6.3: extrapolation and validity \u2014 inside vs outside the trained range, truth-free validity indicators, and an explicit, LABELLED study beyond the laminar regime.",
+     "web": false
+    },
+    {
+     "label": "p6_4_extended (analysis)",
+     "args": "-m aerosynapse.thermal.experiments.p6_4_extended --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 6.4b: solver cost and grid convergence (with a prediction for a large TARGET grid, e.g. 1024 x 1024), and the 2D / 3D figures of the Step 6.4 sensitivity study.",
+     "web": false
+    },
+    {
+     "label": "p6_4_sensitivity (analysis)",
+     "args": "-m aerosynapse.thermal.experiments.p6_4_sensitivity --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 6.4: global sensitivity \u2014 Sobol indices of mean Nu w.r.t. Re, Pr, Bi from the PINN surrogate, cross-checked against the verified FV solver (Monte Carlo and polynomial chaos).",
+     "web": false
+    },
+    {
+     "label": "p6_5_diagnostics (analysis)",
+     "args": "-m aerosynapse.thermal.experiments.p6_5_diagnostics --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 6.5: why a PINN trains or fails \u2014 spectral bias, NTK eigen-spectrum, Hessian and loss landscape.",
+     "web": false
+    },
+    {
+     "label": "p6_6_validation (analysis)",
+     "args": "-m aerosynapse.thermal.experiments.p6_6_validation --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 6.6: physical validation in 2D \u2014 Nusselt numbers vs Re / Pe / Ra against correlations verified from sources.",
+     "web": false
+    },
+    {
+     "label": "p6_6b_2d (analysis)",
+     "args": "-m aerosynapse.thermal.experiments.p6_6b_2d --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 6.6b: the Phase 6 analyses of Steps 6.2 (UQ), 6.3 (extrapolation) and 6.5 (training diagnostics) on the saved 2D parametric networks, against the verified 2D FV solver (solutions cached on disk and reused).",
+     "web": false
+    },
+    {
+     "label": "p6_7_cost (analysis)",
+     "args": "-m aerosynapse.thermal.experiments.p6_7_cost --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Step 6.7: cost analysis \u2014 training time, inference latency, hardware stated, break-even number of queries vs the solver, for the project's saved PARAMETRIC networks (2D: Graetz channel ensemble of Step 4.7, heated cavity variants of Step 4.5a; 1D: the Step 6.2 deep ensembles of A_steady and B_slab).",
+     "web": false
+    },
+    {
+     "label": "p6_gate (analysis)",
+     "args": "-m aerosynapse.thermal.experiments.p6_gate --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Phase 6 gate: tables + figures + a written limitations section, all traced to RESULTS_REGISTRY.",
+     "web": false
+    },
+    {
+     "label": "p6b_g1_stats (gap runs)",
+     "args": "-m aerosynapse.thermal.experiments.p6b_g1_stats",
+     "icon": "pinn_2d",
+     "about": "Step 6B.2b gap run G1 (paper/PREREG_G1_G3.md): statistics of the Step 4.7 ablation at 5 seeds (no training). Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p6b_g2_conflict (gap runs)",
+     "args": "-m aerosynapse.thermal.experiments.p6b_g2_conflict",
+     "icon": "pinn_2d",
+     "about": "Step 6B.2b gap run G2 (paper/PREREG_G1_G3.md): is gradient conflict lower in failing PINN runs? (5 seeds) Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p6b_g3_budget (gap runs)",
+     "args": "-m aerosynapse.thermal.experiments.p6b_g3_budget",
+     "icon": "pinn_2d",
+     "about": "Step 6B.2b gap run G3 (paper/PREREG_G1_G3.md): is the smoke-budget error floor budget-limited? Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p7_1_style (visualisation)",
+     "args": "-m aerosynapse.thermal.experiments.p7_1_style",
+     "icon": "pinn_2d",
+     "about": "Phase 7, Step 7.1: specimen of the project publication style (src/viz/style.py) \u2014 palette, role colours, line and marker conventions, sequential / diverging colormaps on a field, labels with symbols and units. Analytic data only. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p7_3_rerender (visualisation)",
+     "args": "-m aerosynapse.thermal.experiments.p7_3_rerender",
+     "icon": "pinn_2d",
+     "about": "Phase 7 Step 7.3: re-render every figure of the catalogue (docs/figures/catalogue.json) in the project style, and check that the regenerated numbers equal the committed ones. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p7_4_smoke (visualisation)",
+     "args": "-m aerosynapse.thermal.experiments.p7_4_smoke --profile smoke",
+     "icon": "pinn_2d",
+     "about": "Phase 7 Step 7.4: smoke tests for every figure function, on saved inputs.",
+     "web": false
+    },
+    {
+     "label": "p7_animate (visualisation)",
+     "args": "-m aerosynapse.thermal.experiments.p7_animate",
+     "icon": "pinn_2d",
+     "about": "Phase 7: render the project's animations in every requested format, with a gallery and a showreel \u2014 one command. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p7_gate (visualisation)",
+     "args": "-m aerosynapse.thermal.experiments.p7_gate",
+     "icon": "pinn_2d",
+     "about": "Phase 7 gate: the visualisation library. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p7_linkedin (visualisation)",
+     "args": "-m aerosynapse.thermal.experiments.p7_linkedin",
+     "icon": "pinn_2d",
+     "about": "Phase 7: a LinkedIn progress kit from the project's animations \u2014 post text, square video, document carousel, cover image and one page with copy buttons and the source of every number (docs/linkedin/index.html). Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p8_gate (interface)",
+     "args": "-m aerosynapse.thermal.experiments.p8_gate",
+     "icon": "pinn_2d",
+     "about": "Phase 8 gate: the interface works and agrees with the project's earlier results. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p8_walkthrough (interface)",
+     "args": "-m aerosynapse.thermal.experiments.p8_walkthrough",
+     "icon": "pinn_2d",
+     "about": "Phase 8 gate: walkthrough screenshots of the running app (docs/figures/app/*.png), taken by a headless Chromium browser (Microsoft Edge or Chrome) over the DevTools protocol: open each deep link, press the page's run button where there is one, wait until Streamlit has finished running and the plots are drawn, capture. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p9_claims_audit (finalisation)",
+     "args": "-m aerosynapse.thermal.experiments.p9_claims_audit",
+     "icon": "pinn_2d",
+     "about": "Phase 9 Step 9.5: claims audit \u2014 every number in the write-up traced to docs/RESULTS_REGISTRY.md. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p9_clean_clone (finalisation)",
+     "args": "-m aerosynapse.thermal.experiments.p9_clean_clone",
+     "icon": "pinn_2d",
+     "about": "Phase 9 gate: does `reproduce` work from a clean clone? Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p9_coverage (finalisation)",
+     "args": "-m aerosynapse.thermal.experiments.p9_coverage",
+     "icon": "pinn_2d",
+     "about": "Phase 9 Step 9.2: test-suite coverage of the physics and numerics code (target >= 80 %). Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p9_gate (finalisation)",
+     "args": "-m aerosynapse.thermal.experiments.p9_gate",
+     "icon": "pinn_2d",
+     "about": "Phase 9 gate: finalisation. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p9_github_ci (finalisation)",
+     "args": "-m aerosynapse.thermal.experiments.p9_github_ci",
+     "icon": "pinn_2d",
+     "about": "Phase 9: record GitHub Actions CI runs (needs the GitHub CLI `gh`, logged in). Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p9_reproduce (finalisation)",
+     "args": "-m aerosynapse.thermal.experiments.p9_reproduce",
+     "icon": "pinn_2d",
+     "about": "Phase 9 Step 9.1: one command that regenerates every table and figure of the project from its saved results. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p10_1_real_soil (real data)",
+     "args": "-m aerosynapse.thermal.experiments.p10_1_real_soil",
+     "icon": "pinn_2d",
+     "about": "Phase 10.1: thermal diffusivity of real soils from NOAA USCRN temperature profiles (VALIDATION against measured data, the first in this project), with identify-before-you-fit, exact complex-step sensitivities, a convergence pipeline and autocorrelation-robust uncertainty (src/inverse/realdata.py). Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p10_1b_freeze (real data)",
+     "args": "-m aerosynapse.thermal.experiments.p10_1b_freeze",
+     "icon": "pinn_2d",
+     "about": "Phase 10.1b: the weeks that do not converge \u2014 does latent heat explain them? Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p10_2_walkthrough (real data)",
+     "args": "-m aerosynapse.thermal.experiments.p10_2_walkthrough",
+     "icon": "pinn_2d",
+     "about": "Phase 10.2: screenshots of THERMAL LAB (the web demo) in headless Edge / Chrome over the DevTools protocol. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p10_3_space (real data)",
+     "args": "-m aerosynapse.thermal.experiments.p10_3_space",
+     "icon": "pinn_2d",
+     "about": "Phase 10.3: the public Hugging Face Space of THERMAL LAB, assembled and tested end to end on this machine. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p10_5_real_pinn (real data)",
+     "args": "-m aerosynapse.thermal.experiments.p10_5_real_pinn",
+     "icon": "pinn_2d",
+     "about": "Phase 10.5: physics-informed neural networks TRAINED ON REAL measured soil temperatures (D149). Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p10_fetch_real (real data)",
+     "args": "-m aerosynapse.thermal.experiments.p10_fetch_real",
+     "icon": "pinn_2d",
+     "about": "Phase 10.1: download the real soil-temperature data (NOAA USCRN hourly product) named in configs/real/soil.yaml. Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "p10_gate (real data)",
+     "args": "-m aerosynapse.thermal.experiments.p10_gate",
+     "icon": "pinn_2d",
+     "about": "Phase 10 gate: real-data identification (10.1, 10.1b) and the THERMAL LAB web demo (10.2). Runs with its own fixed settings.",
+     "web": false
+    },
+    {
+     "label": "pipeline (end to end)",
+     "args": "-m aerosynapse.thermal.experiments.pipeline",
+     "icon": "wf_run",
+     "about": "The automated end-to-end run of the project (D149): one command from data to a deployed Space.",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Research pipeline",
+   "items": [
+    {
+     "label": "Environment and hardware check",
+     "args": "-m aerosynapse.cli doctor",
+     "icon": "check",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Train PINN and baseline studies",
+     "args": "-m aerosynapse.cli train --profile quick",
+     "icon": "pinn_2d",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Optimisation and inverse studies",
+     "args": "-m aerosynapse.cli optimize --profile quick",
+     "icon": "opt_centre",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Trust reports and fallback checks",
+     "args": "-m aerosynapse.cli validate --profile quick",
+     "icon": "check",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Reports from the results",
+     "args": "-m aerosynapse.cli report --profile quick",
+     "icon": "report_html",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Paper figures",
+     "args": "-m aerosynapse.cli figures --profile quick",
+     "icon": "results",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "Reproduce every reported result",
+     "args": "-m aerosynapse.cli reproduce --profile quick",
+     "icon": "wf_run",
+     "about": "",
+     "web": false
+    },
+    {
+     "label": "run airfrans",
+     "args": "scripts/run_airfrans.py --profile quick",
+     "icon": "wf_run",
+     "about": "AirfRANS study: derived coefficient table, surrogate on official splits (with convergence check), panel-vs-RANS model discrepancy. Requires the downloaded dataset and ``pip install airfrans``.",
+     "web": false
+    },
+    {
+     "label": "run phase1",
+     "args": "scripts/run_phase1.py",
+     "icon": "wf_run",
+     "about": "Phase 1: convergence / verification study for all Level-1 solvers -> results/phase1_verification.",
+     "web": false
+    },
+    {
+     "label": "run phase2",
+     "args": "scripts/run_phase2.py",
+     "icon": "wf_run",
+     "about": "Phase 2: PINN benchmarks vs exact solutions, supervised baseline, BC strategies, loss imbalance.",
+     "web": false
+    },
+    {
+     "label": "run phase3",
+     "args": "scripts/run_phase3.py",
+     "icon": "wf_run",
+     "about": "Phase 3: equal-budget adaptive-collocation study for transient conv-diff across Pe (multi-seed).",
+     "web": false
+    },
+    {
+     "label": "run phase3 extras",
+     "args": "scripts/run_phase3_extras.py",
+     "icon": "wf_run",
+     "about": "Phase 3 extras for figures: (a) PINN space-time fields + final collocation points at several Pe (Fig. C); (b) collocation-budget sweep (Pe \u00d7 budget \u00d7 sampler, Fig. D).",
+     "web": false
+    },
+    {
+     "label": "run phase4",
+     "args": "scripts/run_phase4.py",
+     "icon": "wf_run",
+     "about": "Phase 4: neural operators, hybrids, UQ (see aerosynapse.experiments.studies.phase4).",
+     "web": false
+    },
+    {
+     "label": "run phase4 genmap",
+     "args": "scripts/run_phase4_genmap.py",
+     "icon": "wf_run",
+     "about": "Phase 4 generalisation map (Fig. G): the trained FNO from phase4_operators_uq evaluated over (Pe, input bandwidth).",
+     "web": false
+    },
+    {
+     "label": "run phase5",
+     "args": "scripts/run_phase5.py",
+     "icon": "wf_run",
+     "about": "Phase 5: optimisation engine and inverse problems (see aerosynapse.experiments.studies.phase5).",
+     "web": false
+    },
+    {
+     "label": "run phase6",
+     "args": "scripts/run_phase6.py",
+     "icon": "wf_run",
+     "about": "Phase 6: fluid mechanics and aerospace (see aerosynapse.experiments.studies.phase6).",
+     "web": false
+    },
+    {
+     "label": "run phase7",
+     "args": "scripts/run_phase7.py",
+     "icon": "wf_run",
+     "about": "Phase 7: validation engine \u2014 trust/fallback, trust reports, resource estimator, notebooks.",
+     "web": false
+    },
+    {
+     "label": "run quality gate",
+     "args": "scripts/run_quality_gate.py",
+     "icon": "wf_run",
+     "about": "Quality gate: full test suite with coverage, ruff, mypy -> results/quality_gate/metrics.json.",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Reports and audits",
+   "items": [
+    {
+     "label": "audit claims",
+     "args": "scripts/audit_claims.py",
+     "icon": "report_html",
+     "about": "Claims audit: every number quoted in README, summaries, docs and the paper must match a value in a results/<id>/metrics.json (or record.json) artifact, up to the precision quoted.",
+     "web": false
+    },
+    {
+     "label": "check paper",
+     "args": "scripts/check_paper.py",
+     "icon": "report_html",
+     "about": "Validate the LaTeX sources without a TeX toolchain: \\input targets exist, \\cite keys are in references.bib, \\ref targets have labels, \\includegraphics files exist, braces balance. Exit 1 on any problem.",
+     "web": false
+    },
+    {
+     "label": "make aircraft report",
+     "args": "scripts/make_aircraft_report.py",
+     "icon": "report_html",
+     "about": "Build the whole-aircraft comparison page from results/aircraft/study.json.",
+     "web": false
+    },
+    {
+     "label": "make architecture",
+     "args": "scripts/make_architecture.py",
+     "icon": "report_html",
+     "about": "Generate docs/ARCHITECTURE.md: hand-written overview + an auto-generated index of every module and its public classes/functions (first docstring line), so the document cannot drift from the code.",
+     "web": false
+    },
+    {
+     "label": "make fighter report",
+     "args": "scripts/make_fighter_report.py",
+     "icon": "report_html",
+     "about": "Build the fighter study page from the saved results (every number comes from a file under results/).",
+     "web": false
+    },
+    {
+     "label": "make figures",
+     "args": "scripts/make_figures.py",
+     "icon": "report_html",
+     "about": "Generate all figures from results/ (deterministic). Writes paper/figures/manifest.json.",
+     "web": false
+    },
+    {
+     "label": "make report",
+     "args": "scripts/make_report.py",
+     "icon": "report_html",
+     "about": "Generate paper/tables/*.tex and docs/RESULTS_TABLES.md directly from results/ (no hand-typed numbers).",
+     "web": false
+    },
+    {
+     "label": "make reproducibility",
+     "args": "scripts/make_reproducibility.py",
+     "icon": "report_html",
+     "about": "Write docs/REPRODUCIBILITY.md from the experiment records (measured wall-clock, versions, hardware).",
+     "web": false
+    },
+    {
+     "label": "make shapeopt report",
+     "args": "scripts/make_shapeopt_report.py",
+     "icon": "report_html",
+     "about": "Build the baseline-versus-optimised comparison page from the results on disk.",
+     "web": false
+    },
+    {
+     "label": "reproduce all",
+     "args": "scripts/reproduce_all.py --profile quick",
+     "icon": "report_html",
+     "about": "Reproduce every reported result: run all phase studies, then figures, the paper tables and the claims audit.",
+     "web": false
+    }
+   ]
+  },
+  {
+   "title": "Export",
+   "items": [
+    {
+     "label": "CAD package of this design (STEP, glTF, STL, DXF)",
+     "args": "-m aerosynapse.cli export-design {design} --out results/studio/cad_app",
+     "icon": "package",
+     "about": "",
+     "web": false
+    }
+   ]
+  }
+ ],
+ "entries": 129
+}

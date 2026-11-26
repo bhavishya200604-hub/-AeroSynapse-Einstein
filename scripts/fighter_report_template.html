@@ -1,0 +1,117 @@
+<meta charset="utf-8">
+<title>Fighter Design Study</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>/*__CSS__*/
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.shots figure{margin:0;border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--panel,transparent)}
+.shots img{display:block;width:100%;height:auto}
+.shots figcaption{padding:8px 10px;font-size:13px;color:var(--ink2)}
+.logo{width:56px;height:56px;flex:none}
+.brand{display:flex;gap:14px;align-items:center}
+.txt td,.txt th{font-family:inherit;text-align:left;white-space:normal}
+.ok{color:var(--opt)}.bad{color:#c0392b}
+</style>
+<main>
+<header style="display:flex;flex-direction:column;gap:14px">
+  <div class="brand"><img class="logo" alt="AeroSynapse logo" id="logo"><div class="eyebrow">AeroSynapse &middot; fighter design, 3D flow, materials, Studio &middot; research use only</div></div>
+  <h1>Fighter-class design study</h1>
+  <p class="lede" id="lede"></p>
+  <div class="kpis" id="kpis"></div>
+</header>
+
+<section><h2>What was built</h2>
+  <div class="tw txt"><table id="t-built"></table></div>
+  <div class="shots" id="shots"></div>
+</section>
+
+<section><h2>Which configuration wins?</h2>
+  <p id="fam-p"></p>
+  <div class="tw"><table id="t-fam"></table></div>
+  <p class="note" id="fam-note"></p>
+</section>
+
+<section><h2>Every situation, reference against the best design</h2>
+  <p id="sit-p"></p>
+  <div class="tw"><table id="t-sit"></table></div>
+</section>
+
+<section><h2>Requirements and stability</h2>
+  <div class="tw txt"><table id="t-req"></table></div>
+</section>
+
+<section><h2>3D flow simulation of the designs</h2>
+  <p id="cfd-p"></p>
+  <div class="tw"><table id="t-cfd"></table></div>
+</section>
+
+<section><h2>How the flow solver was checked</h2>
+  <p id="ver-p"></p>
+  <div class="tw txt"><table id="t-ver"></table></div>
+</section>
+
+<section><h2>Materials and tolerances</h2>
+  <p id="mat-p"></p>
+  <div class="tw txt"><table id="t-mat"></table></div>
+  <div class="tw txt"><table id="t-tol"></table></div>
+</section>
+
+<section><h2>Skin heating with the parametric PINN</h2>
+  <p id="th-p"></p>
+  <div class="tw"><table id="t-thv"></table></div>
+  <div class="tw txt"><table id="t-thz"></table></div>
+</section>
+
+<section><h2>The merged PINN project</h2>
+  <p id="pinn-p"></p>
+</section>
+
+<section><h2>Training data on disk</h2>
+  <p id="sur-p"></p>
+  <div class="tw"><table id="t-sur"></table></div>
+</section>
+
+<section><h2>How far to trust this</h2>
+  <ul id="limits"></ul>
+</section>
+</main>
+<script>
+const D=/*__DATA__*/null;
+/*__HELPERS__*/
+const nm=s=>s.replaceAll("_"," ").replace(/^./,c=>c.toUpperCase());
+function table(id,cols,rows){$(id).innerHTML=head(...cols)+rows.map(r=>row(...r)).join("")}
+function render(){
+ $("logo").src=D.logo;
+ const R=D.ref,fams=Object.keys(D.fam),best=D.best,Bs=D.fam[best].s;
+ $("lede").textContent=`Five fighter configuration families were optimised on one model against ${D.n_situations} named flight situations and ${D.n_extreme} random extreme states, with the engine, cockpit and fuel constrained inside the body. The best design that meets every requirement is the ${nm(best).toLowerCase()} family. Its objective is ${f(D.fam[best].J,3)} against 1.000 for the F-16-class reference.`;
+ $("kpis").innerHTML=[[sg(pc(Bs.W0,R.W0),1),"take-off mass"],[sg(pc(Bs.metrics.cruise_drag_N,R.metrics.cruise_drag_N),1),"cruise drag"],[sg(pc(Bs.metrics.dash_drag_N,R.metrics.dash_drag_N),1),"Mach 1.8 dash drag"],[sg(pc(Bs.metrics.turn_rate_sustained_dps,R.metrics.turn_rate_sustained_dps),1),"sustained turn rate"]].map(k=>`<div class="kpi"><b>${k[0]}</b><span>${k[1]}</span></div>`).join("");
+ table("t-built",["Part","What it does","Check"],D.built);
+ $("shots").innerHTML=D.shots.map(s=>`<figure><img src="${s.src}" alt="${s.cap}"><figcaption>${s.cap}</figcaption></figure>`).join("");
+ $("fam-p").textContent="Objective: 30 % take-off mass, 15 % each cruise drag, dash drag and sustained turn rate, 10 % climb rate, 5 % each gust load, turbulence load and robustness in random extreme states, each relative to the reference, plus penalties for unmet requirements. Lower is better.";
+ const fr=(n,s,J,ok,ev)=>[n,f(J,3),ok?'<span class="ok">yes</span>':'<span class="bad">no</span>',f(s.W0/1000,2),f(s.CD0,4),f(s.metrics.cruise_drag_N/1000,1),f(s.metrics.dash_drag_N/1000,1),f(s.metrics.turn_rate_sustained_dps,1),f(s.metrics.Ps_climb,0),f(s.metrics.gust_dn,2),f(s.metrics.extreme_flyable*100,0)+" %",ev];
+ table("t-fam",["Design","Objective","Meets all","Take-off, t","C<sub>D0</sub>","Cruise drag, kN","Dash drag, kN","Turn, °/s","Climb P<sub>s</sub>, m/s","Gust, g","Extreme states flown","Evaluations"],[fr("Reference (F-16-class)",R,1,true,"–"),...fams.map(k=>fr(nm(k),D.fam[k].s,D.fam[k].J,D.fam[k].feasible,D.fam[k].evals))]);
+ $("fam-note").textContent=D.hold_note;
+ $("sit-p").textContent=`Lift coefficient, drag coefficient, lift-to-drag ratio and specific excess power in each named situation, for the reference and the ${nm(best).toLowerCase()} design.`;
+ const ks=Object.keys(R.states);
+ table("t-sit",["Situation","C<sub>L</sub> ref","C<sub>L</sub> best","C<sub>D</sub> ref","C<sub>D</sub> best","L/D ref","L/D best","P<sub>s</sub> ref","P<sub>s</sub> best"],ks.map(k=>{const a=R.states[k],b=Bs.states[k];return[a.name,f(a.CL,3),f(b.CL,3),f(a.CD,4),f(b.CD,4),f(a.LD,1),f(b.LD,1),f(a.Ps,0),f(b.Ps,0)]}));
+ const cn=Object.keys(R.constraints);
+ table("t-req",["Requirement","Reference","Best","Met (best)"],cn.map(k=>[nm(k),f(-R.constraints[k],2),f(-Bs.constraints[k],2),Bs.constraints[k]<=0?'<span class="ok">yes</span>':'<span class="bad">no</span>']));
+ $("cfd-p").textContent=D.cfd_text;
+ table("t-cfd",["Design","State","C<sub>L</sub> 3D flow","C<sub>L</sub> fast model","C<sub>D</sub> 3D flow","C<sub>D</sub> fast model","Friction C<sub>D</sub>","C<sub>m</sub>","Separated","Cells","Converged"],D.cfd);
+ $("ver-p").textContent=D.ver_text;
+ table("t-ver",["Case","What it tests","Result","Reference"],D.ver);
+ $("mat-p").textContent=D.mat_text;
+ table("t-mat",["Zone","Material","Temperature, K","Margin to limit, K","Mass index vs 7075"],D.mat);
+ table("t-tol",["Tolerance effect","Mean","5 %","95 %"],D.tol);
+ $("th-p").textContent=D.th_text;
+ table("t-thv",["Biot number","PINN max error","PINN relative L2","FD max error"],D.thv);
+ table("t-thz",["Zone","Material","Bi","Peak T, K","Margin, K","ΔT across skin, K","Thermal stress, MPa","Share of allowable","Model used"],D.thz);
+ $("pinn-p").innerHTML=D.pinn_text;
+ $("sur-p").textContent=D.sur_text;
+ table("t-sur",["Output","R² network","R² nearest neighbour","Relative RMSE"],D.sur);
+ $("limits").innerHTML=D.limits.map(x=>`<li>${x}</li>`).join("");
+}
+render();
+matchMedia("(prefers-color-scheme:dark)").addEventListener("change",render);
+new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+</script>

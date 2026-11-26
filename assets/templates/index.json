@@ -1,0 +1,134 @@
+[
+ {
+  "key": "blank",
+  "group": "Start",
+  "title": "Blank design",
+  "description": "An empty design: draw a body in the sketcher, or add parts from the tool palette."
+ },
+ {
+  "key": "jet_conventional",
+  "group": "Jet fighters",
+  "title": "Conventional",
+  "description": "Wing, strakes, horizontal tail and one fin: the reference fighter."
+ },
+ {
+  "key": "jet_canard_delta",
+  "group": "Jet fighters",
+  "title": "Canard delta",
+  "description": "Delta wing with a close-coupled canard, no tailplane."
+ },
+ {
+  "key": "jet_twin_tail_lerx",
+  "group": "Jet fighters",
+  "title": "Twin tail lerx",
+  "description": "Leading-edge extensions and canted twin fins."
+ },
+ {
+  "key": "jet_tailless_blended",
+  "group": "Jet fighters",
+  "title": "Tailless blended",
+  "description": "Blended tailless body with blades and a notched wing."
+ },
+ {
+  "key": "jet_freeform",
+  "group": "Jet fighters",
+  "title": "Freeform",
+  "description": "Every option of the design space switched on by size: the freest fighter body."
+ },
+ {
+  "key": "jet_falcon",
+  "group": "Jet fighters",
+  "title": "Falcon (optimised)",
+  "description": "The workflow's result: optimised design, airfoil, area-ruled body, sized structure and skin."
+ },
+ {
+  "key": "plane_light",
+  "group": "Airplanes",
+  "title": "Light airplane",
+  "description": "High wing, nose spinner, conventional tail: a four-seat trainer."
+ },
+ {
+  "key": "plane_airliner",
+  "group": "Airplanes",
+  "title": "Airliner",
+  "description": "Tube and swept wing with two underwing engines."
+ },
+ {
+  "key": "plane_glider",
+  "group": "Airplanes",
+  "title": "Glider",
+  "description": "Slender pod, very high aspect-ratio wing, T-tail."
+ },
+ {
+  "key": "plane_flying_wing",
+  "group": "Airplanes",
+  "title": "Flying wing",
+  "description": "No fuselage and no tail: a swept, washed-out wing with winglets."
+ },
+ {
+  "key": "plane_bwb",
+  "group": "Airplanes",
+  "title": "Blended wing body",
+  "description": "A lofted lifting centre body flowing into the outer wings."
+ },
+ {
+  "key": "plane_uav",
+  "group": "Airplanes",
+  "title": "UAV (twin boom)",
+  "description": "Pusher pod, straight wing, twin booms and an inverted-V tail."
+ },
+ {
+  "key": "airfoil_naca0012",
+  "group": "Airfoil wings",
+  "title": "NACA 0012",
+  "description": "Symmetric 12 % section: tails, fins, rotor blades."
+ },
+ {
+  "key": "airfoil_naca2412",
+  "group": "Airfoil wings",
+  "title": "NACA 2412",
+  "description": "2 % camber, 12 % thick: light aircraft wings."
+ },
+ {
+  "key": "airfoil_naca4412",
+  "group": "Airfoil wings",
+  "title": "NACA 4412",
+  "description": "4 % camber: high-lift, slow flight."
+ },
+ {
+  "key": "airfoil_biconvex",
+  "group": "Airfoil wings",
+  "title": "Biconvex 4 %",
+  "description": "Sharp-edged supersonic section."
+ },
+ {
+  "key": "airfoil_diamond",
+  "group": "Airfoil wings",
+  "title": "Diamond 4 %",
+  "description": "Double-wedge supersonic section: lowest wave drag for its thickness."
+ },
+ {
+  "key": "airfoil_optimised",
+  "group": "Airfoil wings",
+  "title": "Optimised NACA 2412",
+  "description": "The shape optimiser's section, after the search over all flow states."
+ },
+ {
+  "key": "airfoil_falcon",
+  "group": "Airfoil wings",
+  "title": "Fighter section (falcon)",
+  "description": "The workflow's optimised thin section, in its own swept wing."
+ },
+ {
+  "key": "showcase_tools",
+  "group": "Showcase",
+  "title": "Curve tools",
+  "description": "Revolved pods, a sheet fairing and an airfoil-table wing on a fighter."
+ },
+ {
+  "key": "showcase_math",
+  "group": "Showcase",
+  "title": "Math features",
+  "description": "Equation surface, superellipsoid, helix sweep, gyroid lattice and a sheet-metal bracket."
+ }
+]

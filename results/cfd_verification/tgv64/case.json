@@ -1,0 +1,53 @@
+{
+ "case": "tgv",
+ "grid": {
+  "uniform": {
+   "n": [
+    64,
+    64,
+    64
+   ],
+   "lo": [
+    0,
+    0,
+    0
+   ],
+   "hi": [
+    6.283185307179586,
+    6.283185307179586,
+    6.283185307179586
+   ]
+  },
+  "bc": {
+   "x": [
+    "periodic",
+    "periodic"
+   ],
+   "y": [
+    "periodic",
+    "periodic"
+   ],
+   "z": [
+    "periodic",
+    "periodic"
+   ]
+  }
+ },
+ "flow": {
+  "mach": 0.1,
+  "reynolds": 1600
+ },
+ "model": {
+  "viscous": true,
+  "sgs": "wale",
+  "wall_model": false,
+  "cfl": 0.9,
+  "low_mach_fix": true
+ },
+ "run": {
+  "steps": 100000,
+  "t_end": 140,
+  "log_every": 10,
+  "output": "E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\results\\cfd_verification\\tgv64"
+ }
+}

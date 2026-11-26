@@ -1,0 +1,11 @@
+experiment_id: workflow_quick
+research_question: "Does the define→simulate→train→validate→optimise→report workflow run end to end?"
+hypothesis: "Every stage completes on a laptop CPU and writes its evidence to results/workflow_quick/."
+profile: quick
+seed: 0
+problem: {name: convdiff1d, pe: 10.0}
+solver: {name: convdiff_fv, nx: 128, scheme: vanleer}
+model: {name: pinn, width: 32, depth: 3}
+training: {iterations: 600, n_collocation: 1000, sampler: rad, resample_every: 200, lr: 0.001}
+optimization: {method: de, baseline: ga, budget: 200}
+metrics: [rel_l2, linf]

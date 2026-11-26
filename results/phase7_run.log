@@ -1,0 +1,85 @@
+{
+ "fallback": {
+  "ensemble_train_s": 40.95793844400032,
+  "thresholds": {
+   "mahalanobis": 2.889804272409131,
+   "rel_spread": 0.005127929616719484,
+   "mass_residual": 0.0031401431560516458
+  },
+  "in_distribution": {
+   "fallback_rate": 0.08999999999999997,
+   "surrogate_err_median": 0.0027763596936359793,
+   "surrogate_err_max": 0.026947328000522144,
+   "guarded_err_median": 0.0024457877369630644,
+   "guarded_err_max": 0.012594049782686599,
+   "fallback_reasons": {
+    "domain": 0,
+    "input_novelty": 2,
+    "uncertainty": 4,
+    "physics_residual": 5
+   },
+   "err_of_accepted_max": 0.012594049782686599
+  },
+  "ood_pe": {
+   "fallback_rate": 1.0,
+   "surrogate_err_median": 0.1526474479158265,
+   "surrogate_err_max": 0.23389439270630943,
+   "guarded_err_median": 0.0006448844578272344,
+   "guarded_err_max": 0.0010129867007944327,
+   "fallback_reasons": {
+    "domain": 100,
+    "input_novelty": 100,
+    "uncertainty": 100,
+    "physics_residual": 100
+   },
+   "err_of_accepted_max": null
+  },
+  "ood_input": {
+   "fallback_rate": 1.0,
+   "surrogate_err_median": 0.006603362642161165,
+   "surrogate_err_max": 0.05578262171960377,
+   "guarded_err_median": 0.00012366064899457416,
+   "guarded_err_max": 0.0004600572692085599,
+   "fallback_reasons": {
+    "domain": 0,
+    "input_novelty": 100,
+    "uncertainty": 36,
+    "physics_residual": 13
+   },
+   "err_of_accepted_max": null
+  },
+  "solver_time_per_fallback_s": 0.03658607395206355,
+  "n_logged_decisions": 300
+ },
+ "resources": {
+  "calibration": {
+   "c_pinn": 1.947555188428543e-09,
+   "c_fv": 3.001304985094153e-07,
+   "basis": "PINN: affine fit from 2 runs (150 it; work 9.04e+04 and 2.33e+06 pts*params); FV: 256 cells x 525 steps"
+  },
+  "pinn": {
+   "predicted_s": 3.8884506113460806,
+   "measured_s": 3.6639605979999033,
+   "rel_error": 0.06126976733011889,
+   "config": "500 it, 1000 pts, 2273 params"
+  },
+  "fv": {
+   "predicted_s": 0.8056751122866506,
+   "measured_s": 0.52494698999908,
+   "rel_error": 0.5347742298475939,
+   "config": "512 cells, 5243 steps"
+  }
+ },
+ "notebooks": [
+  "notebooks/phase2_full_colab.ipynb",
+  "notebooks/phase3_full_colab.ipynb",
+  "notebooks/phase4_full_colab.ipynb",
+  "notebooks/phase5_full_colab.ipynb",
+  "notebooks/phase6_full_colab.ipynb"
+ ],
+ "trust_reports": [
+  "fno_operator",
+  "optimisation_surrogates",
+  "pinn_convdiff"
+ ]
+}

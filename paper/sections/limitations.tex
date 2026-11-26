@@ -1,0 +1,6 @@
+% sources: phase3_adaptive_collocation
+One architecture, one optimiser and one budget level per main experiment; float32 training; a single PDE family
+with smooth initial data; 8 seeds (minimum attainable two-sided Wilcoxon $p=0.0078$); wall time not equalised
+(machine load varied). Adaptive samplers spend slightly more residual evaluations than uniform sampling. Results may
+not transfer to non-periodic boundaries, sharper data or larger networks. All validation of the surrounding platform
+uses published numerical benchmarks, not experiments.

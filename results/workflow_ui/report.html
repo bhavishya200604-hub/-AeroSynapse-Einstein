@@ -1,0 +1,84 @@
+<!doctype html><html><head><meta charset='utf-8'><title>workflow_ui</title></head><body><p style='background:#fde68a;padding:8px'><b>RESEARCH USE ONLY. AeroSynapse-Einstein results are not certified for aircraft, pressure vessels, industrial machinery or any safety-critical decision. Platform validation tier: 1/5 (Research simulation: exploratory, no accuracy guarantee.) Classical solvers: tier 3 (code-verified). ML surrogates: tier 1.</b></p><h1>workflow_ui</h1><pre>{
+ &quot;define&quot;: {
+  &quot;name&quot;: &quot;convdiff1d&quot;,
+  &quot;equation&quot;: &quot;u_t + v u_x = D u_xx + s&quot;,
+  &quot;domain&quot;: &quot;((0.0, 1.0),)&quot;,
+  &quot;t_final&quot;: &quot;0.5&quot;,
+  &quot;parameters&quot;: &quot;{&#x27;v&#x27;: (1.0, &#x27;m/s&#x27;), &#x27;D&#x27;: (0.1, &#x27;m^2/s&#x27;)}&quot;,
+  &quot;bcs&quot;: &quot;{&#x27;left&#x27;: &#x27;periodic&#x27;, &#x27;right&#x27;: &#x27;periodic&#x27;}&quot;,
+  &quot;dimensionless&quot;: &quot;{&#x27;Pe&#x27;: 10.0, &#x27;Fo&#x27;: 0.05}&quot;
+ },
+ &quot;simulate&quot;: {
+  &quot;rel_l2_vs_exact&quot;: 0.00011925136655642044,
+  &quot;mass_drift&quot;: 1.4765966227514582e-14,
+  &quot;time_s&quot;: 0.2609949449997657
+ },
+ &quot;validate&quot;: {
+  &quot;rel_l2&quot;: 0.4698174481276683,
+  &quot;abs_l2_rms&quot;: 0.0738467934400495,
+  &quot;linf&quot;: 0.7998796552419662,
+  &quot;mae&quot;: 0.048858990026600164,
+  &quot;rmse&quot;: 0.0738467934400495,
+  &quot;q50&quot;: 0.03336334069390867,
+  &quot;q90&quot;: 0.09432392693051825,
+  &quot;q99&quot;: 0.2788986263208815,
+  &quot;q100&quot;: 0.7998796552419662,
+  &quot;decision&quot;: &quot;fallback to classical solver&quot;
+ },
+ &quot;optimise&quot;: {
+  &quot;verdict&quot;: &quot;ACCEPT&quot;,
+  &quot;final&quot;: {
+   &quot;design&quot;: {
+    &quot;m&quot;: 4.0,
+    &quot;x_s&quot;: 0.1,
+    &quot;material&quot;: &quot;copper&quot;
+   },
+   &quot;model_f&quot;: [
+    0.6411829871896261
+   ],
+   &quot;trusted_f&quot;: [
+    0.6411629356751417
+   ],
+   &quot;trusted_g&quot;: [
+    -0.8459029329063749
+   ],
+   &quot;trusted_feasible&quot;: true,
+   &quot;model_vs_trusted_abs_diff&quot;: 2.005151448436493e-05,
+   &quot;improvement_vs_baseline&quot;: 5.702638187621102
+  },
+  &quot;baseline_method_final&quot;: {
+   &quot;design&quot;: {
+    &quot;m&quot;: 3.2498980760006884,
+    &quot;x_s&quot;: 0.1,
+    &quot;material&quot;: &quot;copper&quot;
+   },
+   &quot;model_f&quot;: [
+    0.6633444178118038
+   ],
+   &quot;trusted_f&quot;: [
+    0.6633249514907207
+   ],
+   &quot;trusted_g&quot;: [
+    -0.6931869623866647
+   ],
+   &quot;trusted_feasible&quot;: true,
+   &quot;model_vs_trusted_abs_diff&quot;: 1.9466321083072557e-05,
+   &quot;improvement_vs_baseline&quot;: 5.680476171805523
+  },
+  &quot;baseline&quot;: {
+   &quot;design&quot;: {
+    &quot;m&quot;: 1.0,
+    &quot;x_s&quot;: 0.8,
+    &quot;material&quot;: &quot;aluminium&quot;
+   },
+   &quot;f&quot;: [
+    6.3438011232962435
+   ],
+   &quot;g&quot;: [
+    26.259222712830365
+   ],
+   &quot;h&quot;: [],
+   &quot;feasible&quot;: false
+  }
+ }
+}</pre></body></html>

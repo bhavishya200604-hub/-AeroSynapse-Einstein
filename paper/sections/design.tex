@@ -1,0 +1,8 @@
+% sources: phase3_adaptive_collocation
+P\'eclet numbers $\{1,10,100,1000\}$; samplers: fixed uniform, uniform resampling, Latin hypercube, scrambled Sobol,
+RAR, RAD and R3, all with the same number of collocation points and iterations. Each sampler/P\'eclet cell uses
+8 seeds; a seed fixes the network initialisation, so comparisons are paired. The primary metric is the relative
+$L_2$ error on a $201\times201$ space--time grid against the exact solution. Tests: two-sided exact Wilcoxon
+signed-rank versus uniform, Holm-corrected within each P\'eclet number; Friedman across samplers; percentile
+bootstrap 95\% intervals of the median. The hypotheses were written into the experiment record before execution.
+Ablations: Fourier features, causal weighting and hard initial conditions.

@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\cli.py", line 332, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\cli.py", line 328, in main
+    return int(ns.fn(ns))
+               ^^^^^^^^^
+  File "E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\cli.py", line 153, in _simulate
+    F.run(d, ns.out, ns.case, ns.quality)
+  File "E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\sim\flow3d.py", line 407, in run
+    return postprocess(out)
+           ^^^^^^^^^^^^^^^^
+  File "E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\sim\flow3d.py", line 357, in postprocess
+    V = Volume(d) if (d / "volume.bin").exists() else None
+        ^^^^^^^^^
+  File "E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\sim\flow3d.py", line 70, in __init__
+    a = np.fromfile(d / "volume.bin", np.float32).reshape(6, nz, ny, nx).transpose(0, 3, 2, 1)  # var, x, y, z
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: cannot reshape array of size 480240 into shape (6,29,36,46)
+==============================================================================
+RESEARCH USE ONLY. AeroSynapse-Einstein results are not certified for aircraft, pressure vessels, industrial machinery or any safety-critical decision. Platform validation tier: 1/5 (Research simulation: exploratory, no accuracy guarantee.) Classical solvers: tier 3 (code-verified). ML surrogates: tier 1.
+==============================================================================

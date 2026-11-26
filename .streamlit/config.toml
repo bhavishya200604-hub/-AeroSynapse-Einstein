@@ -1,0 +1,11 @@
+# AeroSynapse palette (from the logo): deep navy ground, steel panels, cyan accent
+[theme]
+base = "dark"
+primaryColor = "#22b4ec"
+backgroundColor = "#0b1526"
+secondaryBackgroundColor = "#14243d"
+textColor = "#e3ebf6"
+font = "sans serif"
+
+[browser]
+gatherUsageStats = false

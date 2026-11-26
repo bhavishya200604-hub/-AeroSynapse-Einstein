@@ -1,0 +1,42 @@
+{
+ "training": {
+  "wall_s": 280.75787159998436,
+  "adam_epochs": 2500,
+  "lbfgs_iterations": 200
+ },
+ "verification": {
+  "Bi=0.25": {
+   "pinn_max_abs_error": 0.131426542552173,
+   "pinn_rel_l2": 0.07265067030396055,
+   "fd_max_abs_error": 3.5844543459839784e-05
+  },
+  "Bi=0.7": {
+   "pinn_max_abs_error": 0.024623579020267794,
+   "pinn_rel_l2": 0.019733720942403152,
+   "fd_max_abs_error": 9.111971419817344e-05
+  },
+  "Bi=2.0": {
+   "pinn_max_abs_error": 0.0402297112810841,
+   "pinn_rel_l2": 0.03579506346521391,
+   "fd_max_abs_error": 0.0002113378093003826
+  },
+  "Bi=6.0": {
+   "pinn_max_abs_error": 0.09867408022513213,
+   "pinn_rel_l2": 0.03625667855392659,
+   "fd_max_abs_error": 0.0005276410886115301
+  },
+  "Bi=19.0": {
+   "pinn_max_abs_error": 0.13143813638645663,
+   "pinn_rel_l2": 0.07720159449696327,
+   "fd_max_abs_error": 0.0022399734984264452
+  }
+ },
+ "query_seconds": {
+  "pinn": 0.004515430000028573,
+  "analytic_series": 0.3092541699996218
+ }
+}
+dash: hottest control 342 K (margin 52 K, Carbon/epoxy IM7/8552, quasi-isotropic); largest thermal stress radome 4.8 MPa = 1.7 % of allowable
+cold_high: hottest control 286 K (margin 108 K, Carbon/epoxy IM7/8552, quasi-isotropic); largest thermal stress radome 2.5 MPa = 0.8 % of allowable
+max_q: hottest control 360 K (margin 34 K, Carbon/epoxy IM7/8552, quasi-isotropic); largest thermal stress radome 4.7 MPa = 1.7 % of allowable
+hot_day_dash: hottest control 381 K (margin 13 K, Carbon/epoxy IM7/8552, quasi-isotropic); largest thermal stress radome 5.4 MPa = 1.9 % of allowable

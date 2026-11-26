@@ -1,0 +1,37 @@
+[jobs] airliner_tube_and_wing_0: already finished, reusing
+[jobs] airliner_tube_and_wing_1: already finished, reusing
+[jobs] airliner_blended_wing_body_0: already finished, reusing
+[jobs] airliner_blended_wing_body_1: already finished, reusing
+[jobs] airliner_flying_wing_0: already finished, reusing
+[jobs] airliner_flying_wing_1: already finished, reusing
+[jobs] airliner_freeform_0: already finished, reusing
+[jobs] airliner_freeform_1: already finished, reusing
+[jobs] airliner_freeform_euclidean_0: already finished, reusing
+[jobs] airliner_freeform_euclidean_1: already finished, reusing
+[jobs] supersonic_supersonic_jet_0: already finished, reusing
+[jobs] supersonic_supersonic_jet_1: already finished, reusing
+[jobs] supersonic_supersonic_freeform_0: already finished, reusing
+[jobs] supersonic_supersonic_freeform_1: already finished, reusing
+[airliner/freeform/4] J 0.6420 fuel 0.634 L/D 23.58 t 481s
+[airliner/freeform/2] J 0.6550 fuel 0.646 L/D 23.26 t 481s
+[jobs] airliner_freeform_4: exit 0
+[jobs] airliner_freeform_2: exit 0
+[airliner/freeform/3] J 0.6503 fuel 0.642 L/D 24.04 t 482s
+[jobs] airliner_freeform_3: exit 0
+[airliner/freeform_euclidean/2] J 0.7174 fuel 0.705 L/D 22.25 t 452s
+[jobs] airliner_freeform_euclidean_2: exit 0
+[airliner/freeform_euclidean/3] J 0.6436 fuel 0.635 L/D 23.46 t 452s
+[jobs] airliner_freeform_euclidean_3: exit 0
+[airliner/freeform_euclidean/4] J 0.6900 fuel 0.679 L/D 24.13 t 450s
+[jobs] airliner_freeform_euclidean_4: exit 0
+
+airliner: baseline L/D 16.96 fuel 10.59 t
+  tube_and_wing            J 0.8175 L/D 20.59 fuel 8.58 t  span 36.0  violated []
+  blended_wing_body        J 0.7004 L/D 22.71 fuel 7.30 t  span 35.6  violated []
+  flying_wing              J 0.6889 L/D 24.39 fuel 7.15 t  span 35.6  violated []
+  freeform                 J 0.6259 L/D 23.68 fuel 6.53 t  span 34.0  violated []
+  freeform_euclidean       J 0.6436 L/D 23.46 fuel 6.72 t  span 35.4  violated []
+
+supersonic: baseline L/D 6.26 fuel 21.11 t
+  supersonic_jet           J 0.5574 L/D 9.57 fuel 13.01 t  span 17.3  violated []
+  supersonic_freeform      J 0.5908 L/D 8.73 fuel 13.55 t  span 16.1  violated []

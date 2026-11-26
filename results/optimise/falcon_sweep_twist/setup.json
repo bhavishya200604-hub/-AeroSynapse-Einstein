@@ -1,0 +1,10 @@
+{
+ "budget": 8,
+ "initial_runs": 4,
+ "vary_taper": false,
+ "sweep_min": 25,
+ "sweep_max": 45,
+ "twist_min": -5,
+ "twist_max": 0,
+ "fidelity": "draft"
+}

@@ -1,0 +1,271 @@
+........................................................................ [  6%]
+........................................................................ [ 13%]
+.............................................F.......................... [ 20%]
+........................................................................ [ 27%]
+Fs.s........................................................sssss..s..ss [ 34%]
+........................................................................ [ 41%]
+........................................................................ [ 48%]
+.........................................F.............................. [ 55%]
+................F....................................................... [ 62%]
+........................................................................ [ 69%]
+........................................................................ [ 76%]
+........................................................................ [ 83%]
+.............................................s..............F.F......... [ 90%]
+........................................................................ [ 97%]
+..............FF.............                                            [100%]
+================================== FAILURES ===================================
+__________________________ test_parallel_and_logging __________________________
+
+caplog = <_pytest.logging.LogCaptureFixture object at 0x000001765D9EB1D0>
+
+    def test_parallel_and_logging(caplog):
+        assert run_parallel(_sq, [1, 2, 3], workers=1) == [1, 4, 9]
+>       assert run_parallel(_sq, [1, 2, 3], workers=2) == [1, 4, 9]
+
+tests\test_stats_logging.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aerosynapse\experiments\parallel.py:28: in run_parallel
+    return list(ex.map(fn, jobs))
+C:\Program Files\Python312\Lib\concurrent\futures\process.py:636: in _chain_from_iterable_of_lists
+    for element in iterable:
+C:\Program Files\Python312\Lib\concurrent\futures\_base.py:619: in result_iterator
+    yield _result_or_cancel(fs.pop())
+C:\Program Files\Python312\Lib\concurrent\futures\_base.py:317: in _result_or_cancel
+    return fut.result(timeout)
+C:\Program Files\Python312\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = None
+
+    def __get_result(self):
+        if self._exception:
+            try:
+>               raise self._exception
+E               concurrent.futures.process.BrokenProcessPool: A process in the process pool was terminated abruptly while the future was running or pending.
+
+C:\Program Files\Python312\Lib\concurrent\futures\_base.py:401: BrokenProcessPool
+---------------------------- Captured stderr call -----------------------------
+Process SpawnProcess-2:
+Traceback (most recent call last):
+  File "C:\Program Files\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Program Files\Python312\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Program Files\Python312\Lib\concurrent\futures\process.py", line 252, in _process_worker
+    call_item = call_queue.get(block=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python312\Lib\multiprocessing\queues.py", line 104, in get
+    self._sem.release()
+OSError: [WinError 6] The handle is invalid
+_ test_figure_function[p1_7_benchmarks@smoke.aerosynapse.thermal.experiments.p1_7_benchmarks.figures.0] _
+
+name = 'p1_7_benchmarks@smoke.aerosynapse.thermal.experiments.p1_7_benchmarks.figures.0'
+tmp_path = WindowsPath('C:/Users/HP/AppData/Local/Temp/pytest-of-HP/pytest-23/test_figure_function_p1_7_benc0')
+
+    @pytest.mark.parametrize(
+        "name",
+        [
+            pytest.param(n, marks=pytest.mark.slow) if MANIFEST[n].get("replay_s", 0) > SLOW_S else n
+            for n in sorted(MANIFEST)
+        ],
+    )
+    def test_figure_function(name, tmp_path):
+        e = MANIFEST[name]
+        blob = (FIX if e["committed"] else FIX_LARGE) / "blobs" / f"{e['blob']}.pkl.gz"
+        if not blob.exists():
+            pytest.skip(f"large fixture not present (git-ignored): {blob.relative_to(ROOT).as_posix()}")
+        try:
+>           written = replay(e, blob, tmp_path)
+
+tests\thermal\test_figure_smoke.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aerosynapse\thermal\viz\capture.py:286: in replay
+    rec = load(blob)
+src\aerosynapse\thermal\viz\capture.py:275: in load
+    return load_bytes(gzip.decompress(Path(blob).read_bytes()))
+src\aerosynapse\thermal\viz\capture.py:271: in load_bytes
+    return _compat.loads(blob)
+src\aerosynapse\thermal\_compat.py:26: in loads
+    return Unpickler(io.BytesIO(blob)).load()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <aerosynapse.thermal._compat.Unpickler object at 0x00000176A524A3F0>
+module = 'scipy.interpolate._interpolate', name = '_PPoly'
+
+    def find_class(self, module: str, name: str) -> Any:
+>       return super().find_class(modname(module), name)
+E       AttributeError: Can't get attribute '_PPoly' on <module 'scipy.interpolate._interpolate' from 'C:\\Users\\HP\\AppData\\Roaming\\Python\\Python312\\site-packages\\scipy\\interpolate\\_interpolate.py'>
+
+src\aerosynapse\thermal\_compat.py:22: AttributeError
+_________________ test_code_download_has_no_data_or_networks __________________
+
+base = 'http://127.0.0.1:9635'
+
+    def test_code_download_has_no_data_or_networks(base):
+        code, z, disp = call(base, "/api/download/code")
+        assert code == 200 and "thermal_lab_code.zip" in disp
+        names = zipfile.ZipFile(io.BytesIO(z)).namelist()
+>       assert "thermal_lab_code/src/web/server.py" in names and "thermal_lab_code/HOW_TO_RUN.txt" in names
+E       AssertionError: assert ('thermal_lab_code/src/web/server.py' in ['thermal_lab_code/configs/data/defaults.yaml', 'thermal_lab_code/configs/data/examples/hot_bottom_buoyant.yaml', 'the...'thermal_lab_code/configs/inverse/examples/user_cylinder.yaml', 'thermal_lab_code/configs/inverse/user_case.yaml', ...])
+
+tests\thermal\test_labs.py:122: AssertionError
+---------------------------- Captured stderr call -----------------------------
+127.0.0.1 - - [08/Nov/2026 04:50:36] "GET /api/download/code HTTP/1.1" 200 -
+_____________________ test_reproduce_dry_run_lists_steps ______________________
+
+    def test_reproduce_dry_run_lists_steps():
+        r = subprocess.run(
+            [sys.executable, "-m", "aerosynapse.thermal.experiments.p9_reproduce", "--dry-run"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+>       assert r.returncode == 0 and "claims audit" in r.stdout and "paper1: make_numbers" in r.stdout
+E       assert (1 == 0)
+E        +  where 1 = CompletedProcess(args=['E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\.venv\\Scripts\\python.exe', '-m', 'a...ecification for 'aerosynapse.thermal.experiments.p9_reproduce' (ModuleNotFoundError: No module named 'aerosynapse')\n").returncode
+
+tests\thermal\test_phase9.py:65: AssertionError
+_______________________ test_bundle_contents_and_record _______________________
+
+tmp_path = WindowsPath('C:/Users/HP/AppData/Local/Temp/pytest-of-HP/pytest-23/test_bundle_contents_and_recor0')
+
+    def test_bundle_contents_and_record(tmp_path):
+        out = tmp_path / "space"
+>       info = _build().assemble(out, allow_missing_checkpoints=True)  # default: the free Gradio / ZeroGPU Space
+
+tests\thermal\test_space.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+out = WindowsPath('C:/Users/HP/AppData/Local/Temp/pytest-of-HP/pytest-23/test_bundle_contents_and_recor0/space')
+allow_missing_checkpoints = True, sdk = 'gradio'
+
+    def assemble(out: Path = OUT, allow_missing_checkpoints: bool = False, sdk: str = "gradio") -> dict:
+        """Copy the files of the Space into `out` (emptied first) and return the build record (also BUILD_INFO.json)."""
+        if out.exists():
+            shutil.rmtree(out)
+        out.mkdir(parents=True)
+        files: list[str] = []
+        for item in INCLUDE:
+            src = ROOT / item
+            if not src.exists():
+>               raise SystemExit(f"missing in the project: {item}")
+E               SystemExit: missing in the project: src
+
+projects\thermal_pinn\deploy\hf_space\build.py:89: SystemExit
+_____________________ test_docker_bundle_and_gradio_card ______________________
+
+tmp_path = WindowsPath('C:/Users/HP/AppData/Local/Temp/pytest-of-HP/pytest-23/test_docker_bundle_and_gradio_0')
+
+    def test_docker_bundle_and_gradio_card(tmp_path):
+>       docker = _build().assemble(tmp_path / "d", allow_missing_checkpoints=True, sdk="docker")
+
+tests\thermal\test_space.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+out = WindowsPath('C:/Users/HP/AppData/Local/Temp/pytest-of-HP/pytest-23/test_docker_bundle_and_gradio_0/d')
+allow_missing_checkpoints = True, sdk = 'docker'
+
+    def assemble(out: Path = OUT, allow_missing_checkpoints: bool = False, sdk: str = "gradio") -> dict:
+        """Copy the files of the Space into `out` (emptied first) and return the build record (also BUILD_INFO.json)."""
+        if out.exists():
+            shutil.rmtree(out)
+        out.mkdir(parents=True)
+        files: list[str] = []
+        for item in INCLUDE:
+            src = ROOT / item
+            if not src.exists():
+>               raise SystemExit(f"missing in the project: {item}")
+E               SystemExit: missing in the project: src
+
+projects\thermal_pinn\deploy\hf_space\build.py:89: SystemExit
+____________ test_every_figure_is_catalogued_with_a_valid_command _____________
+
+    def test_every_figure_is_catalogued_with_a_valid_command():
+>       entries = C.build()
+
+tests\thermal\test_viz_catalogue.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aerosynapse\thermal\viz\catalogue.py:138: in build
+    temps = [t for s in SCRIPTS for t in _templates(s)]
+src\aerosynapse\thermal\viz\catalogue.py:84: in _templates
+    rel = path.relative_to(ROOT).as_posix()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('E:/-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v/src/aerosynapse/thermal/experiments/p10_1_real_soil.py')
+other = WindowsPath('E:/-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v/projects/thermal_pinn')
+walk_up = False, _deprecated = (), step = 0
+
+    def relative_to(self, other, /, *_deprecated, walk_up=False):
+        """Return the relative path to another path identified by the passed
+        arguments.  If the operation is not possible (because this is not
+        related to the other path), raise ValueError.
+    
+        The *walk_up* parameter controls whether `..` may be used to resolve
+        the path.
+        """
+        if _deprecated:
+            msg = ("support for supplying more than one positional argument "
+                   "to pathlib.PurePath.relative_to() is deprecated and "
+                   "scheduled for removal in Python {remove}")
+            warnings._deprecated("pathlib.PurePath.relative_to(*args)", msg,
+                                 remove=(3, 14))
+        other = self.with_segments(other, *_deprecated)
+        for step, path in enumerate([other] + list(other.parents)):
+            if self.is_relative_to(path):
+                break
+            elif not walk_up:
+>               raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+E               ValueError: 'E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\src\\aerosynapse\\thermal\\experiments\\p10_1_real_soil.py' is not in the subpath of 'E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\projects\\thermal_pinn'
+
+C:\Program Files\Python312\Lib\pathlib.py:682: ValueError
+_______________ test_ambiguous_tags_resolve_to_existing_results _______________
+
+    def test_ambiguous_tags_resolve_to_existing_results():
+>       by = {e.name: e for e in C.build()}
+
+tests\thermal\test_viz_catalogue.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aerosynapse\thermal\viz\catalogue.py:138: in build
+    temps = [t for s in SCRIPTS for t in _templates(s)]
+src\aerosynapse\thermal\viz\catalogue.py:84: in _templates
+    rel = path.relative_to(ROOT).as_posix()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('E:/-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v/src/aerosynapse/thermal/experiments/p10_1_real_soil.py')
+other = WindowsPath('E:/-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v/projects/thermal_pinn')
+walk_up = False, _deprecated = (), step = 0
+
+    def relative_to(self, other, /, *_deprecated, walk_up=False):
+        """Return the relative path to another path identified by the passed
+        arguments.  If the operation is not possible (because this is not
+        related to the other path), raise ValueError.
+    
+        The *walk_up* parameter controls whether `..` may be used to resolve
+        the path.
+        """
+        if _deprecated:
+            msg = ("support for supplying more than one positional argument "
+                   "to pathlib.PurePath.relative_to() is deprecated and "
+                   "scheduled for removal in Python {remove}")
+            warnings._deprecated("pathlib.PurePath.relative_to(*args)", msg,
+                                 remove=(3, 14))
+        other = self.with_segments(other, *_deprecated)
+        for step, path in enumerate([other] + list(other.parents)):
+            if self.is_relative_to(path):
+                break
+            elif not walk_up:
+>               raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+E               ValueError: 'E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\src\\aerosynapse\\thermal\\experiments\\p10_1_real_soil.py' is not in the subpath of 'E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\projects\\thermal_pinn'
+
+C:\Program Files\Python312\Lib\pathlib.py:682: ValueError
+=========================== short test summary info ===========================
+FAILED tests/test_stats_logging.py::test_parallel_and_logging - concurrent.fu...
+FAILED tests/thermal/test_figure_smoke.py::test_figure_function[p1_7_benchmarks@smoke.aerosynapse.thermal.experiments.p1_7_benchmarks.figures.0]
+FAILED tests/thermal/test_labs.py::test_code_download_has_no_data_or_networks
+FAILED tests/thermal/test_phase9.py::test_reproduce_dry_run_lists_steps - ass...
+FAILED tests/thermal/test_space.py::test_bundle_contents_and_record - SystemE...
+FAILED tests/thermal/test_space.py::test_docker_bundle_and_gradio_card - Syst...
+FAILED tests/thermal/test_viz_catalogue.py::test_every_figure_is_catalogued_with_a_valid_command
+FAILED tests/thermal/test_viz_catalogue.py::test_ambiguous_tags_resolve_to_existing_results

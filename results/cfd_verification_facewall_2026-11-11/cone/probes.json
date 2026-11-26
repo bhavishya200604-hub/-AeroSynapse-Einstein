@@ -1,0 +1,20 @@
+{
+ "probes": [
+  {
+   "name": "right tip wake",
+   "at": [3.3000024, 0.3173903653, 0]
+  },
+  {
+   "name": "over the wing",
+   "at": [1.8000004, 0.1410623846, 0.5026561614]
+  },
+  {
+   "name": "upstream",
+   "at": [-0.24000232, 0.1057967884, 0]
+  }
+ ],
+ "mach": 2,
+ "length": 3,
+ "time_unit_s": 0.002938650209,
+ "note": "u v w in units of the speed of sound, p in units of rho_inf a_inf^2"
+}

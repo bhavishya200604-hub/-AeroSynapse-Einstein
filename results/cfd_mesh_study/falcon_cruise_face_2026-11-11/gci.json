@@ -1,0 +1,94 @@
+{
+ "grid_size": "core spacing h = L / cells_per_length",
+ "L": 15.16088277,
+ "models": {
+  "full": {
+   "runs": []
+  },
+  "half": {
+   "runs": [
+    {
+     "cells_per_length": 68.0,
+     "cells": 342720,
+     "wall_cells": 736,
+     "thin_surface_cells": 153,
+     "steps": 1650,
+     "stop_reason": "forces",
+     "CL": 0.1434740414,
+     "CD": 0.01407174476
+    },
+    {
+     "cells_per_length": 48.0,
+     "cells": 173628,
+     "wall_cells": 286,
+     "thin_surface_cells": 89,
+     "steps": 1820,
+     "stop_reason": "forces",
+     "CL": 0.1445848638,
+     "CD": 0.01677538192
+    },
+    {
+     "cells_per_length": 34.0,
+     "cells": 86688,
+     "wall_cells": 46,
+     "thin_surface_cells": 69,
+     "steps": 1430,
+     "stop_reason": "forces",
+     "CL": 0.1406535552,
+     "CD": 0.01665977157
+    }
+   ],
+   "CL": {
+    "h": [
+     0.22295415838235294,
+     0.31585172437500003,
+     0.4459083167647059
+    ],
+    "f": [
+     0.1434740414,
+     0.1445848638,
+     0.1406535552
+    ],
+    "r21": 1.4166666666666667,
+    "r32": 1.4117647058823528,
+    "e21": 0.0011108223999999889,
+    "e32": -0.003931308599999989,
+    "kind": "oscillatory",
+    "p": null,
+    "f_ext": null,
+    "gci_fine": null,
+    "band": [
+     0.1406535552,
+     0.1445848638
+    ],
+    "note": "oscillatory convergence: no order; the spread of the three grids bounds the error"
+   },
+   "CD": {
+    "h": [
+     0.22295415838235294,
+     0.31585172437500003,
+     0.4459083167647059
+    ],
+    "f": [
+     0.01407174476,
+     0.01677538192,
+     0.01665977157
+    ],
+    "r21": 1.4166666666666667,
+    "r32": 1.4117647058823528,
+    "e21": 0.0027036371599999994,
+    "e32": -0.00011561034999999983,
+    "kind": "oscillatory",
+    "p": null,
+    "f_ext": null,
+    "gci_fine": null,
+    "band": [
+     0.01407174476,
+     0.01677538192
+    ],
+    "note": "oscillatory convergence: no order; the spread of the three grids bounds the error"
+   }
+  }
+ },
+ "half_vs_full": []
+}

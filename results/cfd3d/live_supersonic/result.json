@@ -1,0 +1,50 @@
+{
+ "case": "supersonic",
+ "flight": {
+  "mach": 1.6,
+  "alpha": 2.0,
+  "beta": 0.0,
+  "altitude": 12000.0
+ },
+ "coefficients": {
+  "CL": -0.01327842329,
+  "CD": -0.01453809943,
+  "CY": -0.002614898156,
+  "Cl": -2.840823832e-07,
+  "Cm": -0.005040829551,
+  "Cn": -0.003955876901,
+  "CD_friction": 0.003092074054,
+  "CL_friction": -8.237316407e-05
+ },
+ "cells": 22770,
+ "separated_fraction": 0,
+ "T_wall_max_K": 327.9444572,
+ "seconds": 14.952329,
+ "converged": false,
+ "half_model": false,
+ "streamlines": 393,
+ "vortex_core_faces": 64,
+ "sonic_surface_faces": 1470,
+ "q_level": 8.123320472038088,
+ "mach_max": 1.698212772075193,
+ "cp_min_field": -0.18138577130617153,
+ "freestream_mach": 1.6000000263977792,
+ "post_seconds": 13.683132886886597,
+ "CL_change_last_10pct": 0.00037656273535169424,
+ "wall_cells": 52,
+ "grid_warning": true,
+ "flow_movies": [
+  "7_flow_wing_section.mp4",
+  "8_flow_centre_plane.mp4"
+ ],
+ "figures": [
+  "1_convergence.png",
+  "2_surface_pressure.png",
+  "3_wing_sections.png",
+  "4_field_slices.png",
+  "5_flow_3d.png",
+  "6_flow_3d_top.png",
+  "7_flow_wing_section.png",
+  "8_flow_centre_plane.png"
+ ]
+}

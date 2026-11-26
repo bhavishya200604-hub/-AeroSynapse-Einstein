@@ -1,0 +1,59 @@
+{
+ "case": "body",
+ "design": {
+  "name": "spheroid 4:1",
+  "features": [
+   {
+    "id": "e",
+    "type": "ellipsoid",
+    "radii": [
+     2,
+     0.5,
+     0.5
+    ]
+   }
+  ]
+ },
+ "flow": {
+  "mach": 0.3,
+  "alpha": 0.0,
+  "beta": 0.0,
+  "altitude": 0.0,
+  "delta_T": 0.0,
+  "gust_amplitude": 0.0,
+  "gust_wavelength": 30.0,
+  "turbulence_intensity": 0.0,
+  "turbulence_length": 3.0
+ },
+ "grid": {
+  "cells_per_length": 40.0,
+  "stretch": 1.15,
+  "max_cells": 1600000.0
+ },
+ "model": {
+  "viscous": false,
+  "sgs": "none",
+  "wall_model": false,
+  "cfl": 1.2
+ },
+ "reference": {
+  "length": 4.0,
+  "area": 0.7853981633974483,
+  "chord": 4.0,
+  "span": 1.0,
+  "moment_point": [
+   0,
+   0,
+   0
+  ]
+ },
+ "run": {
+  "steps": 2500,
+  "unsteady": false,
+  "average_from": -1,
+  "residual_drop": 1e-05,
+  "output": "E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\results\\cfd_verification\\spheroid_40",
+  "log_every": 10,
+  "save_volume": false
+ }
+}
