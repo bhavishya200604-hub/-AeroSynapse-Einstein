@@ -1,0 +1,174 @@
+{
+ "objective": "max L/D",
+ "variables": [
+  "sweep",
+  "twist"
+ ],
+ "bounds": {
+  "sweep": [
+   25.0,
+   45.0
+  ],
+  "twist": [
+   -5.0,
+   0.0
+  ]
+ },
+ "runs": [
+  {
+   "run": 0,
+   "why": "baseline",
+   "sweep": 33.01219,
+   "twist": -1.99059,
+   "CL": 0.0680515779,
+   "CD": 0.02962109159,
+   "LD": 2.2974027710367713,
+   "steps": 1430,
+   "stop": "forces",
+   "ok": true,
+   "seconds": 346.59124088287354,
+   "score": -2.2974027710367713
+  },
+  {
+   "run": 1,
+   "why": "space-filling",
+   "sweep": 40.41220968006991,
+   "twist": -1.7522509214379274,
+   "CL": 0.06978682771,
+   "CD": 0.02968292808,
+   "LD": 2.351076265856047,
+   "steps": 1450,
+   "stop": "forces",
+   "ok": true,
+   "seconds": 342.86033391952515,
+   "score": -2.351076265856047
+  },
+  {
+   "run": 2,
+   "why": "space-filling",
+   "sweep": 32.62773075146423,
+   "twist": -3.4158938394567744,
+   "CL": 0.06366518243,
+   "CD": 0.02931021102,
+   "LD": 2.172116140226956,
+   "steps": 1440,
+   "stop": "forces",
+   "ok": true,
+   "seconds": 305.68460059165955,
+   "score": -2.172116140226956
+  },
+  {
+   "run": 3,
+   "why": "space-filling",
+   "sweep": 28.412144164668376,
+   "twist": -0.9611225850457066,
+   "CL": 0.08424669579,
+   "CD": 0.03032146719,
+   "LD": 2.7784505037996485,
+   "steps": 1440,
+   "stop": "forces",
+   "ok": true,
+   "seconds": 246.18387293815613,
+   "score": -2.7784505037996485
+  },
+  {
+   "run": 4,
+   "why": "expected improvement",
+   "sweep": 25.0,
+   "twist": -0.4842883760447707,
+   "CL": 0.08050226262,
+   "CD": 0.03017275643,
+   "LD": 2.6680446914673883,
+   "steps": 1440,
+   "stop": "forces",
+   "ok": true,
+   "seconds": 278.1138401031494,
+   "score": -2.6680446914673883
+  },
+  {
+   "run": 5,
+   "why": "expected improvement",
+   "sweep": 45.0,
+   "twist": -0.835673977285345,
+   "CL": 0.06773413046,
+   "CD": 0.02958284345,
+   "LD": 2.289642325102457,
+   "steps": 1450,
+   "stop": "forces",
+   "ok": true,
+   "seconds": 278.8837549686432,
+   "score": -2.289642325102457
+  },
+  {
+   "run": 6,
+   "why": "expected improvement",
+   "sweep": 28.150618231603787,
+   "twist": 0.0,
+   "CL": 0.08521137559,
+   "CD": 0.03025258292,
+   "LD": 2.8166644750741834,
+   "steps": 1440,
+   "stop": "forces",
+   "ok": true,
+   "seconds": 275.7678747177124,
+   "score": -2.8166644750741834
+  },
+  {
+   "run": 7,
+   "why": "expected improvement",
+   "sweep": 25.0,
+   "twist": -5.0,
+   "CL": 0.05767863222,
+   "CD": 0.02886897868,
+   "LD": 1.9979450211710779,
+   "steps": 1440,
+   "stop": "forces",
+   "ok": true,
+   "seconds": 272.4171416759491,
+   "score": -1.9979450211710779
+  }
+ ],
+ "best_run": 6,
+ "best": {
+  "run": 6,
+  "why": "expected improvement",
+  "sweep": 28.150618231603787,
+  "twist": 0.0,
+  "CL": 0.08521137559,
+  "CD": 0.03025258292,
+  "LD": 2.8166644750741834,
+  "steps": 1440,
+  "stop": "forces",
+  "ok": true,
+  "seconds": 275.7678747177124,
+  "score": -2.8166644750741834
+ },
+ "baseline": {
+  "run": 0,
+  "why": "baseline",
+  "sweep": 33.01219,
+  "twist": -1.99059,
+  "CL": 0.0680515779,
+  "CD": 0.02962109159,
+  "LD": 2.2974027710367713,
+  "steps": 1430,
+  "stop": "forces",
+  "ok": true,
+  "seconds": 346.59124088287354,
+  "score": -2.2974027710367713
+ },
+ "gain_percent": 22.602118817985055,
+ "importance": {
+  "sweep": 0.6494865545523465,
+  "twist": 0.3505134454476536
+ },
+ "seconds": 2372.5403246879578,
+ "figures": [
+  "1_optimisation_history.png",
+  "2_variables.png",
+  "3_surrogate_map.png",
+  "4_planforms.png",
+  "5_flow_baseline.png",
+  "6_flow_best.png"
+ ]
+}

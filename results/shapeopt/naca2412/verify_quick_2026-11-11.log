@@ -1,0 +1,6 @@
+hold-out J 32.17780563329943 J0 0.9607908875701737 J2 0.9909679746470103 J3 0.9306138004933372 | baseline J 1.0 | feasible False violated {'surrogate_confidence': 0.8587705407192703}
+robust {'n_states': 311, 'mean': 0.9545128243356822, 'median': 0.9604118179538095, 'cvar90': 1.0274231249583383, 'worst': 1.0652383584806462, 'best': 0.6862699320265081, 'frac_better': 0.8745980707395499, 'conf_min_opt': 0.6141229459280729, 'conf_min_base': 0.7732475292021008}
+wing done
+vii done {'turbulent_Re6e6': (1.8, 1.807), 'transitional_Re6e5': (1.418, 1.437), 'laminar_Re2e5': (1.236, 1.271), 'high_Tu_Re2e6': (1.614, 1.628), 'contaminated_Re3e6': (1.491, 1.525)}
+high lift [('slat', 2.375), ('slotted flap', 2.814), ('slat + slotted flap', 3.408)]
+verified search_quick.json; search.json, verify.json and the exports are left as they were

@@ -1,0 +1,60 @@
+{
+ "case": "body",
+ "design": {
+  "name": "slab",
+  "features": [
+   {
+    "id": "p",
+    "type": "box",
+    "size": [
+     10.0,
+     4.0,
+     0.4
+    ],
+    "round": 0.19
+   }
+  ]
+ },
+ "flow": {
+  "mach": 0.5,
+  "alpha": 0.0,
+  "beta": 0.0,
+  "altitude": 3000.0,
+  "delta_T": 0.0,
+  "gust_amplitude": 0.0,
+  "gust_wavelength": 30.0,
+  "turbulence_intensity": 0.0,
+  "turbulence_length": 3.0
+ },
+ "grid": {
+  "cells_per_length": 40.0,
+  "stretch": 1.15,
+  "max_cells": 1600000.0
+ },
+ "model": {
+  "viscous": true,
+  "sgs": "wale",
+  "wall_model": true,
+  "cfl": 1.2
+ },
+ "reference": {
+  "length": 10.0,
+  "area": 80.0,
+  "chord": 10.0,
+  "span": 4.0,
+  "moment_point": [
+   0,
+   0,
+   0
+  ]
+ },
+ "run": {
+  "steps": 2500,
+  "unsteady": false,
+  "average_from": -1,
+  "residual_drop": 1e-05,
+  "output": "E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\results\\cfd_verification\\plate",
+  "log_every": 10,
+  "save_volume": false
+ }
+}

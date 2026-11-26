@@ -1,0 +1,50 @@
+Turbulence and flow instability
+===============================
+
+Setup:
+  Source:
+    3D flow results: results/cfd3d/live_gust folder
+  Flight condition:
+    Mach number: 0.7
+    Altitude: 3000 m
+    Angle of attack: 1 deg
+  Transition:
+    Free-stream Tu: 0.1 %
+    Critical N (override): 0
+    Section station: 0.35 of semi-span
+    Surface: smooth
+  Wake instability:
+    Wake stations: 0.15, 0.4, 0.8 x / L behind the tail
+    Collocation points: 80
+    Largest wavenumber: 3 1 / wake half-width
+  Spectra:
+    Spectrum segments: 4
+
+1. Free-stream turbulence and transition on the wing section
+   section of 'wing' at 35 % semi-span, chord 3.33 m, Re 4.11e+07, alpha 1 deg
+   critical N 8.15 (Mack, Tu 0.1 %, surface smooth)
+   upper surface: transition at x/c 0.0362, natural (Tollmien-Schlichting waves reach N crit)
+   lower surface: transition at x/c 0.0984, natural (Tollmien-Schlichting waves reach N crit)
+   section friction drag 0.00404 with this transition, 0.00444 fully turbulent (-9.0 %)
+   Tu 0.01 % moves upper transition to x/c 0.0712; Tu 5.0 % to 0.0054
+   limits: incompressible Thwaites layer on the panel-method velocity (Prandtl-Glauert Mach capped at 0.6 in the panel solution); no crossflow instability of the swept wing
+
+2. Wake instability (inviscid Rayleigh equation, temporal, Chebyshev collocation)
+   solver check, tanh mixing layer: maximum growth 0.1884 at k 0.434 (Michalke 1964: 0.1897 at 0.4446)
+   x/L 0.15 (3D flow): deficit 0.84, half-width 0.693 m; sinuous mode grows at 0.131 U/b (e-folding 23.10 ms), 26.2 Hz, St_b 0.079; varicose 0.040 U/b
+   x/L 0.4 (3D flow): deficit 0.59, half-width 0.733 m; sinuous mode grows at 0.091 U/b (e-folding 34.88 ms), 28.8 Hz, St_b 0.092; varicose 0.028 U/b
+   x/L 0.8 (3D flow): deficit 0.31, half-width 1.065 m; sinuous mode grows at 0.048 U/b (e-folding 97.17 ms), 22.9 Hz, St_b 0.106; varicose 0.015 U/b
+   the sinuous mode is the one that rolls the wake into a vortex street; the Gaussian fit smooths the coarse-grid profile
+
+3. Turbulence in the 3D flow
+   statistics over 131 samples: largest turbulent kinetic energy 0.0078 U^2, largest u r.m.s. 0.125 U
+   probes (6), second half of the run, 130 samples at 0.57 ms:
+     wake, centre     Tu   3.24 %  integral length 2.65 m  no resolved peak (record too short: lowest frequency 55 Hz; run more steps)
+     wake, far        Tu   3.58 %  integral length 2.68 m  no resolved peak (record too short: lowest frequency 55 Hz; run more steps)
+     right tip wake   Tu   1.18 %  integral length 2.16 m  no resolved peak (record too short: lowest frequency 55 Hz; run more steps)
+     left tip wake    Tu   3.46 %  integral length 1.94 m  no resolved peak (record too short: lowest frequency 55 Hz; run more steps)
+     over the wing    Tu   0.33 %  integral length 3.13 m  no resolved peak (record too short: lowest frequency 55 Hz; run more steps)
+     upstream         Tu   0.51 %  integral length 3.04 m  no resolved peak (record too short: lowest frequency 55 Hz; run more steps)
+   inflow check: requested Tu 0.00 % and a 5 % gust; measured upstream 0.51 % (the grid damps eddies smaller than a few cells; gusts and the body's pressure field add to it)
+
+Limits: the 3D flow is a coarse large-eddy simulation, so only eddies several cells across are resolved; the stability analysis is linear, inviscid and parallel-flow (no absolute/convective distinction).

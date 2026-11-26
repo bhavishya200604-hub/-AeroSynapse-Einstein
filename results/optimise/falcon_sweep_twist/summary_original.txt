@@ -1,0 +1,10 @@
+CFD design optimisation (Bayesian, Gaussian process)
+====================================================
+
+Objective: max L/D; Mach 0.85, alpha 2.0 deg, altitude 11000.0 m
+8 CFD runs (draft grid, each stopped when its mean forces settled within 0.5 %), 39.5 min in all
+baseline: CL 0.0681, CD 0.02962, L/D 2.30
+best (run 6): CL 0.0852, CD 0.03025, L/D 2.82  (+22.6 % L/D)
+best wing: leading-edge sweep 28.2 deg, tip twist 0 deg
+variable weights from the surrogate (1 / length scale): sweep 65 %, twist 35 %
+Read with care: forces from the chosen grid carry its discretisation error; confirm the best wing with a standard or fine run (Studio: open best_design.json and run CFD).

@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thermal Lab</title>
+<meta name="description" content="Interactive lab for verified heat-transfer solvers, physics-informed neural networks and parameter identification from real data.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234fd1e8'/%3E%3Cstop offset='.55' stop-color='%23a06bff'/%3E%3Cstop offset='1' stop-color='%23ff5fa8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 2c5 6 9 10 9 16a9 9 0 1 1-18 0c0-6 4-10 9-16z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script src="/vendor/plotly.min.js"></script>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+<div class="gridlines" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="#overview" aria-label="Thermal Lab home">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4fd1e8"/><stop offset=".55" stop-color="#a06bff"/><stop offset="1" stop-color="#ff5fa8"/></linearGradient></defs><path d="M16 2c5 6 9 10 9 16a9 9 0 1 1-18 0c0-6 4-10 9-16z" fill="url(#lg)"/><path d="M11 19c2 3 8 3 10 0" stroke="#0b1020" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    <span><b>THERMAL·LAB</b><small>verified solvers · PINNs · real-data identification</small></span>
+  </a>
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
+    <button role="tab" data-tab="sim">Simulator</button>
+    <button role="tab" data-tab="verify">Verify</button>
+    <button role="tab" data-tab="inverse">Inverse lab</button>
+    <button role="tab" data-tab="real">Real data</button>
+    <button role="tab" data-tab="flow">Flow lab</button>
+    <button role="tab" data-tab="data">Data factory</button>
+    <button role="tab" data-tab="train">PINN training</button>
+    <button role="tab" data-tab="learn">Learn</button>
+  </nav>
+  <div class="top-actions">
+    <button class="btn primary" id="run-demo" title="Run the default case of every section">▶ Run full demo</button>
+    <button class="btn" id="dl-code" title="Download the project's code (no data, no saved networks)">⤓ Code</button>
+    <button class="btn" id="theme" title="Light / dark theme" aria-label="Toggle theme">◐</button>
+  </div>
+</header>
+
+<main>
+<!-- ======================================================================================== OVERVIEW -->
+<section class="tab active" id="tab-overview" role="tabpanel">
+  <div class="hero">
+    <h1>Heat transfer you can <span class="grad-text">trust, test and identify</span></h1>
+    <p class="lead">One lab for the whole project: change temperatures, flow speeds and material properties, watch verified solvers and
+      physics-informed neural networks answer side by side, and fit physical parameters to <b>real measured data</b>.
+      Every number on this page is computed live by the project's own code or read from its saved results.</p>
+  </div>
+  <div class="pipeline" id="pipeline"></div>
+  <div class="grid-auto labs-cards">
+    <button class="lab-card" data-go="flow"><b>Flow lab</b><span>Transient cavity flow with heat transfer: lid-driven, heated from below or from the side, with buoyancy and tracer particles.</span></button>
+    <button class="lab-card" data-go="data"><b>Data factory</b><span>Generate leakage-free training data (design, ground truth, sensors, noise) and download it.</span></button>
+    <button class="lab-card" data-go="train"><b>PINN training</b><span>Train a physics-informed network on measured soil temperatures and compare it with the classical estimator.</span></button>
+    <button class="lab-card" data-go="real"><b>Real data</b><span>Identify soil thermal diffusivity from NOAA stations or your own table, with uncertainty and hold-out validation.</span></button>
+  </div>
+  <div class="panel glow">
+    <h3>Key findings (from the papers' generated numbers, with registry rows)</h3>
+    <div class="grid-auto" id="findings"></div>
+  </div>
+  <div class="panel">
+    <h3>What is on this machine</h3>
+    <div class="chips" id="status-chips"></div>
+    <p class="faint">PINN checkpoints and downloaded data are git-ignored artefacts; when they are missing the page falls back to the
+      solvers and tells you so.</p>
+  </div>
+</section>
+
+<!-- ======================================================================================== SIMULATOR -->
+<section class="tab" id="tab-sim" role="tabpanel">
+  <div class="grid-2">
+    <div class="panel sticky" id="sim-controls">
+      <h2>Simulator</h2>
+      <div class="case-cards" id="case-cards"></div>
+      <hr class="sep">
+      <div class="row" style="justify-content:space-between">
+        <span class="muted" style="flex:none">Inputs</span>
+        <div class="seg" id="units-seg" style="flex:none">
+          <button data-u="dimless" class="on">dimensionless</button><button data-u="phys">physical (°C, m, W)</button>
+        </div>
+      </div>
+      <div id="phys-box"></div>
+      <div id="param-box"></div>
+      <details id="cond-details" style="margin-top:12px"><summary class="muted">Conditions and grid</summary><div id="cond-box"></div></details>
+      <div class="row" style="margin-top:16px">
+        <button class="btn primary" id="sim-run">Run</button>
+        <button class="btn" id="sim-default">Default case</button>
+      </div>
+      <label class="field"><input type="checkbox" id="sim-live" checked> re-run when a slider is released</label>
+    </div>
+    <div>
+      <div class="panel" style="min-height:300px">
+        <div class="busy" id="sim-busy"><span class="spinner"></span>solving…</div>
+        <div class="row" style="justify-content:space-between;align-items:flex-start">
+          <div style="flex:3"><h2 id="sim-title">—</h2><div class="faint" id="sim-eq"></div></div>
+          <div class="seg" id="field-seg" style="flex:none"></div>
+        </div>
+        <div class="chips" id="sim-chips"></div>
+        <div id="sim-validity"></div>
+        <div class="plot tall" id="sim-plot"></div>
+        <div id="time-box" style="display:none">
+          <label class="field">time <span class="mono" id="time-label"></span></label>
+          <input type="range" id="time-slider" min="0" max="5" step="1" value="5">
+        </div>
+      </div>
+      <div class="panel"><h3 id="sim-plot2-title">error</h3><div class="plot small" id="sim-plot2"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================================== VERIFY -->
+<section class="tab" id="tab-verify" role="tabpanel">
+  <div class="grid-2">
+    <div class="panel sticky">
+      <h2>Verification</h2>
+      <p class="muted">Does the solver solve the equations right? The error against the exact solution must fall at the formal order
+        of the scheme. Does the PINN stay accurate across its parameter range, and does it warn you outside it?</p>
+      <label class="field">case</label>
+      <select id="ver-case"><option value="A_steady">steady convection–diffusion</option><option value="B_slab">heated slab</option></select>
+      <div id="ver-param"></div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" id="ver-run">Grid convergence</button><button class="btn" id="ver-sweep">PINN parameter sweep</button></div>
+    </div>
+    <div>
+      <div class="panel"><div class="busy" id="ver-busy"><span class="spinner"></span>computing…</div><h3>Grid convergence (verification)</h3><div class="chips" id="ver-chips"></div><div class="plot" id="ver-plot"></div></div>
+      <div class="panel"><div class="busy" id="sw-busy"><span class="spinner"></span>evaluating the ensemble…</div><h3>PINN error and spread across the parameter (inside / outside the training range)</h3><div class="plot" id="sw-plot"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================================== INVERSE -->
+<section class="tab" id="tab-inverse" role="tabpanel">
+  <div class="grid-2">
+    <div class="panel sticky">
+      <h2>Identify before you fit</h2>
+      <p class="muted">Recover diffusivity α, conductivity k and heat-transfer coefficient h of a heated slab from noisy sensors.
+        Set the heat source to zero and watch the Fisher information lose rank: k and h can no longer be separated.</p>
+      <label class="field">internal heat source q‴ [W m⁻³]: <span class="mono" id="inv-q-l"></span></label>
+      <input type="range" id="inv-q" min="0" max="7" step="0.05" value="5">
+      <label class="field">noise level [% of signal RMS]: <span class="mono" id="inv-n-l"></span></label>
+      <input type="range" id="inv-n" min="0.2" max="10" step="0.1" value="2">
+      <label class="field">number of interior sensors</label>
+      <input type="number" id="inv-s" value="8" min="1" max="32">
+      <label class="field">unknowns</label>
+      <div class="row"><label><input type="checkbox" class="inv-u" value="alpha" checked> α</label><label><input type="checkbox" class="inv-u" value="k" checked> k</label><label><input type="checkbox" class="inv-u" value="h" checked> h</label></div>
+      <label class="field">noise seed</label><input type="number" id="inv-seed" value="0" min="0">
+      <div class="row" style="margin-top:14px"><button class="btn primary" id="inv-run">Identify</button><button class="btn" id="inv-default">Default case</button></div>
+      <p class="faint">Synthetic data from the verified slab model (Phase 5). For your own sensor table use the Real data tab.</p>
+    </div>
+    <div>
+      <div class="panel"><div class="busy" id="inv-busy"><span class="spinner"></span>fitting…</div><div id="inv-msg"></div><table class="data" id="inv-table"></table></div>
+      <div class="panel"><h3>Sensor data and fitted model</h3><div class="plot" id="inv-plot"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================================== REAL DATA -->
+<section class="tab" id="tab-real" role="tabpanel">
+  <div class="grid-2">
+    <div class="panel sticky">
+      <h2>Real data</h2>
+      <div class="seg" id="src-seg"><button data-s="station" class="on">NOAA soil station</button><button data-s="upload">your table</button></div>
+      <div id="src-station">
+        <label class="field">station (U.S. Climate Reference Network, hourly)</label>
+        <select id="st-select"></select>
+        <div id="st-coverage" class="faint"></div>
+        <details style="margin-top:8px"><summary class="muted">download another station from NOAA</summary>
+          <div class="row"><input type="text" id="fetch-name" placeholder="e.g. KS_Manhattan_6_SSW"><input type="number" id="fetch-year" value="2023" style="max-width:90px"></div>
+          <button class="btn" id="fetch-go" style="margin-top:6px">Download</button>
+          <p class="faint">File names as listed on ncei.noaa.gov/pub/data/uscrn/products/hourly02/&lt;year&gt;/ (public domain).</p>
+        </details>
+        <div class="row"><div><label class="field">window start</label><input type="date" id="st-start" value="2023-07-01"></div>
+          <div><label class="field">days</label><input type="number" id="st-days" value="14" min="2" max="60"></div></div>
+      </div>
+      <div id="src-upload" style="display:none">
+        <div class="drop" id="drop">Drop a CSV / text table here or <u>choose a file</u><input type="file" id="file" accept=".csv,.txt,.dat,.tsv" hidden></div>
+        <div class="row" style="margin-top:6px"><button class="btn" id="ex-profile">Example: real soil profile</button><button class="btn" id="ex-cool">Example: cooling curve (synthetic)</button></div>
+        <div id="colmap"></div>
+        <div class="row"><div><label class="field">window start [h from first row]</label><input type="number" id="up-start" value="0" min="0"></div>
+          <div><label class="field">days</label><input type="number" id="up-days" value="7" min="0.01" step="0.5"></div></div>
+      </div>
+      <hr class="sep">
+      <label class="field">model</label>
+      <div class="seg" id="model-seg"><button data-m="cond" class="on">1D conduction (profile)</button><button data-m="lumped">lumped cooling</button></div>
+      <div id="model-cond">
+        <div class="row"><div><label class="field">top sensor [m]</label><input type="number" id="m-top" step="0.01"></div>
+          <div><label class="field">bottom sensor [m]</label><input type="number" id="m-bot" step="0.01"></div></div>
+        <label class="field">inner sensors [m] (the data)</label><input type="text" id="m-inner">
+        <label class="field">layer edges [m] (empty = homogeneous)</label><input type="text" id="m-edges" placeholder="e.g. 0.075, 0.15">
+        <div class="row"><label><input type="checkbox" id="m-depths"> sensor depth shifts</label><label><input type="checkbox" id="m-offsets"> calibration offsets</label></div>
+        <label class="field"><input type="checkbox" id="m-hold" checked> validate on the next window (hold-out)</label>
+      </div>
+      <div id="model-lumped" style="display:none">
+        <p class="faint">dT/dt = −(T − T<sub>amb</sub>)/τ (Newton cooling, Bi ≪ 1). Give ρ, c and V/A to convert τ into h.</p>
+        <div class="row"><div><label class="field">ρ [kg m⁻³]</label><input type="number" id="l-rho" placeholder="optional"></div><div><label class="field">c [J kg⁻¹ K⁻¹]</label><input type="number" id="l-c" placeholder="optional"></div><div><label class="field">V/A [m]</label><input type="number" id="l-va" placeholder="optional" step="0.001"></div></div>
+      </div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" id="real-run">Fit</button><button class="btn" id="real-default">Default case</button></div>
+      <p class="faint">Identifiability first, then Levenberg–Marquardt with exact complex-step derivatives; if the fit does not
+        converge, multistart, continuation and regularisation are tried automatically (log on the right).</p>
+    </div>
+    <div>
+      <div class="panel"><div class="busy" id="real-busy"><span class="spinner"></span>identifying…</div>
+        <div class="chips" id="real-chips"></div><div id="real-msg"></div><table class="data" id="real-table"></table></div>
+      <div class="panel"><h3 id="real-plot-title">Measured vs model (training window, then hold-out)</h3><div class="plot tall" id="real-plot"></div></div>
+      <div class="grid-3" style="margin-top:18px">
+        <div class="panel"><h3>Convergence log</h3><div class="timeline" id="real-log"></div></div>
+        <div class="panel"><h3>Identifiability</h3><div class="plot small" id="real-ident"></div></div>
+        <div class="panel"><h3>Classical cross-check</h3><div id="real-harm"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================================== FLOW LAB -->
+<section class="tab" id="tab-flow" role="tabpanel">
+  <div class="section-head">
+    <div><h2>Flow lab <span class="tag">Navier–Stokes + energy</span></h2>
+      <p class="muted">A transient cavity flow with heat transfer, computed now by the project's verified MAC-projection solver
+        (Phase 1.6, the generator of the Case C training data). Choose how the cavity is driven and heated, then watch the
+        temperature, the flow and tracer particles evolve.</p></div>
+    <div class="row-tight"><button class="btn" data-export="flow">⤓ Results (ZIP)</button></div>
+  </div>
+  <div class="grid-2">
+    <div class="panel controls">
+      <h3>Set-up</h3>
+      <label class="field">heating</label>
+      <select id="fl-heating">
+        <option value="lid_hot">hot moving lid, convective bottom (project default)</option>
+        <option value="bottom_heated">heated from below, cooled from above</option>
+        <option value="side_heated">differentially heated side walls</option>
+      </select>
+      <div class="row"><div><label class="field">lid profile</label><select id="fl-lid">
+        <option value="cosh">regularised (cosh)</option><option value="uniform">uniform</option><option value="parabolic">parabolic</option><option value="none">no lid motion</option></select></div>
+        <div><label class="field">lid speed</label><input type="number" id="fl-speed" value="1" step="0.1"></div></div>
+      <div class="row"><div><label class="field">Re</label><input type="number" id="fl-Re" value="400"></div>
+        <div><label class="field">Pr</label><input type="number" id="fl-Pr" value="0.71" step="0.01"></div></div>
+      <div class="row"><div><label class="field">Ri (buoyancy)</label><input type="number" id="fl-Ri" value="0" step="0.5"></div>
+        <div><label class="field">Bi (bottom)</label><input type="number" id="fl-Bi" value="1" step="0.1"></div></div>
+      <div class="row"><div><label class="field">grid (cells / side)</label><input type="number" id="fl-grid" value="32"></div>
+        <div><label class="field">end time</label><input type="number" id="fl-tend" value="8" step="0.5"></div>
+        <div><label class="field">frames</label><input type="number" id="fl-frames" value="24"></div></div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" id="fl-run">Simulate</button><button class="btn" id="fl-default">Default case</button></div>
+      <p class="faint">Dimensionless: lengths by the cavity side, velocities by the lid speed, θ = (T − T<sub>cold</sub>)/(T<sub>hot</sub> − T<sub>cold</sub>);
+        Pe = Re·Pr; Ri = Gr/Re² (buoyancy along +y). Laminar range only: this solver is not claimed for turbulent flow.</p>
+    </div>
+    <div>
+      <div class="panel"><div class="busy" id="fl-busy"><span class="spinner"></span>solving Navier–Stokes…</div>
+        <div class="panel-head"><h3>Live field</h3>
+          <div class="seg" id="fl-field"><button data-f="theta" class="on">temperature</button><button data-f="speed">speed</button><button data-f="vorticity">vorticity</button><button data-f="psi">stream function</button></div></div>
+        <div class="flow-stage"><canvas id="fl-canvas" width="640" height="640"></canvas><canvas id="fl-particles" width="640" height="640"></canvas></div>
+        <div class="cbar"><span id="fl-cmin">–</span><div id="fl-cbar"></div><span id="fl-cmax">–</span></div>
+        <div class="row-tight player"><button class="btn" id="fl-play">❚❚</button><input type="range" id="fl-frame" min="0" max="0" value="0"><span class="mono" id="fl-time">t = –</span>
+          <label class="check"><input type="checkbox" id="fl-show-p" checked> particles</label></div>
+        <div class="chips" id="fl-chips"></div></div>
+      <div class="grid-2b">
+        <div class="panel"><h3>Wall heat transfer and kinetic energy</h3><div class="plot small" id="fl-nu"></div></div>
+        <div class="panel"><h3>Streamlines (stream function)</h3><div class="plot small" id="fl-psi"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================================== DATA FACTORY -->
+<section class="tab" id="tab-data" role="tabpanel">
+  <div class="section-head">
+    <div><h2>Data factory <span class="tag">training data</span></h2>
+      <p class="muted">The project's training-data pipeline (Phase 2) on demand: a space-filling design of the physical parameters split
+        into train / validation / interpolation / extrapolation sets that never share a point, ground-truth fields from the verified
+        solvers, sensor layouts and noise. Download it as NumPy + CSV with a data card.</p></div>
+    <div class="row-tight"><button class="btn" data-export="dataset">⤓ Dataset (ZIP)</button></div>
+  </div>
+  <div class="grid-2">
+    <div class="panel controls">
+      <h3>Design</h3>
+      <label class="field">case</label>
+      <select id="ds-case"><option value="caseA">A · convection–diffusion pulse (1D)</option><option value="caseB" selected>B · heated slab (1D)</option><option value="caseC">C · heated cavity flow (2D)</option></select>
+      <div id="ds-ranges"></div>
+      <div class="row"><div><label class="field">train</label><input type="number" id="ds-train"></div><div><label class="field">val</label><input type="number" id="ds-val"></div>
+        <div><label class="field">interp</label><input type="number" id="ds-interp"></div><div><label class="field">extrap</label><input type="number" id="ds-extrap"></div></div>
+      <div class="row"><div><label class="field">sampling</label><select id="ds-method"><option value="sobol">Sobol</option><option value="lhs">Latin hypercube</option></select></div>
+        <div><label class="field">train box (unit)</label><input type="number" id="ds-ulim" value="0.8" step="0.05"></div><div><label class="field">seed</label><input type="number" id="ds-seed" value="0"></div></div>
+      <div class="row"><div><label class="field" id="ds-res-label">grid points</label><input type="number" id="ds-res"></div><div><label class="field">snapshots</label><input type="number" id="ds-nt"></div></div>
+      <h3 style="margin-top:16px">Sensors and noise</h3>
+      <div class="row"><div><label class="field">layout</label><select id="ds-layout"></select></div><div><label class="field">sensors</label><input type="number" id="ds-ns" value="8"></div></div>
+      <div class="row"><div><label class="field">noise model</label><select id="ds-noise"><option value="gaussian">gaussian</option><option value="relative">relative</option><option value="gaussian_range">gaussian (range)</option></select></div>
+        <div><label class="field">levels</label><input type="text" id="ds-levels" value="0, 0.01, 0.02, 0.05, 0.1"></div></div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" id="ds-run">Generate</button><button class="btn" id="ds-default">Default case</button></div>
+    </div>
+    <div>
+      <div class="panel"><div class="busy" id="ds-busy"><span class="spinner"></span>generating ground truth…</div>
+        <div class="chips" id="ds-chips"></div><div class="plot" id="ds-design"></div></div>
+      <div class="grid-2b">
+        <div class="panel"><h3 id="ds-prev-title">Ground truth of a training point</h3><div class="plot small" id="ds-prev"></div></div>
+        <div class="panel"><h3>Sensor readings with noise</h3><div class="plot small" id="ds-sens"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================================== PINN TRAINING -->
+<section class="tab" id="tab-train" role="tabpanel">
+  <div class="section-head">
+    <div><h2>PINN training on real data <span class="tag">inverse problem</span></h2>
+      <p class="muted">Train a physics-informed neural network on measured soil temperatures: the network represents T(z, t), the thermal
+        diffusivity α is learned with it, and the heat equation is enforced at collocation points. One sensor can be held out: the
+        verified classical estimator is fitted on the same sensors and both predict it.</p></div>
+    <div class="row-tight"><button class="btn" data-export="train">⤓ Results (ZIP)</button></div>
+  </div>
+  <div class="grid-2">
+    <div class="panel controls">
+      <h3>Data</h3>
+      <label class="field">station (NOAA USCRN)</label><select id="tr-station"></select>
+      <div class="row"><div><label class="field">window start</label><input type="date" id="tr-start" value="2023-07-01"></div><div><label class="field">days</label><input type="number" id="tr-days" value="14"></div></div>
+      <label class="field">training sensors (the top and bottom ones are always used)</label><div class="chips" id="tr-sensors"></div>
+      <label class="field">held-out sensor</label><select id="tr-holdout"></select>
+      <h3 style="margin-top:16px">Network and optimiser</h3>
+      <div class="row"><div><label class="field">width</label><input type="number" id="tr-width" value="32"></div><div><label class="field">layers</label><input type="number" id="tr-depth" value="3"></div><div><label class="field">daily harmonics</label><input type="number" id="tr-harm" value="2"></div></div>
+      <div class="row"><div><label class="field">collocation</label><input type="number" id="tr-colloc" value="1500"></div><div><label class="field">data-only warm-up</label><input type="number" id="tr-warm" value="500"></div></div>
+      <div class="row"><div><label class="field">Adam steps</label><input type="number" id="tr-adam" value="2500"></div><div><label class="field">learning rate</label><input type="number" id="tr-lr" value="0.003" step="0.001"></div><div><label class="field">L-BFGS</label><input type="number" id="tr-lbfgs" value="200"></div></div>
+      <div class="row"><div><label class="field">physics weight</label><input type="number" id="tr-wpde" value="1" step="0.1"></div><div><label class="field">seed</label><input type="number" id="tr-seed" value="0"></div></div>
+      <div class="row" style="margin-top:14px"><button class="btn primary" id="tr-run">Train</button><button class="btn" id="tr-cancel" disabled>Cancel</button><button class="btn" id="tr-default">Default case</button></div>
+      <p class="faint">Scaled heat equation T̂<sub>τ</sub> = κ T̂<sub>ζζ</sub>, κ = α t<sub>w</sub>/L², residual divided by the daily frequency;
+        float64; a data-only warm-up, then Adam and L-BFGS. The recorded study (5 seeds, 3 stations) is in docs/tables/phase10_5_real_pinn.md.</p>
+    </div>
+    <div>
+      <div class="panel"><div class="progress"><div id="tr-bar"></div></div>
+        <div class="chips" id="tr-chips"><span class="chip">no training yet</span></div>
+        <div class="grid-2b"><div class="plot small" id="tr-loss"></div><div class="plot small" id="tr-alpha"></div></div></div>
+      <div class="panel"><h3>Measured vs PINN at every sensor (the held-out one is never shown to the network)</h3><div class="plot tall" id="tr-sens"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================================== LEARN -->
+<section class="tab" id="tab-learn" role="tabpanel">
+  <div class="grid-2">
+    <div class="panel"><h2>Equations of the cases</h2><div id="eqs"></div>
+      <hr class="sep"><h2>How to use the lab</h2>
+      <ol class="muted">
+        <li><b>Simulator</b>: pick a case, move a slider (or switch to physical units and type °C, m, W m⁻² K⁻¹). The verified solver
+          and, where trained, the PINN ensemble answer; badges tell you when you leave the PINN's training range.</li>
+        <li><b>Verify</b>: grid convergence proves the solver; the parameter sweep shows where the PINN can be trusted.</li>
+        <li><b>Inverse lab</b>: switch the heat source off and see an identifiability failure before any fitting.</li>
+        <li><b>Real data</b>: fit soil diffusivity to NOAA measurements or upload your own table (time column + temperatures at known
+          positions). Compare a homogeneous and a layered model on a hold-out window.</li>
+      </ol>
+    </div>
+    <div class="panel"><h2>Glossary</h2><dl class="gloss" id="gloss"></dl></div>
+  </div>
+</section>
+</main>
+<footer><span id="foot-mode">Thermal Lab</span> · results from the project's verified code and saved results ·
+  <a href="#learn">equations and glossary</a></footer>
+<div id="toasts" aria-live="polite"></div>
+<script src="app.js"></script>
+<script src="labs.js"></script>
+</body>
+</html>

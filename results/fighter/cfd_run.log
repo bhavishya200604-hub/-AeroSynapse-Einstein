@@ -1,0 +1,10 @@
+reference_cruise {"cfd": {"CL": 0.1306, "CD": 0.0206, "Cm": -0.0177, "CD_friction": 0.0078}, "fast": {"CL": 0.1506, "CD": 0.0247, "CD0": 0.0216, "CDw": 0.0, "S": 27.87}}
+reference_manoeuvre {"cfd": {"CL": 0.4594, "CD": 0.0814, "Cm": -0.0958, "CD_friction": 0.0067}, "fast": {"CL": 0.7682, "CD": 0.1147, "CD0": 0.019, "CDw": 0.001, "S": 27.87}}
+reference_dash {"cfd": {"CL": 0.1253, "CD": 0.0198, "Cm": -0.0512, "CD_friction": 0.0067}, "fast": {"CL": 0.0622, "CD": 0.0393, "CD0": 0.0173, "CDw": 0.021, "S": 27.87}}
+reference_high_alpha {"cfd": {"CL": 1.0674, "CD": 0.5076, "Cm": -0.3195, "CD_friction": 0.0055}, "fast": {"CL": 1.1252, "CD": 0.5494, "CD0": 0.0247, "CDw": 0.0, "S": 27.87}}
+reference_gust {"cfd": {"CL": 0.1006, "CD": 0.0195, "Cm": -0.0094, "CD_friction": 0.0072}, "fast": {"CL": 0.1449, "CD": 0.0216, "CD0": 0.0187, "CDw": 0.0, "S": 27.87}}
+freeform_cruise {"cfd": {"CL": 0.0777, "CD": 0.0145, "Cm": -0.0124, "CD_friction": 0.007}, "fast": {"CL": 0.1688, "CD": 0.0254, "CD0": 0.0221, "CDw": 0.0, "S": 28.6316}}
+freeform_manoeuvre {"cfd": {"CL": 0.3476, "CD": 0.0616, "Cm": -0.0722, "CD_friction": 0.0064}, "fast": {"CL": 0.7617, "CD": 0.1105, "CD0": 0.0195, "CDw": 0.0, "S": 28.6316}}
+freeform_dash {"cfd": {"CL": 0.08, "CD": 0.014, "Cm": 0.0104, "CD_friction": 0.0056}, "fast": {"CL": 0.0891, "CD": 0.036, "CD0": 0.0177, "CDw": 0.0165, "S": 28.6316}}
+freeform_high_alpha {"cfd": {"CL": 0.9591, "CD": 0.4574, "Cm": -0.127, "CD_friction": 0.0063}, "fast": {"CL": 1.2768, "CD": 0.6208, "CD0": 0.0254, "CDw": 0.0, "S": 28.6316}}
+freeform_gust {"cfd": {"CL": 0.0783, "CD": 0.0146, "Cm": -0.0101, "CD_friction": 0.0067}, "fast": {"CL": 0.1644, "CD": 0.0222, "CD0": 0.0192, "CDw": 0.0, "S": 28.6316}}

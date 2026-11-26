@@ -1,0 +1,111 @@
+{
+ "name": "uav",
+ "units": "m",
+ "features": [
+  {
+   "id": "pod",
+   "type": "fuselage",
+   "op": "add",
+   "stations": [
+    [
+     0,
+     0.02,
+     0.02,
+     0.0,
+     2
+    ],
+    [
+     0.384,
+     0.176,
+     0.198,
+     0.0,
+     2
+    ],
+    [
+     0.96,
+     0.2944,
+     0.3312,
+     0.0,
+     2.0
+    ],
+    [
+     1.44,
+     0.32,
+     0.36,
+     0.0,
+     2.0
+    ],
+    [
+     2.4,
+     0.24,
+     0.288,
+     0.018,
+     2.0
+    ],
+    [
+     3.2,
+     0.144,
+     0.162,
+     0.108,
+     2
+    ]
+   ]
+  },
+  {
+   "id": "wing",
+   "type": "wing",
+   "op": "add",
+   "span": 3.4,
+   "root_chord": 0.7,
+   "taper": 0.6,
+   "sweep": 2.0,
+   "dihedral": 0.0,
+   "twist": 0.0,
+   "tc": 0.14,
+   "camber": 0.03,
+   "camber_pos": 0.4,
+   "profile": "naca",
+   "translate": [
+    1.2,
+    0.25,
+    0.2
+   ],
+   "mirror": true
+  },
+  {
+   "id": "booms",
+   "type": "cylinder",
+   "op": "add",
+   "r": 0.06,
+   "length": 3.2,
+   "axis": "x",
+   "translate": [
+    3.0,
+    1.2,
+    0.2
+   ],
+   "mirror": true
+  },
+  {
+   "id": "vtail",
+   "type": "tail",
+   "op": "add",
+   "span": 1.1,
+   "root_chord": 0.5,
+   "taper": 0.6,
+   "sweep": 20.0,
+   "dihedral": -40,
+   "twist": 0.0,
+   "tc": 0.1,
+   "camber": 0.0,
+   "camber_pos": 0.4,
+   "profile": "naca",
+   "translate": [
+    4.3,
+    1.2,
+    0.2
+   ],
+   "mirror": true
+  }
+ ]
+}

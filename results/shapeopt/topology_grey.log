@@ -1,0 +1,14 @@
+[square_grey] 96x64 grid, 18336 unknowns, solid area 0.602
+[square_grey] topology it 0 beta 2 J 10.4919 grey 0.603 step 0.120 area 0.602 states [ 7.625 10.846 10.846] t 50s
+[square_grey] topology it 10 beta 2 J 10.3321 grey 0.599 step 0.120 area 0.602 states [ 7.5   10.681 10.681] t 157s
+[square_grey] topology it 20 beta 2 J 10.2328 grey 0.592 step 0.120 area 0.602 states [ 7.421 10.578 10.578] t 254s
+[square_grey] topology it 30 beta 4 J 9.3334 grey 0.526 step 0.120 area 0.602 states [6.806 9.648 9.648] t 393s
+[square_grey] topology it 40 beta 4 J 8.7414 grey 0.483 step 0.120 area 0.602 states [6.47  9.034 9.034] t 570s
+[square_grey] topology it 50 beta 8 J 5.0022 grey 0.203 step 0.120 area 0.602 states [3.94  5.164 5.164] t 795s
+[square_grey] topology it 60 beta 8 J 3.0227 grey 0.146 step 0.120 area 0.602 states [2.23  3.124 3.124] t 981s
+[square_grey] topology it 70 beta 8 J 2.1914 grey 0.134 step 0.120 area 0.602 states [1.481 2.267 2.267] t 1171s
+[square_grey] topology it 80 beta 16 J 1.6976 grey 0.047 step 0.120 area 0.602 states [1.042 1.756 1.756] t 1368s
+[square_grey] topology it 90 beta 16 J 1.6523 grey 0.040 step 0.120 area 0.602 states [0.997 1.71  1.71 ] t 1567s
+[square_grey] topology it 100 beta 32 J 1.5388 grey 0.014 step 0.072 area 0.602 states [0.89  1.592 1.592] t 1792s
+[square_grey] topology it 110 beta 32 J 1.5339 grey 0.014 step 0.030 area 0.602 states [0.885 1.587 1.587] t 1965s
+[square_grey] done: Cd [1.5   2.245 2.245] -> [0.877 1.581 1.581], bodies 1, holes 0, 2194s

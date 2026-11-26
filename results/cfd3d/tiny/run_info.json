@@ -1,0 +1,1 @@
+{"case": "cruise", "quality": "tiny", "flight": {"mach": 0.85, "alpha": 4}, "reference": {"length": 15.16088277, "area": 28.452237067968834, "chord": 3.1420810855033428, "span": 9.450199999999999, "moment_point": [8.185267783779622, 0.0, 0.0]}}

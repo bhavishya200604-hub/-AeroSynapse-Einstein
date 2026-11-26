@@ -1,0 +1,70 @@
+1  Reading the AirfRANS graph files (1000 files) and sampling them
+  50/1000 simulations read (30 s), 0 duplicates skipped
+  100/1000 simulations read (61 s), 0 duplicates skipped
+  150/1000 simulations read (113 s), 0 duplicates skipped
+  200/1000 simulations read (143 s), 0 duplicates skipped
+  250/1000 simulations read (178 s), 0 duplicates skipped
+  300/1000 simulations read (213 s), 0 duplicates skipped
+  350/1000 simulations read (244 s), 0 duplicates skipped
+  400/1000 simulations read (281 s), 0 duplicates skipped
+  450/1000 simulations read (329 s), 0 duplicates skipped
+  500/1000 simulations read (375 s), 0 duplicates skipped
+  550/1000 simulations read (440 s), 0 duplicates skipped
+  600/1000 simulations read (495 s), 0 duplicates skipped
+  650/1000 simulations read (533 s), 0 duplicates skipped
+  700/1000 simulations read (574 s), 0 duplicates skipped
+  750/1000 simulations read (632 s), 0 duplicates skipped
+  800/1000 simulations read (680 s), 0 duplicates skipped
+  850/1000 simulations read (724 s), 0 duplicates skipped
+  900/1000 simulations read (764 s), 0 duplicates skipped
+  950/1000 simulations read (804 s), 0 duplicates skipped
+  1000/1000 simulations read (841 s), 0 duplicates skipped
+  1000 simulations, 7010725 points kept (104 MB)
+   1000 simulations: 800 train, 100 validation, 100 held-out test; 7010725 points
+2  Training mlp (20 epochs)
+    mlp epoch   1/20: train 0.8746  val 0.6548  (168 s)
+    mlp epoch   2/20: train 0.6351  val 0.3553  (369 s)
+    mlp epoch   3/20: train 0.4016  val 0.2991  (516 s)
+    mlp epoch   4/20: train 0.2933  val 0.2083  (651 s)
+    mlp epoch   5/20: train 0.2678  val 0.1677  (770 s)
+    mlp epoch   6/20: train 0.2290  val 0.1664  (890 s)
+    mlp epoch   7/20: train 0.2267  val 0.1509  (1008 s)
+    mlp epoch   8/20: train 0.2238  val 0.1537  (1143 s)
+    mlp epoch   9/20: train 0.2309  val 0.1431  (1272 s)
+    mlp epoch  10/20: train 0.2028  val 0.1510  (1383 s)
+    mlp epoch  11/20: train 0.2147  val 0.1432  (1517 s)
+    mlp epoch  12/20: train 0.2116  val 0.1397  (1634 s)
+    mlp epoch  13/20: train 0.2121  val 0.1575  (1764 s)
+    mlp epoch  14/20: train 0.1825  val 0.1353  (1973 s)
+    mlp epoch  15/20: train 0.1792  val 0.1364  (2150 s)
+    mlp epoch  16/20: train 0.1763  val 0.1339  (2294 s)
+    mlp epoch  17/20: train 0.1684  val 0.1319  (2466 s)
+    mlp epoch  18/20: train 0.1956  val 0.1318  (2657 s)
+    mlp epoch  19/20: train 0.2036  val 0.1325  (2784 s)
+    mlp epoch  20/20: train 0.1785  val 0.1321  (2941 s)
+2  Training pointnet (20 epochs)
+    pointnet epoch   1/20: train 0.8901  val 0.6832  (216 s)
+    pointnet epoch   2/20: train 0.6433  val 0.4074  (389 s)
+    pointnet epoch   3/20: train 0.4083  val 0.2586  (511 s)
+    pointnet epoch   4/20: train 0.2696  val 0.1692  (623 s)
+    pointnet epoch   5/20: train 0.2176  val 0.2436  (740 s)
+    pointnet epoch   6/20: train 0.1701  val 0.1192  (849 s)
+    pointnet epoch   7/20: train 0.1490  val 0.1086  (991 s)
+    pointnet epoch   8/20: train 0.1373  val 0.1048  (1105 s)
+    pointnet epoch   9/20: train 0.1464  val 0.0996  (1222 s)
+    pointnet epoch  10/20: train 0.1128  val 0.1004  (1342 s)
+    pointnet epoch  11/20: train 0.1209  val 0.0963  (1472 s)
+    pointnet epoch  12/20: train 0.1019  val 0.0709  (1603 s)
+    pointnet epoch  13/20: train 0.0917  val 0.0716  (1724 s)
+    pointnet epoch  14/20: train 0.0790  val 0.0661  (1830 s)
+    pointnet epoch  15/20: train 0.0797  val 0.0638  (1945 s)
+    pointnet epoch  16/20: train 0.0727  val 0.0617  (2048 s)
+    pointnet epoch  17/20: train 0.0666  val 0.0599  (2166 s)
+    pointnet epoch  18/20: train 0.0866  val 0.0596  (2347 s)
+    pointnet epoch  19/20: train 0.0857  val 0.0599  (2555 s)
+    pointnet epoch  20/20: train 0.0704  val 0.0597  (2681 s)
+3  Evaluating on the held-out airfoils
+  mlp: held-out relative L2 (sampled points) u 47.56 %, v 43.97 %, p 51.31 %, nu_t 53.75 %
+  pointnet: held-out relative L2 (sampled points) u 34.44 %, v 32.23 %, p 23.64 %, nu_t 37.08 %
+  mlp: held-out relative L2 (all 179146 nodes of 20 meshes) u 50.74 %, v 42.98 %, p 48.27 %, nu_t 54.31 %
+  pointnet: held-out relative L2 (all 179146 nodes of 20 meshes) u 39.37 %, v 34.57 %, p 28.57 %, nu_t 38.47 %

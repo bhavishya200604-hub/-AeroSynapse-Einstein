@@ -1,0 +1,13 @@
+NASA check: CL rms 0.0118 CD error 0.0434 CLmax 1.425 at 14.5
+0/311 states, 101s
+40/311 states, 415s
+80/311 states, 578s
+120/311 states, 890s
+160/311 states, 1085s
+200/311 states, 1266s
+240/311 states, 1489s
+280/311 states, 1733s
+judged 254 of 311 states (50 above Mach limit)
+XFOIL ratio mean 0.9304 median 0.9365 better 0.945 worst 1.127 best 0.417
+NeuralFoil on same states: mean 0.9448 better 0.941; correlation 0.922
+wall 2047

@@ -1,0 +1,6 @@
+   1000 simulations: 800 train, 100 validation, 100 held-out test; 7010725 points
+3  Evaluating on the held-out airfoils
+  mlp: held-out relative L2 (sampled points) u 47.56 %, v 43.97 %, p 51.31 %, nu_t 53.75 %
+  pointnet: held-out relative L2 (sampled points) u 34.44 %, v 32.23 %, p 23.64 %, nu_t 37.08 %
+  mlp: held-out relative L2 (all 179146 nodes of 20 meshes) u 50.74 %, v 42.98 %, p 48.27 %, nu_t 54.31 %
+  pointnet: held-out relative L2 (all 179146 nodes of 20 meshes) u 39.37 %, v 34.57 %, p 28.57 %, nu_t 38.47 %

@@ -1,0 +1,74 @@
+{
+ "profile": "quick",
+ "simulations": 1000,
+ "split": {
+  "train": 800,
+  "val": 100,
+  "test": 100
+ },
+ "points": 7010725,
+ "models": {
+  "mlp": {
+   "best_val_mse": 0.13182985250438964,
+   "train_s": 2940.8658998012543,
+   "parameters": 110084
+  },
+  "pointnet": {
+   "best_val_mse": 0.059607713882412226,
+   "train_s": 2681.3594148159027,
+   "parameters": 147300
+  }
+ },
+ "results": {
+  "mlp": {
+   "test_sampled": {
+    "u": 0.47564566135406494,
+    "v": 0.439728707075119,
+    "p": 0.5131430625915527,
+    "nu_t": 0.5375399589538574
+   },
+   "test_surface": {
+    "u": null,
+    "v": null,
+    "p": 0.5667544603347778,
+    "nu_t": null
+   },
+   "test_full_mesh": {
+    "u": 0.5074223279953003,
+    "v": 0.42983898520469666,
+    "p": 0.4827193319797516,
+    "nu_t": 0.5430963635444641
+   },
+   "n_full": 20
+  },
+  "pointnet": {
+   "test_sampled": {
+    "u": 0.34435856342315674,
+    "v": 0.3222823441028595,
+    "p": 0.23641544580459595,
+    "nu_t": 0.37084370851516724
+   },
+   "test_surface": {
+    "u": null,
+    "v": null,
+    "p": 0.3528065085411072,
+    "nu_t": null
+   },
+   "test_full_mesh": {
+    "u": 0.39373141527175903,
+    "v": 0.34568682312965393,
+    "p": 0.28571468591690063,
+    "nu_t": 0.38472655415534973
+   },
+   "n_full": 20
+  }
+ },
+ "figures": [
+  "01_training.png",
+  "02_test_error_per_field.png",
+  "03_fields_test_airfoil.png",
+  "04_wall_pressure.png",
+  "05_error_vs_inlet.png"
+ ],
+ "seconds": 151.27208161354065
+}

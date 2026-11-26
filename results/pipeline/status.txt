@@ -1,0 +1,2 @@
+cfd_verify: exit 0 after 6909 s
+thermal_skin: exit 0 after 344 s

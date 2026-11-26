@@ -1,0 +1,66 @@
+{
+ "case": "body",
+ "design": {
+  "name": "70 deg delta",
+  "features": [
+   {
+    "id": "delta",
+    "type": "wing",
+    "span": 1.4558809370648098,
+    "root_chord": 4.0,
+    "taper": 0.0,
+    "sweep": 70.0,
+    "tc": 0.035,
+    "profile": "biconvex",
+    "translate": [
+     0,
+     0,
+     0
+    ],
+    "mirror": true
+   }
+  ]
+ },
+ "flow": {
+  "mach": 0.3,
+  "alpha": 10.0,
+  "beta": 0.0,
+  "altitude": 0.0,
+  "delta_T": 0.0,
+  "gust_amplitude": 0.0,
+  "gust_wavelength": 30.0,
+  "turbulence_intensity": 0.0,
+  "turbulence_length": 3.0
+ },
+ "grid": {
+  "cells_per_length": 56.0,
+  "stretch": 1.15,
+  "max_cells": 1600000.0
+ },
+ "model": {
+  "viscous": true,
+  "sgs": "wale",
+  "wall_model": true,
+  "cfl": 1.1
+ },
+ "reference": {
+  "length": 4.0,
+  "area": 5.823523748259239,
+  "chord": 2.6666666666666665,
+  "span": 2.9117618741296196,
+  "moment_point": [
+   2.4,
+   0,
+   0
+  ]
+ },
+ "run": {
+  "steps": 2500,
+  "unsteady": false,
+  "average_from": -1,
+  "residual_drop": 1e-05,
+  "output": "E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\results\\cfd_verification_facewall_2026-11-11\\delta_10",
+  "log_every": 10,
+  "save_volume": false
+ }
+}

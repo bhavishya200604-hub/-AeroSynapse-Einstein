@@ -1,0 +1,80 @@
+_______________ test_ambiguous_tags_resolve_to_existing_results _______________
+
+    def test_ambiguous_tags_resolve_to_existing_results():
+>       by = {e.name: e for e in C.build()}
+
+tests\thermal\test_viz_catalogue.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\aerosynapse\thermal\viz\catalogue.py:138: in build
+    temps = [t for s in SCRIPTS for t in _templates(s)]
+src\aerosynapse\thermal\viz\catalogue.py:84: in _templates
+    rel = path.relative_to(ROOT).as_posix()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('E:/-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v/src/aerosynapse/thermal/experiments/p10_1_real_soil.py')
+other = WindowsPath('E:/-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v/projects/thermal_pinn')
+walk_up = False, _deprecated = (), step = 0
+
+    def relative_to(self, other, /, *_deprecated, walk_up=False):
+        """Return the relative path to another path identified by the passed
+        arguments.  If the operation is not possible (because this is not
+        related to the other path), raise ValueError.
+    
+        The *walk_up* parameter controls whether `..` may be used to resolve
+        the path.
+        """
+        if _deprecated:
+            msg = ("support for supplying more than one positional argument "
+                   "to pathlib.PurePath.relative_to() is deprecated and "
+                   "scheduled for removal in Python {remove}")
+            warnings._deprecated("pathlib.PurePath.relative_to(*args)", msg,
+                                 remove=(3, 14))
+        other = self.with_segments(other, *_deprecated)
+        for step, path in enumerate([other] + list(other.parents)):
+            if self.is_relative_to(path):
+                break
+            elif not walk_up:
+>               raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+E               ValueError: 'E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\src\\aerosynapse\\thermal\\experiments\\p10_1_real_soil.py' is not in the subpath of 'E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\projects\\thermal_pinn'
+
+C:\Program Files\Python312\Lib\pathlib.py:682: ValueError
+_________________________ test_legacy_styles_delegate _________________________
+
+    def test_legacy_styles_delegate():
+>       from paper.common import figstyle
+
+tests\thermal\test_viz_style.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    """Paper figure style: the project publication style of src/viz/style.py (Phase 7, Step 7.1).
+    
+    Was the INTERIM style of Phase 6B (patch P4, FIGSTYLE_INTERIM); since Step 7.1 it only re-exports the project style, so
+    the paper figures and the project figures share one look. No scientific content depends on it.
+    """
+    
+    from __future__ import annotations
+    
+>   from src.viz.style import COL_W, DIV_CMAP, PAGE_W, PALETTE, SEQ_CMAP, apply_style, save_fig  # noqa: F401
+E   ModuleNotFoundError: No module named 'src.viz'
+
+projects\thermal_pinn\paper\common\figstyle.py:9: ModuleNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/thermal/test_figure_smoke.py::test_figure_function[p1_7_benchmarks@smoke.aerosynapse.thermal.experiments.p1_7_benchmarks.figures.0]
+FAILED tests/thermal/test_gap_g1.py::test_tables_reproduce_r4_7a_full - FileN...
+FAILED tests/thermal/test_inverse_confounding.py::test_case_builder - FileNot...
+FAILED tests/thermal/test_inverse_userdata.py::test_user_template_and_cylinder_example_load
+FAILED tests/thermal/test_inverse_userdata.py::test_designer_and_sweeps_with_a_file_design
+FAILED tests/thermal/test_inverse_userdata.py::test_derived_cases_are_synthetic_what_ifs
+FAILED tests/thermal/test_inverse_userdata.py::test_replace_marker_replaces_a_default_dict
+FAILED tests/thermal/test_labs.py::test_code_download_has_no_data_or_networks
+FAILED tests/thermal/test_phase9.py::test_gallery_lists_every_catalogued_figure
+FAILED tests/thermal/test_phase9.py::test_reproduce_dry_run_lists_steps - ass...
+FAILED tests/thermal/test_pinn_gate6.py::test_checklist_headlines_and_figures
+FAILED tests/thermal/test_pinn_userdata.py::test_isolated_runs_do_not_depend_on_what_ran_before
+FAILED tests/thermal/test_pinn_validity.py::test_user_configs_load - FileNotF...
+FAILED tests/thermal/test_space.py::test_bundle_contents_and_record - SystemE...
+FAILED tests/thermal/test_space.py::test_docker_bundle_and_gradio_card - Syst...
+FAILED tests/thermal/test_viz_catalogue.py::test_every_figure_is_catalogued_with_a_valid_command
+FAILED tests/thermal/test_viz_catalogue.py::test_ambiguous_tags_resolve_to_existing_results
+FAILED tests/thermal/test_viz_style.py::test_legacy_styles_delegate - ModuleN...
+18 failed, 788 passed, 20 skipped, 43 deselected in 1016.95s (0:16:56)

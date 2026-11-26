@@ -1,0 +1,12 @@
+case body  grid 38 x 44 x 24 = 40128 cells, fluid 40128, wall cells 0, thin-surface cells 0, Re 1.16e+007, threads 4
+step 100  residual 1.#IOe+000  time 0  9 s
+step 200  residual 1.#IOe+000  time 0  18 s
+step 300  residual 1.#IOe+000  time 0  26 s
+step 400  residual 1.#IOe+000  time 0  34 s
+step 500  residual 1.#IOe+000  time 0  41 s
+step 600  residual 1.#IOe+000  time 0  48 s
+step 700  residual 1.#IOe+000  time 0  55 s
+step 800  residual 1.#IOe+000  time 0  62 s
+step 900  residual 1.#IOe+000  time 0  68 s
+step 1000  residual 1.#IOe+000  time 0  75 s
+step 1100  residual 1.#IOe+000  time 0  83 s

@@ -30,6 +30,8 @@ dependencies = [
 torch = ["torch>=2.1"]
 ui = ["streamlit>=1.30", "plotly>=5.15"]
 bo = []
+shapeopt = ["neuralfoil>=0.3"]
+designer = ["neuralfoil>=0.3", "streamlit>=1.30", "plotly>=5.15", "pandas>=2.0"]
 cfd = []
 docs = ["mkdocs-material>=9.4", "mkdocstrings[python]>=0.24"]
 dev = [
@@ -53,12 +55,14 @@ src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "N", "SIM", "NPY"]
-ignore = ["N803", "N806", "N802", "N812", "N818", "E741", "B008", "UP007", "E501"]  # E501: formatter owns line length
+ignore = ["N803", "N806", "N802", "N812", "N815", "N818", "E741", "B008", "UP007", "E501"]  # E501: formatter owns line length
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["E731", "NPY002"]
 "scripts/*" = ["E731"]
 "paper/*" = ["E731"]
+"src/aerosynapse/fighter/vlm.py" = ["B023"]  # the panel helper is called inside its own loop iteration
+"src/aerosynapse/thermal/*" = ["E501", "B007", "UP031", "F401", "E402", "SIM", "N", "B", "UP", "NPY", "I", "E741", "W"]  # merged project, kept as written
 
 [tool.mypy]
 python_version = "3.10"
@@ -73,12 +77,17 @@ module = ["aerosynapse.experiments.studies.*"]
 ignore_errors = true  # study drivers (not core library); exercised by the phase scripts
 
 [[tool.mypy.overrides]]
-module = ["aerosynapse.ml.*", "aerosynapse.optim.inverse", "aerosynapse.uq.ensembles", "aerosynapse.viz.*", "aerosynapse.cli", "aerosynapse.experiments.studies.*"]
+module = ["aerosynapse.ml.*", "aerosynapse.optim.inverse", "aerosynapse.uq.ensembles", "aerosynapse.viz.*", "aerosynapse.cli", "aerosynapse.experiments.studies.*", "aerosynapse.shapeopt.*", "aerosynapse.aircraft.*", "aerosynapse.cad.*", "aerosynapse.cfd.*", "aerosynapse.fighter.*", "aerosynapse.store.*", "aerosynapse.ui.*"]
 disallow_untyped_calls = false
 warn_return_any = false
 
+[[tool.mypy.overrides]]
+module = ["aerosynapse.thermal.*"]  # the merged PINN project keeps its own (non-strict) typing
+ignore_errors = true
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]
 addopts = "-q --strict-markers"
 markers = [
   "unit: fast unit tests",

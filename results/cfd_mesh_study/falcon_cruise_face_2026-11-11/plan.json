@@ -1,0 +1,32 @@
+{
+ "plan": [
+  [
+   34.0,
+   false
+  ],
+  [
+   48.0,
+   false
+  ],
+  [
+   68.0,
+   false
+  ]
+ ],
+ "max_steps": 6000,
+ "setup_example": {
+  "preset": "cruise",
+  "quality": "custom",
+  "cells_per_length": 34.0,
+  "steps": 6000,
+  "full_model": false,
+  "unsteady": "off",
+  "start": "free stream",
+  "force_band": 0.5,
+  "save_volume": true,
+  "flow_pictures": "none",
+  "max_cells": 2500000.0
+ },
+ "design": "E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\results\\cfd3d\\falcon_cruise_full\\case.json",
+ "started": "2026-11-11 15:50:52"
+}

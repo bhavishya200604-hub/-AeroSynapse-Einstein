@@ -1,0 +1,62 @@
+{
+ "standard/baseline": {
+  "conf_min_2d_states": 0.7732475292021008,
+  "worst_2d_state": "random_99",
+  "conf_min_3d_tables": 0.771024798523904,
+  "worst_3d": {
+   "flight_state": "cruise_contaminated",
+   "alpha_deg": -3.0,
+   "V": 60.0,
+   "rho": 0.96,
+   "ncrit": 9.0,
+   "xtr": 0.05
+  },
+  "n_3d_rows_below_floor": 0,
+  "n_3d_rows": 1273
+ },
+ "standard/design": {
+  "conf_min_2d_states": 0.6570855135148077,
+  "worst_2d_state": "random_198",
+  "conf_min_3d_tables": 0.6874612024464982,
+  "worst_3d": {
+   "flight_state": "cruise_contaminated",
+   "alpha_deg": -3.0,
+   "V": 60.0,
+   "rho": 0.96,
+   "ncrit": 9.0,
+   "xtr": 0.05
+  },
+  "n_3d_rows_below_floor": 1,
+  "n_3d_rows": 1273
+ },
+ "quick/baseline": {
+  "conf_min_2d_states": 0.7732475292021008,
+  "worst_2d_state": "random_99",
+  "conf_min_3d_tables": 0.771024798523904,
+  "worst_3d": {
+   "flight_state": "cruise_contaminated",
+   "alpha_deg": -3.0,
+   "V": 60.0,
+   "rho": 0.96,
+   "ncrit": 9.0,
+   "xtr": 0.05
+  },
+  "n_3d_rows_below_floor": 0,
+  "n_3d_rows": 1273
+ },
+ "quick/design": {
+  "conf_min_2d_states": 0.6141229459280729,
+  "worst_2d_state": "random_198",
+  "conf_min_3d_tables": 0.6189766731014709,
+  "worst_3d": {
+   "flight_state": "cruise_contaminated",
+   "alpha_deg": -4.0,
+   "V": 60.0,
+   "rho": 0.96,
+   "ncrit": 9.0,
+   "xtr": 0.05
+  },
+  "n_3d_rows_below_floor": 6,
+  "n_3d_rows": 1273
+ }
+}

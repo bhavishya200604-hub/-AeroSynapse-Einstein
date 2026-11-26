@@ -1,0 +1,21 @@
+CFD mesh study: Falcon cruise, Mach 0.85, alpha 2 deg, 11 km
+============================================================
+
+model   cpl     cells  wall  thin  steps    stop        CL        CD  s/step  peak MB
+full     24     90720    32   102   1470  forces   0.01573   0.00431    0.24       36
+full     34    173376    92   188   1460  forces   0.09627   0.01874    0.44       64
+full     48    342433   511   361   1890  forces   0.09358   0.01496    1.07      121
+full     68    685440  1472   627   1740  forces   0.08169   0.01609    2.67      232
+half     24     46368    15    57   1410  forces   0.10540   0.01009    0.11       21
+half     34     86688    46    94   1460  forces   0.09768   0.01851    0.26       35
+half     48    173628   291   153   1880  forces   0.09728   0.01799    0.53       65
+half     68    342720   767   298   1700  forces   0.08269   0.01728    0.87      122
+
+full CL: divergent (R = e21/e32 = 4.43); three-grid band 0.08169 to 0.09627
+full CD: oscillatory; three-grid band 0.01496 to 0.01874
+half CL: divergent (R = e21/e32 = 36.70); three-grid band 0.08269 to 0.09768
+half CD: divergent (R = e21/e32 = 1.40); three-grid band 0.01728 to 0.01851
+half / full at 24 cells per length: CL 6.702, CD 2.342 (wall cells 15 half, 32 full)
+half / full at 34 cells per length: CL 1.015, CD 0.988 (wall cells 46 half, 92 full)
+half / full at 48 cells per length: CL 1.039, CD 1.203 (wall cells 291 half, 511 full)
+half / full at 68 cells per length: CL 1.012, CD 1.074 (wall cells 767 half, 1472 full)

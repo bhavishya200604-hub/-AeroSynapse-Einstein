@@ -1,0 +1,24 @@
+{
+ "exe": "C:/Users/HP/AppData/Local/Temp/claude/d5f3e531d43ada1e/8aa43fdb-79d4-4da6-bd1e-67d3bbbc1305/scratchpad/flowsheet3/aeroflow_sheet3.exe",
+ "cpc": 18.0,
+ "mach": 0.5,
+ "alpha": 4.0,
+ "rows": [
+  {
+   "tc": 0.02,
+   "thickness_cells": 0.36,
+   "CL": 0.344473608,
+   "CD": 0.02408794121,
+   "CL_lattice": 0.3280757438777232,
+   "CL_lattice_thick": 0.3333249557797668,
+   "ratio": 1.04998194602399,
+   "cells": 94250,
+   "wall_cells": 0,
+   "thin_surface_cells": 0,
+   "steps": 1590,
+   "stop": "forces",
+   "seconds": 157.33544993400574
+  }
+ ],
+ "date": "2026-11-11 22:24"
+}

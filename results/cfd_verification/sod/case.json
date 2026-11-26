@@ -1,0 +1,48 @@
+{
+ "case": "sod",
+ "grid": {
+  "uniform": {
+   "n": [
+    400,
+    2,
+    2
+   ],
+   "lo": [
+    0,
+    0,
+    0
+   ],
+   "hi": [
+    1,
+    0.005,
+    0.005
+   ]
+  },
+  "bc": {
+   "x": [
+    "extrapolate",
+    "extrapolate"
+   ],
+   "y": [
+    "periodic",
+    "periodic"
+   ],
+   "z": [
+    "periodic",
+    "periodic"
+   ]
+  }
+ },
+ "model": {
+  "viscous": false,
+  "sgs": "none",
+  "wall_model": false,
+  "cfl": 0.6
+ },
+ "run": {
+  "steps": 100000,
+  "t_end": 0.2,
+  "log_every": 1000,
+  "output": "E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\results\\cfd_verification\\sod"
+ }
+}

@@ -1,0 +1,10 @@
+3D flow analysis: cruise
+========================
+
+Full-3D flow around the whole aircraft: 331240 cells, full model, 2726 s
+freestream Mach 0.850; highest Mach in the field 1.014; lowest Cp -0.553
+394 streamlines from a rake upstream and rings around the wing tips
+vortex cores (Q = 69.5 (U/L)^2): 424 faces; sonic surface: 24 faces (a small supersonic pocket over the body)
+forces settled: CL changed by 0.044 % over the last 10 % of the steps
+forces: CL 0.08800, CD 0.01433, CY -0.00216, Cl 0.00012, Cm -0.02830, Cn -0.00057, CD_friction 0.00662
+converged to the residual target: False; separated wall area 1.1 %, hottest wall 264 K (from the surface samples (all wall cells))

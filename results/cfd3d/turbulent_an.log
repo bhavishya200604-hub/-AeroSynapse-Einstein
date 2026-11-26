@@ -1,0 +1,54 @@
+==============================================================================
+RESEARCH USE ONLY. AeroSynapse-Einstein results are not certified for aircraft, pressure vessels, industrial machinery or any safety-critical decision. Platform validation tier: 1/5 (Research simulation: exploratory, no accuracy guarantee.) Classical solvers: tier 3 (code-verified). ML surrogates: tier 1.
+==============================================================================
+Turbulence and flow instability
+===============================
+
+Setup:
+  Source:
+    3D flow results: results/cfd3d/turbulent_draft folder
+  Flight condition:
+    Mach number: 0.5
+    Altitude: 3000 m
+    Angle of attack: 4 deg
+  Transition:
+    Free-stream Tu: 5 %
+    Critical N (override): 0
+    Section station: 0.35 of semi-span
+    Surface: smooth
+  Wake instability:
+    Wake stations: 0.15, 0.4, 0.8 x / L behind the tail
+    Collocation points: 80
+    Largest wavenumber: 3 1 / wake half-width
+  Spectra:
+    Spectrum segments: 4
+
+1. Free-stream turbulence and transition on the wing section
+   section of 'wing' at 35 % semi-span, chord 3.33 m, Re 2.94e+07, alpha 4 deg
+   critical N 0.50 (Mack, Tu 5 %, surface smooth)
+   upper surface: transition at x/c 0.0006, natural (Tollmien-Schlichting waves reach N crit)
+   lower surface: transition at x/c 0.0984, natural (Tollmien-Schlichting waves reach N crit)
+   section friction drag 0.00445 with this transition, 0.00475 fully turbulent (-6.2 %)
+   Tu 0.01 % moves upper transition to x/c 0.0012; Tu 5.0 % to 0.0006
+   limits: incompressible Thwaites layer on the panel-method velocity (Prandtl-Glauert Mach capped at 0.6 in the panel solution); no crossflow instability of the swept wing
+
+2. Wake instability (inviscid Rayleigh equation, temporal, Chebyshev collocation)
+   solver check, tanh mixing layer: maximum growth 0.1884 at k 0.434 (Michalke 1964: 0.1897 at 0.4446)
+   x/L 0.15 (3D flow): deficit 0.79, half-width 1.202 m; sinuous mode grows at 0.122 U/b (e-folding 59.88 ms), 11.2 Hz, St_b 0.082; varicose 0.038 U/b
+   x/L 0.4 (3D flow): deficit 0.66, half-width 1.176 m; sinuous mode grows at 0.102 U/b (e-folding 69.90 ms), 12.3 Hz, St_b 0.088; varicose 0.032 U/b
+   x/L 0.8 (3D flow): deficit 0.57, half-width 1.181 m; sinuous mode grows at 0.088 U/b (e-folding 81.40 ms), 12.9 Hz, St_b 0.093; varicose 0.027 U/b
+   the sinuous mode is the one that rolls the wake into a vortex street; the Gaussian fit smooths the coarse-grid profile
+
+3. Turbulence in the 3D flow
+   statistics over 451 samples: largest turbulent kinetic energy 0.0049 U^2, largest u r.m.s. 0.099 U
+   probes (6), second half of the run, 450 samples at 0.36 ms:
+     wake, centre     Tu   0.85 %  integral length 1.45 m  no resolved peak (record too short: lowest frequency 25 Hz; run more steps)
+     wake, far        Tu   2.22 %  integral length 2.03 m  no resolved peak (record too short: lowest frequency 25 Hz; run more steps)
+     right tip wake   Tu   0.95 %  integral length 2.51 m  no resolved peak (record too short: lowest frequency 25 Hz; run more steps)
+     left tip wake    Tu   0.59 %  integral length 1.49 m  no resolved peak (record too short: lowest frequency 25 Hz; run more steps)
+     over the wing    Tu   1.26 %  integral length 1.50 m  no resolved peak (record too short: lowest frequency 25 Hz; run more steps)
+     upstream         Tu   1.80 %  integral length 0.84 m  no resolved peak (record too short: lowest frequency 25 Hz; run more steps)
+   inflow check: requested Tu 5.00 %; measured upstream 1.80 % (the grid damps eddies smaller than a few cells; gusts and the body's pressure field add to it)
+
+Limits: the 3D flow is a coarse large-eddy simulation, so only eddies several cells across are resolved; the stability analysis is linear, inviscid and parallel-flow (no absolute/convective distinction).
+

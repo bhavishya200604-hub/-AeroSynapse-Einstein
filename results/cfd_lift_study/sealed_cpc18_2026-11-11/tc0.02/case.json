@@ -1,0 +1,72 @@
+{
+ "case": "body",
+ "design": {
+  "features": [
+   {
+    "id": "w",
+    "type": "wing",
+    "span": 3.0,
+    "root_chord": 1.0,
+    "taper": 1.0,
+    "sweep": 0.0,
+    "tc": 0.02,
+    "profile": "naca",
+    "translate": [
+     0,
+     0,
+     0
+    ],
+    "mirror": true
+   }
+  ]
+ },
+ "flow": {
+  "mach": 0.5,
+  "alpha": 4.0,
+  "beta": 0.0,
+  "altitude": 0.0,
+  "delta_T": 0.0,
+  "gust_amplitude": 0.0,
+  "gust_wavelength": 30.0,
+  "turbulence_intensity": 0.0,
+  "turbulence_length": 3.0
+ },
+ "grid": {
+  "cells_per_length": 18.0,
+  "stretch": 1.15,
+  "max_cells": 1600000.0,
+  "domain": [
+   2,
+   3,
+   1.0,
+   2
+  ]
+ },
+ "model": {
+  "viscous": false,
+  "sgs": "none",
+  "wall_model": false,
+  "cfl": 1.2
+ },
+ "reference": {
+  "length": 1.0,
+  "area": 6.0,
+  "chord": 1.0,
+  "span": 6.0,
+  "moment_point": [
+   0.25,
+   0,
+   0
+  ]
+ },
+ "run": {
+  "steps": 2000,
+  "unsteady": false,
+  "average_from": -1,
+  "residual_drop": 1e-05,
+  "output": "E:\\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\\results\\cfd_lift_study\\sealed_cpc18_2026-11-11\\tc0.02",
+  "log_every": 10,
+  "save_volume": false,
+  "force_band": 0.005
+ }
+}

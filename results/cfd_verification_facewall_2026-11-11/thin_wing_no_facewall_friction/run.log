@@ -1,0 +1,16 @@
+case body  grid 59 x 84 x 34 = 168504 cells, fluid 168504, wall cells 0, thin-surface cells 0, Re 6.99e+006, threads 4
+step 100  residual 1.562e-001  time 0  99 s
+step 200  residual 4.275e-002  time 0  202 s
+step 300  residual 1.853e-002  time 0  311 s
+step 400  residual 1.690e-002  time 0  428 s
+step 500  residual 1.018e-002  time 0  474 s
+step 600  residual 4.565e-003  time 0  520 s
+step 700  residual 2.945e-003  time 0  564 s
+step 800  residual 3.032e-003  time 0  608 s
+step 900  residual 2.756e-003  time 0  652 s
+step 1000  residual 1.365e-003  time 0  696 s
+step 1100  residual 1.013e-003  time 0  740 s
+step 1200  residual 8.324e-004  time 0  784 s
+step 1300  residual 6.869e-004  time 0  827 s
+step 1400  residual 5.633e-004  time 0  870 s
+step 1500  residual 2.682e-004  time 0  914 s

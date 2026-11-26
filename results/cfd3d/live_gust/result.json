@@ -1,0 +1,55 @@
+{
+ "case": "gust",
+ "flight": {
+  "mach": 0.7,
+  "alpha": 3.0,
+  "beta": 0.0,
+  "altitude": 3000.0,
+  "gust_amplitude": 0.05,
+  "gust_wavelength": 20.0
+ },
+ "coefficients": {
+  "CL": 0.0638411927,
+  "CD": -0.004890209016,
+  "CY": -0.003902467368,
+  "Cl": 0.0002322368815,
+  "Cm": 0.01754690553,
+  "Cn": -0.004177008566,
+  "CD_friction": 0.003772056952,
+  "CL_friction": -0.0001421291388
+ },
+ "cells": 48024,
+ "separated_fraction": 0,
+ "T_wall_max_K": 293.3540241,
+ "seconds": 37.672057,
+ "converged": false,
+ "half_model": false,
+ "streamlines": 392,
+ "vortex_core_faces": 80,
+ "sonic_surface_faces": 0,
+ "q_level": 12.99415307192799,
+ "mach_max": 0.762879904779191,
+ "cp_min_field": -0.3072046973088524,
+ "freestream_mach": 0.7016019546579235,
+ "post_seconds": 1.801788330078125,
+ "force_rms": {
+  "CL": 0.003872623001,
+  "CD": 0.0004846558599,
+  "CY": 0.0003491707548,
+  "Cl": 4.651807836e-05,
+  "Cm": 0.00461372078,
+  "Cn": 3.994378706e-05,
+  "CD_friction": 6.966363584e-05,
+  "CL_friction": 3.27602152e-06
+ },
+ "wall_cells": 52,
+ "grid_warning": true,
+ "figures": [
+  "1_convergence.png",
+  "2_surface_pressure.png",
+  "3_wing_sections.png",
+  "4_field_slices.png",
+  "5_flow_3d.png",
+  "6_flow_3d_top.png"
+ ]
+}

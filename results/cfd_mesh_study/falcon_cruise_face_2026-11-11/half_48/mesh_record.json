@@ -1,0 +1,28 @@
+{
+ "name": "half_48",
+ "model": "half",
+ "cells_per_length": 48.0,
+ "cells": 173628,
+ "fluid_cells": 173253,
+ "wall_cells": 286,
+ "thin_surface_cells": 89,
+ "steps": 1820,
+ "stop_reason": "forces",
+ "forces_from": "mean of the last window",
+ "CL": 0.1445848638,
+ "CD": 0.01677538192,
+ "CD_friction": 0.004777551869,
+ "Cm": -0.0489596709,
+ "solver_seconds": 1794.809755,
+ "wall_seconds": 1802.3659505844116,
+ "peak_working_set_MB": 69.33203125,
+ "peak_private_MB": 65.203125,
+ "grid": [
+  91,
+  36,
+  53
+ ],
+ "half_model": true,
+ "seconds_per_step": 0.986159206043956,
+ "us_per_cell_step": 5.679724503213514
+}

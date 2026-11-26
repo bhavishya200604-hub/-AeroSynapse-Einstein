@@ -19,3 +19,29 @@ paper/build/
 .ipynb_checkpoints/
 media/_cache/
 media/clips/
+data_uploads/
+projects/
+results/shapeopt/_smoke/
+
+# fighter tools: built programs, the on-disk data store and run outputs
+bin/
+cpp/studio/*.res.o
+data_store/
+results/studio/
+results/fighter/cfd/*/volume.bin
+results/fighter/cfd/*/state.bin
+projects/thermal_pinn/data/
+projects/thermal_pinn/results/
+projects/thermal_pinn/cache/
+
+# AirfRANS graph data (Kaggle download, about 35 GB) and the points extracted from it: re-created by
+# python -m aerosynapse.ml.airfrans_graph extract (ODbL-1.0 data, not redistributed here)
+graph_airfrans_data_batch_*/
+results/airfrans_graph*/data.npz
+# CFD field dumps (re-created by the runs), local tool settings, scratch logs
+results/**/volume.bin
+results/**/state.bin
+.claude/
+results/full_tests_*.log
+# the PINN heat-transfer project: its own repository (adaptive-pinn-heat-transfer), merged into src/aerosynapse/thermal
+PINNs_Heat_Transfer/

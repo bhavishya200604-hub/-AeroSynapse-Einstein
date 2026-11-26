@@ -1,0 +1,13 @@
+==============================================================================
+RESEARCH USE ONLY. AeroSynapse-Einstein results are not certified for aircraft, pressure vessels, industrial machinery or any safety-critical decision. Platform validation tier: 1/5 (Research simulation: exploratory, no accuracy guarantee.) Classical solvers: tier 3 (code-verified). ML surrogates: tier 1.
+==============================================================================
+[13:39:50] === stage 8: Export and documentation (quick)
+[13:39:51] export: surface mesh (STL, OBJ)
+[13:39:56] export: glTF (142536 triangles)
+[13:39:57] export: STEP AP214 faceted B-rep (20080 faces)
+[13:39:58] export: drawings
+[13:42:25] export: bill of materials and mass properties
+[13:42:27] export: report
+[13:42:27] export: report as PDF, Word and text
+[13:42:44] export: package falcon_package.zip (29.5 MB, 107 files)
+[13:42:44] === stage export done in 173 s

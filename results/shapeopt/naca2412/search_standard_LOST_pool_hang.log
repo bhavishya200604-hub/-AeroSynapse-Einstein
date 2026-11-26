@@ -1,0 +1,15 @@
+[seed 2] round 0: train 0.9346 holdout 0.9285 evals 2400 t 867s
+[seed 0] round 0: train 0.9227 holdout 0.9331 evals 2400 t 869s
+[seed 1] round 0: train 0.9360 holdout 0.9305 evals 2400 t 875s
+[seed 0] round 1: train 0.9291 holdout 0.9275 evals 4800 t 1571s
+[seed 2] round 1: train 0.9192 holdout 0.9256 evals 4800 t 1572s
+[seed 1] round 1: train 0.9280 holdout 0.9269 evals 4800 t 1583s
+[seed 0] round 2: train 0.9232 holdout 0.9254 evals 7200 t 2560s
+[seed 2] round 2: train 0.9302 holdout 0.9303 evals 7200 t 2563s
+[seed 1] round 2: train 0.9288 holdout 0.9251 evals 7200 t 2572s
+[seed 2] round 3: train 0.9328 holdout 0.9273 evals 9600 t 3550s
+[seed 0] round 3: train 0.9253 holdout 0.9256 evals 9616 t 3552s
+[seed 1] round 3: train 0.9271 holdout 0.9251 evals 9616 t 3557s
+[seed 0] round 4: train 0.9353 holdout 0.9267 evals 12016 t 4400s
+[seed 1] round 4: train 0.9339 holdout 0.9250 evals 12032 t 4413s
+[DE] train 0.9258 holdout 0.9290 evals 14400

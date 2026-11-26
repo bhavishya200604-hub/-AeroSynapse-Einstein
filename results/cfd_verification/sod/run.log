@@ -1,0 +1,7 @@
+case sod  grid 400 x 2 x 2 = 1600 cells, fluid 1600, wall cells 0, thin-surface cells 0, Re 1.16e+007, threads 4
+step 100  residual 3.403e-001  time 0.01777  0 s
+step 200  residual 2.882e-001  time 0.04894  1 s
+step 300  residual 2.694e-001  time 0.08061  1 s
+step 400  residual 2.616e-001  time 0.1123  2 s
+step 500  residual 2.586e-001  time 0.1441  2 s
+step 600  residual 2.536e-001  time 0.1758  2 s

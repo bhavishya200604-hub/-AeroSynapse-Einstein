@@ -1,0 +1,251 @@
+{
+ "grid_size": "core spacing h = L / cells_per_length",
+ "L": 15.16088277,
+ "models": {
+  "full": {
+   "runs": [
+    {
+     "cells_per_length": 68.0,
+     "cells": 685440,
+     "wall_cells": 1472,
+     "thin_surface_cells": 627,
+     "steps": 1740,
+     "stop_reason": "forces",
+     "CL": 0.08169166005,
+     "CD": 0.01608902899
+    },
+    {
+     "cells_per_length": 48.0,
+     "cells": 342433,
+     "wall_cells": 511,
+     "thin_surface_cells": 361,
+     "steps": 1890,
+     "stop_reason": "forces",
+     "CL": 0.09358472756,
+     "CD": 0.01496029908
+    },
+    {
+     "cells_per_length": 34.0,
+     "cells": 173376,
+     "wall_cells": 92,
+     "thin_surface_cells": 188,
+     "steps": 1460,
+     "stop_reason": "forces",
+     "CL": 0.0962696978,
+     "CD": 0.01873679523
+    },
+    {
+     "cells_per_length": 24.0,
+     "cells": 90720,
+     "wall_cells": 32,
+     "thin_surface_cells": 102,
+     "steps": 1470,
+     "stop_reason": "forces",
+     "CL": 0.01572625916,
+     "CD": 0.004307858661
+    }
+   ],
+   "CL": {
+    "h": [
+     0.22295415838235294,
+     0.31585172437500003,
+     0.4459083167647059
+    ],
+    "f": [
+     0.08169166005,
+     0.09358472756,
+     0.0962696978
+    ],
+    "r21": 1.4166666666666667,
+    "r32": 1.4117647058823528,
+    "e21": 0.011893067509999994,
+    "e32": 0.002684970240000001,
+    "kind": "divergent",
+    "p": null,
+    "f_ext": null,
+    "gci_fine": null,
+    "R": 4.429496957850821,
+    "band": [
+     0.08169166005,
+     0.0962696978
+    ],
+    "note": "the change grows on refinement (R = e21/e32 >= 1): not in the asymptotic range, no order or GCI"
+   },
+   "CD": {
+    "h": [
+     0.22295415838235294,
+     0.31585172437500003,
+     0.4459083167647059
+    ],
+    "f": [
+     0.01608902899,
+     0.01496029908,
+     0.01873679523
+    ],
+    "r21": 1.4166666666666667,
+    "r32": 1.4117647058823528,
+    "e21": -0.0011287299100000009,
+    "e32": 0.0037764961499999992,
+    "kind": "oscillatory",
+    "p": null,
+    "f_ext": null,
+    "gci_fine": null,
+    "band": [
+     0.01496029908,
+     0.01873679523
+    ],
+    "note": "oscillatory convergence: no order; the spread of the three grids bounds the error"
+   }
+  },
+  "half": {
+   "runs": [
+    {
+     "cells_per_length": 96.0,
+     "cells": 740745,
+     "wall_cells": 2169,
+     "thin_surface_cells": 569,
+     "steps": 2120,
+     "stop_reason": "forces",
+     "CL": 0.0954131719,
+     "CD": 0.0178627458
+    },
+    {
+     "cells_per_length": 68.0,
+     "cells": 342720,
+     "wall_cells": 767,
+     "thin_surface_cells": 298,
+     "steps": 1700,
+     "stop_reason": "forces",
+     "CL": 0.08268621684,
+     "CD": 0.01727945524
+    },
+    {
+     "cells_per_length": 48.0,
+     "cells": 173628,
+     "wall_cells": 291,
+     "thin_surface_cells": 153,
+     "steps": 1880,
+     "stop_reason": "forces",
+     "CL": 0.0972774832,
+     "CD": 0.01799424992
+    },
+    {
+     "cells_per_length": 34.0,
+     "cells": 86688,
+     "wall_cells": 46,
+     "thin_surface_cells": 94,
+     "steps": 1460,
+     "stop_reason": "forces",
+     "CL": 0.09767505421,
+     "CD": 0.01850611499
+    },
+    {
+     "cells_per_length": 24.0,
+     "cells": 46368,
+     "wall_cells": 15,
+     "thin_surface_cells": 57,
+     "steps": 1410,
+     "stop_reason": "forces",
+     "CL": 0.1054023778,
+     "CD": 0.01008837216
+    }
+   ],
+   "CL": {
+    "h": [
+     0.15792586218750002,
+     0.22295415838235294,
+     0.31585172437500003
+    ],
+    "f": [
+     0.0954131719,
+     0.08268621684,
+     0.0972774832
+    ],
+    "r21": 1.4117647058823528,
+    "r32": 1.4166666666666667,
+    "e21": -0.01272695505999999,
+    "e32": 0.014591266359999994,
+    "kind": "oscillatory",
+    "p": null,
+    "f_ext": null,
+    "gci_fine": null,
+    "band": [
+     0.08268621684,
+     0.0972774832
+    ],
+    "note": "oscillatory convergence: no order; the spread of the three grids bounds the error"
+   },
+   "CD": {
+    "h": [
+     0.15792586218750002,
+     0.22295415838235294,
+     0.31585172437500003
+    ],
+    "f": [
+     0.0178627458,
+     0.01727945524,
+     0.01799424992
+    ],
+    "r21": 1.4117647058823528,
+    "r32": 1.4166666666666667,
+    "e21": -0.000583290559999998,
+    "e32": 0.0007147946799999985,
+    "kind": "oscillatory",
+    "p": null,
+    "f_ext": null,
+    "gci_fine": null,
+    "band": [
+     0.01727945524,
+     0.01799424992
+    ],
+    "note": "oscillatory convergence: no order; the spread of the three grids bounds the error"
+   }
+  }
+ },
+ "half_vs_full": [
+  {
+   "cells_per_length": 24.0,
+   "CL_full": 0.01572625916,
+   "CL_half": 0.1054023778,
+   "CD_full": 0.004307858661,
+   "CD_half": 0.01008837216,
+   "CL_ratio": 6.7023172343549255,
+   "CD_ratio": 2.34185310008712,
+   "wall_full": 32,
+   "wall_half": 15
+  },
+  {
+   "cells_per_length": 34.0,
+   "CL_full": 0.0962696978,
+   "CL_half": 0.09767505421,
+   "CD_full": 0.01873679523,
+   "CD_half": 0.01850611499,
+   "CL_ratio": 1.014598118017568,
+   "CD_ratio": 0.9876883833564744,
+   "wall_full": 92,
+   "wall_half": 46
+  },
+  {
+   "cells_per_length": 48.0,
+   "CL_full": 0.09358472756,
+   "CL_half": 0.0972774832,
+   "CD_full": 0.01496029908,
+   "CD_half": 0.01799424992,
+   "CL_ratio": 1.0394589559245386,
+   "CD_ratio": 1.2028001461585753,
+   "wall_full": 511,
+   "wall_half": 291
+  },
+  {
+   "cells_per_length": 68.0,
+   "CL_full": 0.08169166005,
+   "CL_half": 0.08268621684,
+   "CD_full": 0.01608902899,
+   "CD_half": 0.01727945524,
+   "CL_ratio": 1.0121745205005173,
+   "CD_ratio": 1.0739899375369328,
+   "wall_full": 1472,
+   "wall_half": 767
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+[seed 1] round 0: train 0.9360 holdout 0.9305 evals 2400 t 820s
+[seed 2] round 0: train 0.9346 holdout 0.9285 evals 2400 t 820s
+[seed 0] round 0: train 0.9227 holdout 0.9331 evals 2400 t 821s
+[seed 2] round 1: train 0.9192 holdout 0.9256 evals 4800 t 1315s
+[seed 1] round 1: train 0.9280 holdout 0.9269 evals 4800 t 1318s
+[seed 0] round 1: train 0.9291 holdout 0.9275 evals 4800 t 1319s
+[seed 2] round 2: train 0.9302 holdout 0.9303 evals 7200 t 1877s
+[seed 1] round 2: train 0.9288 holdout 0.9251 evals 7200 t 1881s
+[seed 0] round 2: train 0.9232 holdout 0.9254 evals 7200 t 1882s
+[seed 2] round 3: train 0.9328 holdout 0.9273 evals 9600 t 2441s
+[jobs] cma_2: exit 0
+[seed 1] round 3: train 0.9271 holdout 0.9251 evals 9616 t 2447s
+[seed 0] round 3: train 0.9253 holdout 0.9256 evals 9616 t 2448s
+[seed 1] round 4: train 0.9339 holdout 0.9250 evals 12032 t 3069s
+[seed 0] round 4: train 0.9353 holdout 0.9267 evals 12016 t 3069s
+[jobs] cma_0: exit 0
+[jobs] cma_1: exit 0
+[DE] train 0.9258 holdout 0.9290 evals 14400
+[jobs] de_7: exit 0
+best holdout 0.9249947152772078 seed 1 wall 3547
+{'cma-es0': 0.9254, 'cma-es1': 0.925, 'cma-es2': 0.9256, 'differential-evolution7': 0.929}

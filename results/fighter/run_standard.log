@@ -1,0 +1,138 @@
+reference: W0 13741 kg, empty 8570 kg, CD0 0.0216, feasible True
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:325: RuntimeWarning: overflow encountered in scalar power
+  s = s_max * np.exp(-((CL / 0.7) ** 2))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:472: RuntimeWarning: overflow encountered in scalar power
+  cdi = K * CL**2 if not np.isfinite(s.alpha) else CL * np.tan(np.radians(alpha))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:480: RuntimeWarning: invalid value encountered in scalar divide
+  st = State(s.key, s.name, s.mach, s.altitude, W, float(CL), float(alpha), float(CD), float(cd0), float(cdi), float(cdw), float(D_), float(T), float(CL / max(CD, 1e-9)), float((T - D_) * V / (W * G0)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:480: RuntimeWarning: invalid value encountered in scalar subtract
+  st = State(s.key, s.name, s.mach, s.altitude, W, float(CL), float(alpha), float(CD), float(cd0), float(cdi), float(cdw), float(D_), float(T), float(CL / max(CD, 1e-9)), float((T - D_) * V / (W * G0)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:532: RuntimeWarning: invalid value encountered in scalar subtract
+  m["takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho0 * a.S * cl_to * max(T_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho0 * a.S * cl_to)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:533: RuntimeWarning: invalid value encountered in scalar subtract
+  m["hot_takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho_hot * a.S * cl_to * max(T_hot_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho_hot * a.S * cl_to)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:547: RuntimeWarning: invalid value encountered in scalar divide
+  n_s = float(np.sqrt(max((st.thrust_N / (q * a.S) - st.CD0 - st.CDw) / K, 0.0)) * q * a.S / (st.W * G0))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:576: RuntimeWarning: invalid value encountered in scalar divide
+  Kg = 0.88 * mu / (5.3 + mu)
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:583: RuntimeWarning: invalid value encountered in scalar divide
+  m["turbulence_rms_g"] = float(0.88 * mu_t / (5.3 + mu_t) * air_t.rho * mission.turbulence_sigma * tb.extra["V"] * cla_t / (2 * WSt))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:656: RuntimeWarning: invalid value encountered in scalar divide
+  return sum(w * x for w, x in items) / m
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:479: RuntimeWarning: invalid value encountered in scalar multiply
+  T = lapse * T_sl
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:600: RuntimeWarning: invalid value encountered in scalar divide
+  "fuel_volume": (fuel - cap) / max(fuel, 1.0),
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:472: RuntimeWarning: overflow encountered in scalar multiply
+  cdi = K * CL**2 if not np.isfinite(s.alpha) else CL * np.tan(np.radians(alpha))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:477: RuntimeWarning: overflow encountered in scalar multiply
+  D_ = CD * q * a.S
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:480: RuntimeWarning: overflow encountered in scalar multiply
+  st = State(s.key, s.name, s.mach, s.altitude, W, float(CL), float(alpha), float(CD), float(cd0), float(cdi), float(cdw), float(D_), float(T), float(CL / max(CD, 1e-9)), float((T - D_) * V / (W * G0)))
+[jobs] canard_delta_s0: exit 0
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:472: RuntimeWarning: overflow encountered in scalar multiply
+  cdi = K * CL**2 if not np.isfinite(s.alpha) else CL * np.tan(np.radians(alpha))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:477: RuntimeWarning: overflow encountered in scalar multiply
+  D_ = CD * q * a.S
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:480: RuntimeWarning: invalid value encountered in scalar divide
+  st = State(s.key, s.name, s.mach, s.altitude, W, float(CL), float(alpha), float(CD), float(cd0), float(cdi), float(cdw), float(D_), float(T), float(CL / max(CD, 1e-9)), float((T - D_) * V / (W * G0)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:480: RuntimeWarning: invalid value encountered in scalar subtract
+  st = State(s.key, s.name, s.mach, s.altitude, W, float(CL), float(alpha), float(CD), float(cd0), float(cdi), float(cdw), float(D_), float(T), float(CL / max(CD, 1e-9)), float((T - D_) * V / (W * G0)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:532: RuntimeWarning: invalid value encountered in scalar subtract
+  m["takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho0 * a.S * cl_to * max(T_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho0 * a.S * cl_to)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:533: RuntimeWarning: invalid value encountered in scalar subtract
+  m["hot_takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho_hot * a.S * cl_to * max(T_hot_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho_hot * a.S * cl_to)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:546: RuntimeWarning: invalid value encountered in scalar divide
+  n_s = float(np.sqrt(max((st.thrust_N / (q * a.S) - st.CD0 - st.CDw) / K, 0.0)) * q * a.S / (st.W * G0))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:575: RuntimeWarning: invalid value encountered in scalar divide
+  Kg = 0.88 * mu / (5.3 + mu)
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:582: RuntimeWarning: invalid value encountered in scalar divide
+  m["turbulence_rms_g"] = float(0.88 * mu_t / (5.3 + mu_t) * air_t.rho * mission.turbulence_sigma * tb.extra["V"] * cla_t / (2 * WSt))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:655: RuntimeWarning: invalid value encountered in scalar divide
+  return sum(w * x for w, x in items) / m
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:479: RuntimeWarning: invalid value encountered in scalar multiply
+  T = lapse * T_sl
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:599: RuntimeWarning: invalid value encountered in scalar divide
+  "fuel_volume": (fuel - cap) / max(fuel, 1.0),
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:325: RuntimeWarning: overflow encountered in scalar power
+  s = s_max * np.exp(-((CL / 0.7) ** 2))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:472: RuntimeWarning: overflow encountered in scalar power
+  cdi = K * CL**2 if not np.isfinite(s.alpha) else CL * np.tan(np.radians(alpha))
+[jobs] conventional_s0: exit 0
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:472: RuntimeWarning: overflow encountered in scalar multiply
+  cdi = K * CL**2 if not np.isfinite(s.alpha) else CL * np.tan(np.radians(alpha))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:480: RuntimeWarning: overflow encountered in scalar multiply
+  st = State(s.key, s.name, s.mach, s.altitude, W, float(CL), float(alpha), float(CD), float(cd0), float(cdi), float(cdw), float(D_), float(T), float(CL / max(CD, 1e-9)), float((T - D_) * V / (W * G0)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:477: RuntimeWarning: overflow encountered in scalar multiply
+  D_ = CD * q * a.S
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:480: RuntimeWarning: invalid value encountered in scalar divide
+  st = State(s.key, s.name, s.mach, s.altitude, W, float(CL), float(alpha), float(CD), float(cd0), float(cdi), float(cdw), float(D_), float(T), float(CL / max(CD, 1e-9)), float((T - D_) * V / (W * G0)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:480: RuntimeWarning: invalid value encountered in scalar subtract
+  st = State(s.key, s.name, s.mach, s.altitude, W, float(CL), float(alpha), float(CD), float(cd0), float(cdi), float(cdw), float(D_), float(T), float(CL / max(CD, 1e-9)), float((T - D_) * V / (W * G0)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:532: RuntimeWarning: invalid value encountered in scalar subtract
+  m["takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho0 * a.S * cl_to * max(T_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho0 * a.S * cl_to)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:533: RuntimeWarning: invalid value encountered in scalar subtract
+  m["hot_takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho_hot * a.S * cl_to * max(T_hot_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho_hot * a.S * cl_to)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:546: RuntimeWarning: invalid value encountered in scalar divide
+  n_s = float(np.sqrt(max((st.thrust_N / (q * a.S) - st.CD0 - st.CDw) / K, 0.0)) * q * a.S / (st.W * G0))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:575: RuntimeWarning: invalid value encountered in scalar divide
+  Kg = 0.88 * mu / (5.3 + mu)
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:582: RuntimeWarning: invalid value encountered in scalar divide
+  m["turbulence_rms_g"] = float(0.88 * mu_t / (5.3 + mu_t) * air_t.rho * mission.turbulence_sigma * tb.extra["V"] * cla_t / (2 * WSt))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:655: RuntimeWarning: invalid value encountered in scalar divide
+  return sum(w * x for w, x in items) / m
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:479: RuntimeWarning: invalid value encountered in scalar multiply
+  T = lapse * T_sl
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:599: RuntimeWarning: invalid value encountered in scalar divide
+  "fuel_volume": (fuel - cap) / max(fuel, 1.0),
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:325: RuntimeWarning: overflow encountered in scalar power
+  s = s_max * np.exp(-((CL / 0.7) ** 2))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:472: RuntimeWarning: overflow encountered in scalar power
+  cdi = K * CL**2 if not np.isfinite(s.alpha) else CL * np.tan(np.radians(alpha))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:532: RuntimeWarning: overflow encountered in scalar power
+  m["takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho0 * a.S * cl_to * max(T_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho0 * a.S * cl_to)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:533: RuntimeWarning: overflow encountered in scalar power
+  m["hot_takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho_hot * a.S * cl_to * max(T_hot_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho_hot * a.S * cl_to)))
+[jobs] twin_tail_lerx_s0: exit 0
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:325: RuntimeWarning: overflow encountered in scalar power
+  s = s_max * np.exp(-((CL / 0.7) ** 2))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:472: RuntimeWarning: overflow encountered in scalar power
+  cdi = K * CL**2 if not np.isfinite(s.alpha) else CL * np.tan(np.radians(alpha))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:480: RuntimeWarning: invalid value encountered in scalar divide
+  st = State(s.key, s.name, s.mach, s.altitude, W, float(CL), float(alpha), float(CD), float(cd0), float(cdi), float(cdw), float(D_), float(T), float(CL / max(CD, 1e-9)), float((T - D_) * V / (W * G0)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:480: RuntimeWarning: invalid value encountered in scalar subtract
+  st = State(s.key, s.name, s.mach, s.altitude, W, float(CL), float(alpha), float(CD), float(cd0), float(cdi), float(cdw), float(D_), float(T), float(CL / max(CD, 1e-9)), float((T - D_) * V / (W * G0)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:532: RuntimeWarning: invalid value encountered in scalar subtract
+  m["takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho0 * a.S * cl_to * max(T_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho0 * a.S * cl_to)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:533: RuntimeWarning: invalid value encountered in scalar subtract
+  m["hot_takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho_hot * a.S * cl_to * max(T_hot_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho_hot * a.S * cl_to)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:546: RuntimeWarning: invalid value encountered in scalar divide
+  n_s = float(np.sqrt(max((st.thrust_N / (q * a.S) - st.CD0 - st.CDw) / K, 0.0)) * q * a.S / (st.W * G0))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:575: RuntimeWarning: invalid value encountered in scalar divide
+  Kg = 0.88 * mu / (5.3 + mu)
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:582: RuntimeWarning: invalid value encountered in scalar divide
+  m["turbulence_rms_g"] = float(0.88 * mu_t / (5.3 + mu_t) * air_t.rho * mission.turbulence_sigma * tb.extra["V"] * cla_t / (2 * WSt))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:655: RuntimeWarning: invalid value encountered in scalar divide
+  return sum(w * x for w, x in items) / m
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:479: RuntimeWarning: invalid value encountered in scalar multiply
+  T = lapse * T_sl
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:599: RuntimeWarning: invalid value encountered in scalar divide
+  "fuel_volume": (fuel - cap) / max(fuel, 1.0),
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:472: RuntimeWarning: overflow encountered in scalar multiply
+  cdi = K * CL**2 if not np.isfinite(s.alpha) else CL * np.tan(np.radians(alpha))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:477: RuntimeWarning: overflow encountered in scalar multiply
+  D_ = CD * q * a.S
+[jobs] tailless_blended_s0: exit 0
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:480: RuntimeWarning: overflow encountered in scalar multiply
+  st = State(s.key, s.name, s.mach, s.altitude, W, float(CL), float(alpha), float(CD), float(cd0), float(cdi), float(cdw), float(D_), float(T), float(CL / max(CD, 1e-9)), float((T - D_) * V / (W * G0)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:532: RuntimeWarning: overflow encountered in scalar power
+  m["takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho0 * a.S * cl_to * max(T_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho0 * a.S * cl_to)))
+E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\src\aerosynapse\fighter\performance.py:533: RuntimeWarning: overflow encountered in scalar power
+  m["hot_takeoff_m"] = float(1.44 * Wto**2 / (G0 * rho_hot * a.S * cl_to * max(T_hot_to - 0.05 * Wto, 1.0)) + 3 * 1.1 * np.sqrt(2 * Wto / (rho_hot * a.S * cl_to)))
+[jobs] freeform_s0: exit 0
+freeform           J 0.944 feasible True W0 11130 cruise D 10671 dash D 46129 turn 12.95
+conventional       J 0.958 feasible True W0 12254 cruise D 11182 dash D 52316 turn 13.60
+twin_tail_lerx     J 0.992 feasible True W0 12832 cruise D 12051 dash D 51123 turn 12.61
+canard_delta       J 1.002 feasible True W0 13006 cruise D 12293 dash D 54836 turn 11.84
+tailless_blended   J 1.152 feasible True W0 16580 cruise D 14411 dash D 83808 turn 15.28
+reference          J 1.000

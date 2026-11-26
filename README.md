@@ -15,8 +15,11 @@ trusted and when to fall back to the classical solver.
 
 **Scope.** Laminar, mostly 1D/2D problems on a CPU laptop: heat, convection–diffusion, Burgers, wave,
 Poisson, 2D incompressible Navier–Stokes, potential-flow airfoils, and inverse and design problems built on
-them. **Non-goals:** turbulence modelling, 3D CFD, certified engineering analysis, and any claim that AI
-replaces the solver.
+them. Two later additions go further: `aerosynapse shapeopt` (turbulent boundary layers through a surrogate and
+integral methods, see [`docs/SHAPE_OPTIMISATION.md`](docs/SHAPE_OPTIMISATION.md)) and the **fighter design
+tools** with a 3D compressible flow solver on coarse Cartesian grids (wall-modelled large-eddy simulation, see
+[`docs/FIGHTER_STUDIO.md`](docs/FIGHTER_STUDIO.md)). **Non-goals:** certified engineering analysis, and any claim
+that AI replaces the solver.
 
 ## Module maturity
 
@@ -29,9 +32,70 @@ replaces the solver.
 | PINNs, samplers, BC strategies | ✓ | autograd/FD, exact residuals | |
 | FNO, DeepONet, POD, hybrids, UQ | ✓ | held-out / OOD / calibration (Phase 4) | |
 | Optimisation engine + 12-step protocol, inverse problems | ✓ | analytic optima, KKT, adjoint vs FD | |
+| Whole-design shape optimisation | ✓ | NASA TM 4074 (attached flow), adjoint vs FD, flutter cross-check | turbulent results are surrogate and integral methods; see KI-16 to KI-21 |
 | Trust / fallback, resource estimator | ✓ | OOD fallback study (Phase 7) | |
 | Streamlit workbench | ✓ | AppTest smoke tests | |
 | OpenFOAM adapter, Level-4 plugins, AirfRANS loader | ✓ | | not run (external tools / data) |
+
+## One app: the design workflow in AeroSynapse Studio
+
+Double-click **`AeroSynapse.bat`**. In Studio, **Workflow > Design workflow (F9)** takes one project through eight
+stages in order: basic design, design optimisation, **wing optimisation** (the shape optimiser on the wing's own
+airfoil), **body optimisation** (supersonic area rule), **structure and design codes** (V-n diagram, wing box
+sizing for strength, buckling, flutter and divergence, finite elements, material trade), **skin heating with the
+parametric PINN** (convergence study, then the PINN-optimised skin per zone), **3D flow** with a grid-convergence
+study, and **export** (STEP, glTF, STL, OBJ, DXF, A3 drawing, bill of materials, report, checksummed package).
+Each stage's design is loaded into the editor as it finishes. See [`docs/DESIGN_WORKFLOW.md`](docs/DESIGN_WORKFLOW.md).
+
+Studio opens on a **scheme bar** (Sketch & Body, Curves & Math, Wing & Aero, Transform, View, Simulate, Optimise,
+Workflow, Export, each with its colour and icon) and a **tool palette** of icon tiles for the chosen scheme. Draw bodies
+in the **sketcher** (revolve, extrude, loft), model with **equations, superellipsoids and parametric sweeps**, and
+**simulate** in five ways: 3D flow (with the Mach field and animated particles in the 3D view), analytic, PINN,
+structural, and the workflow's grid study. Reports export as **PDF, Word or text**. See
+[`docs/STUDIO_GUIDE.md`](docs/STUDIO_GUIDE.md).
+
+<img src="docs/screenshots/studio/ui_simulate.png" width="720" alt="AeroSynapse Studio, Simulate scheme with the flow field">
+
+```bash
+python -m aerosynapse.cli workflow new falcon
+```
+```bash
+python -m aerosynapse.cli workflow run falcon --profile quick
+```
+
+## Fighter design, 3D flow and AeroSynapse Studio
+
+<img src="docs/assets/aerosynapse_logo.png" width="72" align="right" alt="AeroSynapse logo">
+
+Design whole fighter-class configurations as an editable feature tree (bodies, wings, canards, strakes, tails,
+twin canted fins, blades, cuts, holes, hollow cavities, through-flow ducts), simulate them in 3D, choose
+materials, and optimise them against every flight situation. Three C++ programs share one design file: the
+geometry kernel, the **AeroSynapse Studio** desktop editor, and the `aeroflow` 3D flow solver. The author's
+parametric PINN project for convection–diffusion heat transfer is merged as `aerosynapse.thermal` and models
+skin heating. Training data lives in shards on disk. See [`docs/FIGHTER_STUDIO.md`](docs/FIGHTER_STUDIO.md).
+
+```bash
+python -m aerosynapse.cli studio results/fighter/baseline_design.json
+```
+```bash
+python -m aerosynapse.cli fighter --profile standard
+```
+```bash
+python -m aerosynapse.cli cfd results/fighter/baseline_design.json --mach 0.85 --alpha 2
+```
+
+## Aircraft Designer
+
+Design and optimise a whole aircraft of any shape: drag, thrust, boundary and thermal layers, temperature effects
+and stability together. Conceptual-design accuracy, for comparing designs on one model; see
+[`docs/AIRCRAFT_DESIGNER.md`](docs/AIRCRAFT_DESIGNER.md) and [`docs/SHAPE_OPTIMISATION.md`](docs/SHAPE_OPTIMISATION.md).
+
+```bash
+pip install -e ".[designer]"
+```
+```bash
+aerosynapse designer
+```
 
 ## Videos
 

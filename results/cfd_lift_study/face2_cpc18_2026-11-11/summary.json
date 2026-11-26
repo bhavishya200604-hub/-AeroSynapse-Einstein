@@ -1,0 +1,54 @@
+{
+ "exe": "C:/Users/HP/AppData/Local/Temp/claude/d5f3e531d43ada1e/8aa43fdb-79d4-4da6-bd1e-67d3bbbc1305/scratchpad/flowface/aeroflow_face.exe",
+ "cpc": 18.0,
+ "mach": 0.5,
+ "alpha": 4.0,
+ "rows": [
+  {
+   "tc": 0.02,
+   "thickness_cells": 0.36,
+   "CL": 0.3088598197,
+   "CD": 0.02159758253,
+   "CL_lattice": 0.3280757438777232,
+   "CL_lattice_thick": 0.3333249557797668,
+   "ratio": 0.9414283910459251,
+   "cells": 94250,
+   "wall_cells": 0,
+   "thin_surface_cells": 1045,
+   "steps": 1760,
+   "stop": "forces",
+   "seconds": 336.026563167572
+  },
+  {
+   "tc": 0.1,
+   "thickness_cells": 1.8,
+   "CL": 0.3401312594,
+   "CD": 0.02760860697,
+   "CL_lattice": 0.3280757438777232,
+   "CL_lattice_thick": 0.35432180338794106,
+   "ratio": 1.0367461348400386,
+   "cells": 104000,
+   "wall_cells": 1430,
+   "thin_surface_cells": 0,
+   "steps": 1660,
+   "stop": "forces",
+   "seconds": 335.2476758956909
+  },
+  {
+   "tc": 0.15,
+   "thickness_cells": 2.6999999999999997,
+   "CL": 0.2846246422,
+   "CD": 0.03978681489,
+   "CL_lattice": 0.3280757438777232,
+   "CL_lattice_thick": 0.36744483314305004,
+   "ratio": 0.8675577134592498,
+   "cells": 110500,
+   "wall_cells": 1760,
+   "thin_surface_cells": 0,
+   "steps": 1680,
+   "stop": "forces",
+   "seconds": 357.1598138809204
+  }
+ ],
+ "date": "2026-11-11 15:55"
+}

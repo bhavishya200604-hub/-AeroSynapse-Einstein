@@ -1,0 +1,21 @@
+Structural simulation
+=====================
+
+Setup:
+  Loads:
+    Take-off mass: 15000 kg
+    Fuel in the wing: 25 % of mass
+    Design code: cs25
+    Dive speed: 400 m/s EAS
+    Maximum lift coefficient: 1.5
+  Material:
+    Wing box material: cfrp_im7
+    Structure temperature: 293 K
+
+CS-25 large aeroplane: limit n 2.5, ultimate 3.75; W0 15000 kg; Carbon/epoxy IM7/8552, quasi-isotropic at 293 K
+root bending moment 350 kNm, shear 182 kN per side (limit)
+box mass 251 kg (strength-sized 166 kg, stiffness factor 1.50)
+modes: 9.2, 30.3, 55.4, 68.2, 71.7, 99.0 Hz
+flutter 460 m/s EAS (required 460); divergence 629 m/s EAS
+minimum margins of safety: cover_strength +0.205, cover_buckling +0.000, web_strength +0.000, web_buckling +0.000, flutter +0.000, divergence +0.871
+fuselage: 690 kNm at x 8.1 m, skin 1.20 mm

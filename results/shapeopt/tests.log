@@ -1,0 +1,22 @@
+................F........                                                [100%]
+================================== FAILURES ===================================
+_________________ test_stalled_layout_is_not_reported_as_lift _________________
+
+    @pytest.mark.unit
+    def test_stalled_layout_is_not_reported_as_lift():
+        W, _ = section()
+        x = cosine_spacing(61)
+        yu, yl = G.surfaces(W, x)
+        one = multielement.to_panel(np.c_[x, yu], np.c_[x, yl])
+>       assert multielement.clmax([one], 1e-3)[0] == 0.0
+E       assert 0.24102051604838784 == 0.0
+
+tests\test_shapeopt.py:154: AssertionError
+============================= slowest 5 durations =============================
+23.16s call     tests/test_shapeopt.py::test_neuralfoil_matches_published_lift_when_order_is_right
+7.07s call     tests/test_shapeopt.py::test_problem_scores_the_baseline_as_exactly_one
+2.37s call     tests/test_shapeopt.py::test_independent_solver_tracks_nasa_data_before_stall
+1.72s call     tests/test_shapeopt.py::test_adjoint_gradient_matches_finite_difference
+1.13s call     tests/test_shapeopt.py::test_independent_solver_stalls
+=========================== short test summary info ===========================
+FAILED tests/test_shapeopt.py::test_stalled_layout_is_not_reported_as_lift - ...

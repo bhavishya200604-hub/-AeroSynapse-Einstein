@@ -1,0 +1,48 @@
+Simulation with the parametric PINN
+===================================
+
+Setup:
+  Accuracy check:
+    Check at Biot: 0.3
+    and Biot: 2
+    and Biot: 10
+    Field plot Biot: 2
+  Skin zones:
+    radome: material: design
+    radome: thickness: 0 mm
+    fwd fuselage: material: design
+    fwd fuselage: thickness: 0 mm
+    centre fuselage: material: design
+    centre fuselage: thickness: 0 mm
+    wing box: material: ti64
+    wing box: thickness: 4 mm
+    wing le: material: design
+    wing le: thickness: 0 mm
+    control: material: design
+    control: thickness: 0 mm
+    aft fuselage: material: design
+    aft fuselage: thickness: 0 mm
+    nozzle: material: design
+    nozzle: thickness: 0 mm
+
+Network: E:\-AeroSynapse-Einstein-claude-ecstatic-turing-b9c02v\results\thermal_skin\skin_pinn.pt
+Trained box: Bi 0.2 to 20.0, Fourier time 0 to 2.0
+
+1. PINN against the exact eigen-series and the finite-difference solver (theta = scaled temperature, 1 at the start)
+   Bi=0.3: PINN max error 0.1113, finite differences 4.25e-05
+   Bi=2.0: PINN max error 0.0402, finite differences 2.11e-04
+   Bi=10.0: PINN max error 0.0451, finite differences 9.44e-04
+
+2. Query time for 60 instants at both faces
+   PINN 2.0 ms, exact series 540.8 ms (274x slower), finite differences 2224 ms (1128x slower)
+
+3. The design's skin zones (worst of dash, cold high, max-q and hot-day dash)
+   radome           Carbon/bismaleimide (BMI)     3.00 mm  peak   398 K  dT   3.8 K  stress ratio 0.003  answers {'initial': 4, 'analytic': 91, 'pinn': 1}
+   fwd_fuselage     Carbon/bismaleimide (BMI)     2.44 mm  peak   381 K  dT   4.0 K  stress ratio 0.004  answers {'initial': 4, 'analytic': 92}
+   centre_fuselage  Carbon/bismaleimide (BMI)     4.08 mm  peak   381 K  dT   6.2 K  stress ratio 0.006  answers {'initial': 4, 'analytic': 91, 'pinn': 1}
+   wing_box         Titanium Ti-6Al-4V (annealed  4.00 mm  peak   381 K  dT   6.5 K  stress ratio 0.011  answers {'initial': 4, 'analytic': 90, 'pinn': 2}
+   wing_le          Carbon/bismaleimide (BMI)     1.60 mm  peak   398 K  dT   1.7 K  stress ratio 0.002  answers {'initial': 4, 'analytic': 92}
+   control          Carbon/bismaleimide (BMI)     2.51 mm  peak   381 K  dT   4.4 K  stress ratio 0.004  answers {'initial': 4, 'analytic': 92}
+   aft_fuselage     Ceramic matrix composite C/S  2.63 mm  peak   408 K  dT   2.1 K  stress ratio 0.004  answers {'initial': 4, 'analytic': 92}
+   nozzle           Ceramic matrix composite C/S  1.20 mm  peak   479 K  dT   1.2 K  stress ratio 0.002  answers {'initial': 4, 'analytic': 92}
+   1 % of these answers came from the PINN; the rest fall outside its trained box (thin skins have Biot numbers below 0.2, or the state outlasts the Fourier horizon) and were answered by the exact series

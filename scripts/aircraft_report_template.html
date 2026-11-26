@@ -1,0 +1,128 @@
+<title>Whole Aircraft Study</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>/*__CSS__*/</style>
+<main>
+<header style="display:flex;flex-direction:column;gap:14px">
+  <div class="eyebrow">AeroSynapse Aircraft Designer · research use only · validation tier 1</div>
+  <h1>Whole aircraft study</h1>
+  <p class="lede" id="lede"></p>
+  <div class="kpis" id="kpis"></div>
+</header>
+
+<section><h2>Airliner: which body wins?</h2>
+  <p id="air-p"></p>
+  <div class="tw"><table id="t-air"></table></div>
+  <div class="grid2" id="air-shapes"></div>
+</section>
+
+<section><h2>Does the ranking survive a heavier flat body?</h2>
+  <p id="sn-p"></p>
+  <div class="tw"><table id="t-sn"></table></div>
+  <p class="note">Mission fuel in tonnes. The designs are fixed and only the assumed shell mass changes, so a design re-optimised for a heavier shell would do a little better than shown.</p>
+</section>
+
+<section><h2>Where the drag goes</h2>
+  <p id="drag-p"></p>
+  <div class="tw"><table id="t-drag"></table></div>
+</section>
+
+<section><h2>Conditions off the design point</h2>
+  <p id="off-p"></p>
+  <div class="tw"><table id="t-off"></table></div>
+</section>
+
+<section><h2>Did non-Euclidean shapes help?</h2>
+  <p id="ne-p"></p>
+  <div class="tw"><table id="t-ne"></table></div>
+</section>
+
+<section><h2>Supersonic jet</h2>
+  <p id="ss-p"></p>
+  <div class="tw"><table id="t-ss"></table></div>
+  <div class="grid2" id="ss-shapes"></div>
+</section>
+
+<section><h2>Temperature on the body and around it</h2>
+  <p id="th-p"></p>
+  <div class="fig"><div class="chart" id="c-th"></div><div class="cap">Standard day, supersonic baseline shape. Skin temperature balances convection against radiation with no internal cooling. The dashed line is the service limit of the chosen structure.</div></div>
+  <div class="tw"><table id="t-th"></table></div>
+</section>
+
+<section><h2>Stability and instability</h2>
+  <p id="st-p"></p>
+  <div class="tw"><table id="t-st"></table></div>
+</section>
+
+<section><h2>Independent check of the body shapes</h2>
+  <p id="pv-p"></p>
+  <div class="tw"><table id="t-pv"></table></div>
+</section>
+
+<section><h2>How the models were checked</h2>
+  <div class="tw"><table id="t-val"></table></div>
+</section>
+
+<section><h2>How far to trust this</h2>
+  <p>This is conceptual design. Results compare designs on one model. They do not replace CFD, a wind tunnel, a stress analysis or flutter clearance.</p>
+  <ul id="limits"></ul>
+  <h3>Data still needed</h3>
+  <ul id="missing"></ul>
+</section>
+</main>
+<script>
+const D=/*__DATA__*/null;
+/*__HELPERS__*/
+const B="var(--base)",O="var(--opt)",nm=s=>s.replaceAll("_"," ").replace(/^./,c=>c.toUpperCase());
+function outline(id,o,color){shapes(id,{x0:o.x0,x1:o.x1,y0:o.y0,y1:o.y1,w:560,alt:"Top view",items:o.polys.map(p=>({pts:p,color,fill:color===O?"var(--fill-opt)":"var(--fill-base)"}))})}
+function figs(host,list){const H=$(host);H.innerHTML="";list.forEach((d,i)=>{const f=document.createElement("div");f.className="fig";const c=document.createElement("div");c.className="chart";c.id=host+i;f.append(c);const p=document.createElement("div");p.className="cap";p.textContent=d.cap;f.append(p);H.append(f);outline(c.id,d.o,d.color)})}
+function table(id,cols,rows){$(id).innerHTML=head(...cols)+rows.map(r=>row(...r)).join("")}
+function render(){
+ const A=D.air,S=D.ss,fa=Object.keys(A.fam),b=A.base,best=fa.filter(k=>A.fam[k].ok).reduce((p,k)=>A.fam[k].s.fuel_t<A.fam[p].s.fuel_t?k:p,fa.filter(k=>A.fam[k].ok)[0]);
+ const tube=A.fam.tube_and_wing.s,bw=A.fam.blended_wing_body?.s,w=A.fam[best].s;
+ $("lede").textContent=`Every body family was optimised on the same model, mission and requirements, then scored on hot days, contamination, rough air and off-design speeds. The lowest-fuel design that meets every requirement is the ${nm(best).toLowerCase()}.`;
+ $("kpis").innerHTML=[[sg(pc(w.fuel_t,b.fuel_t),0),`fuel, ${nm(best).toLowerCase()} against baseline`],[sg(pc(tube.fuel_t,b.fuel_t),0),"fuel, optimised conventional against baseline"],[f(w.L_over_D,1),"best L/D, baseline "+f(b.L_over_D,1)],[sg(pc(S.best.s.fuel_t,S.base.fuel_t),0),"fuel, supersonic jet"]].map(k=>`<div class="kpi"><b>${k[0]}</b><span>${k[1]}</span></div>`).join("");
+ const cols=["Design","L/D","Fuel, t","Fuel change","Take-off, t","Span, m","Turbulent share","Unmet"];
+ const rw=(n,s,u,b0)=>[n,f(s.L_over_D,1),f(s.fuel_t,2),b0?delta(s.fuel_t,b0.fuel_t):"–",f(s.MTOW_t,1),f(s.span_m,1),f(s.turbulent_share*100,0)+" %",u];
+ $("air-p").textContent=`All designs carry the same payload the same distance, under the same 36 m span limit. The fair test of an unconventional body is against the optimised conventional aircraft, not the unoptimised baseline.`+(bw?` The blended wing body beats the optimised tube on L/D by ${sg(pc(bw.L_over_D,tube.L_over_D),0)} and on fuel by ${sg(pc(bw.fuel_t,tube.fuel_t),0)}. A 2025 peer-reviewed study found +15 to 20 % and −24 %.`:"");
+ table("t-air",cols,[rw("Baseline tube and wing",b,0),...fa.map(k=>rw(nm(k),A.fam[k].s,A.fam[k].unmet,b))]);
+ figs("air-shapes",[{o:A.baseO,color:B,cap:"Baseline, top view, metres"},...fa.filter(k=>k!="freeform_euclidean").map(k=>({o:A.fam[k].o,color:O,cap:nm(k)+", top view"}))]);
+ const sn=D.sens,mult=["1× (assumed)","2×","3×","4.5×"];
+ const win=i=>sn.reduce((p,r)=>r.fuel_t[i]<p.fuel_t[i]?r:p,sn[0]);
+ const tb=sn.find(r=>r.name==="tube_and_wing"),flip=mult.findIndex((_,i)=>win(i).name==="tube_and_wing");
+ $("sn-p").textContent=`A flat pressurised body needs far more structure than a round one, and the penalty used here is an assumption. Lighter bodies are the main source of the free-form advantage, so this is the number the ranking rests on. `+(flip<0?`Even at 4.5 times the assumed penalty, the optimised tube and wing does not become the lowest-fuel design, though the gap narrows.`:`At ${mult[flip]} the assumed penalty the optimised tube and wing becomes the lowest-fuel design, so the ranking is sensitive to this number.`)+` The lowest-fuel design changes from ${nm(win(0).name).toLowerCase()} at the assumed penalty to ${nm(win(3).name).toLowerCase()} at 4.5 times.`;
+ table("t-sn",["Design",...mult],sn.map(r=>[nm(r.name),...r.fuel_t.map((x,i)=>x===win(i).fuel_t[i]?`<b>${f(x,2)}</b>`:f(x,2))]));
+ $("drag-p").textContent="Drag in counts (0.0001), each on its own reference area, so compare the split rather than the total across different areas.";
+ const dc=["Design","Friction","Form","Induced","Wave","Other","Total","C<sub>L</sub>"],dr=(n,s)=>[n,f(s.friction,1),f(s.form,1),f(s.induced,1),f(s.wave,1),f(s.misc,1),f(s.CD_counts,1),f(s.CL,3)];
+ table("t-drag",dc,[dr("Baseline",b),...fa.map(k=>dr(nm(k),A.fam[k].s))]);
+ const on=A.fam[fa[0]].on;
+ $("off-p").textContent="Drag in each off-design condition, relative to the baseline in that same condition. Below 1.00 is better than the baseline.";
+ table("t-off",["Condition",...fa.map(nm)],on.map((n,i)=>[n,...fa.map(k=>f(A.fam[k].off[i],3))]));
+ const fe=A.fam.freeform,ee=A.fam.freeform_euclidean;
+ if(fe&&ee){const ms=x=>{const m=x.reduce((p,q)=>p+q,0)/x.length;return[m,Math.sqrt(x.reduce((p,q)=>p+(q-m)**2,0)/(x.length-1))]};
+  const [m1,s1]=ms(fe.Js),[m2,s2]=ms(ee.Js),se=Math.sqrt(s1*s1/fe.Js.length+s2*s2/ee.Js.length),t=(m2-m1)/se;
+  $("ne-p").textContent=`A fair test: the same search and budget, ${fe.Js.length} seeds each, with and without the hyperbolic section warp. The mean score is ${f(m1,3)} with the warp and ${f(m2,3)} without, a difference of ${f(Math.abs(m1-m2),3)} against a standard error of ${f(se,3)}. ${Math.abs(t)<2?`The warp scored ${t>0?"slightly better":"slightly worse"} on average (t = ${f(t,1)}), but with ${fe.Js.length} seeds that is not statistically established, so treat it as a hint and not a proven benefit.`:(t>0?"That is larger than the noise, so the warp helped in this study.":"That is larger than the noise, and the warp made results worse in this study.")} The result applies to this warp on this mission only. A hyperbolic shape has no aerodynamic property of its own: it is one more way to describe an outline. The tractrix tail, a curve from hyperbolic geometry, was open to both searches, so this test does not cover it. The best design uses a tractrix blend of ${f(fe.d.tract,2)} and the best Euclidean-section design ${f(ee.d.tract,2)}.`;
+  table("t-ne",["Search","Seeds","Mean score","Standard deviation","Best score","Best fuel, t","Warp in best design"],[["With hyperbolic warp",fe.Js.length,f(m1,3),f(s1,3),f(fe.J,3),f(fe.s.fuel_t,2),f(Math.abs(fe.d.wi),3)],["Euclidean only",ee.Js.length,f(m2,3),f(s2,3),f(ee.J,3),f(ee.s.fuel_t,2),"0"]])}
+ const sf=Object.keys(S.fam);
+ $("ss-p").textContent=`Mach ${f(S.mach,1)} at ${f(S.alt/1000,0)} km. The baseline reaches L/D ${f(S.base.L_over_D,1)}, against about 7 for Concorde at Mach 2. Wave drag dominates, so the search stretches and slims the body towards the area law.`;
+ table("t-ss",cols,[rw("Baseline",S.base,0),...sf.map(k=>rw(nm(k),S.fam[k].s,S.fam[k].unmet,S.base))]);
+ figs("ss-shapes",[{o:S.baseO,color:B,cap:"Baseline, top view, metres"},...sf.map(k=>({o:S.fam[k].o,color:O,cap:nm(k)+", top view"}))]);
+ const T=D.thermal.filter(r=>r.dT==0),H=D.thermal.filter(r=>r.dT>0);
+ const m2=T.find(r=>r.mach==2);
+ $("th-p").textContent=`Skin temperature is set by speed, not by shape: at Mach ${f(m2.mach,0)} total air temperature is ${f(m2.T_total_C,0)} °C, close to the 127 °C that limited Concorde. Past about Mach 2.1 aluminium reaches its limit and titanium is needed. A day 25 K hotter adds about ${f(H.find(r=>r.mach==2).T_nose_C-m2.T_nose_C,0)} °C at the nose.`;
+ chart("c-th",{series:[{name:"Total air",color:"var(--ink3)",mark:1,pts:T.map(r=>[r.mach,r.T_total_C])},{name:"Nose skin",color:B,mark:1,pts:T.map(r=>[r.mach,r.T_nose_C])},{name:"Mid-body skin",color:O,mark:1,pts:T.map(r=>[r.mach,r.T_skin_C])}],hline:D.mat_limit_C,xlab:"Mach number",ylab:"°C",h:320,alt:"Temperature against Mach number",tip:b=>`${b.s.name}, Mach ${b.p[0]}: ${f(b.p[1],0)} °C`});
+ table("t-th",["Mach","Altitude, km","Air, °C","Total, °C","Nose, °C","Skin, °C","Tail skin, °C","Nose heat, kW/m²","Length change, mm","Stiffness left"],T.map(r=>[f(r.mach,1),f(r.altitude/1000,0),f(r.T_air_C,0),f(r.T_total_C,0),f(r.T_nose_C,0),f(r.T_skin_C,0),f(r.T_aft_C,0),f(r.q_nose_kW,1),f(r.expansion_mm,0),f(r.E_ratio*100,0)+" %"]));
+ $("st-p").textContent="Each row is a requirement the search had to satisfy. Flutter is calibrated so the baseline has a 1.3 margin, so read those rows as comparisons.";
+ const sr=(n,s)=>[n,f(s.static_margin*100,0)+" %",f(s.short_period_zeta,2),f(s.cn_beta,3),f(s.n_gust,2),f(s.v_flutter/s.v_dive,2),f(s.closure_deg,1)+"°"];
+ table("t-st",["Design","Static margin","Short-period damping","Directional","Gust load","Flutter / dive speed","Tail closure"],[sr("Baseline",b),...fa.map(k=>sr(nm(k),A.fam[k].s))]);
+ $("pv-p").textContent="Source panels on the real body surface give the pressure field, and an integral boundary layer then runs along the top line of the body. These share nothing with the form factors used in the search. A separation point of 1.00 means the layer stays attached to the tail.";
+ const pv=(n,v)=>v&&v.top?[n,v.panels,f(v.cp_min,3),f(v.top.x_transition,3),f(v.top.x_separation,2),f(v.side.x_separation,2),f(v.bottom.x_separation,2)]:[n,"–","–","–","–","–","–"];
+ table("t-pv",["Body","Panels","Lowest C<sub>p</sub>","Transition, x/L","Separation, top","Side","Bottom"],[pv("Baseline",A.baseV),...fa.map(k=>pv(nm(k),A.fam[k].v))]);
+ table("t-val",["Model","Check","Result","Reference"],D.val.map(v=>[v[0],v[1],v[2],v[3]]));
+ $("limits").innerHTML=D.limits.map(x=>`<li>${x}</li>`).join("");
+ $("missing").innerHTML=D.missing.map(x=>`<li>${x}</li>`).join("");
+}
+render();
+matchMedia("(prefers-color-scheme:dark)").addEventListener("change",render);
+new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+</script>

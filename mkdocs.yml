@@ -25,6 +25,11 @@ nav:
   - How-to:
       - Add a physics module: guides/adding_a_physics_module.md
       - Reproduce results: REPRODUCIBILITY.md
+  - Aircraft Designer: AIRCRAFT_DESIGNER.md
+  - Shape optimisation: SHAPE_OPTIMISATION.md
+  - AeroSynapse Studio user guide: STUDIO_GUIDE.md
+  - Design workflow (basic design to export): DESIGN_WORKFLOW.md
+  - Fighter design, 3D flow and Studio: FIGHTER_STUDIO.md
   - Tutorials: tutorials/quickstart.md
   - V&V report: VV_REPORT.md
   - Literature and novelty: LITERATURE_AND_NOVELTY.md

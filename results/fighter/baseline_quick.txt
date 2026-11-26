@@ -1,0 +1,12 @@
+Quick aerodynamics (lattice, area rule, friction)
+
+Volume 17.899 m3, wetted area 140.45 m2, frontal 2.007 m2, length 15.04 m
+Reference area 27.87 m2, mean chord 3.45 m, span 9.14 m
+
+M0.3: CL_alpha 4.491/rad, span efficiency 1.092, neutral point x 8.26 m (static margin about the centroid 16.2 % MAC), Cn_beta 0.200, Cl_beta -0.058
+M0.85: CL_alpha 5.570/rad, span efficiency 1.239, neutral point x 8.15 m (static margin about the centroid 12.7 % MAC), Cn_beta 0.224, Cl_beta -0.090
+
+Friction CD0 estimate at M0.85, 11 km: 0.0118
+Supersonic wave drag (Mach-plane area rule): M1.2 CD 0.0155, M1.6 CD 0.0191, M2.0 CD 0.0238
+
+Lattice: thin surfaces, attached flow. Area rule: linear theory. Use the 3D flow solver to check.

@@ -1,0 +1,48 @@
+{
+ "name": "flying wing",
+ "units": "m",
+ "features": [
+  {
+   "id": "wing",
+   "type": "wing",
+   "op": "add",
+   "span": 9.0,
+   "root_chord": 7.5,
+   "taper": 0.18,
+   "sweep": 35.0,
+   "dihedral": 0.0,
+   "twist": -4.0,
+   "tc": 0.12,
+   "camber": 0.01,
+   "camber_pos": 0.4,
+   "profile": "naca",
+   "translate": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "mirror": true
+  },
+  {
+   "id": "winglets",
+   "type": "fin",
+   "op": "add",
+   "span": 1.2,
+   "root_chord": 1.4,
+   "taper": 0.4,
+   "sweep": 40.0,
+   "dihedral": 75,
+   "twist": 0.0,
+   "tc": 0.08,
+   "camber": 0.0,
+   "camber_pos": 0.4,
+   "profile": "naca",
+   "translate": [
+    7.0,
+    8.9,
+    0.1
+   ],
+   "mirror": true
+  }
+ ]
+}

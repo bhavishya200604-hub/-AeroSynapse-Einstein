@@ -1,0 +1,39 @@
+{
+ "exe": "C:/Users/HP/AppData/Local/Temp/claude/d5f3e531d43ada1e/8aa43fdb-79d4-4da6-bd1e-67d3bbbc1305/scratchpad/flowdev/aeroflow_dev.exe",
+ "cpc": 12.0,
+ "mach": 0.5,
+ "alpha": 4.0,
+ "rows": [
+  {
+   "tc": 0.1,
+   "thickness_cells": 1.2000000000000002,
+   "CL": 0.3313561229,
+   "CD": 0.004007462744,
+   "CL_lattice": 0.3280757438777232,
+   "CL_lattice_thick": 0.35432180338794106,
+   "ratio": 1.0099988465575176,
+   "cells": 43472,
+   "wall_cells": 432,
+   "thin_surface_cells": 220,
+   "steps": 1149,
+   "stop": "residual",
+   "seconds": 110.76993107795715
+  },
+  {
+   "tc": 0.15,
+   "thickness_cells": 1.7999999999999998,
+   "CL": 0.2570348042,
+   "CD": 0.03328501682,
+   "CL_lattice": 0.3280757438777232,
+   "CL_lattice_thick": 0.36744483314305004,
+   "ratio": 0.7834617736805292,
+   "cells": 46816,
+   "wall_cells": 648,
+   "thin_surface_cells": 110,
+   "steps": 1530,
+   "stop": "forces",
+   "seconds": 122.99316787719727
+  }
+ ],
+ "date": "2026-11-11 13:49"
+}

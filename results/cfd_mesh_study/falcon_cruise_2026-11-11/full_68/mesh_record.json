@@ -1,0 +1,28 @@
+{
+ "name": "full_68",
+ "model": "full",
+ "cells_per_length": 68.0,
+ "cells": 685440,
+ "fluid_cells": 683307,
+ "wall_cells": 1472,
+ "thin_surface_cells": 627,
+ "steps": 1740,
+ "stop_reason": "forces",
+ "forces_from": "mean of the last window",
+ "CL": 0.08169166005,
+ "CD": 0.01608902899,
+ "CD_friction": 0.006660030028,
+ "Cm": -0.02856775434,
+ "solver_seconds": 4652.341118,
+ "wall_seconds": 4654.512818813324,
+ "peak_working_set_MB": 234.953125,
+ "peak_private_MB": 232.09765625,
+ "grid": [
+  119,
+  90,
+  64
+ ],
+ "half_model": false,
+ "seconds_per_step": 2.673759263218391,
+ "us_per_cell_step": 3.90079257589051
+}

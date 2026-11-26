@@ -1,0 +1,57 @@
+{
+ "case": "turbulent",
+ "flight": {
+  "mach": 0.5,
+  "alpha": 4.0,
+  "beta": 0.0,
+  "altitude": 3000.0,
+  "delta_T": 0.0,
+  "turbulence_intensity": 5.0,
+  "turbulence_length": 3.0,
+  "gust_amplitude": 0.0,
+  "gust_wavelength": 30.0
+ },
+ "coefficients": {
+  "CL": 0.1178689878,
+  "CD": 0.01697728112,
+  "CY": -0.001730571208,
+  "Cl": -0.0001318730597,
+  "Cm": -0.007693110274,
+  "Cn": -3.954303731e-06,
+  "CD_friction": 0.00657955797,
+  "CL_friction": -0.0002472358432
+ },
+ "cells": 132600,
+ "separated_fraction": 0,
+ "T_wall_max_K": 283.8781673,
+ "seconds": 477.437935,
+ "converged": false,
+ "half_model": false,
+ "streamlines": 394,
+ "vortex_core_faces": 624,
+ "sonic_surface_faces": 0,
+ "q_level": 14.90900536734404,
+ "mach_max": 0.5509936204088091,
+ "cp_min_field": -0.38821305817833807,
+ "freestream_mach": 0.4999969556339899,
+ "post_seconds": 2.985687017440796,
+ "force_rms": {
+  "CL": 0.001913355893,
+  "CD": 0.0001565669424,
+  "CY": 0.001316643432,
+  "Cl": 0.0004928402178,
+  "Cm": 0.001146067824,
+  "Cn": 0.0006740892646,
+  "CD_friction": 1.136388769e-05,
+  "CL_friction": 2.305510252e-06
+ },
+ "wall_cells": 254,
+ "figures": [
+  "1_convergence.png",
+  "2_surface_pressure.png",
+  "3_wing_sections.png",
+  "4_field_slices.png",
+  "5_flow_3d.png",
+  "6_flow_3d_top.png"
+ ]
+}

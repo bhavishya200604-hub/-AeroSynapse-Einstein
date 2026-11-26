@@ -1,0 +1,32 @@
+{
+ "probes": [
+  {
+   "name": "wake, centre",
+   "at": [19.8571002, 0, 0.9158698144]
+  },
+  {
+   "name": "wake, far",
+   "at": [27.4944472, 0, 0.9158698144]
+  },
+  {
+   "name": "right tip wake",
+   "at": [16.8021614, 4.372023258, 0.9158698144]
+  },
+  {
+   "name": "left tip wake",
+   "at": [16.8021614, -4.372023258, 0.9158698144]
+  },
+  {
+   "name": "over the wing",
+   "at": [9.1648144, 1.943121448, 3.6355767]
+  },
+  {
+   "name": "upstream",
+   "at": [-1.22197752, 1.457341086, 0.9158698144]
+  }
+ ],
+ "mach": 0.5,
+ "length": 15.16088277,
+ "time_unit_s": 0.003043433271,
+ "note": "u v w in units of the speed of sound, p in units of rho_inf a_inf^2"
+}

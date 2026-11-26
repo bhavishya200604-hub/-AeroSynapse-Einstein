@@ -1,0 +1,432 @@
+{
+ "reference_cruise": {
+  "design": "reference",
+  "family": "conventional",
+  "state": "cruise",
+  "flight": {
+   "mach": 0.85,
+   "alpha": 2.0,
+   "altitude": 11000.0
+  },
+  "cfd": {
+   "CL": 0.1305737313,
+   "CD": 0.02057166673,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": -0.01769076898,
+   "Cn": 0,
+   "CD_friction": 0.007818879063,
+   "CL_friction": -0.0002144908313
+  },
+  "rms": null,
+  "converged": false,
+  "cells": 433440,
+  "thin_surface_cells": 441,
+  "seconds": 3123.2288930416107,
+  "separated_fraction": 0,
+  "T_wall_max_K": 251.0197427,
+  "fast_model": {
+   "CL": 0.15061864947725295,
+   "CD": 0.024740605449754118,
+   "CD0": 0.021558040707121768,
+   "CDw": 2.9070856911050294e-05,
+   "S": 27.87
+  }
+ },
+ "reference_manoeuvre": {
+  "design": "reference",
+  "family": "conventional",
+  "state": "manoeuvre",
+  "flight": {
+   "mach": 0.9,
+   "alpha": 8.0,
+   "altitude": 4600.0
+  },
+  "cfd": {
+   "CL": 0.4593815863,
+   "CD": 0.08141173153,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": -0.09583775943,
+   "Cn": 0,
+   "CD_friction": 0.006678171052,
+   "CL_friction": -0.0007447616082
+  },
+  "rms": null,
+  "converged": false,
+  "cells": 433440,
+  "thin_surface_cells": 441,
+  "seconds": 2545.6275885105133,
+  "separated_fraction": 0,
+  "T_wall_max_K": 304.2113393,
+  "fast_model": {
+   "CL": 0.7682214024094991,
+   "CD": 0.11465320966061357,
+   "CD0": 0.01901858114949952,
+   "CDw": 0.0010304298801984365,
+   "S": 27.87
+  }
+ },
+ "reference_dash": {
+  "design": "reference",
+  "family": "conventional",
+  "state": "dash",
+  "flight": {
+   "mach": 1.6,
+   "alpha": 2.0,
+   "altitude": 12000.0
+  },
+  "cfd": {
+   "CL": 0.1252910819,
+   "CD": 0.01981452644,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": -0.05124145677,
+   "Cn": 0,
+   "CD_friction": 0.006729144015,
+   "CL_friction": -0.0001761207725
+  },
+  "rms": null,
+  "converged": false,
+  "cells": 300080,
+  "thin_surface_cells": 441,
+  "seconds": 1357.724360704422,
+  "separated_fraction": 0,
+  "T_wall_max_K": 330.0145568,
+  "fast_model": {
+   "CL": 0.06217473373972758,
+   "CD": 0.03932705883028513,
+   "CD0": 0.017272841892811353,
+   "CDw": 0.020987164975909234,
+   "S": 27.87
+  }
+ },
+ "reference_high_alpha": {
+  "design": "reference",
+  "family": "conventional",
+  "state": "high_alpha",
+  "flight": {
+   "mach": 0.3,
+   "alpha": 25.0,
+   "altitude": 6000.0
+  },
+  "cfd": {
+   "CL": 1.067350372,
+   "CD": 0.5075872658,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": -0.3194973545,
+   "Cn": 0,
+   "CD_friction": 0.00546373545,
+   "CL_friction": -0.001761268203
+  },
+  "rms": null,
+  "converged": false,
+  "cells": 433440,
+  "thin_surface_cells": 441,
+  "seconds": 1890.1243422031403,
+  "separated_fraction": 0.004274571969,
+  "T_wall_max_K": 255.8588593,
+  "fast_model": {
+   "CL": 1.1251833114336414,
+   "CD": 0.5494041082421641,
+   "CD0": 0.02472251329245635,
+   "CDw": 0.0,
+   "S": 27.87
+  }
+ },
+ "reference_gust": {
+  "design": "reference",
+  "family": "conventional",
+  "state": "gust",
+  "flight": {
+   "mach": 0.8,
+   "alpha": 2.0,
+   "altitude": 1000.0,
+   "gust_amplitude": 0.06,
+   "gust_wavelength": 30.0
+  },
+  "cfd": {
+   "CL": 0.1005907956,
+   "CD": 0.01947538998,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": -0.009396143442,
+   "Cn": 0,
+   "CD_friction": 0.007216496067,
+   "CL_friction": -0.0002039512707
+  },
+  "rms": {
+   "CL": 0.03975191769,
+   "CD": 0.00205917897,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": 0.01155294404,
+   "Cn": 0,
+   "CD_friction": 3.185398373e-05,
+   "CL_friction": 1.676871021e-05
+  },
+  "converged": false,
+  "cells": 433440,
+  "thin_surface_cells": 441,
+  "seconds": 2068.097200155258,
+  "separated_fraction": 0,
+  "T_wall_max_K": 322.4865534,
+  "fast_model": {
+   "CL": 0.144942712981813,
+   "CD": 0.02160625730086986,
+   "CD0": 0.018660103392747658,
+   "CDw": 0.0,
+   "S": 27.87
+  }
+ },
+ "freeform_cruise": {
+  "design": "freeform",
+  "family": "freeform",
+  "state": "cruise",
+  "flight": {
+   "mach": 0.85,
+   "alpha": 2.0,
+   "altitude": 11000.0
+  },
+  "cfd": {
+   "CL": 0.07768618405,
+   "CD": 0.01451647805,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": -0.0124025669,
+   "Cn": 0,
+   "CD_friction": 0.006971676397,
+   "CL_friction": -0.0001733536564
+  },
+  "rms": null,
+  "converged": false,
+  "cells": 507150,
+  "thin_surface_cells": 459,
+  "seconds": 2240.7549991607666,
+  "separated_fraction": 0.00120396761,
+  "T_wall_max_K": 249.2761749,
+  "fast_model": {
+   "CL": 0.16879500238164402,
+   "CD": 0.025354013203118208,
+   "CD0": 0.022132776162521343,
+   "CDw": 0.0,
+   "S": 28.63155
+  }
+ },
+ "freeform_manoeuvre": {
+  "design": "freeform",
+  "family": "freeform",
+  "state": "manoeuvre",
+  "flight": {
+   "mach": 0.9,
+   "alpha": 8.0,
+   "altitude": 4600.0
+  },
+  "cfd": {
+   "CL": 0.3476176357,
+   "CD": 0.06164007197,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": -0.07215484599,
+   "Cn": 0,
+   "CD_friction": 0.006409686606,
+   "CL_friction": -0.0006260540337
+  },
+  "rms": null,
+  "converged": false,
+  "cells": 507150,
+  "thin_surface_cells": 459,
+  "seconds": 2137.592836856842,
+  "separated_fraction": 0.00120396761,
+  "T_wall_max_K": 301.0780151,
+  "fast_model": {
+   "CL": 0.761684892468864,
+   "CD": 0.11046690406701666,
+   "CD0": 0.01953212292523422,
+   "CDw": 0.0,
+   "S": 28.63155
+  }
+ },
+ "freeform_dash": {
+  "design": "freeform",
+  "family": "freeform",
+  "state": "dash",
+  "flight": {
+   "mach": 1.6,
+   "alpha": 2.0,
+   "altitude": 12000.0
+  },
+  "cfd": {
+   "CL": 0.07999433223,
+   "CD": 0.01396921232,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": 0.01043765955,
+   "Cn": 0,
+   "CD_friction": 0.005554208972,
+   "CL_friction": -0.0001470485275
+  },
+  "rms": null,
+  "converged": false,
+  "cells": 359168,
+  "thin_surface_cells": 459,
+  "seconds": 1343.1043584346771,
+  "separated_fraction": 0.00120396761,
+  "T_wall_max_K": 331.5041557,
+  "fast_model": {
+   "CL": 0.08914009308755899,
+   "CD": 0.03603444890876592,
+   "CD0": 0.017734245343591717,
+   "CDw": 0.016517990001122553,
+   "S": 28.63155
+  }
+ },
+ "freeform_high_alpha": {
+  "design": "freeform",
+  "family": "freeform",
+  "state": "high_alpha",
+  "flight": {
+   "mach": 0.3,
+   "alpha": 25.0,
+   "altitude": 6000.0
+  },
+  "cfd": {
+   "CL": 0.95911319,
+   "CD": 0.4573866152,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": -0.1269991992,
+   "Cn": 0,
+   "CD_friction": 0.006339940427,
+   "CL_friction": -0.001849004947
+  },
+  "rms": null,
+  "converged": false,
+  "cells": 507150,
+  "thin_surface_cells": 459,
+  "seconds": 1907.1526639461517,
+  "separated_fraction": 0.00120396761,
+  "T_wall_max_K": 254.4067705,
+  "fast_model": {
+   "CL": 1.2768474204187217,
+   "CD": 0.6207810563426652,
+   "CD0": 0.025377325905960244,
+   "CDw": 0.0,
+   "S": 28.63155
+  }
+ },
+ "freeform_gust": {
+  "design": "freeform",
+  "family": "freeform",
+  "state": "gust",
+  "flight": {
+   "mach": 0.8,
+   "alpha": 2.0,
+   "altitude": 1000.0,
+   "gust_amplitude": 0.06,
+   "gust_wavelength": 30.0
+  },
+  "cfd": {
+   "CL": 0.07832349006,
+   "CD": 0.01455458164,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": -0.01007988456,
+   "Cn": 0,
+   "CD_friction": 0.006697550164,
+   "CL_friction": -0.0001559139819
+  },
+  "rms": {
+   "CL": 0.01268617778,
+   "CD": 0.000313958828,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": 0.01169254292,
+   "Cn": 0,
+   "CD_friction": 4.752013617e-05,
+   "CL_friction": 1.562857556e-05
+  },
+  "converged": false,
+  "cells": 507150,
+  "thin_surface_cells": 459,
+  "seconds": 2005.060956954956,
+  "separated_fraction": 0.00120396761,
+  "T_wall_max_K": 320.8434225,
+  "fast_model": {
+   "CL": 0.16443726457670632,
+   "CD": 0.02222694259161408,
+   "CD0": 0.01916610734065018,
+   "CDw": 0.0,
+   "S": 28.63155
+  }
+ },
+ "reference_cruise_a5": {
+  "design": "reference",
+  "family": "conventional",
+  "state": "cruise_a5",
+  "flight": {
+   "mach": 0.85,
+   "alpha": 5.0,
+   "altitude": 11000.0
+  },
+  "cfd": {
+   "CL": 0.31003988,
+   "CD": 0.04313541478,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": -0.04823135361,
+   "Cn": 0,
+   "CD_friction": 0.007731885968,
+   "CL_friction": -0.0005409859887
+  },
+  "rms": null,
+  "converged": false,
+  "cells": 433440,
+  "thin_surface_cells": 441,
+  "seconds": 1622.5024998188019,
+  "separated_fraction": 0,
+  "T_wall_max_K": 251.4466825,
+  "fast_model": {
+   "CL": 0.45039078674831745,
+   "CD": 0.05201031064102293,
+   "CD0": 0.021558040707121768,
+   "CDw": 2.9070856911050294e-05,
+   "S": 27.87
+  }
+ },
+ "freeform_cruise_a5": {
+  "design": "freeform",
+  "family": "freeform",
+  "state": "cruise_a5",
+  "flight": {
+   "mach": 0.85,
+   "alpha": 5.0,
+   "altitude": 11000.0
+  },
+  "cfd": {
+   "CL": 0.2130509554,
+   "CD": 0.0307103649,
+   "CY": 0,
+   "Cl": 0,
+   "Cm": -0.04115771657,
+   "Cn": 0,
+   "CD_friction": 0.007110461585,
+   "CL_friction": -0.0004382944148
+  },
+  "rms": null,
+  "converged": false,
+  "cells": 507150,
+  "thin_surface_cells": 459,
+  "seconds": 1910.1322491168976,
+  "separated_fraction": 0.00120396761,
+  "T_wall_max_K": 249.4873385,
+  "fast_model": {
+   "CL": 0.4562444364777833,
+   "CD": 0.0500818505186313,
+   "CD0": 0.022132776162521343,
+   "CDw": 0.0,
+   "S": 28.63155
+  }
+ }
+}

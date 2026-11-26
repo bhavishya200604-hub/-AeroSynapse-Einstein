@@ -1,0 +1,162 @@
+"""Phase 9 gate: finalisation.
+
+    python -m aerosynapse.thermal.experiments.p9_gate [--tag default]
+
+  9.1 reproduce: `python tasks.py reproduce` regenerates every table and figure from the saved results, with
+      expected runtimes measured (results/p9_reproduce_default) and stated (docs/REPRODUCE.md); and it works from a
+      clean clone (results/p9_clean_clone_default: CI green there, no failure other than git-ignored artefacts)
+  9.2 tests: line coverage of src/physics and src/numerics >= 80 % (results/p9_coverage_default); CI-equivalent run
+      green in the clean clone
+  9.3 documents: README, dataset card and model card present, their local links resolve
+  9.4 write-up: both papers refreshed (numbers regenerated, lint clean, Word / PDF rebuilt after the refresh),
+      final report present; no paper number changed since the last commit or the freeze without being re-read
+  9.5 claims audit: every number in the write-up traced to RESULTS_REGISTRY (results/p9_claims_audit_default)
+Writes results/p9_gate_<tag>/metrics.json and docs/tables/phase9_gate.md.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+
+from aerosynapse.thermal.utils.experiment import ROOT, Experiment, git_hash
+
+
+def load(rel: str) -> dict | None:
+    f = ROOT / rel
+    return json.loads(f.read_text(encoding="utf-8")) if f.exists() else None
+
+
+def links_ok(md_rel: str) -> list[str]:
+    f = ROOT / md_rel
+    text = f.read_text(encoding="utf-8")
+    bad = []
+    for target in re.findall(r"\]\(([^)#\s]+)", text):
+        if target.startswith(("http://", "https://", "mailto:")):
+            continue
+        if not (f.parent / target).exists():
+            bad.append(target)
+    return bad
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--tag", default="default")
+    a = ap.parse_args()
+    g: dict = {}
+    rp, cc = load("results/p9_reproduce_default/metrics.json"), load("results/p9_clean_clone_default/metrics.json")
+    g["9.1"] = {
+        "reproduce_steps": len((rp or {}).get("runs", [])),
+        "reproduce_failed": (rp or {}).get("failed"),
+        "reproduce_wall_s": (rp or {}).get("wall_s"),
+        "runtime_doc": (ROOT / "docs/REPRODUCE.md").exists(),
+        "clean_clone": {k: (cc or {}).get(k) for k in ("head", "ci_green", "defects", "pass")},
+        "artefact_dependent_steps": len(
+            [r for r in (cc or {}).get("rerender_failures", []) if r["kind"] == "needs git-ignored artefact"]
+        ),
+        "pass": bool(rp)
+        and not rp.get("failed")
+        and (ROOT / "docs/REPRODUCE.md").exists()
+        and bool(cc)
+        and cc.get("pass"),
+    }
+    cov = load("results/p9_coverage_default/metrics.json")
+    g["9.2"] = {
+        "coverage": (cov or {}).get("packages"),
+        "total_percent": (cov or {}).get("total_percent"),
+        "tests": (cov or {}).get("tests"),
+        "ci_green_in_clean_clone": (cc or {}).get("ci_green"),
+        "pass": bool(cov) and cov.get("pass") and bool(cc) and cc.get("ci_green"),
+    }
+    docs = ["README.md", "docs/DATASET_CARD.md", "docs/MODEL_CARD.md"]
+    broken = {d: links_ok(d) for d in docs if (ROOT / d).exists()}
+    g["9.3"] = {
+        "present": {d: (ROOT / d).exists() for d in docs},
+        "broken_links": broken,
+        "pass": all((ROOT / d).exists() for d in docs) and not any(broken.values()),
+    }
+    au = load("results/p9_claims_audit_default/metrics.json") or {}
+    papers = {}
+    for p in ("paper1", "paper2"):
+        num = ROOT / "paper" / p / "numbers.tex"
+        dist = [ROOT / "paper" / "dist" / f"{p}.{e}" for e in ("docx", "pdf")]
+        papers[p] = {
+            "rebuilt_after_numbers": all(d.exists() and d.stat().st_mtime >= num.stat().st_mtime for d in dist),
+            "lint_exit": next((x["lint_exit"] for x in au.get("papers", []) if x["paper"] == p), None),
+            "stale": next((x["stale"] for x in au.get("papers", []) if x["paper"] == p), None),
+        }
+    g["9.4"] = {
+        "papers": papers,
+        "final_report": (ROOT / "docs/FINAL_REPORT.md").exists(),
+        "pass": all(v["rebuilt_after_numbers"] and v["lint_exit"] == 0 and not v["stale"] for v in papers.values())
+        and (ROOT / "docs/FINAL_REPORT.md").exists(),
+    }
+    g["9.5"] = {
+        "papers": [
+            {k: x[k] for k in ("paper", "macros_used", "no_registry_id", "missing_ids")} for x in au.get("papers", [])
+        ],
+        "markdown": [
+            {k: x[k] for k in ("file", "numbers", "traced")} | {"untraced": len(x["untraced"])}
+            for x in au.get("markdown", [])
+        ],
+        "pass": bool(au) and au.get("pass"),
+    }
+    ok = all(v["pass"] for v in g.values())
+    with Experiment(f"p9_gate_{a.tag}", {"seed": 0}) as ex:
+        ex.metrics.update({"gate": g, "pass": ok, "git": git_hash()})
+        L = [
+            "# Phase 9 gate — finalisation (auto-generated by experiments/p9_gate.py)",
+            "",
+            f"git {git_hash()[:7]}; overall **{'PASS' if ok else 'FAIL'}**.",
+            "",
+            "| step | status | evidence |",
+            "|---|---|---|",
+        ]
+        c = g["9.1"]["clean_clone"]
+        L.append(
+            f"| 9.1 reproduce | **{'PASS' if g['9.1']['pass'] else 'FAIL'}** | {g['9.1']['reproduce_steps']} steps, "
+            f"failed {g['9.1']['reproduce_failed']}, {((g['9.1']['reproduce_wall_s'] or 0) / 60):.0f} min; "
+            f"docs/REPRODUCE.md {'present' if g['9.1']['runtime_doc'] else 'missing'}; clean clone of "
+            f"{(c.get('head') or '?')[:7]}: CI green {c.get('ci_green')}, defects {c.get('defects')}, "
+            f"{g['9.1']['artefact_dependent_steps']} steps need git-ignored artefacts |"
+        )
+        pk = g["9.2"]["coverage"] or {}
+        L.append(
+            f"| 9.2 tests | **{'PASS' if g['9.2']['pass'] else 'FAIL'}** | line coverage "
+            + ", ".join(f"{k} {v['percent']} %" for k, v in pk.items())
+            + f" (target 80 %); {g['9.2']['tests']}; CI-equivalent in the clean clone: {g['9.2']['ci_green_in_clean_clone']} |"
+        )
+        L.append(
+            f"| 9.3 documents | **{'PASS' if g['9.3']['pass'] else 'FAIL'}** | "
+            + ", ".join(f"{d} {'✓' if v else '✗'}" for d, v in g["9.3"]["present"].items())
+            + f"; broken links {sum(len(v) for v in broken.values())} |"
+        )
+        L.append(
+            f"| 9.4 write-up | **{'PASS' if g['9.4']['pass'] else 'FAIL'}** | "
+            + "; ".join(
+                f"{p}: rebuilt {v['rebuilt_after_numbers']}, lint {v['lint_exit']}, stale {len(v['stale'] or [])}"
+                for p, v in papers.items()
+            )
+            + f"; docs/FINAL_REPORT.md {'present' if g['9.4']['final_report'] else 'missing'} |"
+        )
+        L.append(
+            f"| 9.5 claims audit | **{'PASS' if g['9.5']['pass'] else 'FAIL'}** | "
+            + "; ".join(
+                f"{x['paper']}: {x['macros_used']} macros, all with existing rows"
+                if not (x["no_registry_id"] or x["missing_ids"])
+                else f"{x['paper']}: problems"
+                for x in g["9.5"]["papers"]
+            )
+            + "; "
+            + "; ".join(f"{x['file']}: {x['traced']} / {x['numbers']} numbers traced" for x in g["9.5"]["markdown"])
+            + " |"
+        )
+        (ROOT / "docs/tables/phase9_gate.md").write_text("\n".join(L) + "\n", encoding="utf-8")
+    for k, v in g.items():
+        print(k, v["pass"])
+    print("gate", "PASS" if ok else "FAIL")
+
+
+if __name__ == "__main__":
+    main()

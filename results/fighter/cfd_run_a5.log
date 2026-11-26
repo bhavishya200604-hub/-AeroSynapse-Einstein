@@ -1,0 +1,2 @@
+reference_cruise_a5 {"cfd": {"CL": 0.31, "CD": 0.0431, "Cm": -0.0482, "CD_friction": 0.0077}, "fast": {"CL": 0.4504, "CD": 0.052, "CD0": 0.0216, "CDw": 0.0, "S": 27.87}}
+freeform_cruise_a5 {"cfd": {"CL": 0.2131, "CD": 0.0307, "Cm": -0.0412, "CD_friction": 0.0071}, "fast": {"CL": 0.4562, "CD": 0.0501, "CD0": 0.0221, "CDw": 0.0, "S": 28.6316}}

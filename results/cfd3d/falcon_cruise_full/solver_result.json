@@ -1,0 +1,40 @@
+{
+ "case": "cruise",
+ "flight": {
+  "mach": 0.85,
+  "alpha": 2.0,
+  "beta": 0.0,
+  "altitude": 11000
+ },
+ "coefficients": {
+  "CL": 0.08800313038,
+  "CD": 0.01433313785,
+  "CY": -0.002160868604,
+  "Cl": 0.0001236570674,
+  "Cm": -0.02829962749,
+  "Cn": -0.0005749144979,
+  "CD_friction": 0.006616000769,
+  "CL_friction": -0.0001127315068
+ },
+ "cells": 331240,
+ "seconds": 2726.315093,
+ "converged": false,
+ "half_model": false,
+ "streamlines": 394,
+ "vortex_core_faces": 424,
+ "sonic_surface_faces": 24,
+ "q_level": 69.52978023252837,
+ "mach_max": 1.0138533985847946,
+ "cp_min_field": -0.5532931985729058,
+ "freestream_mach": 0.8495552476107825,
+ "post_seconds": 2.4490044116973877,
+ "CL_change_last_10pct": 0.00044316671022575786,
+ "figures": [
+  "1_convergence.png",
+  "2_surface_pressure.png",
+  "3_wing_sections.png",
+  "4_field_slices.png",
+  "5_flow_3d.png",
+  "6_flow_3d_top.png"
+ ]
+}

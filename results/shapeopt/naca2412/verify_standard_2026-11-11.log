@@ -1,0 +1,5 @@
+hold-out J 9.159265955779068 J0 0.934363624924231 J2 0.9794033214651064 J3 0.8893239283833555 | baseline J 1.0 | feasible False violated {'surrogate_confidence': 0.4291448648519225}
+robust {'n_states': 311, 'mean': 0.9345859753739947, 'median': 0.9411015558288358, 'cvar90': 1.0242206675562182, 'worst': 1.1277016545766527, 'best': 0.619980347372879, 'frac_better': 0.9292604501607717, 'conf_min_opt': 0.6570855135148077, 'conf_min_base': 0.7732475292021008}
+wing done
+vii done {'turbulent_Re6e6': (1.8, 1.804), 'transitional_Re6e5': (1.418, 1.446), 'laminar_Re2e5': (1.236, 1.284), 'high_Tu_Re2e6': (1.614, 1.609), 'contaminated_Re3e6': (1.491, 1.527)}
+high lift [('slat', 2.351), ('slotted flap', 2.8), ('slat + slotted flap', 3.335)]

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>AeroSynapse</title>
+  <circle cx="256" cy="256" r="244" fill="rgb(16, 42, 84)"/>
+  <circle cx="256" cy="256" r="214" fill="none" stroke="rgb(0, 174, 239)" stroke-width="14" stroke-dasharray="390 58"/>
+  <path d="M60 300 C 160 270, 200 330, 300 300 S 430 280, 470 300" fill="none" stroke="rgb(0, 174, 239)" stroke-width="7" opacity="0.55"/>
+  <path d="M50 340 C 150 312, 210 370, 310 340 S 430 322, 466 340" fill="none" stroke="rgb(0, 174, 239)" stroke-width="5" opacity="0.4"/>
+  <polygon points="256.0,71.7 297.0,204.8 430.1,337.9 430.1,368.6 307.2,358.4 286.7,419.8 337.9,450.6 337.9,465.9 256.0,450.6 174.1,465.9 174.1,450.6 225.3,419.8 204.8,358.4 81.9,368.6 81.9,337.9 215.0,204.8" fill="rgb(255, 255, 255)"/>
+  <polygon points="256.0,174.1 317.4,225.3 317.4,240.6 256.0,225.3 194.6,240.6 194.6,225.3" fill="rgb(0, 174, 239)"/>
+</svg>

@@ -1,0 +1,20 @@
+[jobs] topo_square_grey_Re100: exit 0
+[jobs] topo_square_shape_Re100: exit 0
+[jobs] topo_baseline_Re100: exit 0
+[jobs] airfoil_base_a8: exit 0
+[jobs] cylinder_Re100: exit 0
+[jobs] airfoil_opt_a8: exit 0
+airfoil_base_a0              Cd 0.1673 Cl -0.0128 Cl' 0.0000 St 0.062
+airfoil_base_a18             Cd 0.3420 Cl 0.7446 Cl' 0.0447 St 0.625
+airfoil_base_a8              Cd 0.1905 Cl 0.3557 Cl' 0.0000 St 0.062
+airfoil_opt_a0               Cd 0.1721 Cl 0.0035 Cl' 0.0000 St 0.062
+airfoil_opt_a18              Cd 0.3184 Cl 0.6632 Cl' 0.0181 St 0.625
+airfoil_opt_a8               Cd 0.1980 Cl 0.3698 Cl' 0.0000 St 0.062
+cylinder_Re100               Cd 1.3853 Cl 0.0075 Cl' 0.1986 St 0.183
+cylinder_Re40                Cd 1.7185 Cl -0.0000 Cl' 0.0000 St 0.133
+topo_baseline_Re100          Cd 1.3277 Cl -0.0024 Cl' 0.1156 St 0.200
+topo_baseline_Re40           Cd 1.7793 Cl -0.0000 Cl' 0.0000 St 0.160
+topo_square_grey_Re100       Cd 0.7519 Cl 0.0001 Cl' 0.0000 St 0.040
+topo_square_grey_Re40        Cd 1.2203 Cl -0.0008 Cl' 0.0000 St 0.040
+topo_square_shape_Re100      Cd 0.7546 Cl 0.0317 Cl' 0.0000 St 0.040
+topo_square_shape_Re40       Cd 1.2234 Cl 0.0273 Cl' 0.0000 St 0.040
